@@ -1,0 +1,1581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0C0F">
+<link rel="icon" href="assets/jat-mark.svg" type="image/svg+xml">
+</head>
+<body>
+<title>JAT Brand Book</title>
+<meta name="description" content="Jeremy Anderson Tech brand book: strategy, identity, color, type, motion, components and production tokens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap">
+<style>
+/* Layout: instrument manual — fixed channel index rail at left, one reading column of "screens" (graticule panels) and spec tables on graticule-black. */
+:root{
+  color-scheme: dark;
+  /* neutrals */
+  --ink-950:#07090B; --ink-900:#0A0C0F; --ink-850:#10141A; --ink-800:#161B22; --ink-700:#222A34; --ink-600:#2E3845; --ink-500:#3D4855; --ink-450:#5A6675; --ink-400:#7D8996; --ink-300:#A3AFBC; --ink-100:#E6ECF2;
+  /* channels */
+  --ch1:#3CE3F0; --ch2:#9A8CFF; --ch3:#FFC23D; --ch4:#5EF0A0; --danger:#FF5C7A;
+  /* paper */
+  --paper:#F3F5F7; --paper-ink:#0A0C0F; --paper-muted:#465260; --ch1-deep:#007C88; --ch2-deep:#5B4BD6; --ch3-deep:#8A5800; --ch4-deep:#0A7646; --danger-deep:#B0203C;
+  /* roles */
+  --bg:var(--ink-900); --panel:var(--ink-850); --raised:var(--ink-800); --line:var(--ink-700); --line-strong:var(--ink-600); --line-control:var(--ink-450);
+  --fg:var(--ink-100); --fg-muted:var(--ink-300); --fg-subtle:var(--ink-400); --accent:var(--ch1);
+  --grid-major:rgba(159,180,200,.085); --grid-minor:rgba(159,180,200,.04);
+  /* type */
+  --f-display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-mono:"Martian Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  /* space (4px base) */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px; --s10:128px;
+  --r-tag:2px; --r-control:6px; --r-panel:12px;
+  --ease-out:cubic-bezier(.16,1,.3,1); --t-fast:120ms; --t-base:200ms; --t-slow:320ms; --t-sweep:640ms;
+  --rail:248px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.6;font-stretch:100%;-webkit-font-smoothing:antialiased;margin:0;padding-inline:0}
+::selection{background:var(--ch1);color:var(--ink-900)}
+:focus-visible{outline:2px solid var(--ch1);outline-offset:2px;border-radius:2px}
+a{color:var(--ch1);text-underline-offset:.22em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+html{scrollbar-color:var(--ink-500) var(--ink-950)}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:var(--ink-950)}::-webkit-scrollbar-thumb{background:var(--ink-600);border-radius:10px;border:2px solid var(--ink-950)}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:620;line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(2rem,4.2vw,3.25rem);font-stretch:118%;letter-spacing:-.02em}
+h3{font-size:1.375rem;font-stretch:112%;margin-top:var(--s8);margin-bottom:var(--s3)}
+h4{font-size:1.0625rem;font-stretch:108%;font-weight:600;margin-bottom:var(--s2)}
+p{margin:0 0 var(--s4);max-width:68ch}
+.lede{font-size:1.25rem;line-height:1.5;color:var(--fg);max-width:60ch}
+.muted{color:var(--fg-muted)}
+.mono,.readout{font-family:var(--f-mono);font-stretch:90%}
+.readout{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-muted);font-variant-numeric:tabular-nums}
+code{font-family:var(--f-mono);font-size:.85em;background:var(--raised);border:1px solid var(--line);padding:.05em .35em;border-radius:3px;font-stretch:90%}
+.tnum{font-variant-numeric:tabular-nums}
+
+/* rail */
+.rail{position:fixed;inset:0 auto 0 0;width:var(--rail);border-right:1px solid var(--line);background:var(--ink-950);padding:var(--s5) var(--s4) var(--s5) var(--s5);overflow:auto;display:flex;flex-direction:column;gap:var(--s5);z-index:5}
+.rail .lockup{width:184px;color:var(--fg)}
+.rail nav ol{list-style:none;margin:0;padding:0;display:grid;gap:1px}
+.rail nav a{display:grid;grid-template-columns:2.4rem 1fr;align-items:baseline;gap:var(--s2);padding:6px 8px;border-radius:4px;color:var(--fg-muted);text-decoration:none;font-size:.875rem;line-height:1.3}
+.rail nav a .n{font-family:var(--f-mono);font-size:.6875rem;color:var(--fg-subtle);font-stretch:90%}
+.rail nav a:hover{color:var(--fg);background:var(--ink-850)}
+.rail nav a[aria-current="true"]{color:var(--fg);background:var(--ink-850);box-shadow:inset 2px 0 0 var(--ch1)}
+.rail nav a[aria-current="true"] .n{color:var(--ch1)}
+.rail .meta{margin-top:auto}
+main{margin-left:var(--rail);padding-inline:clamp(16px,5vw,80px);padding-block:0 var(--s10)}
+@media (max-width:1079px){
+  .rail{position:sticky;top:env(safe-area-inset-top,0px);inset:auto;width:auto;height:auto;flex-direction:row;align-items:center;justify-content:space-between;padding:10px 16px;border-right:0;border-bottom:1px solid var(--line);background:rgba(7,9,11,.92);backdrop-filter:blur(12px)}
+  .rail nav,.rail .meta{display:none}
+  .rail .lockup{width:150px}
+  .rail .jump{display:block}
+  main{margin-left:0}
+}
+.jump{display:none;font-family:var(--f-mono);font-size:.75rem;color:var(--fg);background:var(--ink-850);border:1px solid var(--line-control);border-radius:var(--r-control);padding:8px 10px;max-width:52vw}
+
+/* sections */
+.section{padding-top:var(--s10);max-width:1160px}
+.sec-head{display:grid;grid-template-columns:auto 1fr;gap:var(--s5);align-items:start;padding-bottom:var(--s6);margin-bottom:var(--s7);border-bottom:1px solid var(--line);position:relative}
+.sec-head::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:96px;background:var(--ch1)}
+.sec-num{font-family:var(--f-mono);font-size:.8125rem;color:var(--ch1);padding-top:.7em;font-stretch:90%;letter-spacing:.04em;min-width:3ch}
+.sec-head p{margin-top:var(--s4);color:var(--fg-muted);font-size:1.0625rem}
+.cols{display:grid;gap:var(--s6) var(--s7);grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.cols>*{min-width:0}
+.two{display:grid;gap:var(--s6);grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.two>*{min-width:0}
+
+/* screens: graticule panels */
+.screen{position:relative;background:var(--ink-950);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden;
+  background-image:
+    linear-gradient(var(--grid-major) 1px,transparent 1px),linear-gradient(90deg,var(--grid-major) 1px,transparent 1px),
+    linear-gradient(var(--grid-minor) 1px,transparent 1px),linear-gradient(90deg,var(--grid-minor) 1px,transparent 1px);
+  background-size:64px 64px,64px 64px,16px 16px,16px 16px;background-position:-1px -1px}
+.screen.plain{background-image:none;background-color:var(--panel)}
+.screen-bar{display:flex;justify-content:space-between;gap:var(--s4);padding:10px 14px;border-bottom:1px solid var(--line);background:rgba(16,20,26,.9)}
+.screen-body{padding:var(--s6)}
+.cap{margin-top:var(--s3);font-size:.875rem;color:var(--fg-muted)}
+
+/* spec table */
+.spec{width:100%;border-collapse:collapse;font-size:.9375rem}
+.spec th,.spec td{text-align:left;padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.spec th{font-family:var(--f-mono);font-weight:500;font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);font-stretch:90%}
+.spec td.mono{font-size:.8125rem;white-space:nowrap}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* channel tag */
+.ch{display:inline-flex;align-items:center;gap:.5em;font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;font-stretch:90%;color:var(--fg);border:1px solid var(--line-strong);border-radius:var(--r-tag);padding:3px 7px 3px 6px;white-space:nowrap}
+.ch i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--ch1));box-shadow:0 0 0 3px color-mix(in srgb,var(--c,var(--ch1)) 18%,transparent)}
+.ch b{font-weight:500;color:var(--c)}
+
+/* cover */
+.cover{min-height:min(860px,100svh);display:grid;grid-template-rows:1fr auto;padding-block:var(--s7) var(--s6);border-bottom:1px solid var(--line);position:relative;max-width:none;margin-inline:calc(-1*clamp(16px,5vw,80px));padding-inline:clamp(16px,5vw,80px);overflow:hidden}
+.cover canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cover .graticule{position:absolute;inset:0;background-image:linear-gradient(var(--grid-major) 1px,transparent 1px),linear-gradient(90deg,var(--grid-major) 1px,transparent 1px),linear-gradient(var(--grid-minor) 1px,transparent 1px),linear-gradient(90deg,var(--grid-minor) 1px,transparent 1px);background-size:10% 12.5%,10% 12.5%,2% 2.5%,2% 2.5%}
+.cover-inner{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:var(--s5);z-index:1;pointer-events:none}
+.cover h1{font-size:clamp(3.25rem,10vw,8.5rem);font-stretch:125%;font-weight:640;letter-spacing:-.035em;line-height:.88}
+.cover .sub{font-size:clamp(1.0625rem,1.6vw,1.375rem);max-width:44ch;color:var(--fg-muted)}
+.cover-strip{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-top:var(--s7)}
+@media (max-width:600px){.cover-strip div:last-child{grid-column:1/-1}}
+.cover-strip div{background:rgba(7,9,11,.86);padding:12px 14px;display:grid;gap:2px}
+.cover-strip .v{font-family:var(--f-mono);font-size:.8125rem;color:var(--fg);font-stretch:90%}
+
+/* blocks */
+.statement{font-family:var(--f-display);font-stretch:112%;font-size:clamp(1.5rem,2.8vw,2.25rem);line-height:1.18;font-weight:520;letter-spacing:-.015em;max-width:30ch;text-wrap:balance}
+.statement em{font-style:normal;color:var(--ch1)}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));border-top:1px solid var(--line)}
+.pillars>div{padding:var(--s5) var(--s5) var(--s5) 0;border-bottom:1px solid var(--line)}
+.pillars h4{display:flex;gap:.6em;align-items:baseline}
+.pillars p{font-size:.9375rem;color:var(--fg-muted);margin:0}
+.kv{display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:var(--s3) var(--s5);margin:0}
+.kv dt{font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);padding-top:.35em;font-stretch:90%}
+.kv dd{margin:0}
+@media (max-width:560px){.kv{grid-template-columns:1fr;gap:2px}.kv dd{margin-bottom:var(--s3)}}
+.values{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+.values>div{background:var(--panel);padding:var(--s5)}
+.values p{font-size:.9375rem;color:var(--fg-muted);margin:0}
+.persona{display:grid;gap:var(--s4);padding:var(--s5);background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel)}
+.persona header{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s2)}
+.persona h4{font-size:1.25rem;margin:0}
+.persona dl{margin:0;display:grid;gap:var(--s3)}
+.persona dt{font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);font-stretch:90%}
+.persona dd{margin:0;font-size:.9375rem}
+.note{font-size:.875rem;color:var(--fg-muted);border:1px dashed var(--line-strong);border-radius:8px;padding:10px 14px;max-width:none}
+.dodont{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:var(--s4)}
+.dodont>div{border:1px solid var(--line);border-radius:var(--r-panel);padding:var(--s5);background:var(--panel)}
+.dodont .tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:var(--s3);font-stretch:90%}
+.dodont ul{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:.9375rem}
+.rewrite{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+.rewrite>div{padding:var(--s5)}
+.rewrite>div+div{border-left:1px solid var(--line);background:var(--panel)}
+@media (max-width:700px){.rewrite{grid-template-columns:1fr}.rewrite>div+div{border-left:0;border-top:1px solid var(--line)}}
+.taglines{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.taglines li{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--s5);padding:var(--s4) 0;border-bottom:1px solid var(--line);align-items:baseline}
+.taglines .t{font-family:var(--f-display);font-stretch:115%;font-size:1.25rem;font-weight:560;letter-spacing:-.01em}
+.taglines .why{font-size:.9375rem;color:var(--fg-muted)}
+.taglines li.pick .t{color:var(--ch1)}
+@media (max-width:640px){.taglines li{grid-template-columns:1fr;gap:4px}}
+.chart-legend{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);margin-top:var(--s3)}
+</style>
+<style>
+/* identity + color + type */
+.logo-stage{display:grid;place-items:center;min-height:300px;padding:var(--s7) var(--s5)}
+.logo-stage svg{display:block}
+.explore{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:var(--s4)}
+.explore figure{margin:0;border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden;background:var(--panel)}
+.explore .art{aspect-ratio:3/2;display:grid;place-items:center;background:var(--ink-950);border-bottom:1px solid var(--line)}
+.explore figcaption{padding:var(--s4) var(--s5) var(--s5);font-size:.9375rem;color:var(--fg-muted)}
+.explore figcaption strong{display:flex;justify-content:space-between;gap:var(--s3);color:var(--fg);font-family:var(--f-display);font-stretch:110%;font-weight:600;margin-bottom:4px}
+.verdict{font-family:var(--f-mono);font-size:.625rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;border:1px solid var(--line-strong);color:var(--fg-subtle);align-self:center;font-stretch:90%}
+.verdict.go{color:var(--ink-900);background:var(--ch4);border-color:var(--ch4)}
+.lockups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--s4)}
+.lockups figure{margin:0}
+.lockups .art{border:1px solid var(--line);border-radius:var(--r-panel);display:grid;place-items:center;min-height:200px;padding:var(--s6)}
+.lockups figcaption{margin-top:var(--s2);font-size:.875rem;color:var(--fg-muted)}
+.on-paper{background:var(--paper);--mk:var(--ch1-deep);--lk-name:var(--paper-ink);--lk-tech:var(--paper-muted);--lk-rule:#9AA6B2}
+.on-ink{background:var(--ink-950)}
+.on-cyan{background:var(--ch1);--mk:var(--ink-900);--lk-name:var(--ink-900);--lk-tech:#0d3d43;--lk-rule:#0d5a62}
+.on-mono{background:var(--ink-850);--mk:var(--ink-100);--lk-name:var(--ink-100);--lk-tech:var(--ink-300)}
+.construct{position:relative}
+.construct svg{width:100%;height:auto;display:block}
+.misuse{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:var(--s3)}
+.misuse figure{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+.misuse .art{height:130px;display:grid;place-items:center;background:var(--ink-950);position:relative;border-bottom:1px solid var(--line);overflow:hidden}
+.misuse .art::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - 1px),rgba(255,92,122,.75) 50%,transparent calc(50% + 1px))}
+.misuse figcaption{padding:10px 12px;font-size:.8125rem;color:var(--fg-muted);display:flex;gap:8px;align-items:baseline}
+.misuse figcaption svg{flex:none;position:relative;top:2px}
+.code{position:relative;background:var(--ink-950);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+.code pre{margin:0;padding:var(--s5);overflow:auto;font-family:var(--f-mono);font-size:.75rem;line-height:1.7;color:var(--fg-muted);font-stretch:90%;max-height:520px}
+.code pre .k{color:var(--ch2)}.code pre .s{color:var(--ch4)}.code pre .c{color:var(--fg-subtle)}.code pre .v{color:var(--ch1)}
+.code header{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);padding:8px 8px 8px 14px;border-bottom:1px solid var(--line);background:var(--panel)}
+.btn-copy{font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.04em;text-transform:uppercase;color:var(--fg);background:var(--ink-800);border:1px solid var(--line-control);border-radius:var(--r-control);padding:6px 10px;cursor:pointer;min-height:32px;font-stretch:90%}
+.btn-copy:hover{border-color:var(--ch1);color:var(--ch1)}
+.btn-copy[data-done]{color:var(--ink-900);background:var(--ch4);border-color:var(--ch4)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:var(--s3)}
+.sw{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);display:grid;grid-template-rows:auto 1fr}
+.sw .chip{height:96px;background:var(--c);position:relative;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;font-family:var(--f-mono);font-size:.6875rem;font-stretch:90%}
+.sw .chip.big{height:150px}
+.sw .info{padding:10px 12px;display:grid;gap:2px;font-size:.8125rem}
+.sw .info b{font-family:var(--f-display);font-stretch:108%;font-weight:600;font-size:.9375rem}
+.sw .info span{font-family:var(--f-mono);color:var(--fg-muted);font-size:.6875rem;font-stretch:90%;font-variant-numeric:tabular-nums}
+.ramp{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.ramp div{height:84px;background:var(--c);display:flex;align-items:flex-end;padding:6px;font-family:var(--f-mono);font-size:.5625rem;color:var(--t,var(--ink-100));font-stretch:85%}
+@media (max-width:700px){.ramp{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.ratio{font-family:var(--f-mono);font-size:.75rem;font-variant-numeric:tabular-nums;font-stretch:90%}
+.pass{color:var(--ch4)}.fail{color:var(--danger)}.large{color:var(--ch3)}
+.matrix td,.matrix th{text-align:center!important;padding:10px 8px!important}
+.matrix td:first-child,.matrix th:first-child{text-align:left!important}
+.matrix .sample{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1px solid var(--line-strong)}
+.specimen{border:1px solid var(--line);border-radius:var(--r-panel);padding:var(--s6);background:var(--panel);overflow:hidden}
+.specimen .big{font-family:var(--f-display);font-size:clamp(4rem,12vw,10rem);line-height:.85;font-stretch:125%;font-weight:640;letter-spacing:-.04em}
+.specimen .row{display:flex;flex-wrap:wrap;gap:var(--s5);align-items:baseline;margin-top:var(--s4)}
+.wdth-scrub{display:grid;gap:var(--s3);margin-top:var(--s5)}
+.wdth-scrub label{font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);display:flex;justify-content:space-between;font-stretch:90%}
+input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
+.scale-row{display:grid;grid-template-columns:150px 1fr;gap:var(--s5);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.scale-row .meta{font-family:var(--f-mono);font-size:.6875rem;color:var(--fg-subtle);line-height:1.6;font-stretch:90%}
+.scale-row .sample{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.scale-row{grid-template-columns:1fr;gap:4px}}
+.spacebars{display:grid;gap:8px}
+.spacebars div{display:grid;grid-template-columns:72px 56px 1fr;align-items:center;gap:var(--s3);font-family:var(--f-mono);font-size:.6875rem;color:var(--fg-muted);font-stretch:90%}
+.spacebars i{height:12px;background:var(--ch1);opacity:.85;border-radius:1px;display:block}
+.elev{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:var(--s5);padding:var(--s7) var(--s5);background:var(--ink-950);border:1px solid var(--line);border-radius:var(--r-panel)}
+.elev div{height:120px;border-radius:var(--r-panel);padding:12px;display:flex;flex-direction:column;justify-content:space-between;font-size:.8125rem}
+.elev .e0{background:transparent;border:1px dashed var(--line)}
+.elev .e1{background:var(--ink-850);border:1px solid var(--line)}
+.elev .e2{background:var(--ink-800);border:1px solid var(--line-strong);box-shadow:0 1px 0 rgba(230,236,242,.04) inset,0 10px 30px -8px rgba(0,0,0,.6)}
+.elev .e3{background:rgba(16,20,26,.62);backdrop-filter:blur(14px) saturate(120%);border:1px solid rgba(230,236,242,.12);box-shadow:0 1px 0 rgba(230,236,242,.08) inset,0 24px 48px -12px rgba(0,0,0,.7)}
+.elev-wrap{position:relative}
+.elev-wrap canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:var(--r-panel)}
+.radii{display:flex;flex-wrap:wrap;gap:var(--s5)}
+.radii div{width:96px;height:72px;border:1px solid var(--ch1);display:grid;place-items:end start;padding:8px;font-family:var(--f-mono);font-size:.6875rem;color:var(--fg-muted);font-stretch:90%}
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><path id="p-name" d="M32.643408203125 1.2000000000000002Q23.469531250000003 1.2000000000000002 16.9739013671875 -1.4521728515625Q10.478271484375 -4.104345703125 7.0087158203125 -9.6195556640625Q3.5391601562500004 -15.134765625 3.5391601562500004 -23.760839843750002V-25.169531250000002H18.612890625000002V-23.26953125Q18.612890625000002 -17.51298828125 22.208569335937504 -14.602099609375Q25.804248046875003 -11.691210937500001 32.126025390625 -11.691210937500001Q39.0521484375 -11.691210937500001 42.889135742187506 -15.2890625Q46.726123046875 -18.8869140625 46.726123046875 -26.40869140625V-68.704345703125H62.247656250000006V-27.204345703125Q62.247656250000006 -17.395654296875 58.6737548828125 -11.095654296875Q55.099853515625 -4.795654296875 48.5042236328125 -1.7978271484375Q41.90859375 1.2000000000000002 32.643408203125 1.2000000000000002ZM83.800048828125 0.0V-68.704345703125H153.473876953125V-55.813134765625H99.417236328125V-41.365185546875004H147.44345703125V-28.5130859375H99.417236328125V-12.8912109375H154.273876953125V0.0ZM174.40004882812502 0.0V-68.704345703125H229.02602539062502Q236.34340820312502 -68.704345703125 241.01513671875003 -65.7434814453125Q245.68686523437503 -62.7826171875 247.99990234375002 -57.9174072265625Q250.312939453125 -53.052197265625004 250.312939453125 -47.1478515625Q250.312939453125 -41.0130859375 247.16728515625002 -35.6630859375Q244.02163085937502 -30.313085937500002 237.45205078125002 -27.30439453125L252.00859375000002 0.0H234.43925781250002L221.93486328125002 -24.36962890625H190.012890625V0.0ZM190.012890625 -37.165185546875H224.63046875Q229.24790039062503 -37.165185546875 231.76965332031253 -39.871728515625Q234.29140625000002 -42.578271484375 234.29140625000002 -46.826123046875004Q234.29140625000002 -49.691357421875004 233.20009765625002 -51.715283203125004Q232.10878906250002 -53.739208984375004 229.94138183593753 -54.776171875Q227.77397460937502 -55.813134765625 224.63046875 -55.813134765625H190.012890625ZM270.50004882812505 0.0V-68.704345703125H340.17387695312505V-55.813134765625H286.11723632812505V-41.365185546875004H334.14345703125V-28.5130859375H286.11723632812505V-12.8912109375H340.97387695312506V0.0ZM361.10004882812507 0.0V-68.704345703125H385.36059570312506L400.7477050781251 -33.84326171875Q401.4520507812501 -32.221533203125 402.58684082031255 -29.37587890625Q403.72163085937507 -26.530224609375 404.94990234375007 -23.397607421875Q406.17817382812507 -20.264990234375002 407.15644531250007 -17.691064453125H407.85644531250006Q408.73906250000005 -19.973681640625003 409.91950683593757 -22.956298828125Q411.0999511718751 -25.938916015625 412.28474121093757 -28.8367431640625Q413.46953125000005 -31.7345703125 414.26953125000006 -33.651953125L429.6566406250001 -68.704345703125H453.38676757812505V0.0H437.77392578125006V-41.478515625Q437.77392578125006 -43.21328125 437.82392578125007 -45.352392578125006Q437.8739257812501 -47.49150390625 437.97392578125005 -49.578442382812504Q438.07392578125007 -51.665380859375006 438.1695800781251 -53.191455078125H437.36958007812507Q436.86088867187505 -51.656689453125004 436.05437011718755 -49.51540527343751Q435.24785156250005 -47.374121093750006 434.44133300781255 -45.2371826171875Q433.63481445312505 -43.100244140625 432.93046875000005 -41.478515625L414.57377929687505 0.0H399.4652343750001L381.01289062500007 -41.478515625Q380.10419921875007 -43.5306640625 379.2455078125 -45.72412109375Q378.38681640625003 -47.917578125000006 377.73029785156257 -49.897998046875Q377.07377929687505 -51.87841796875 376.57377929687505 -53.191455078125H375.77377929687503Q375.87377929687506 -51.974072265625004 375.92377929687507 -49.99365234375Q375.9737792968751 -48.013232421875 376.0237792968751 -45.819775390625004Q376.07377929687505 -43.626318359375006 376.07377929687505 -41.478515625V0.0ZM502.42607421875005 0.0V-27.769580078125003L468.79565429687506 -68.704345703125H487.5562988281251L510.14335937500005 -40.243359375000004H511.13032226562507L534.0043457031251 -68.704345703125H551.76064453125L518.0389160156251 -27.769580078125003V0.0ZM595.83046875 0.0 630.182666015625 -68.704345703125H647.817236328125L682.16943359375 0.0H665.0435546875L658.6478515625 -13.117480468750001H618.25205078125L611.860693359375 0.0ZM624.317236328125 -25.626074218750002H652.582666015625L644.721728515625 -42.20009765625Q644.230419921875 -43.287060546875004 643.2999755859375 -45.402294921875004Q642.36953125 -47.517529296875004 641.4347412109375 -49.743627929687506Q640.499951171875 -51.9697265625 639.758642578125 -53.6218994140625Q639.017333984375 -55.274072265625 638.899951171875 -55.43056640625H638.104296875Q637.217333984375 -53.443603515625 636.0825439453125 -50.860986328125Q634.94775390625 -48.278369140625 633.910791015625 -45.89140625Q632.873828125 -43.504443359375 632.178173828125 -42.104443359375004ZM698.100048828125 0.0V-68.704345703125H712.712939453125L750.156494140625 -32.925927734375Q751.42607421875 -31.852001953125 753.1956542968751 -29.99111328125Q754.965234375 -28.130224609375002 756.8826416015625 -26.1693359375Q758.800048828125 -24.208447265625 760.182666015625 -22.6388671875H760.991357421875Q760.895703125 -24.8041015625 760.7522216796874 -27.9193359375Q760.608740234375 -31.0345703125 760.608740234375 -33.04326171875V-68.704345703125H775.582470703125V0.0H761.265234375L723.79990234375 -36.091503906250004Q721.1259765625 -38.652392578125 718.20205078125 -41.7567626953125Q715.278125 -44.8611328125 713.4955078125 -46.735058593750004H712.78681640625Q712.882470703125 -45.430712890625 712.9781250000001 -42.211132812500004Q713.073779296875 -38.991552734375006 713.073779296875 -34.861083984375V0.0ZM798.800048828125 0.0V-68.704345703125H835.5478027343751Q848.156494140625 -68.704345703125 857.2173583984375 -64.7521728515625Q866.27822265625 -60.800000000000004 871.1347412109376 -53.1478271484375Q875.991259765625 -45.495654296875 875.991259765625 -34.304345703125Q875.991259765625 -23.20869140625 871.1347412109376 -15.5565185546875Q866.27822265625 -7.904345703125 857.2173583984375 -3.9521728515625Q848.156494140625 0.0 835.5478027343751 0.0ZM814.412890625 -12.8912109375H834.7173828125001Q840.15654296875 -12.8912109375 844.7435302734375 -14.186865234375Q849.3305175781251 -15.48251953125 852.7305419921876 -18.01513671875Q856.1305664062501 -20.54775390625 858.0001464843751 -24.358642578125Q859.8697265625001 -28.169531250000002 859.8697265625001 -33.204345703125V-35.50869140625Q859.8697265625001 -40.543505859375 858.0001464843751 -44.3522216796875Q856.1305664062501 -48.1609375 852.7305419921876 -50.693554687500004Q849.3305175781251 -53.226171875000006 844.7435302734375 -54.5196533203125Q840.15654296875 -55.813134765625 834.7173828125001 -55.813134765625H814.412890625ZM896.200048828125 0.0V-68.704345703125H965.8738769531251V-55.813134765625H911.817236328125V-41.365185546875004H959.8434570312501V-28.5130859375H911.817236328125V-12.8912109375H966.673876953125V0.0ZM986.800048828125 0.0V-68.704345703125H1041.426025390625Q1048.743408203125 -68.704345703125 1053.41513671875 -65.7434814453125Q1058.086865234375 -62.7826171875 1060.39990234375 -57.9174072265625Q1062.712939453125 -53.052197265625004 1062.712939453125 -47.1478515625Q1062.712939453125 -41.0130859375 1059.56728515625 -35.6630859375Q1056.421630859375 -30.313085937500002 1049.85205078125 -27.30439453125L1064.4085937500001 0.0H1046.8392578125001L1034.3348632812501 -24.36962890625H1002.412890625V0.0ZM1002.412890625 -37.165185546875H1037.03046875Q1041.647900390625 -37.165185546875 1044.1696533203126 -39.871728515625Q1046.69140625 -42.578271484375 1046.69140625 -46.826123046875004Q1046.69140625 -49.691357421875004 1045.60009765625 -51.715283203125004Q1044.5087890625 -53.739208984375004 1042.3413818359377 -54.776171875Q1040.1739746093751 -55.813134765625 1037.03046875 -55.813134765625H1002.412890625ZM1116.6564453125 1.2000000000000002Q1108.808642578125 1.2000000000000002 1101.96953125 0.24565429687500007Q1095.130419921875 -0.70869140625 1090.0 -3.1630371093750003Q1084.869580078125 -5.617382812500001 1082.0000244140624 -10.0239013671875Q1079.1304687499999 -14.430419921875 1079.1304687499999 -21.330419921875002Q1079.1304687499999 -21.530419921875 1079.1304687499999 -21.8325927734375Q1079.1304687499999 -22.134765625 1079.23046875 -22.34345703125H1094.625927734375Q1094.525927734375 -21.943457031250002 1094.4781005859375 -21.402148437500003Q1094.4302734374999 -20.86083984375 1094.4302734374999 -20.17822265625Q1094.4302734374999 -17.082568359375 1097.099853515625 -15.1477783203125Q1099.76943359375 -13.21298828125 1104.70859375 -12.3281982421875Q1109.64775390625 -11.443408203125001 1116.2608398437499 -11.443408203125001Q1119.1173828125 -11.443408203125001 1122.028271484375 -11.684716796875001Q1124.93916015625 -11.926025390625 1127.6065673828125 -12.4151611328125Q1130.273974609375 -12.904296875 1132.397900390625 -13.7869140625Q1134.5218261718749 -14.66953125 1135.7587890625 -15.997802734375Q1136.995751953125 -17.32607421875 1136.995751953125 -19.104345703125002Q1136.995751953125 -21.669580078125 1134.65009765625 -23.1956787109375Q1132.304443359375 -24.721777343750002 1128.3109619140623 -25.702221679687504Q1124.3174804687499 -26.682666015625003 1119.3283447265624 -27.373974609375004Q1114.3392089843749 -28.065283203125002 1109.0000732421875 -28.9131103515625Q1103.6609375 -29.7609375 1098.6718017578125 -31.2109375Q1093.682666015625 -32.6609375 1089.6891845703126 -34.96962890625Q1085.695703125 -37.2783203125 1083.350048828125 -40.939184570312506Q1081.00439453125 -44.600048828125004 1081.00439453125 -49.9130859375Q1081.00439453125 -54.765234375000006 1083.3413330078124 -58.48696289062501Q1085.678271484375 -62.208691406250004 1090.2173828125 -64.7608642578125Q1094.756494140625 -67.313037109375 1101.3260498046875 -68.60869140625Q1107.8956054687499 -69.904345703125 1116.356494140625 -69.904345703125Q1124.9217285156249 -69.904345703125 1131.3412841796874 -68.51520996093751Q1137.7608398437499 -67.12607421875 1142.0064697265625 -64.53041992187501Q1146.252099609375 -61.934765625000004 1148.3433837890625 -58.2673828125Q1150.4346679687499 -54.6 1150.4346679687499 -50.043505859375V-48.460888671875004H1135.239208984375V-49.721777343750006Q1135.239208984375 -51.9130859375 1132.8870117187498 -53.6065673828125Q1130.534814453125 -55.300048828125 1126.486962890625 -56.2978759765625Q1122.439111328125 -57.295703125 1117.2608398437499 -57.295703125Q1110.1651367187499 -57.295703125 1105.721630859375 -56.408740234375Q1101.278125 -55.52177734375 1099.2020263671875 -53.993505859375006Q1097.125927734375 -52.465234375 1097.125927734375 -50.595654296875004Q1097.125927734375 -48.3173828125 1099.47158203125 -46.934765625Q1101.8172363281249 -45.5521484375 1105.8107177734373 -44.715185546875006Q1109.80419921875 -43.87822265625 1114.7933349609375 -43.1869140625Q1119.782470703125 -42.49560546875 1125.1216064453124 -41.6021240234375Q1130.4607421875 -40.708642578125 1135.4498779296875 -39.3108154296875Q1140.439013671875 -37.91298828125 1144.4324951171875 -35.5608154296875Q1148.4259765625 -33.208642578125 1150.771630859375 -29.6521240234375Q1153.1172851562499 -26.09560546875 1153.1172851562499 -20.8869140625Q1153.1172851562499 -12.865185546875 1148.5020751953125 -7.9956298828125005Q1143.886865234375 -3.1260742187500004 1135.6716552734374 -0.9630371093750001Q1127.4564453125 1.2000000000000002 1116.6564453125 1.2000000000000002ZM1213.2381097593075 1.2000000000000002Q1199.6077889414166 1.2000000000000002 1189.6669559941456 -2.9565185546875Q1179.7261230468748 -7.113037109375 1174.3652587890624 -15.063037109375001Q1169.0043945312498 -23.013037109375002 1169.0043945312498 -34.35269709543569Q1169.0043945312498 -45.786962890625006 1174.3652587890624 -53.69130859375001Q1179.7261230468748 -61.595654296875004 1189.6669559941456 -65.75Q1199.6077889414166 -69.904345703125 1213.2381097593075 -69.904345703125Q1226.9999999999998 -69.904345703125 1236.9152099609373 -65.75Q1246.8304199218749 -61.595654296875004 1252.1912841796875 -53.69130859375001Q1257.5521484375 -45.786962890625006 1257.5521484375 -34.35269709543569Q1257.5521484375 -23.013037109375002 1252.1912841796875 -15.063037109375001Q1246.8304199218749 -7.113037109375 1236.9152099609373 -2.9565185546875Q1226.9999999999998 1.2000000000000002 1213.2381097593075 1.2000000000000002ZM1213.278271484375 -11.691210937500001Q1219.4130859374998 -11.691210937500001 1224.5522460937498 -13.084692382812502Q1229.6914062499998 -14.478173828125001 1233.4914306640624 -17.1629638671875Q1237.291455078125 -19.847753906250002 1239.4088623046873 -23.916975911458337Q1241.52626953125 -27.98619791666667 1241.52626953125 -33.300000000000004V-35.604345703125Q1241.52626953125 -40.897828151755135 1239.4088623046873 -44.92720997431507Q1237.291455078125 -48.956591796875 1233.4914306640624 -51.639208984375Q1229.6914062499998 -54.321826171875 1224.5522460937498 -55.66748046875Q1219.4130859374998 -57.013134765625004 1213.278271484375 -57.013134765625004Q1207.14345703125 -57.013134765625004 1202.004296875 -55.66748046875Q1196.86513671875 -54.321826171875 1193.0651123046873 -51.639208984375Q1189.265087890625 -48.956591796875 1187.1955078125 -44.92720997431507Q1185.125927734375 -40.897828151755135 1185.125927734375 -35.604345703125V-33.300000000000004Q1185.125927734375 -27.98619791666667 1187.1955078125 -23.916975911458337Q1189.265087890625 -19.847753906250002 1193.0651123046873 -17.1629638671875Q1196.86513671875 -14.478173828125001 1202.004296875 -13.084692382812502Q1207.14345703125 -11.691210937500001 1213.278271484375 -11.691210937500001ZM1277.8000488281248 0.0V-68.704345703125H1292.4129394531249L1329.8564941406248 -32.925927734375Q1331.1260742187499 -31.852001953125 1332.895654296875 -29.99111328125Q1334.6652343749997 -28.130224609375002 1336.5826416015623 -26.1693359375Q1338.5000488281248 -24.208447265625 1339.8826660156249 -22.6388671875H1340.6913574218747Q1340.5957031249998 -24.8041015625 1340.4522216796872 -27.9193359375Q1340.308740234375 -31.0345703125 1340.308740234375 -33.04326171875V-68.704345703125H1355.2824707031248V0.0H1340.965234375L1303.49990234375 -36.091503906250004Q1300.8259765624998 -38.652392578125 1297.9020507812497 -41.7567626953125Q1294.9781249999999 -44.8611328125 1293.1955078124997 -46.735058593750004H1292.4868164062498Q1292.5824707031247 -45.430712890625 1292.678125 -42.211132812500004Q1292.7737792968749 -38.991552734375006 1292.7737792968749 -34.861083984375V0.0Z"/><path id="p-tech" d="M33.904296875 0.0V-59.422021484375H2.80107421875V-68.6497314453125H75.482275390625V-59.422021484375H44.379052734375V0.0ZM121.15617675781252 0.0V-68.6497314453125H188.64543457031252V-59.7701416015625H131.6309326171875V-39.590869140625H182.997314453125V-30.711279296875002H131.6309326171875V-8.87958984375H189.4454345703125V0.0ZM278.2508056640625 1.2000000000000002Q264.85349121093753 1.2000000000000002 255.67969970703126 -2.8751342773437503Q246.50590820312502 -6.950268554687501 241.85617675781253 -14.900268554687502Q237.20644531250002 -22.850268554687503 237.20644531250002 -34.3497314453125Q237.20644531250002 -51.3497314453125 247.78023681640627 -60.5997314453125Q258.3540283203125 -69.8497314453125 278.0 -69.8497314453125Q289.44919433593753 -69.8497314453125 298.14838867187507 -66.87647705078125Q306.84758300781255 -63.90322265625 311.7221801757813 -58.004833984375Q316.59677734375003 -52.1064453125 316.59677734375003 -43.3064453125H306.27121582031253Q306.27121582031253 -49.5631591796875 302.69366455078125 -53.46611328125Q299.11611328125 -57.3690673828125 292.71127929687503 -59.1696044921875Q286.30644531250005 -60.9701416015625 277.800537109375 -60.9701416015625Q268.996240234375 -60.9701416015625 262.26654052734375 -58.19393310546875Q255.5368408203125 -55.417724609375 251.7336181640625 -49.78829345703125Q247.9303955078125 -44.1588623046875 247.9303955078125 -35.649731445312504V-33.2Q247.9303955078125 -24.339526367187503 251.78388671875 -18.710363769531252Q255.63737792968752 -13.081201171875001 262.46734619140625 -10.380395507812501Q269.297314453125 -7.6795898437500005 278.2021484375 -7.6795898437500005Q286.8572509765625 -7.6795898437500005 293.18641357421876 -9.530664062500001Q299.515576171875 -11.381738281250001 303.01799316406255 -15.284692382812501Q306.52041015625 -19.187646484375 306.52041015625 -25.243823242187503H316.69677734375Q316.69677734375 -16.493017578125002 311.79677734375 -10.594628906250001Q306.89677734375005 -4.696240234375 298.2475830078125 -1.7481201171874998Q289.598388671875 1.2000000000000002 278.2508056640625 1.2000000000000002ZM367.2561767578125 0.0V-68.6497314453125H377.73093261718753V-39.6892578125H429.40751953125005V-68.6497314453125H439.88227539062507V0.0H429.40751953125005V-30.4615478515625H377.73093261718753V0.0Z"/><path id="p-jat" d="M33.21744384765625 1.2000000000000002Q23.747851562500003 1.2000000000000002 17.069573974609376 -1.460870361328125Q10.39129638671875 -4.12174072265625 6.843463134765625 -9.697833251953124Q3.2956298828125004 -15.27392578125 3.2956298828125004 -24.004370117187502V-25.447851562500002H19.865332031250002V-23.5478515625Q19.865332031250002 -17.9652587890625 23.24357299804688 -15.21092529296875Q26.621813964843753 -12.456591796875001 32.63048095703125 -12.456591796875001Q39.260888671875 -12.456591796875001 42.84564819335938 -15.845703125Q46.43040771484375 -19.234814453125 46.43040771484375 -26.4434814453125V-68.72174072265625H63.639257812500006V-27.22174072265625Q63.639257812500006 -17.37825927734375 59.96968383789063 -11.07825927734375Q56.30010986328125 -4.77825927734375 49.52183227539062 -1.789129638671875Q42.7435546875 1.2000000000000002 33.21744384765625 1.2000000000000002ZM75.35214843749999 0.0 109.51300048828125 -68.72174072265625H128.88707275390624L163.0479248046875 0.0H144.217333984375L138.239111328125 -12.386889648437501H99.0609619140625L93.10447998046875 0.0ZM105.38707275390624 -25.730444335937502H131.91300048828126L124.60870361328125 -41.3999267578125Q124.15218505859374 -42.434704589843754 123.30001831054688 -44.410778808593754Q122.4478515625 -46.386853027343754 121.57394409179688 -48.51727905273438Q120.70003662109374 -50.647705078125 119.99351806640624 -52.30857543945312Q119.28699951171875 -53.96944580078125 119.10003662109375 -54.3520751953125H118.32177734375Q117.48699951171875 -52.41729736328125 116.41309204101563 -49.90426025390625Q115.3391845703125 -47.39122314453125 114.35440673828126 -45.0564453125Q113.36962890625 -42.72166748046875 112.69136962890624 -41.321667480468754ZM199.85214843750003 0.0V-54.1260009765625H169.63477783203126V-68.72174072265625H247.33488769531255V-54.1260009765625H217.11751708984377V0.0Z"/></defs><symbol id="mk" viewBox="1 6 108 68"><g style="stroke:var(--mk,#3CE3F0)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></symbol><symbol id="lk-h" viewBox="1 6 468 68"><g style="stroke:var(--mk,#3CE3F0)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g><use href="#p-name" transform="translate(124.00 33) scale(0.24781)" style="fill:var(--lk-name,#E6ECF2)"/><use href="#p-tech" transform="translate(124.00 64) scale(0.24781)" style="fill:var(--lk-tech,#A3AFBC)"/><g style="stroke:var(--lk-rule,#3D4855)" stroke-width="1.5" fill="none"><path d="M245.7 64H462.2"/><path d="M245.7 64V54"/><path d="M263.7 64V59"/><path d="M281.8 64V59"/><path d="M299.8 64V59"/><path d="M317.9 64V59"/><path d="M335.9 64V59"/><path d="M354.0 64V54"/><path d="M372.0 64V59"/><path d="M390.1 64V59"/><path d="M408.1 64V59"/><path d="M426.1 64V59"/><path d="M444.2 64V59"/><path d="M462.2 64V54"/></g></symbol><symbol id="lk-s" viewBox="-4 6 306 132"><g transform="translate(94.22 0)"><g style="stroke:var(--mk,#3CE3F0)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></g><use href="#p-name" transform="translate(0.00 105) scale(0.21866)" style="fill:var(--lk-name,#E6ECF2)"/><use href="#p-tech" transform="translate(99.95 134) scale(0.21866)" style="fill:var(--lk-tech,#A3AFBC)"/></symbol><symbol id="icon" viewBox="0 0 128 128"><rect width="128" height="128" rx="28" fill="#0A0C0F"/><rect x="8" y="8" width="112" height="112" rx="20" fill="#10141A"/><g stroke="#1B222B" stroke-width="1"><path d="M24 8V120"/><path d="M40 8V120"/><path d="M56 8V120"/><path d="M72 8V120"/><path d="M88 8V120"/><path d="M104 8V120"/><path d="M8 24H120"/><path d="M8 40H120"/><path d="M8 56H120"/><path d="M8 72H120"/><path d="M8 88H120"/><path d="M8 104H120"/></g><g transform="translate(9.5 24)"><g style="stroke:var(--mk,#3CE3F0)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></g></symbol></svg>
+<aside class="rail" aria-label="Brand book index">
+  <a href="#top" aria-label="Jeremy Anderson Tech brand book, top"><svg class="lockup" viewBox="1 6 468 68"><use href="#lk-h"/></svg></a>
+  <nav aria-label="Sections">
+    <ol id="toc">
+      <li><a href="#positioning"><span class="n">01</span>Positioning</a></li>
+      <li><a href="#purpose"><span class="n">02</span>Purpose &amp; values</a></li>
+      <li><a href="#audiences"><span class="n">03</span>Audiences</a></li>
+      <li><a href="#architecture"><span class="n">04</span>Brand architecture</a></li>
+      <li><a href="#landscape"><span class="n">05</span>Competitive landscape</a></li>
+      <li><a href="#voice"><span class="n">06</span>Personality &amp; voice</a></li>
+      <li><a href="#taglines"><span class="n">07</span>Taglines</a></li>
+      <li><a href="#logo"><span class="n">08</span>Logo system</a></li>
+      <li><a href="#vector"><span class="n">09</span>Vector files</a></li>
+      <li><a href="#color"><span class="n">10</span>Color</a></li>
+      <li><a href="#type"><span class="n">11</span>Typography</a></li>
+      <li><a href="#grid"><span class="n">12</span>Grid &amp; space</a></li>
+      <li><a href="#imagery"><span class="n">13</span>Imagery &amp; motion</a></li>
+      <li><a href="#components"><span class="n">14</span>UI components</a></li>
+      <li><a href="#access"><span class="n">15</span>Accessibility</a></li>
+      <li><a href="#applications"><span class="n">16</span>Applications</a></li>
+      <li><a href="#tokens"><span class="n">17</span>Design tokens</a></li>
+    </ol>
+  </nav>
+  <div class="meta readout">v1.0 · 2026-10-09<br>Future Systems · Calibrated Signal</div>
+  <label class="jump" for="jumpSel"><span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Jump to section</span>
+    <select id="jumpSel" style="background:transparent;color:inherit;border:0;font:inherit;max-width:100%">
+      <option value="#top">Contents</option>
+      <option value="#positioning">01 Positioning</option><option value="#purpose">02 Purpose &amp; values</option><option value="#audiences">03 Audiences</option><option value="#architecture">04 Architecture</option><option value="#landscape">05 Landscape</option><option value="#voice">06 Voice</option><option value="#taglines">07 Taglines</option><option value="#logo">08 Logo</option><option value="#vector">09 Vector</option><option value="#color">10 Color</option><option value="#type">11 Type</option><option value="#grid">12 Grid</option><option value="#imagery">13 Imagery &amp; motion</option><option value="#components">14 Components</option><option value="#access">15 Accessibility</option><option value="#applications">16 Applications</option><option value="#tokens">17 Tokens</option>
+    </select>
+  </label>
+</aside>
+
+<main id="top">
+<header class="cover" aria-label="Cover">
+  <div class="graticule" aria-hidden="true"></div>
+  <canvas id="coverTrace" aria-hidden="true"></canvas>
+  <div class="cover-inner">
+    <h1>Brand<br>Book</h1>
+    <p class="sub">Jeremy Anderson Tech. The strategy, identity and production system for a founder-led engineering studio that builds, secures and runs the systems a business depends on.</p>
+  </div>
+  <div class="cover-strip" role="list">
+    <div role="listitem"><span class="readout">Version</span><span class="v">1.0 · Oct 9, 2026</span></div>
+    <div role="listitem"><span class="readout">Direction</span><span class="v">01 Future Systems</span></div>
+    <div role="listitem"><span class="readout">World</span><span class="v">Calibrated Signal</span></div>
+    <div role="listitem"><span class="readout">Owner</span><span class="v">Jeremy Anderson</span></div>
+    <div role="listitem"><span class="readout">Status</span><span class="v" style="color:var(--ch4)">Proposed for approval</span></div>
+  </div>
+</header>
+
+<section class="section" id="positioning" aria-labelledby="h-pos">
+  <div class="sec-head"><span class="sec-num">01</span><div><h2 id="h-pos">Positioning</h2><p>What Jeremy Anderson Tech is, who it is for, and the claim no neighbor can truthfully copy.</p></div></div>
+  <p class="statement">For organizations that run on their website and software, Jeremy Anderson Tech is the engineering studio that <em>designs, builds, secures and runs the whole system</em>, so one accountable expert owns the outcome.</p>
+  <h3>Positioning statement</h3>
+  <dl class="kv">
+    <dt>For</dt><dd>Small and mid-sized businesses in Central Massachusetts and Greater Boston, plus research organizations and funded teams anywhere, whose website, tools and data have become operational infrastructure.</dd>
+    <dt>Who need</dt><dd>Systems that work on day one and keep working: secure, accessible, fast, found in search and AI answers, and understood by the people who pay for them.</dd>
+    <dt>JAT is</dt><dd>A founder-led engineering studio covering web platforms, applied AI, cybersecurity and infrastructure under one roof.</dd>
+    <dt>Unlike</dt><dd>Web shops that hand off at launch, large agencies that route you through account managers, and IT providers who do not build software.</dd>
+    <dt>Because</dt><dd>The person who architects the system also hardens it, hosts it and answers when it needs attention, at prices published before the first call.</dd>
+  </dl>
+  <h3>Strategic differentiation</h3>
+  <div class="pillars">
+    <div><h4><span class="ch" style="--c:var(--ch1)"><i></i>One</span>Accountable lead</h4><p>One engineer spans web, AI, security and hosting. No hand-offs between vendors, no blame gaps.</p></div>
+    <div><h4><span class="ch" style="--c:var(--ch3)"><i></i>Default</span>Secure and accessible</h4><p>Hardening and WCAG 2.2 AA are part of every build, backed by W3C/WAI accessibility certification, never upsold.</p></div>
+    <div><h4><span class="ch" style="--c:var(--ch2)"><i></i>Open</span>Published pricing</h4><p>Fixed-fee packages and hourly rates are on the website. Scope changes go through written change orders.</p></div>
+    <div><h4><span class="ch" style="--c:var(--ch4)"><i></i>Run</span>Built to be operated</h4><p>Managed hosting, monitoring and care plans continue the work after launch on infrastructure JAT runs.</p></div>
+    <div><h4><span class="ch" style="--c:var(--ink-100)"><i></i>Public</span>Proof you can inspect</h4><p>Open-source projects with live demos and public code, so buyers judge the engineering directly.</p></div>
+  </div>
+  <h3>Current state and the move</h3>
+  <div class="rewrite">
+    <div><h4 class="muted">Today on jeremyanderson.tech</h4><p class="muted" style="margin:0">A freelancer portfolio. The hero leads with a personal name and the label "Software Architect" while the page title says "Full-Stack Developer &amp; WordPress Engineer". Skills are grouped by technology. Services, prices and process are strong but buried two clicks deep.</p></div>
+    <div><h4>The move</h4><p style="margin:0">An agency presentation that leads with the outcome, organizes everything into four service channels, puts pricing and process in plain view, and lets the open-source work prove the engineering. Jeremy stays visible as the founder and the person you will work with.</p></div>
+  </div>
+</section>
+
+<section class="section" id="purpose" aria-labelledby="h-pur">
+  <div class="sec-head"><span class="sec-num">02</span><div><h2 id="h-pur">Purpose, mission, vision, values</h2><p>The reasons behind every decision in this book.</p></div></div>
+  <div class="two">
+    <dl class="kv">
+      <dt>Purpose</dt><dd class="lede" style="font-size:1.125rem">Give organizations without an engineering department technology they can depend on.</dd>
+      <dt>Mission</dt><dd>Design, build, secure and run web platforms, software and AI systems that hold steady under real use, and explain them in plain language.</dd>
+      <dt>Vision</dt><dd>A region where a twenty-person business runs on systems engineered as carefully as an enterprise's.</dd>
+    </dl>
+    <div class="screen" style="min-height:240px"><canvas id="miniTrace" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"></canvas><div class="screen-bar" style="position:relative"><span class="readout">Step response</span><span class="readout" style="color:var(--ch4)">Settled</span></div><p class="cap" style="position:absolute;left:14px;bottom:10px;margin:0">The mark is a step response: a system moves to a new level and settles there.</p></div>
+  </div>
+  <h3>Core values</h3>
+  <div class="values">
+    <div><h4>Measure first</h4><p>Audit, test and benchmark before recommending. Decisions follow evidence.</p></div>
+    <div><h4>Plain language</h4><p>Every recommendation is explained so the person paying for it can repeat it to their team.</p></div>
+    <div><h4>Secure by default</h4><p>Least privilege, current software and monitored logs are the starting point of every build.</p></div>
+    <div><h4>Built for everyone</h4><p>Accessibility is a requirement, tested with keyboards and screen readers before launch.</p></div>
+    <div><h4>Own the outcome</h4><p>If something we built breaks, we answer for it. Misestimates are not billed.</p></div>
+    <div><h4>Show the work</h4><p>Prices, process and code are public wherever possible.</p></div>
+  </div>
+</section>
+
+<section class="section" id="audiences" aria-labelledby="h-aud">
+  <div class="sec-head"><span class="sec-num">03</span><div><h2 id="h-aud">Audiences and personas</h2><p>Lead with small and mid-sized businesses; keep two strong secondary paths open.</p></div></div>
+  <p class="note">Personas are composite archetypes built from the services JAT sells and the questions buyers ask. They are planning tools, not real clients, and must never appear on the website as testimonials.</p>
+  <div class="cols" style="margin-top:var(--s5)">
+    <article class="persona">
+      <header><h4>The owner-operator</h4><span class="ch" style="--c:var(--ch1)"><i></i>Primary</span></header>
+      <dl>
+        <div><dt>Situation</dt><dd>Runs a 10–60 person service business in Worcester County or MetroWest. The website was built years ago by someone who is no longer reachable.</dd></div>
+        <div><dt>Wants</dt><dd>More qualified leads, a site that looks as good as the work, and one person who answers.</dd></div>
+        <div><dt>Fears</dt><dd>Getting hacked, paying for a rebuild that fails, being talked down to.</dd></div>
+        <div><dt>Buys</dt><dd>Business Site or Custom Platform, Security Hardening, Watchdog or Guardian care.</dd></div>
+        <div><dt>Message</dt><dd>"Fixed price, plain answers, and the person who builds it keeps it running."</dd></div>
+      </dl>
+    </article>
+    <article class="persona">
+      <header><h4>The research program lead</h4><span class="ch" style="--c:var(--ch2)"><i></i>Secondary</span></header>
+      <dl>
+        <div><dt>Situation</dt><dd>Coordinates a study, lab or scientific program at a university, hospital or biotech. Owns a site that recruits participants or communicates findings.</dd></div>
+        <div><dt>Wants</dt><dd>Accessible, compliant pages, careful data handling, tools that make complex science legible.</dd></div>
+        <div><dt>Fears</dt><dd>Compliance findings, broken migrations, vendors who do not understand research.</dd></div>
+        <div><dt>Buys</dt><dd>Custom Platform, MDPA Compliance Review, Technical SEO, Partner care.</dd></div>
+        <div><dt>Message</dt><dd>"Accessibility-certified engineering that respects how research works."</dd></div>
+      </dl>
+    </article>
+    <article class="persona">
+      <header><h4>The funded operator</h4><span class="ch" style="--c:var(--ch3)"><i></i>Secondary</span></header>
+      <dl>
+        <div><dt>Situation</dt><dd>Founder or operations lead at a startup or mid-market company with real data and repetitive workflows.</dd></div>
+        <div><dt>Wants</dt><dd>AI tools that solve one operational problem, private by design, shipped fast by a senior builder.</dd></div>
+        <div><dt>Fears</dt><dd>Hype projects that never reach production, data leaving their control, hiring too early.</dd></div>
+        <div><dt>Buys</dt><dd>AI Discovery, Custom AI Tool, SIEM/SOC Setup, Embedded Dev retainer.</dd></div>
+        <div><dt>Message</dt><dd>"Production AI on your data, with security designed in from the first sketch."</dd></div>
+      </dl>
+    </article>
+  </div>
+  <h3>Buying motivations, in order</h3>
+  <div class="scroll-x"><table class="spec">
+    <thead><tr><th>Motivation</th><th>What the buyer needs to see</th><th>Where the brand answers it</th></tr></thead>
+    <tbody>
+      <tr><td>Trust</td><td>A real person, real work, a clear process</td><td>Founder page, open-source case studies, approach page</td></tr>
+      <tr><td>Cost certainty</td><td>Prices before the call</td><td>Published packages and hourly rates</td></tr>
+      <tr><td>Risk reduction</td><td>Security, backups, support windows</td><td>Security channel, care plans, post-launch support terms</td></tr>
+      <tr><td>Growth</td><td>Leads, search and AI-answer visibility</td><td>Platforms and Operations channels, SEO/AEO/GEO</td></tr>
+      <tr><td>Speed</td><td>Start dates and timelines</td><td>Timeline readouts on every package</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="section" id="architecture" aria-labelledby="h-arch">
+  <div class="sec-head"><span class="sec-num">04</span><div><h2 id="h-arch">Brand architecture</h2><p>One masterbrand, four service channels, three ways to engage.</p></div></div>
+  <p>Jeremy Anderson Tech is a branded house. Services are grouped into four channels, named the way an oscilloscope names its inputs. Each channel owns one color, used only as an identifier. The channels describe what the client gets; the services underneath describe how.</p>
+  <div class="screen" style="margin-top:var(--s5)">
+    <div class="screen-body" style="padding:var(--s5)">
+      <svg viewBox="0 0 960 360" role="img" aria-labelledby="archT" style="width:100%;height:auto;display:block;min-width:0">
+        <title id="archT">Brand architecture: the Jeremy Anderson Tech masterbrand feeds four channels: CH1 Platforms, CH2 Intelligence, CH3 Security, CH4 Operations, each with its services.</title>
+        <g font-family="Martian Mono, monospace" font-size="11" fill="#A3AFBC">
+          <rect x="370" y="14" width="220" height="56" rx="8" fill="#10141A" stroke="#2E3845"/>
+          <use href="#lk-h" x="392" y="27" width="176" height="26" style="--lk-rule:#3D4855"/>
+          <path d="M480 70V110M120 110H840M120 110V140M360 110V140M600 110V140M840 110V140" stroke="#3D4855" stroke-width="1.5" fill="none"/>
+          <g>
+            <rect x="20" y="140" width="200" height="200" rx="8" fill="#0A0C0F" stroke="#3CE3F0" stroke-opacity=".55"/>
+            <text x="36" y="166" fill="#3CE3F0">CH1</text><text x="36" y="192" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="19" font-weight="600" style="font-stretch:115%">Platforms</text>
+            <text x="36" y="226">Web design</text><text x="36" y="248">WordPress engineering</text><text x="36" y="270">Custom software</text><text x="36" y="292">Progressive web apps</text>
+          </g>
+          <g>
+            <rect x="260" y="140" width="200" height="200" rx="8" fill="#0A0C0F" stroke="#9A8CFF" stroke-opacity=".55"/>
+            <text x="276" y="166" fill="#9A8CFF">CH2</text><text x="276" y="192" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="19" font-weight="600" style="font-stretch:115%">Intelligence</text>
+            <text x="276" y="226">AI development</text><text x="276" y="248">Automation</text><text x="276" y="270">Private LLMs &amp; RAG</text><text x="276" y="292">Integrations &amp; APIs</text>
+          </g>
+          <g>
+            <rect x="500" y="140" width="200" height="200" rx="8" fill="#0A0C0F" stroke="#FFC23D" stroke-opacity=".55"/>
+            <text x="516" y="166" fill="#FFC23D">CH3</text><text x="516" y="192" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="19" font-weight="600" style="font-stretch:115%">Security</text>
+            <text x="516" y="226">Audits</text><text x="516" y="248">Hardening</text><text x="516" y="270">SIEM / SOC monitoring</text><text x="516" y="292">MA privacy compliance</text>
+          </g>
+          <g>
+            <rect x="740" y="140" width="200" height="200" rx="8" fill="#0A0C0F" stroke="#5EF0A0" stroke-opacity=".55"/>
+            <text x="756" y="166" fill="#5EF0A0">CH4</text><text x="756" y="192" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="19" font-weight="600" style="font-stretch:115%">Operations</text>
+            <text x="756" y="226">Managed hosting</text><text x="756" y="248">Care plans</text><text x="756" y="270">Performance</text><text x="756" y="292">SEO / AEO / GEO</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <h3>Channel promises</h3>
+  <div class="scroll-x"><table class="spec">
+    <thead><tr><th>Channel</th><th>Promise (client language)</th><th>Entry offer</th><th>Flagship</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ch" style="--c:var(--ch1)"><i></i><b>CH1</b> Platforms</span></td><td>A website or app that wins work, loads fast and is easy to update.</td><td class="mono">Business Site · $3,500</td><td class="mono">Custom Platform · $7,500</td></tr>
+      <tr><td><span class="ch" style="--c:var(--ch2)"><i></i><b>CH2</b> Intelligence</span></td><td>AI and automation that removes real work, on data you control.</td><td class="mono">AI Discovery · $1,200</td><td class="mono">Custom AI Tool · from $8,500</td></tr>
+      <tr><td><span class="ch" style="--c:var(--ch3)"><i></i><b>CH3</b> Security</span></td><td>Know where you are exposed, close the gaps, and see attacks coming.</td><td class="mono">Security Audit · $850</td><td class="mono">Hardening · $2,400</td></tr>
+      <tr><td><span class="ch" style="--c:var(--ch4)"><i></i><b>CH4</b> Operations</span></td><td>Hosting, updates, monitoring and search visibility handled every month.</td><td class="mono">Watchdog · $350/mo</td><td class="mono">Guardian · $850/mo</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Engagement models</h3>
+  <div class="cols">
+    <div><h4>Fixed-fee packages</h4><p class="muted">Signed scope, 50% deposit, defined timeline, 30–90 days post-launch support.</p></div>
+    <div><h4>Hourly</h4><p class="muted">$115–$185 by discipline, two-hour minimum. Prepaid 20-hour blocks save 10%.</p></div>
+    <div><h4>Care retainers</h4><p class="muted">Watchdog, Guardian, Partner and Embedded Dev. Three-month minimum, response times guaranteed.</p></div>
+  </div>
+  <h3>Naming rules</h3>
+  <ul class="muted" style="max-width:68ch;display:grid;gap:6px;padding-left:1.1em">
+    <li>Write the full name "Jeremy Anderson Tech" on first mention; "JAT" after that, and in compact UI.</li>
+    <li>Channels are written as <code>CH1 Platforms</code> in UI and as plain "Platforms" in running prose.</li>
+    <li>Existing package and retainer names stay unchanged. They already rank and appear on proposals.</li>
+    <li>Never invent sub-brands or product names for one-off client work.</li>
+  </ul>
+</section>
+
+<section class="section" id="landscape" aria-labelledby="h-land">
+  <div class="sec-head"><span class="sec-num">05</span><div><h2 id="h-land">Competitive landscape</h2><p>Who else the buyer is considering, what they do well, and the gap JAT fills.</p></div></div>
+  <div class="two" style="align-items:start">
+    <div class="screen">
+      <div class="screen-bar"><span class="readout">XY mode · qualitative</span><span class="readout">Not measured data</span></div>
+      <svg viewBox="0 0 520 420" role="img" aria-labelledby="landT" style="width:100%;height:auto;display:block">
+        <title id="landT">Qualitative positioning map. Horizontal axis: disciplines covered, from one to web, AI, security and operations. Vertical axis: access to the senior engineer, from account managers to direct. JAT sits top right; freelancers top left; large agencies bottom right; MSPs and IT providers lower middle; local web shops center; DIY builders bottom left; AI consultancies upper middle.</title>
+        <g font-family="Martian Mono, monospace" font-size="10.5" fill="#A3AFBC">
+          <path d="M60 30V370H500" stroke="#5A6675" stroke-width="1.5" fill="none"/>
+          <path d="M280 30V370M60 200H500" stroke="#3D4855" stroke-dasharray="3 5"/>
+          <text x="62" y="392">ONE DISCIPLINE</text><text x="498" y="392" text-anchor="end">WEB+AI+SEC+OPS</text>
+          <text x="40" y="370" transform="rotate(-90 40 370)">ACCOUNT MANAGERS</text><text x="40" y="30" text-anchor="end" transform="rotate(-90 40 30)">DIRECT ENGINEER</text>
+          <g fill="#7D8996"><circle cx="120" cy="80" r="6"/><circle cx="120" cy="330" r="6"/><circle cx="250" cy="215" r="6"/><circle cx="410" cy="320" r="6"/><circle cx="330" cy="270" r="6"/><circle cx="215" cy="110" r="6"/></g>
+          <text x="132" y="84">Freelancers</text><text x="132" y="334">DIY builders</text><text x="262" y="219">Local web shops</text><text x="422" y="314">Large</text><text x="422" y="328">agencies</text><text x="342" y="274">MSPs / IT</text><text x="227" y="114">AI consultancies</text>
+          <circle cx="440" cy="70" r="14" fill="none" stroke="#3CE3F0" stroke-width="1.5"/><circle cx="440" cy="70" r="6" fill="#3CE3F0"/>
+          <text x="440" y="104" text-anchor="middle" fill="#3CE3F0">JAT</text>
+        </g>
+      </svg>
+    </div>
+    <div class="scroll-x"><table class="spec">
+      <thead><tr><th>Alternative</th><th>Strength</th><th>Gap JAT fills</th></tr></thead>
+      <tbody>
+        <tr><td>DIY builders</td><td>Cheap, fast to start</td><td>Security, performance, custom function, someone to call</td></tr>
+        <tr><td>Freelancers</td><td>Direct and affordable</td><td>Breadth beyond design; hosting, security and continuity</td></tr>
+        <tr><td>Local web shops</td><td>Design portfolios, local presence</td><td>Engineering depth, AI, security programs</td></tr>
+        <tr><td>Large digital agencies</td><td>Capacity, process</td><td>Price, direct senior access, small-business focus</td></tr>
+        <tr><td>MSPs / IT providers</td><td>Networks, devices, help desks</td><td>Building websites, software and AI</td></tr>
+        <tr><td>AI consultancies</td><td>Strategy decks</td><td>Shipping to production and securing it</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <h3>Differentiation strategy</h3>
+  <div class="cols">
+    <div><h4>Compete on accountability</h4><p class="muted">Every page repeats the same promise: the person who builds the system keeps it running.</p></div>
+    <div><h4>Make price a trust signal</h4><p class="muted">Show packages early. Most competitors hide price; publishing it filters for serious buyers.</p></div>
+    <div><h4>Prove with the site itself</h4><p class="muted">The new site is the demonstration: fast, accessible, hardened, schema-rich. Its scores belong on the Approach page once measured.</p></div>
+  </div>
+</section>
+
+<section class="section" id="voice" aria-labelledby="h-voice">
+  <div class="sec-head"><span class="sec-num">06</span><div><h2 id="h-voice">Personality, tone and voice</h2><p>The voice of a senior engineer explaining a system to the owner who depends on it.</p></div></div>
+  <div class="scroll-x"><table class="spec">
+    <thead><tr><th>Trait</th><th>We are</th><th>We are not</th></tr></thead>
+    <tbody>
+      <tr><td><h4 style="margin:0">Precise</h4></td><td>Specific numbers, named deliverables, exact timelines</td><td>Pedantic, jargon-heavy</td></tr>
+      <tr><td><h4 style="margin:0">Calm</h4></td><td>Steady under pressure, especially about security</td><td>Cold, alarmist</td></tr>
+      <tr><td><h4 style="margin:0">Candid</h4></td><td>Clear about cost, risk and trade-offs</td><td>Blunt, dismissive</td></tr>
+      <tr><td><h4 style="margin:0">Curious</h4></td><td>Interested in how a client's business actually works</td><td>Showing off technology for its own sake</td></tr>
+      <tr><td><h4 style="margin:0">Protective</h4></td><td>Looking out for the client's data, users and budget</td><td>Fear-selling</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Messaging rules</h3>
+  <div class="dodont">
+    <div><span class="tag" style="color:var(--ch4)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5 5 9l5-6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Do</span>
+      <ul><li>Lead with the outcome, name the technology second.</li><li>Use numbers that can be verified, or none.</li><li>State prices and timelines plainly.</li><li>Write short sentences in active voice.</li><li>Say "we" for the studio and "Jeremy" when it is personally him.</li><li>Explain one technical idea per paragraph.</li></ul></div>
+    <div><span class="tag" style="color:var(--danger)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 3 6 6M9 3 3 9" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>Don't</span>
+      <ul><li>Invent clients, quotes, metrics or team members.</li><li>Use fear to sell security.</li><li>Lead with a stack list.</li><li>Promise "100%", "bulletproof" or "guaranteed rankings".</li><li>Use "cutting-edge", "synergy", "revolutionary", "AI-powered" as filler.</li><li>Use hacker, hoodie or brain imagery in words or pictures.</li></ul></div>
+  </div>
+  <h3>Before and after</h3>
+  <div class="rewrite">
+    <div><span class="readout">Current</span><p style="margin-top:6px" class="muted">"I design and build secure, accessible, and compliant web platforms, AI-assisted systems, and custom software solutions."</p></div>
+    <div><span class="readout" style="color:var(--ch1)">Rewritten</span><p style="margin-top:6px">"We build the website, software and AI your business runs on, then secure it, host it and keep it running. Prices are published. You work directly with the engineer."</p></div>
+  </div>
+  <div class="rewrite" style="margin-top:var(--s3)">
+    <div><span class="readout">Current</span><p style="margin-top:6px" class="muted">"Let's Build Something Amazing"</p></div>
+    <div><span class="readout" style="color:var(--ch1)">Rewritten</span><p style="margin-top:6px">"Tell us what the system needs to do. You'll have a written proposal within three business days."</p></div>
+  </div>
+  <h3>Message hierarchy</h3>
+  <ol class="muted" style="max-width:68ch;display:grid;gap:8px;padding-left:1.3em">
+    <li><strong style="color:var(--fg)">Tagline.</strong> Systems that hold steady.</li>
+    <li><strong style="color:var(--fg)">Positioning line.</strong> Web platforms, AI and security, built and run by one accountable engineering studio.</li>
+    <li><strong style="color:var(--fg)">Channel promises.</strong> One sentence each, from section 04.</li>
+    <li><strong style="color:var(--fg)">Proof.</strong> Public projects, published prices, certifications, a documented process.</li>
+    <li><strong style="color:var(--fg)">Action.</strong> Book a free 30-minute discovery call.</li>
+  </ol>
+</section>
+
+<section class="section" id="taglines" aria-labelledby="h-tag">
+  <div class="sec-head"><span class="sec-num">07</span><div><h2 id="h-tag">Tagline</h2><p>Eight candidates tested against the positioning. One recommendation.</p></div></div>
+  <ul class="taglines">
+    <li class="pick"><span class="t">Systems that hold steady.</span><span class="why">Recommended. Names the outcome buyers want (stability) and is literally what the mark draws: a signal that settles at a new level.</span></li>
+    <li><span class="t">Built, secured, kept running.</span><span class="why">Clear service summary; strong as a positioning line under the tagline.</span></li>
+    <li><span class="t">Calibrated for what's next.</span><span class="why">Fits the instrument world but says little about the buyer's problem.</span></li>
+    <li><span class="t">One engineer. Every layer.</span><span class="why">Sharp differentiator; may read as small capacity to larger buyers.</span></li>
+    <li><span class="t">Intelligent by design.</span><span class="why">The brief's theme line. Good for an internal direction name; generic as a public tagline.</span></li>
+    <li><span class="t">Measure twice. Ship once.</span><span class="why">Memorable, but borrowed from carpentry and widely used.</span></li>
+    <li><span class="t">Signal over noise.</span><span class="why">On theme; heavily used across tech marketing.</span></li>
+    <li><span class="t">Engineering you can see.</span><span class="why">Supports the open-source proof; abstract on its own.</span></li>
+  </ul>
+  <div class="screen" style="margin-top:var(--s6);padding:var(--s8) var(--s6);text-align:left">
+    <svg viewBox="1 6 108 68" width="72" height="46" aria-hidden="true"><use href="#mk"/></svg>
+    <p style="font-family:var(--f-display);font-stretch:125%;font-weight:640;font-size:clamp(2rem,6vw,4.5rem);letter-spacing:-.03em;line-height:.95;margin:var(--s5) 0 var(--s3);max-width:none">Systems that<br>hold steady.</p>
+    <p class="muted" style="margin:0">Web platforms, AI and security, built and run by one accountable engineering studio.</p>
+  </div>
+</section>
+
+<section class="section" id="logo" aria-labelledby="h-logo">
+  <div class="sec-head"><span class="sec-num">08</span><div><h2 id="h-logo">Logo system</h2><p>A monogram drawn as one beam trace, a wordmark set in outlined Archivo Expanded, and a ruler that measures.</p></div></div>
+  <div class="screen"><div class="logo-stage"><svg viewBox="1 6 468 68" style="width:min(100%,720px);height:auto" role="img" aria-label="Jeremy Anderson Tech primary horizontal logo"><use href="#lk-h"/></svg></div></div>
+  <p class="cap">Primary horizontal lockup on Graticule. The JAT trace reads as a step response: the line enters at rest, the J and A form the transient, and the T settles at the trigger level.</p>
+
+  <h3>Exploration</h3>
+  <div class="explore">
+    <figure>
+      <div class="art"><svg viewBox="1 6 108 68" width="168" height="106" aria-hidden="true"><use href="#mk"/></svg></div>
+      <figcaption><strong>A · Trace <span class="verdict go">Selected</span></strong>One continuous stroke spells J, A, T as a signal settling at a new level. Owns the instrument world, scales to 16px, and needs no box.</figcaption>
+    </figure>
+    <figure>
+      <div class="art"><svg viewBox="0 0 120 80" width="168" height="112" aria-hidden="true"><rect x="24" y="4" width="72" height="72" fill="none" stroke="#2E3845" stroke-width="2"/><path d="M48 4V76M72 4V76M24 28H96M24 52H96" stroke="#222A34" stroke-width="1.5"/><g fill="none" stroke="#3CE3F0" stroke-width="6"><path d="M42 20V52Q42 64 32 64"/><path d="M52 64 60 20 68 64M55 48H65"/><path d="M74 20H94M84 20V64"/></g></svg></div>
+      <figcaption><strong>B · Graticule cell <span class="verdict">Declined</span></strong>Letters set inside a 3×3 measurement grid. Legible, but it is a typeset monogram in a box; it borrows the world without drawing it.</figcaption>
+    </figure>
+    <figure>
+      <div class="art"><svg viewBox="0 0 120 80" width="168" height="112" aria-hidden="true"><path id="lissPath" fill="none" stroke="#3CE3F0" stroke-width="3.5" d=""/></svg></div>
+      <figcaption><strong>C · Lissajous <span class="verdict">Declined</span></strong>A 3:2 Lissajous figure. Beautiful and on-theme, but it carries no letters, sits close to the banned "orbital" cliché, and blurs below 32px.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Construction</h3>
+  <div class="two" style="align-items:center">
+    <div class="screen construct">
+      <svg viewBox="-12 -2 132 84" role="img" aria-labelledby="consT">
+        <title id="consT">Construction grid. The mark sits on a 16-unit grid. Trigger level at y 16, baseline at y 64, stroke 8 units with round caps and joins.</title>
+        <g stroke="#222A34" stroke-width=".4">
+          <path d="M0 0V80M16 0V80M32 0V80M48 0V80M64 0V80M80 0V80M96 0V80M112 0V80M0 0H112M0 16H112M0 32H112M0 48H112M0 64H112M0 80H112"/>
+        </g>
+        <path d="M-10 16H118" stroke="#9A8CFF" stroke-width=".5" stroke-dasharray="2 2"/>
+        <path d="M-10 64H118" stroke="#9A8CFF" stroke-width=".5" stroke-dasharray="2 2"/>
+        <g opacity=".95"><use href="#mk" x="1" y="6" width="108" height="68"/></g>
+        <g fill="none" stroke="#E6ECF2" stroke-width=".35"><path d="M9 50V64M23 64Q9 64 9 50" stroke-dasharray="1 1"/></g>
+        <g font-family="Martian Mono, monospace" font-size="3.2" fill="#A3AFBC">
+          <text x="-10" y="14" fill="#9A8CFF">TRIG 16</text><text x="-10" y="62" fill="#9A8CFF">BASE 64</text>
+          <text x="98" y="78">X = 16u</text>
+        </g>
+        <path d="M96 72H112" stroke="#FFC23D" stroke-width=".6"/><path d="M96 70.5V73.5M112 70.5V73.5" stroke="#FFC23D" stroke-width=".6"/>
+      </svg>
+    </div>
+    <dl class="kv">
+      <dt>Grid</dt><dd>16-unit divisions on a 108 × 68 artboard (viewBox <code>1 6 108 68</code>).</dd>
+      <dt>Stroke</dt><dd>8 units, round caps, round joins. Half of one division.</dd>
+      <dt>Levels</dt><dd>Trigger level y 16. Baseline y 64. The J tail starts at y 50.</dd>
+      <dt>Apex</dt><dd>The A peaks exactly on the trigger level at x 52; the T bar starts 18 units later.</dd>
+      <dt>Unit X</dt><dd>One division, 16 units. X sets clear space and lockup spacing.</dd>
+    </dl>
+  </div>
+
+  <h3>Primary and secondary logos</h3>
+  <div class="lockups">
+    <figure><div class="art on-ink"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption><strong style="color:var(--fg)">Primary · horizontal.</strong> Website header, proposals, signatures. Min 160px / 38mm wide.</figcaption></figure>
+    <figure><div class="art on-ink"><svg viewBox="-4 6 306 132" style="width:min(100%,240px);height:auto"><use href="#lk-s"/></svg></div><figcaption><strong style="color:var(--fg)">Secondary · stacked.</strong> Square formats, apparel, cover pages. Min 96px / 24mm wide.</figcaption></figure>
+    <figure><div class="art on-ink"><svg viewBox="1 6 108 68" style="width:120px;height:auto"><use href="#mk"/></svg></div><figcaption><strong style="color:var(--fg)">Monogram.</strong> Favicons, social avatars, small UI, merchandise. Min 16px / 5mm wide.</figcaption></figure>
+    <figure><div class="art on-ink"><svg viewBox="0 0 128 128" style="width:112px;height:112px"><use href="#icon"/></svg></div><figcaption><strong style="color:var(--fg)">App icon.</strong> PWA, iOS/Android home screen, Slack. 28/128 corner radius.</figcaption></figure>
+  </div>
+  <h3>Color variants</h3>
+  <div class="lockups">
+    <figure><div class="art on-ink"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption>Full color on Graticule. Default.</figcaption></figure>
+    <figure><div class="art on-paper"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption>Print and light surfaces. Mark in Deep Cyan.</figcaption></figure>
+    <figure><div class="art on-cyan"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption>Reversed on Channel Cyan. Merchandise, event signage.</figcaption></figure>
+    <figure><div class="art on-mono"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption>Single color Ice. Embossing, etching, one-color print.</figcaption></figure>
+  </div>
+  <h3>Clear space and minimum size</h3>
+  <div class="two" style="align-items:center">
+    <div class="screen plain" style="padding:var(--s6)">
+      <svg viewBox="-60 -50 588 168" role="img" aria-labelledby="csT" style="width:100%;height:auto;display:block">
+        <title id="csT">Clear space equals X, one grid division, on every side of the lockup.</title>
+        <rect x="-15" y="-9" width="498" height="98" fill="none" stroke="#FFC23D" stroke-width="1" stroke-dasharray="4 4"/>
+        <g fill="rgba(255,194,61,.12)" stroke="#FFC23D" stroke-width=".8"><rect x="-15" y="-9" width="16" height="16"/><rect x="467" y="73" width="16" height="16"/><rect x="200" y="-9" width="16" height="16"/><rect x="200" y="73" width="16" height="16"/></g>
+        <g font-family="Martian Mono, monospace" font-size="11" fill="#FFC23D"><text x="-15" y="-18">X</text><text x="200" y="-18">X</text></g>
+        <use href="#lk-h" x="1" y="6" width="468" height="68"/>
+      </svg>
+    </div>
+    <div>
+      <p>Keep at least X clear on every side, where X is one grid division: the height of the J tail, or about 0.29 × the mark's height. Never place other marks, text or edges inside that zone.</p>
+      <div class="scroll-x"><table class="spec">
+        <thead><tr><th>Logo</th><th>Screen</th><th>Print</th><th>Below minimum</th></tr></thead>
+        <tbody>
+          <tr><td>Horizontal</td><td class="mono">160 px</td><td class="mono">38 mm</td><td>Use the monogram</td></tr>
+          <tr><td>Stacked</td><td class="mono">96 px</td><td class="mono">24 mm</td><td>Use the monogram</td></tr>
+          <tr><td>Monogram</td><td class="mono">16 px</td><td class="mono">5 mm</td><td>Do not reproduce</td></tr>
+        </tbody>
+      </table></div>
+      <div style="display:flex;gap:var(--s5);align-items:end;margin-top:var(--s4);flex-wrap:wrap">
+        <svg viewBox="1 6 468 68" width="160" height="23" aria-label="Horizontal at 160 pixels" role="img"><use href="#lk-h"/></svg>
+        <svg viewBox="1 6 108 68" width="24" height="15" aria-label="Monogram at 24 pixels" role="img"><use href="#mk"/></svg>
+        <svg viewBox="1 6 108 68" width="16" height="10" aria-label="Monogram at 16 pixels" role="img"><use href="#mk"/></svg>
+      </div>
+    </div>
+  </div>
+  <h3>Improper usage</h3>
+  <div class="misuse">
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" style="transform:rotate(-14deg)" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not rotate or skew.</figcaption></figure>
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="140" height="48" preserveAspectRatio="none" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not stretch or squash.</figcaption></figure>
+    <figure><div class="art" style="--mk:#FF6B2C"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not recolor outside the palette.</figcaption></figure>
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" style="filter:drop-shadow(0 0 8px #3CE3F0) drop-shadow(0 0 18px #3CE3F0)" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not add glows or bloom.</figcaption></figure>
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><defs><linearGradient id="badg" x1="0" x2="1"><stop offset="0" stop-color="#3CE3F0"/><stop offset="1" stop-color="#9A8CFF"/></linearGradient></defs><g fill="none" stroke="url(#badg)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not apply gradients.</figcaption></figure>
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><g fill="none" stroke="#3CE3F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not change the stroke weight.</figcaption></figure>
+    <figure><div class="art" style="background:repeating-linear-gradient(35deg,#3a2a54 0 14px,#1d5a63 14px 28px,#5a3b16 28px 42px)"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not place on busy backgrounds.</figcaption></figure>
+    <figure><div class="art"><span style="font-family:Georgia,serif;font-size:1.25rem;color:#E6ECF2;display:flex;align-items:center;gap:10px"><svg viewBox="1 6 108 68" width="48" height="30" aria-hidden="true"><use href="#mk"/></svg>Jeremy Anderson</span></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not retype the wordmark.</figcaption></figure>
+  </div>
+</section>
+
+<section class="section" id="vector" aria-labelledby="h-vec">
+  <div class="sec-head"><span class="sec-num">09</span><div><h2 id="h-vec">Vector-first identity</h2><p>Every identity element is SVG source. Raster files are exported from these, never edited directly.</p></div></div>
+  <div class="two" style="align-items:start">
+    <div class="code">
+      <header><span class="readout">jat-mark.svg · 282 bytes</span><button class="btn-copy" type="button" data-copy="svgMark">Copy SVG</button></header>
+<pre id="svgMark"><span class="k">&lt;svg</span> xmlns=<span class="s">"http://www.w3.org/2000/svg"</span> viewBox=<span class="s">"1 6 108 68"</span>
+     role=<span class="s">"img"</span> aria-label=<span class="s">"JAT"</span><span class="k">&gt;</span>
+  <span class="k">&lt;g</span> fill=<span class="s">"none"</span> stroke=<span class="s">"#3CE3F0"</span> stroke-width=<span class="s">"8"</span>
+     stroke-linecap=<span class="s">"round"</span> stroke-linejoin=<span class="s">"round"</span><span class="k">&gt;</span>
+    <span class="k">&lt;path</span> d=<span class="s">"M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"</span><span class="k">/&gt;</span>
+    <span class="k">&lt;path</span> d=<span class="s">"M70 16 H100"</span><span class="k">/&gt;</span>
+  <span class="k">&lt;/g&gt;</span>
+<span class="k">&lt;/svg&gt;</span></pre>
+    </div>
+    <div>
+      <div class="scroll-x"><table class="spec">
+        <thead><tr><th>File</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">jat-mark.svg</td><td>Monogram, Channel Cyan</td></tr>
+          <tr><td class="mono">jat-mark-ice.svg / -ink.svg</td><td>One-color monogram for dark / light</td></tr>
+          <tr><td class="mono">jat-lockup-horizontal.svg</td><td>Primary logo, dark surfaces</td></tr>
+          <tr><td class="mono">jat-lockup-horizontal-light.svg</td><td>Primary logo, paper and light</td></tr>
+          <tr><td class="mono">jat-lockup-stacked.svg</td><td>Secondary logo</td></tr>
+          <tr><td class="mono">jat-icon.svg</td><td>App icon, favicon source</td></tr>
+        </tbody>
+      </table></div>
+      <h4 style="margin-top:var(--s5)">Production rules</h4>
+      <ul class="muted" style="padding-left:1.1em;display:grid;gap:6px;font-size:.9375rem">
+        <li>The wordmark is outlined from Archivo Expanded (width 125, weight 620, tracking +40). TECH uses weight 380, tracking +320. No live text inside logo files.</li>
+        <li>The monogram stays a stroke in source files so weight can be audited. Expand strokes only for embroidery, vinyl cutting and laser etching.</li>
+        <li>Recolor with <code>currentColor</code> or the <code>--mk</code>, <code>--lk-name</code>, <code>--lk-tech</code>, <code>--lk-rule</code> custom properties. Never edit path data.</li>
+        <li>Favicons: export <code>jat-icon.svg</code> at 16, 32, 180, 192 and 512 px; ship the SVG as <code>rel="icon"</code> for modern browsers.</li>
+        <li>Print: convert to CMYK at the printer using the values in section 10. Spot alternative: Pantone 319 C for Channel Cyan.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="color" aria-labelledby="h-col">
+  <div class="sec-head"><span class="sec-num">10</span><div><h2 id="h-col">Color</h2><p>An oscilloscope screen: a near-black graticule, ice-white readouts, and four channel colors that identify, never decorate.</p></div></div>
+  <h3 style="margin-top:0">Primary</h3>
+  <div class="swatches">
+    <div class="sw"><div class="chip big" style="--c:#0A0C0F;border-bottom:1px solid var(--line);color:#A3AFBC"><span>BG</span><span>16.5:1 Ice</span></div><div class="info"><b>Graticule</b><span>#0A0C0F · RGB 10 12 15</span><span>CMYK 70 60 55 85</span></div></div>
+    <div class="sw"><div class="chip big" style="--c:#E6ECF2;color:#0A0C0F"><span>FG</span><span>16.5:1</span></div><div class="info"><b>Ice</b><span>#E6ECF2 · RGB 230 236 242</span><span>CMYK 6 2 1 0</span></div></div>
+    <div class="sw"><div class="chip big" style="--c:#3CE3F0;color:#0A0C0F"><span>CH1</span><span>12.5:1 on BG</span></div><div class="info"><b>Channel Cyan</b><span>#3CE3F0 · RGB 60 227 240</span><span>CMYK 60 0 10 0 · PMS 319 C</span></div></div>
+  </div>
+  <h3>Channels</h3>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="--c:#3CE3F0;color:#0A0C0F"><span>CH1</span><span>Platforms</span></div><div class="info"><b>Channel Cyan</b><span>#3CE3F0 · 60 227 240</span><span>Primary actions, mark, links</span></div></div>
+    <div class="sw"><div class="chip" style="--c:#9A8CFF;color:#0A0C0F"><span>CH2</span><span>Intelligence</span></div><div class="info"><b>Ultraviolet</b><span>#9A8CFF · 154 140 255</span><span>7.1:1 on Graticule</span></div></div>
+    <div class="sw"><div class="chip" style="--c:#FFC23D;color:#0A0C0F"><span>CH3</span><span>Security</span></div><div class="info"><b>Amber</b><span>#FFC23D · 255 194 61</span><span>12.2:1 on Graticule</span></div></div>
+    <div class="sw"><div class="chip" style="--c:#5EF0A0;color:#0A0C0F"><span>CH4</span><span>Operations</span></div><div class="info"><b>Signal</b><span>#5EF0A0 · 94 240 160</span><span>13.5:1 on Graticule</span></div></div>
+  </div>
+  <h3>Neutrals</h3>
+  <div class="ramp" role="list" aria-label="Neutral ramp">
+    <div role="listitem" style="--c:#07090B">950<br>07090B</div><div role="listitem" style="--c:#0A0C0F">900<br>0A0C0F</div><div role="listitem" style="--c:#10141A">850<br>10141A</div><div role="listitem" style="--c:#161B22">800<br>161B22</div><div role="listitem" style="--c:#222A34">700<br>222A34</div><div role="listitem" style="--c:#2E3845">600<br>2E3845</div><div role="listitem" style="--c:#3D4855">500<br>3D4855</div><div role="listitem" style="--c:#5A6675">450<br>5A6675</div><div role="listitem" style="--c:#7D8996;--t:#07090B">400<br>7D8996</div><div role="listitem" style="--c:#A3AFBC;--t:#07090B">300<br>A3AFBC</div><div role="listitem" style="--c:#E6ECF2;--t:#07090B">100<br>E6ECF2</div>
+  </div>
+  <p class="cap">Neutrals carry a slight blue bias toward Channel Cyan. 950–800 are surfaces, 700–500 are lines, 450 is the minimum for form control borders (3.35:1), 400–100 are text.</p>
+  <div class="two" style="margin-top:var(--s5)">
+    <div>
+      <h3 style="margin-top:var(--s4)">Semantic</h3>
+      <div class="scroll-x"><table class="spec">
+        <thead><tr><th>Role</th><th>Dark UI</th><th>Light / print</th></tr></thead>
+        <tbody>
+          <tr><td>Success</td><td class="mono"><span class="ch" style="--c:#5EF0A0"><i></i>#5EF0A0</span></td><td class="mono">#0A7646 · 5.2:1</td></tr>
+          <tr><td>Warning</td><td class="mono"><span class="ch" style="--c:#FFC23D"><i></i>#FFC23D</span></td><td class="mono">#8A5800 · 5.5:1</td></tr>
+          <tr><td>Danger</td><td class="mono"><span class="ch" style="--c:#FF5C7A"><i></i>#FF5C7A</span></td><td class="mono">#B0203C · 6.2:1</td></tr>
+          <tr><td>Info</td><td class="mono"><span class="ch" style="--c:#3CE3F0"><i></i>#3CE3F0</span></td><td class="mono">#007C88 · 4.5:1</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cap">Semantic colors share hues with channels. Always pair them with an icon or word so state never depends on color alone.</p>
+    </div>
+    <div>
+      <h3 style="margin-top:var(--s4)">Paper set</h3>
+      <div class="swatches" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,110px),1fr))">
+        <div class="sw"><div class="chip" style="--c:#F3F5F7;color:#0A0C0F;height:64px"><span>Paper</span></div><div class="info"><span>#F3F5F7</span></div></div>
+        <div class="sw"><div class="chip" style="--c:#007C88;color:#fff;height:64px"><span>Deep Cyan</span></div><div class="info"><span>#007C88</span></div></div>
+        <div class="sw"><div class="chip" style="--c:#5B4BD6;color:#fff;height:64px"><span>Deep UV</span></div><div class="info"><span>#5B4BD6</span></div></div>
+        <div class="sw"><div class="chip" style="--c:#465260;color:#fff;height:64px"><span>Slate</span></div><div class="info"><span>#465260</span></div></div>
+      </div>
+      <p class="cap">For proposals, invoices and anything printed on white stock. Channel colors switch to their deep versions on paper.</p>
+    </div>
+  </div>
+  <h3>Proportion</h3>
+  <div style="display:flex;height:40px;border-radius:8px;overflow:hidden;border:1px solid var(--line)" role="img" aria-label="Color proportion: Graticule and surfaces 72 percent, panels 18 percent, Ice text 7 percent, channel colors 3 percent">
+    <div style="flex:72;background:#0A0C0F"></div><div style="flex:18;background:#161B22"></div><div style="flex:7;background:#E6ECF2"></div><div style="flex:1.6;background:#3CE3F0"></div><div style="flex:.5;background:#9A8CFF"></div><div style="flex:.5;background:#FFC23D"></div><div style="flex:.4;background:#5EF0A0"></div>
+  </div>
+  <div class="chart-legend readout"><span>Graticule 72%</span><span>Panels 18%</span><span>Ice 7%</span><span style="color:var(--ch1)">Channels 3%</span></div>
+  <h3>Contrast matrix</h3>
+  <div class="scroll-x"><table class="spec matrix">
+    <thead><tr><th>Text on</th><th>Graticule #0A0C0F</th><th>Panel #10141A</th><th>Raised #161B22</th><th>Cyan #3CE3F0</th></tr></thead>
+    <tbody>
+      <tr><td><span class="sample" style="background:#E6ECF2"></span>Ice</td><td class="ratio pass">16.5 AAA</td><td class="ratio pass">15.5 AAA</td><td class="ratio pass">14.5 AAA</td><td class="ratio fail">1.3 fail</td></tr>
+      <tr><td><span class="sample" style="background:#A3AFBC"></span>Ink 300</td><td class="ratio pass">8.8 AAA</td><td class="ratio pass">8.3 AAA</td><td class="ratio pass">7.8 AAA</td><td class="ratio fail">1.4 fail</td></tr>
+      <tr><td><span class="sample" style="background:#7D8996"></span>Ink 400</td><td class="ratio pass">5.5 AA</td><td class="ratio pass">5.2 AA</td><td class="ratio pass">4.9 AA</td><td class="ratio fail">2.3 fail</td></tr>
+      <tr><td><span class="sample" style="background:#3CE3F0"></span>Cyan</td><td class="ratio pass">12.5 AAA</td><td class="ratio pass">11.8 AAA</td><td class="ratio pass">11.1 AAA</td><td>—</td></tr>
+      <tr><td><span class="sample" style="background:#9A8CFF"></span>Ultraviolet</td><td class="ratio pass">7.1 AAA</td><td class="ratio pass">6.7 AA</td><td class="ratio pass">6.2 AA</td><td class="ratio fail">1.8 fail</td></tr>
+      <tr><td><span class="sample" style="background:#FF5C7A"></span>Danger</td><td class="ratio pass">6.6 AA</td><td class="ratio pass">6.2 AA</td><td class="ratio pass">5.8 AA</td><td class="ratio fail">1.9 fail</td></tr>
+      <tr><td><span class="sample" style="background:#0A0C0F"></span>Graticule</td><td>—</td><td>—</td><td>—</td><td class="ratio pass">12.5 AAA</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">AA requires 4.5:1 for body text and 3:1 for large text and UI boundaries. On Channel Cyan, use only Graticule text.</p>
+</section>
+
+<section class="section" id="type" aria-labelledby="h-type">
+  <div class="sec-head"><span class="sec-num">11</span><div><h2 id="h-type">Typography</h2><p>One variable family stretched like instrument lettering, plus a monospace for anything that is measured.</p></div></div>
+  <div class="specimen">
+    <div class="big" id="specBig">Hold steady</div>
+    <div class="row"><span class="readout">Archivo · variable · wdth 62–125 · wght 100–900 · SIL OFL 1.1</span></div>
+    <div class="wdth-scrub">
+      <label for="wdth"><span>Width axis</span><span id="wdthOut">125</span></label>
+      <input type="range" id="wdth" min="62" max="125" value="125" step="1">
+    </div>
+  </div>
+  <div class="two" style="margin-top:var(--s5)">
+    <div class="specimen">
+      <p style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:1.75rem;line-height:1.1;margin-bottom:var(--s3)">Archivo Expanded</p>
+      <p class="muted" style="margin:0">Display and headings, width 112–125. Wide letters echo the lettering on test equipment panels and give short headlines authority without heavy weight.</p>
+      <p style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:1.25rem;letter-spacing:.02em;margin:var(--s4) 0 0">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</p>
+    </div>
+    <div class="specimen">
+      <p style="font-family:var(--f-mono);font-stretch:90%;font-size:1.25rem;line-height:1.2;margin-bottom:var(--s3)">Martian Mono</p>
+      <p class="muted" style="margin:0">Readouts only: prices, timelines, measurements, channel IDs, code. Never for headlines or paragraphs. Width 90 keeps tables compact.</p>
+      <p style="font-family:var(--f-mono);font-stretch:90%;font-size:.9375rem;margin:var(--s4) 0 0;font-variant-numeric:tabular-nums">$7,500 · 5–7 WKS · CH1<br>0123456789 Δt 2.40 ms</p>
+    </div>
+  </div>
+  <h3>Type scale</h3>
+  <div>
+    <div class="scale-row"><div class="meta">Display<br>clamp(3.5–6rem) · 0.92<br>wdth 125 · wght 640 · −0.035em</div><div class="sample" style="font-family:var(--f-display);font-stretch:125%;font-weight:640;font-size:clamp(2.5rem,6vw,4.5rem);line-height:.92;letter-spacing:-.035em">Hold steady.</div></div>
+    <div class="scale-row"><div class="meta">H1<br>clamp(2.5–3.75rem) · 1.0<br>wdth 120 · wght 620</div><div class="sample" style="font-family:var(--f-display);font-stretch:120%;font-weight:620;font-size:clamp(2rem,4.5vw,3.25rem);line-height:1;letter-spacing:-.025em">Custom WordPress platforms</div></div>
+    <div class="scale-row"><div class="meta">H2<br>2.25rem · 1.05<br>wdth 118 · wght 620</div><div class="sample" style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:2rem;line-height:1.05;letter-spacing:-.02em">What's included</div></div>
+    <div class="scale-row"><div class="meta">H3<br>1.375rem · 1.15<br>wdth 112 · wght 600</div><div class="sample" style="font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:1.375rem;line-height:1.15">Security hardening package</div></div>
+    <div class="scale-row"><div class="meta">Body L<br>1.25rem · 1.5<br>wdth 100 · wght 400</div><div class="sample" style="font-size:1.25rem;line-height:1.5">We build the website, software and AI your business runs on.</div></div>
+    <div class="scale-row"><div class="meta">Body<br>1.0625rem · 1.6<br>wdth 100 · wght 400</div><div class="sample" style="font-size:1.0625rem;line-height:1.6">Every build includes basic hardening, SSL, Core Web Vitals optimization and on-page schema.</div></div>
+    <div class="scale-row"><div class="meta">Small<br>0.875rem · 1.5</div><div class="sample" style="font-size:.875rem;line-height:1.5;color:var(--fg-muted)">Prices exclude third-party licenses and hosting.</div></div>
+    <div class="scale-row"><div class="meta">Readout<br>0.75rem · mono · caps<br>wdth 90 · +0.06em</div><div class="sample readout" style="color:var(--fg)">5–7 weeks · 60 days support</div></div>
+  </div>
+  <h3>Pairing rules</h3>
+  <ul class="muted" style="padding-left:1.1em;display:grid;gap:6px;max-width:68ch">
+    <li>Headings run expanded (112–125); body text stays at width 100 for reading comfort.</li>
+    <li>Emphasis comes from weight and width, never italics, color gradients or underlines.</li>
+    <li>Mono appears only when the content is data. A headline in mono is a costume.</li>
+    <li>Running text measure: 60–72 characters. Headings wrap with <code>text-wrap: balance</code>.</li>
+  </ul>
+  <h3>Licensing</h3>
+  <p>Archivo (Omnibus-Type) and Martian Mono (Evil Martians) are licensed under the SIL Open Font License 1.1: free for commercial use, embedding, self-hosting and modification. For WordPress, self-host WOFF2 subsets (Latin, Latin-Ext) from the theme, preload the display axis instance used above the fold, include the OFL text in <code>/assets/fonts/</code>, and do not sell the fonts on their own.</p>
+</section>
+
+<section class="section" id="grid" aria-labelledby="h-grid">
+  <div class="sec-head"><span class="sec-num">12</span><div><h2 id="h-grid">Grid, space, radii, borders, elevation</h2><p>Two grids: a 12-column layout grid for pages, and a 10 × 8 graticule for signature screens.</p></div></div>
+  <div class="two">
+    <div>
+      <h4>Layout grid</h4>
+      <svg viewBox="0 0 480 220" role="img" aria-labelledby="lgT" style="width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px;background:var(--ink-950)">
+        <title id="lgT">12 columns, 24 pixel gutters, 1280 pixel maximum content width, fluid side margins.</title>
+        <g fill="rgba(60,227,240,.10)" stroke="rgba(60,227,240,.35)" stroke-width=".6"><rect x="30" y="20" width="27.5" height="180"/><rect x="65.5" y="20" width="27.5" height="180"/><rect x="101" y="20" width="27.5" height="180"/><rect x="136.5" y="20" width="27.5" height="180"/><rect x="172" y="20" width="27.5" height="180"/><rect x="207.5" y="20" width="27.5" height="180"/><rect x="243" y="20" width="27.5" height="180"/><rect x="278.5" y="20" width="27.5" height="180"/><rect x="314" y="20" width="27.5" height="180"/><rect x="349.5" y="20" width="27.5" height="180"/><rect x="385" y="20" width="27.5" height="180"/><rect x="420.5" y="20" width="27.5" height="180"/></g>
+        <g font-family="Martian Mono, monospace" font-size="9" fill="#A3AFBC"><text x="30" y="214">1280 MAX · 12 COL · 24 GUTTER</text></g>
+      </svg>
+      <dl class="kv" style="margin-top:var(--s4)"><dt>Mobile</dt><dd>4 columns, 16px gutters, 16px margins</dd><dt>Tablet</dt><dd>8 columns, 20px gutters, 32px margins</dd><dt>Desktop</dt><dd>12 columns, 24px gutters, fluid margins, 1280px max</dd></dl>
+    </div>
+    <div>
+      <h4>Graticule</h4>
+      <div class="screen" style="aspect-ratio:10/8;background-size:10% 12.5%,10% 12.5%,2% 2.5%,2% 2.5%;position:relative">
+        <svg viewBox="0 0 100 80" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true"><path d="M50 0V80M0 40H100" stroke="rgba(159,180,200,.22)" stroke-width=".3"/></svg>
+      </div>
+      <p class="cap">10 × 8 major divisions, 5 minor ticks each, center axes slightly brighter. Used for hero screens, case-study diagrams and data. Never as a page-wide wallpaper behind text.</p>
+    </div>
+  </div>
+  <h3>Spacing tokens</h3>
+  <div class="spacebars">
+    <div><span>--s1</span><span>4px</span><i style="width:4px"></i></div><div><span>--s2</span><span>8px</span><i style="width:8px"></i></div><div><span>--s3</span><span>12px</span><i style="width:12px"></i></div><div><span>--s4</span><span>16px</span><i style="width:16px"></i></div><div><span>--s5</span><span>24px</span><i style="width:24px"></i></div><div><span>--s6</span><span>32px</span><i style="width:32px"></i></div><div><span>--s7</span><span>48px</span><i style="width:48px"></i></div><div><span>--s8</span><span>64px</span><i style="width:64px"></i></div><div><span>--s9</span><span>96px</span><i style="width:96px"></i></div><div><span>--s10</span><span>128px</span><i style="width:128px"></i></div>
+  </div>
+  <p class="cap">4px base, mirroring one minor graticule tick. Space above a heading is always larger than space below it.</p>
+  <div class="two" style="margin-top:var(--s5)">
+    <div><h4>Radii</h4><div class="radii"><div style="border-radius:0">0 · screens</div><div style="border-radius:2px">2 · tags</div><div style="border-radius:6px">6 · controls</div><div style="border-radius:12px">12 · panels</div></div></div>
+    <div><h4>Borders</h4><dl class="kv"><dt>Hairline</dt><dd>1px Ink 700. Default divider and panel edge.</dd><dt>Strong</dt><dd>1px Ink 600. Raised panels, tags.</dd><dt>Control</dt><dd>1px Ink 450. Inputs and buttons (3:1+).</dd><dt>Focus</dt><dd>2px Channel Cyan, 2px offset.</dd></dl></div>
+  </div>
+  <h3>Elevation</h3>
+  <div class="elev-wrap">
+    <canvas id="elevTrace" aria-hidden="true"></canvas>
+    <div class="elev" style="position:relative;background:transparent">
+      <div class="e0"><span class="readout">E0 · Ground</span><span class="muted">Page background</span></div>
+      <div class="e1"><span class="readout">E1 · Panel</span><span class="muted">Ink 850 + hairline</span></div>
+      <div class="e2"><span class="readout">E2 · Raised</span><span class="muted">Ink 800 + soft shadow</span></div>
+      <div class="e3"><span class="readout">E3 · Bezel glass</span><span class="muted">Only over a live trace</span></div>
+    </div>
+  </div>
+  <p class="cap">Depth comes from tone steps and hairlines. Glass (E3) is reserved for overlays that sit on top of a moving trace, like the scope's bezel; it is never a card style.</p>
+</section>
+
+<style>
+.elev-wrap{background:var(--ink-950);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+.elev-wrap .elev{border:0}
+.icons{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+@media (max-width:700px){.icons{grid-template-columns:repeat(auto-fill,minmax(84px,1fr))}}
+.icons figure{margin:0;box-shadow:inset -1px -1px 0 var(--line);display:grid;justify-items:center;gap:10px;padding:18px 8px 12px}
+.icons svg{width:32px;height:32px;color:var(--fg)}
+.icons figcaption{font-family:var(--f-mono);font-size:.625rem;color:var(--fg-muted);font-stretch:90%;text-transform:uppercase;letter-spacing:.05em}
+.motion-demo{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--s5);align-items:stretch}
+@media (max-width:800px){.motion-demo{grid-template-columns:1fr}}
+.photo-frame{aspect-ratio:4/3;border:1px dashed var(--line-strong);border-radius:10px;display:grid;place-items:center;text-align:center;padding:var(--s4);color:var(--fg-muted);font-size:.875rem;background:repeating-linear-gradient(-45deg,transparent 0 10px,rgba(159,180,200,.03) 10px 11px)}
+/* components */
+.cmp-row{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+.btn{--h:44px;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--h);padding:0 18px;border-radius:var(--r-control);font-family:var(--f-display);font-stretch:108%;font-weight:600;font-size:.9375rem;letter-spacing:.005em;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background var(--t-base) var(--ease-out),color var(--t-base) var(--ease-out),border-color var(--t-base) var(--ease-out),transform var(--t-fast) var(--ease-out)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--ch1);color:var(--ink-900)}
+.btn-primary:hover{background:#7AEDF6}
+.btn-secondary{background:transparent;color:var(--fg);border-color:var(--line-control)}
+.btn-secondary:hover{border-color:var(--ch1);color:var(--ch1)}
+.btn-ghost{background:transparent;color:var(--ch1);padding-inline:6px;text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}
+.btn[disabled],.btn[aria-disabled="true"]{background:var(--ink-800);color:var(--ink-400);border-color:var(--line);cursor:not-allowed;transform:none}
+.btn .arrow{width:16px;height:16px;transition:transform var(--t-base) var(--ease-out)}
+.btn:hover .arrow{transform:translateX(3px)}
+.btn .spin{width:16px;height:16px;animation:spin 900ms linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.btn .spin{animation:none}.btn .arrow{transition:none}}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-size:.875rem;font-weight:550}
+.field .hint{font-size:.8125rem;color:var(--fg-muted)}
+.input{min-height:44px;width:100%;background:var(--ink-950);color:var(--fg);border:1px solid var(--line-control);border-radius:var(--r-control);padding:10px 12px;font:inherit;font-size:1rem;caret-color:var(--ch1);transition:border-color var(--t-base) var(--ease-out),box-shadow var(--t-base) var(--ease-out)}
+.input::placeholder{color:var(--ink-400)}
+.input:hover{border-color:var(--ink-400)}
+.input:focus{outline:none;border-color:var(--ch1);box-shadow:0 0 0 3px rgba(60,227,240,.18)}
+.field.err .input{border-color:var(--danger)}
+.field .msg{display:flex;gap:6px;align-items:center;font-size:.8125rem;color:var(--danger)}
+.readout-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--line);gap:1px}
+.readout-strip a{background:var(--ink-950);padding:12px 14px;text-decoration:none;color:var(--fg);display:grid;gap:4px;transition:background var(--t-base) var(--ease-out)}
+.readout-strip a:hover{background:var(--ink-850)}
+.readout-strip .v{font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:.9375rem}
+@media (max-width:640px){.readout-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.price-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:var(--s5);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.price-row .name{font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:1.125rem}
+.price-row .p{font-family:var(--f-mono);font-stretch:90%;font-size:1rem;color:var(--fg);font-variant-numeric:tabular-nums}
+.price-row .d{font-family:var(--f-mono);font-stretch:90%;font-size:.75rem;color:var(--fg-muted)}
+@media (max-width:560px){.price-row{grid-template-columns:1fr auto}.price-row .d{grid-column:1/-1}}
+.toast{display:inline-flex;gap:10px;align-items:center;background:var(--ink-800);border:1px solid var(--line-strong);border-radius:8px;padding:10px 14px;font-size:.875rem;box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
+/* applications */
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:var(--s6) var(--s5)}
+.apps figure{margin:0;min-width:0}
+.apps .stage{border:1px solid var(--line);border-radius:var(--r-panel);background:#0d1014;padding:var(--s5);display:grid;place-items:center;overflow:hidden}
+.apps svg.mock{width:100%;height:auto;display:block}
+.apps figcaption{margin-top:var(--s2);font-size:.875rem;color:var(--fg-muted)}
+.apps figcaption strong{color:var(--fg)}
+.sig{background:#fff;color:#0A0C0F;border-radius:8px;padding:20px;font-family:Arial,Helvetica,sans-serif;width:100%;max-width:520px}
+/* tokens */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:-1px;overflow-x:auto}
+.tabs button{font-family:var(--f-mono);font-stretch:90%;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;background:transparent;color:var(--fg-muted);border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;padding:10px 14px;cursor:pointer;min-height:40px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--fg);background:var(--panel);border-color:var(--line);box-shadow:inset 0 2px 0 var(--ch1)}
+.end{margin-top:var(--s10);padding-top:var(--s7);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:end;gap:var(--s5);flex-wrap:wrap}
+</style>
+
+<section class="section" id="imagery" aria-labelledby="h-img">
+  <div class="sec-head"><span class="sec-num">13</span><div><h2 id="h-img">Photography, illustration, iconography, motion</h2><p>Show real work and real people. Draw systems as signals. Move like an instrument settling.</p></div></div>
+  <h3 style="margin-top:0">Photography</h3>
+  <div class="two">
+    <div>
+      <p>Photography documents. It shows Jeremy working with clients, real screens of shipped projects, and the places in Central Massachusetts where the work happens. It never illustrates abstract ideas like "security" or "AI".</p>
+      <dl class="kv"><dt>Light</dt><dd>Natural daylight, side-lit, cool neutral white balance.</dd><dt>Grade</dt><dd>Shadows lifted toward Ink 900, saturation −15%, skin tones untouched. No color casts in channel hues.</dd><dt>Framing</dt><dd>Generous negative space on one side so graticule overlays and readouts can sit beside, never on, faces.</dd><dt>Screens</dt><dd>Capture real browser windows at 2× and place them in plain device frames. No fake code, no lens flares.</dd></dl>
+    </div>
+    <div>
+      <div class="dodont">
+        <div><span class="tag" style="color:var(--ch4)">Shot list to commission</span><ul><li>Founder portrait, working at his desk in Shrewsbury</li><li>Founder in a discovery meeting with a client team</li><li>Laptop and phone running God's Eye Lite in the field</li><li>Detail: hands sketching an architecture on paper</li><li>Worcester and Boston street context, early morning</li></ul></div>
+        <div><span class="tag" style="color:var(--danger)">Never</span><ul><li>Hooded hackers, binary rain, padlocks</li><li>Glowing brains, robot hands, particle spheres</li><li>Handshake stock and fake office teams</li><li>AI-generated people or offices</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <h3>Illustration: trace diagrams</h3>
+  <p>Systems are drawn as signal paths on a graticule. Single 1.5px strokes, channel color by discipline, labels in Martian Mono. Every diagram must describe something real.</p>
+  <div class="screen">
+    <div class="screen-bar"><span class="readout">God's Eye Lite · data path</span><span class="readout">Public architecture</span></div>
+    <svg viewBox="0 0 960 300" role="img" aria-labelledby="gelT" style="width:100%;height:auto;display:block">
+      <title id="gelT">God's Eye Lite architecture: public APIs and agency feeds flow to the browser app. GitHub Actions builds the camera catalog as static data. A Cloudflare Worker fills gaps browsers cannot reach directly. A service worker caches the app and saved map areas on the device.</title>
+      <g font-family="Martian Mono, monospace" font-size="11" fill="#A3AFBC">
+        <g fill="#0A0C0F" stroke-width="1.5">
+          <rect x="30" y="40" width="222" height="64" rx="6" stroke="#5EF0A0"/><rect x="30" y="196" width="222" height="64" rx="6" stroke="#5EF0A0"/>
+          <rect x="385" y="118" width="190" height="64" rx="6" stroke="#3CE3F0"/>
+          <rect x="740" y="40" width="190" height="64" rx="6" stroke="#FFC23D"/><rect x="740" y="196" width="190" height="64" rx="6" stroke="#9A8CFF"/>
+        </g>
+        <text x="46" y="66" fill="#5EF0A0">PUBLIC APIS</text><text x="46" y="88">orbits, quakes, weather</text>
+        <text x="46" y="222" fill="#5EF0A0">GITHUB ACTIONS</text><text x="46" y="244">camera catalog → JSON</text>
+        <text x="401" y="144" fill="#3CE3F0">BROWSER APP</text><text x="401" y="166">React · CesiumJS · PWA</text>
+        <text x="756" y="66" fill="#FFC23D">LOCAL KEY VAULT</text><text x="756" y="88">encrypted on device</text>
+        <text x="756" y="222" fill="#9A8CFF">SERVICE WORKER</text><text x="756" y="244">offline map areas</text>
+        <g fill="none" stroke-width="1.5">
+          <path d="M252 72H300Q320 72 320 92V130Q320 150 340 150H385" stroke="#5EF0A0"/>
+          <path d="M252 228H300Q320 228 320 208V170Q320 150 340 150" stroke="#5EF0A0"/>
+          <path d="M575 150H640Q660 150 660 130V92Q660 72 680 72H740" stroke="#FFC23D"/>
+          <path d="M660 170V208Q660 228 680 228H740" stroke="#9A8CFF"/>
+          <path d="M480 182V250H300" stroke="#3D4855" stroke-dasharray="3 4"/>
+        </g>
+        <text x="320" y="276" fill="#7D8996">CLOUDFLARE WORKER fills blocked feeds</text>
+        <g fill="#3CE3F0"><circle cx="385" cy="150" r="3"/><circle cx="575" cy="150" r="3"/></g>
+      </g>
+    </svg>
+  </div>
+  <h3>Iconography</h3>
+  <p>Authored on a 24px grid, 1.5px stroke, round caps and joins, 2px interior padding. Icons share the mark's stroke logic. They label; they never decorate headings.</p>
+  <div class="icons" id="iconGrid"></div>
+  <h3>Motion</h3>
+  <div class="motion-demo">
+    <div class="screen" style="min-height:280px;position:relative">
+      <canvas id="demoTrace" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+      <div class="screen-bar" style="position:relative;background:rgba(16,20,26,.8)"><span class="readout" id="demoState">Run</span><button class="btn-copy" type="button" id="demoBtn">Re-trigger</button></div>
+    </div>
+    <div>
+      <dl class="kv">
+        <dt>Triggered</dt><dd>Things arrive unsettled and lock into place, then stop. One trigger sequence per page, on the hero.</dd>
+        <dt>Measured</dt><dd>Durations come from tokens: 120 / 200 / 320 / 640 ms. Exponential ease-out <code>cubic-bezier(.16,1,.3,1)</code>.</dd>
+        <dt>Quiet at rest</dt><dd>After a sequence completes, the canvas stops drawing. Nothing loops in the background.</dd>
+        <dt>Answers the pointer</dt><dd>Measurement cursors follow the pointer on screens; hover states shift by 3px or a border color, never bounce.</dd>
+        <dt>Reduced motion</dt><dd>Render the locked final frame immediately. Remove sweeps and smooth scrolling.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="components" aria-labelledby="h-cmp">
+  <div class="sec-head"><span class="sec-num">14</span><div><h2 id="h-cmp">UI components and interaction</h2><p>Every control is rebuilt in the instrument's vocabulary. These are live and keyboard operable.</p></div></div>
+  <h3 style="margin-top:0">Buttons</h3>
+  <div class="cmp-row">
+    <a class="btn btn-primary" href="#components">Book a discovery call<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="btn btn-secondary" href="#components">See the work</a>
+    <a class="btn btn-ghost" href="#components">View pricing</a>
+    <button class="btn btn-primary" type="button" aria-disabled="true"><svg class="spin" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2a6 6 0 1 0 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Sending</button>
+    <button class="btn btn-primary" type="button" disabled>Disabled</button>
+  </div>
+  <div class="scroll-x" style="margin-top:var(--s4)"><table class="spec"><thead><tr><th>Variant</th><th>Use</th><th>Rule</th></tr></thead><tbody>
+    <tr><td>Primary</td><td>The single main action in a view</td><td>One per viewport. Graticule text on Cyan.</td></tr>
+    <tr><td>Secondary</td><td>Alternative paths</td><td>Ink 450 border, turns Cyan on hover.</td></tr>
+    <tr><td>Ghost</td><td>Inline and tertiary actions</td><td>Always underlined so it reads as a link.</td></tr>
+  </tbody></table></div>
+  <h3>Form fields</h3>
+  <div class="cols">
+    <div class="field"><label for="f1">Work email</label><input class="input" id="f1" type="email" placeholder="you@company.com" autocomplete="email"><span class="hint">Used only to reply about your project.</span></div>
+    <div class="field err"><label for="f2">Website</label><input class="input" id="f2" type="text" value="mycompany" aria-invalid="true" aria-describedby="f2m"><span class="msg" id="f2m"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 4v3.5M7 9.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Add the full address, like mycompany.com</span></div>
+    <div class="field"><label for="f3">What do you need?</label><select class="input" id="f3"><option>CH1 Platforms: a new website</option><option>CH2 Intelligence: an AI tool</option><option>CH3 Security: an audit</option><option>CH4 Operations: hosting and care</option></select></div>
+  </div>
+  <h3>Channel tags and readout strip</h3>
+  <div class="cmp-row" style="margin-bottom:var(--s4)"><span class="ch" style="--c:var(--ch1)"><i></i><b>CH1</b> Platforms</span><span class="ch" style="--c:var(--ch2)"><i></i><b>CH2</b> Intelligence</span><span class="ch" style="--c:var(--ch3)"><i></i><b>CH3</b> Security</span><span class="ch" style="--c:var(--ch4)"><i></i><b>CH4</b> Operations</span></div>
+  <nav class="readout-strip" aria-label="Service channels example">
+    <a href="#components"><span class="readout" style="color:var(--ch1)">CH1</span><span class="v">Platforms</span><span class="readout">from $3,500</span></a>
+    <a href="#components"><span class="readout" style="color:var(--ch2)">CH2</span><span class="v">Intelligence</span><span class="readout">from $1,200</span></a>
+    <a href="#components"><span class="readout" style="color:var(--ch3)">CH3</span><span class="v">Security</span><span class="readout">from $850</span></a>
+    <a href="#components"><span class="readout" style="color:var(--ch4)">CH4</span><span class="v">Operations</span><span class="readout">from $350/mo</span></a>
+  </nav>
+  <h3>Price rows</h3>
+  <div>
+    <div class="price-row"><span class="name">Business Site</span><span class="p">$3,500</span><span class="d">3–4 WEEKS · 30 DAYS SUPPORT</span></div>
+    <div class="price-row"><span class="name">Custom Platform</span><span class="p">$7,500</span><span class="d">5–7 WEEKS · 60 DAYS SUPPORT</span></div>
+    <div class="price-row"><span class="name">Enterprise System</span><span class="p">$15,000+</span><span class="d">8–12 WEEKS · 90 DAYS SUPPORT</span></div>
+  </div>
+  <h3>Feedback</h3>
+  <div class="cmp-row"><span class="toast" role="status"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5 5.5 10l6-6.5" stroke="var(--ch4)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Copied to clipboard</span></div>
+  <h3>Interaction principles</h3>
+  <ul class="muted" style="padding-left:1.1em;display:grid;gap:6px;max-width:70ch">
+    <li>Controls name their action: "Book a discovery call", never "Submit" or "Learn more".</li>
+    <li>Hover reveals measurement, not decoration: borders turn Cyan, arrows advance 3px.</li>
+    <li>Every interactive element has a 44px minimum target and a visible Cyan focus ring.</li>
+    <li>Errors state what is wrong and how to fix it, next to the field.</li>
+    <li>No modals for tasks that do not need interruption. Forms live in the page.</li>
+  </ul>
+</section>
+
+<section class="section" id="access" aria-labelledby="h-a11y">
+  <div class="sec-head"><span class="sec-num">15</span><div><h2 id="h-a11y">Accessibility and responsive rules</h2><p>WCAG 2.2 AA is the floor. The founder holds W3C/WAI accessibility certification, so the brand must visibly live up to it.</p></div></div>
+  <div class="cols">
+    <div><h4>Contrast</h4><p class="muted">Body text ≥ 4.5:1, large text and UI boundaries ≥ 3:1. Use the matrix in section 10. Channel colors never carry body text on paper.</p></div>
+    <div><h4>Focus</h4><p class="muted">2px Cyan outline with 2px offset on every focusable element. Never remove focus styles. Skip link first in the tab order.</p></div>
+    <div><h4>Reduced motion</h4><p class="muted">Respect <code>prefers-reduced-motion</code>: static locked trace, no sweeps, no smooth scroll, no parallax. Motion is never required to understand content.</p></div>
+    <div><h4>Not color alone</h4><p class="muted">Channels always show their number and name. States pair color with an icon and text.</p></div>
+    <div><h4>Targets and type</h4><p class="muted">44 × 44px minimum targets. Body text at least 16px. Text resizes to 200% without loss.</p></div>
+    <div><h4>Canvas</h4><p class="muted">Decorative canvases are <code>aria-hidden</code>; every diagram has a text alternative. Canvases pause when off screen.</p></div>
+  </div>
+  <h3>Breakpoints</h3>
+  <div class="scroll-x"><table class="spec"><thead><tr><th>Name</th><th>Min width</th><th>Grid</th><th>Behavior</th></tr></thead><tbody>
+    <tr><td>Phone</td><td class="mono">0</td><td>4 col</td><td>Single column. Hero trace sits above the headline. Readout strip becomes 2 × 2.</td></tr>
+    <tr><td>Tablet</td><td class="mono">768px</td><td>8 col</td><td>Two-column content. Navigation stays collapsed.</td></tr>
+    <tr><td>Laptop</td><td class="mono">1080px</td><td>12 col</td><td>Full navigation. Hero text left, trace right.</td></tr>
+    <tr><td>Wide</td><td class="mono">1440px</td><td>12 col</td><td>Content caps at 1280px; graticule screens may run full bleed.</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="section" id="applications" aria-labelledby="h-app">
+  <div class="sec-head"><span class="sec-num">16</span><div><h2 id="h-app">Applications</h2><p>The system on the things clients hold, read, wear and share. Placeholder fields are bracketed; no client names are invented.</p></div></div>
+  <div class="apps">
+    <figure>
+      <div class="stage">
+        <svg class="mock" viewBox="0 0 1100 660" role="img" aria-labelledby="bcT">
+          <title id="bcT">Business card, front and back. Front: the JAT trace runs edge to edge across a graticule. Back: name, role, email, website and the four service channels.</title>
+          <defs>
+            <pattern id="bcGrid" width="35" height="35" patternUnits="userSpaceOnUse"><path d="M35 0V35H0" fill="none" stroke="rgba(159,180,200,.10)" stroke-width="1"/></pattern>
+            <filter id="cardSh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity=".55"/></filter>
+          </defs>
+          <g transform="translate(40 30) rotate(-3 262 150)" filter="url(#cardSh)">
+            <rect width="525" height="300" rx="10" fill="#0A0C0F"/><rect width="525" height="300" rx="10" fill="url(#bcGrid)"/>
+            <path d="M0 187H151" stroke="#3CE3F0" stroke-width="2"/>
+            <g transform="translate(131 77) scale(2.2)"><use href="#mk" x="1" y="6" width="108" height="68"/></g>
+            <path d="M351 112.2H525" stroke="#3CE3F0" stroke-width="2"/>
+            <text x="32" y="270" font-family="Martian Mono, monospace" font-size="11" fill="#7D8996" letter-spacing="1">JEREMYANDERSON.TECH</text>
+          </g>
+          <g transform="translate(530 330) rotate(2 262 150)" filter="url(#cardSh)">
+            <rect width="525" height="300" rx="10" fill="#F3F5F7"/>
+            <use href="#mk" x="32" y="32" width="54" height="34" style="--mk:#007C88"/>
+            <text x="32" y="134" font-family="Archivo, sans-serif" font-size="30" font-weight="640" fill="#0A0C0F" style="font-stretch:120%" letter-spacing="-.5">Jeremy Anderson</text>
+            <text x="32" y="162" font-family="Archivo, sans-serif" font-size="15" fill="#465260">Founder, Jeremy Anderson Tech</text>
+            <g font-family="Martian Mono, monospace" font-size="12" fill="#0A0C0F"><text x="32" y="206">info@jeremyanderson.tech</text><text x="32" y="226">jeremyanderson.tech</text><text x="32" y="246" fill="#465260">Shrewsbury, Massachusetts</text></g>
+            <g font-family="Martian Mono, monospace" font-size="9.5" fill="#465260" letter-spacing=".6">
+              <circle cx="36" cy="276" r="3.5" fill="#007C88"/><text x="44" y="279">PLATFORMS</text>
+              <circle cx="136" cy="276" r="3.5" fill="#5B4BD6"/><text x="144" y="279">INTELLIGENCE</text>
+              <circle cx="256" cy="276" r="3.5" fill="#8A5800"/><text x="264" y="279">SECURITY</text>
+              <circle cx="350" cy="276" r="3.5" fill="#0A7646"/><text x="358" y="279">OPERATIONS</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <figcaption><strong>Business card.</strong> 3.5 × 2 in, 32pt uncoated stock. Front printed in Pantone Black 6 C with 319 C trace; back on bright white.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage">
+        <svg class="mock" viewBox="0 0 1100 700" role="img" aria-labelledby="prT">
+          <title id="prT">Proposal cover and interior page on letter paper.</title>
+          <defs><filter id="pgSh" x="-10%" y="-5%" width="120%" height="115%"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000" flood-opacity=".5"/></filter>
+          <pattern id="prGrid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0V24H0" fill="none" stroke="rgba(10,12,15,.08)"/></pattern></defs>
+          <g transform="translate(60 30)" filter="url(#pgSh)">
+            <rect width="490" height="634" fill="#F3F5F7"/>
+            <use href="#lk-h" x="36" y="36" width="230" height="34" style="--mk:#007C88;--lk-name:#0A0C0F;--lk-tech:#465260;--lk-rule:#9AA6B2"/>
+            <text x="36" y="250" font-family="Archivo, sans-serif" font-size="44" font-weight="640" fill="#0A0C0F" style="font-stretch:122%" letter-spacing="-1.2">Custom</text>
+            <text x="36" y="296" font-family="Archivo, sans-serif" font-size="44" font-weight="640" fill="#0A0C0F" style="font-stretch:122%" letter-spacing="-1.2">Platform</text>
+            <text x="36" y="330" font-family="Archivo, sans-serif" font-size="16" fill="#465260">Proposal prepared for [Client name]</text>
+            <g font-family="Martian Mono, monospace" font-size="10" fill="#465260" letter-spacing=".6">
+              <path d="M36 370H454M36 410H454M36 450H454" stroke="rgba(10,12,15,.15)"/>
+              <text x="36" y="392">INVESTMENT</text><text x="454" y="392" text-anchor="end" fill="#0A0C0F" font-size="12">$7,500 FIXED</text>
+              <text x="36" y="432">TIMELINE</text><text x="454" y="432" text-anchor="end" fill="#0A0C0F" font-size="12">5–7 WEEKS</text>
+              <text x="36" y="472">SUPPORT</text><text x="454" y="472" text-anchor="end" fill="#0A0C0F" font-size="12">60 DAYS</text>
+            </g>
+            <rect x="0" y="514" width="490" height="120" fill="#0A0C0F"/><rect x="0" y="514" width="490" height="120" fill="url(#bcGrid)"/>
+            <path d="M0 576.5H150" stroke="#3CE3F0" stroke-width="1.6"/><use href="#mk" x="145" y="548" width="70" height="44"/><path d="M209 554.5H490" stroke="#3CE3F0" stroke-width="1.6"/>
+            <text x="36" y="620" font-family="Martian Mono, monospace" font-size="9" fill="#7D8996" letter-spacing=".8">[DATE] · PROPOSAL [NO.]</text>
+          </g>
+          <g transform="translate(590 46)" filter="url(#pgSh)">
+            <rect width="460" height="596" fill="#FFFFFF"/>
+            <text x="34" y="52" font-family="Martian Mono, monospace" font-size="10" fill="#007C88" letter-spacing=".8">02 · SCOPE</text>
+            <text x="34" y="92" font-family="Archivo, sans-serif" font-size="26" font-weight="620" fill="#0A0C0F" style="font-stretch:118%">What's included</text>
+            <g font-family="Archivo, sans-serif" font-size="12.5" fill="#465260">
+              <text x="34" y="132">Unlimited pages, custom post types and taxonomies</text><text x="34" y="156">Up to two custom plugin features</text><text x="34" y="180">Block theme with patterns your team can edit</text><text x="34" y="204">Advanced SEO, local schema and performance work</text><text x="34" y="228">Security hardening and login protection</text><text x="34" y="252">One third-party API integration</text><text x="34" y="276">CMS training and 60 days post-launch support</text>
+            </g>
+            <text x="34" y="330" font-family="Martian Mono, monospace" font-size="10" fill="#007C88" letter-spacing=".8">03 · TIMELINE</text>
+            <g font-family="Martian Mono, monospace" font-size="9" fill="#465260">
+              <path d="M34 370H426" stroke="rgba(10,12,15,.15)"/>
+              <rect x="34" y="384" width="80" height="12" fill="#007C88"/><text x="34" y="412">DISCOVER</text>
+              <rect x="118" y="384" width="120" height="12" fill="#5B4BD6"/><text x="118" y="412">DESIGN + BUILD</text>
+              <rect x="242" y="384" width="90" height="12" fill="#8A5800"/><text x="242" y="412">HARDEN + TEST</text>
+              <rect x="336" y="384" width="90" height="12" fill="#0A7646"/><text x="336" y="412">LAUNCH</text>
+            </g>
+            <text x="34" y="560" font-family="Martian Mono, monospace" font-size="9" fill="#9AA6B2">JEREMY ANDERSON TECH · PAGE 2</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><strong>Proposal.</strong> US Letter. Paper set for the body, a graticule band to close the cover. Timeline phases carry channel colors only as identifiers.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage">
+        <svg class="mock" viewBox="0 0 1100 520" role="img" aria-labelledby="soT">
+          <title id="soT">LinkedIn banner with the tagline and trace, and a circular profile avatar using the app icon.</title>
+          <g transform="translate(20 40)">
+            <rect width="1060" height="265" rx="8" fill="#0A0C0F"/><rect width="1060" height="265" rx="8" fill="url(#bcGrid)"/>
+            <path d="M560 147.4H704" stroke="#3CE3F0" stroke-width="2"/><use href="#mk" x="690" y="70" width="190" height="120"/><path d="M864 87.6H1060" stroke="#3CE3F0" stroke-width="2"/>
+            <text x="300" y="120" font-family="Archivo, sans-serif" font-size="38" font-weight="640" fill="#E6ECF2" style="font-stretch:125%" letter-spacing="-1">Systems that</text>
+            <text x="300" y="162" font-family="Archivo, sans-serif" font-size="38" font-weight="640" fill="#E6ECF2" style="font-stretch:125%" letter-spacing="-1">hold steady.</text>
+            <text x="300" y="200" font-family="Martian Mono, monospace" font-size="11" fill="#A3AFBC" letter-spacing="1">PLATFORMS · INTELLIGENCE · SECURITY · OPERATIONS</text>
+          </g>
+          <g transform="translate(80 230)">
+            <circle cx="90" cy="90" r="96" fill="#0d1014"/><circle cx="90" cy="90" r="88" fill="#0A0C0F" stroke="#222A34" stroke-width="2"/>
+            <use href="#icon" x="18" y="18" width="144" height="144"/>
+          </g>
+          <text x="290" y="400" font-family="Archivo, sans-serif" font-size="24" font-weight="620" fill="#E6ECF2" style="font-stretch:115%">Jeremy Anderson Tech</text>
+          <text x="290" y="430" font-family="Archivo, sans-serif" font-size="15" fill="#A3AFBC">Web platforms, AI and security, built and run by one accountable engineering studio.</text>
+          <text x="290" y="458" font-family="Martian Mono, monospace" font-size="11" fill="#7D8996">Shrewsbury, Massachusetts · jeremyanderson.tech</text>
+        </svg>
+      </div>
+      <figcaption><strong>Social profiles.</strong> LinkedIn banner 1584 × 396 with content kept right of the avatar overlap. Avatar uses the app icon on every network.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage">
+        <svg class="mock" viewBox="0 0 1100 640" role="img" aria-labelledby="dkT">
+          <title id="dkT">Presentation deck: title slide and a content slide showing the four service channels.</title>
+          <g transform="translate(30 20)" filter="url(#cardSh)">
+            <rect width="560" height="315" rx="6" fill="#0A0C0F"/><rect width="560" height="315" rx="6" fill="url(#bcGrid)"/>
+            <use href="#lk-h" x="28" y="26" width="160" height="23"/>
+            <text x="28" y="176" font-family="Archivo, sans-serif" font-size="40" font-weight="640" fill="#E6ECF2" style="font-stretch:125%" letter-spacing="-1.2">Systems that</text>
+            <text x="28" y="220" font-family="Archivo, sans-serif" font-size="40" font-weight="640" fill="#E6ECF2" style="font-stretch:125%" letter-spacing="-1.2">hold steady.</text>
+            <path d="M28 268H300" stroke="#3CE3F0" stroke-width="1.5"/><path d="M300 268L312 240H560" stroke="#3CE3F0" stroke-width="1.5" fill="none"/>
+            <text x="28" y="295" font-family="Martian Mono, monospace" font-size="9" fill="#7D8996" letter-spacing=".8">[EVENT OR CLIENT] · [DATE]</text>
+          </g>
+          <g transform="translate(510 300)" filter="url(#cardSh)">
+            <rect width="560" height="315" rx="6" fill="#10141A"/>
+            <text x="28" y="54" font-family="Archivo, sans-serif" font-size="24" font-weight="620" fill="#E6ECF2" style="font-stretch:118%">Four channels, one engineer</text>
+            <g font-family="Martian Mono, monospace" font-size="10" fill="#A3AFBC">
+              <g transform="translate(28 92)"><rect width="118" height="170" rx="4" fill="#0A0C0F" stroke="#3CE3F0" stroke-opacity=".6"/><text x="12" y="24" fill="#3CE3F0">CH1</text><text x="12" y="48" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="14" font-weight="600">Platforms</text><text x="12" y="150">from $3,500</text></g>
+              <g transform="translate(155 92)"><rect width="118" height="170" rx="4" fill="#0A0C0F" stroke="#9A8CFF" stroke-opacity=".6"/><text x="12" y="24" fill="#9A8CFF">CH2</text><text x="12" y="48" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="14" font-weight="600">Intelligence</text><text x="12" y="150">from $1,200</text></g>
+              <g transform="translate(282 92)"><rect width="118" height="170" rx="4" fill="#0A0C0F" stroke="#FFC23D" stroke-opacity=".6"/><text x="12" y="24" fill="#FFC23D">CH3</text><text x="12" y="48" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="14" font-weight="600">Security</text><text x="12" y="150">from $850</text></g>
+              <g transform="translate(409 92)"><rect width="118" height="170" rx="4" fill="#0A0C0F" stroke="#5EF0A0" stroke-opacity=".6"/><text x="12" y="24" fill="#5EF0A0">CH4</text><text x="12" y="48" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="14" font-weight="600">Operations</text><text x="12" y="150">from $350/mo</text></g>
+            </g>
+            <text x="532" y="296" text-anchor="end" font-family="Martian Mono, monospace" font-size="9" fill="#5A6675">04</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><strong>Presentation deck.</strong> 16:9. Title slides on Graticule with the trace; content slides on Panel. One idea per slide.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage" style="place-items:stretch;gap:var(--s4)">
+        <div class="sig" id="emailSig">
+          <table cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;color:#0A0C0F">
+            <tr>
+              <td style="padding-right:16px;border-right:2px solid #007C88;vertical-align:top"><svg width="54" height="34" viewBox="1 6 108 68" aria-label="JAT"><g fill="none" stroke="#007C88" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg></td>
+              <td style="padding-left:16px;vertical-align:top">
+                <div style="font-size:15px;font-weight:bold;letter-spacing:.2px">Jeremy Anderson</div>
+                <div style="font-size:13px;color:#465260;margin-top:2px">Founder, Jeremy Anderson Tech</div>
+                <div style="font-size:12px;margin-top:10px;line-height:1.6"><a href="https://jeremyanderson.tech" style="color:#007C88;text-decoration:none">jeremyanderson.tech</a> · info@jeremyanderson.tech</div>
+                <div style="font-size:11px;color:#465260;margin-top:6px;font-family:'Courier New',monospace;letter-spacing:.5px">PLATFORMS · AI · SECURITY · OPERATIONS</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div><button class="btn-copy" type="button" data-copy-html="emailSig">Copy signature HTML</button></div>
+      </div>
+      <figcaption><strong>Email signature.</strong> Table-based HTML with system fonts so it survives every mail client. No images to block, no tracking pixels.</figcaption>
+    </figure>
+
+    <figure>
+      <div class="stage">
+        <svg class="mock" viewBox="0 0 1100 520" role="img" aria-labelledby="apT">
+          <title id="apT">Apparel: charcoal t-shirt front with a small chest monogram, back with the trace across the shoulders and the tagline; a cap with the monogram.</title>
+          <defs><path id="tee" d="M120 40 L190 14 Q215 52 250 52 Q285 52 310 14 L380 40 L440 130 L385 160 L370 128 L370 440 L130 440 L130 128 L115 160 L60 130 Z"/></defs>
+          <g transform="translate(0 30)"><use href="#tee" fill="#1A1E24"/><use href="#tee" fill="none" stroke="#2E3845" stroke-width="2"/><use href="#mk" x="292" y="110" width="44" height="28"/></g>
+          <g transform="translate(410 30)"><use href="#tee" fill="#1A1E24"/><use href="#tee" fill="none" stroke="#2E3845" stroke-width="2"/>
+            <path d="M130 140.9H210" stroke="#3CE3F0" stroke-width="2.5"/><use href="#mk" x="203" y="101" width="98" height="62"/><path d="M293 110.1H370" stroke="#3CE3F0" stroke-width="2.5"/>
+            <text x="250" y="210" text-anchor="middle" font-family="Archivo, sans-serif" font-size="15" font-weight="640" fill="#E6ECF2" style="font-stretch:125%" letter-spacing="2">SYSTEMS THAT HOLD STEADY</text></g>
+          <g transform="translate(900 300)"><path d="M10 110 Q10 20 95 20 Q180 20 180 110 Z" fill="#0A0C0F" stroke="#2E3845" stroke-width="2"/><path d="M10 110 Q95 96 180 110 L196 120 Q95 104 -6 124 Z" fill="#161B22" stroke="#2E3845" stroke-width="2"/><use href="#mk" x="62" y="56" width="66" height="42"/></g>
+        </svg>
+      </div>
+      <figcaption><strong>Apparel.</strong> Charcoal heather blanks, water-based ink in 319 C. Chest mark 3 in wide; back trace runs seam to seam. Cap: flat embroidery, expanded strokes.</figcaption>
+    </figure>
+
+    <figure style="grid-column:1/-1">
+      <div class="stage">
+        <svg class="mock" viewBox="0 0 1100 520" role="img" aria-labelledby="mgT" style="max-width:900px">
+          <title id="mgT">Merchandise: a matte black mug with the monogram, a laptop lid with stickers, and a sticker sheet with the icon, the mark, a CH3 Security channel tag and a Settled badge.</title>
+          <g transform="translate(40 120)"><rect x="0" y="0" width="200" height="250" rx="14" fill="#14171c" stroke="#2E3845" stroke-width="2"/><path d="M200 60 Q270 60 270 125 Q270 190 200 190" fill="none" stroke="#2E3845" stroke-width="22"/><path d="M200 60 Q270 60 270 125 Q270 190 200 190" fill="none" stroke="#14171c" stroke-width="18"/><use href="#mk" x="40" y="96" width="120" height="76"/><path d="M0 22H200" stroke="#222A34"/></g>
+          <g transform="translate(360 90)"><rect width="460" height="300" rx="16" fill="#2a2f36" stroke="#3D4855" stroke-width="2"/><use href="#icon" x="40" y="40" width="100" height="100"/>
+            <g transform="translate(250 50) rotate(8)"><rect width="150" height="64" rx="32" fill="#3CE3F0"/><use href="#mk" x="20" y="13" width="60" height="38" style="--mk:#0A0C0F"/><text x="88" y="38" font-family="Martian Mono, monospace" font-size="11" fill="#0A0C0F">JAT</text></g>
+            <g transform="translate(70 190) rotate(-6)"><rect width="190" height="46" rx="6" fill="#0A0C0F" stroke="#FFC23D" stroke-width="2"/><circle cx="24" cy="23" r="6" fill="#FFC23D"/><text x="40" y="28" font-family="Martian Mono, monospace" font-size="13" fill="#FFC23D">CH3</text><text x="78" y="28" font-family="Martian Mono, monospace" font-size="13" fill="#E6ECF2">SECURITY</text></g>
+            <g transform="translate(300 170) rotate(4)"><circle cx="55" cy="55" r="55" fill="#0A0C0F" stroke="#5EF0A0" stroke-width="2"/><text x="55" y="50" text-anchor="middle" font-family="Martian Mono, monospace" font-size="11" fill="#5EF0A0">SETTLED</text><path d="M24 70H42L50 60L58 76L64 70H86" stroke="#5EF0A0" stroke-width="2" fill="none" stroke-linejoin="round"/></g>
+          </g>
+          <g transform="translate(860 80)"><rect width="200" height="360" rx="8" fill="#F3F5F7"/><use href="#icon" x="30" y="24" width="64" height="64"/><use href="#mk" x="108" y="34" width="66" height="42" style="--mk:#007C88"/>
+            <g transform="translate(24 116)"><rect width="152" height="34" rx="4" fill="#0A0C0F"/><circle cx="16" cy="17" r="4" fill="#3CE3F0"/><text x="28" y="22" font-family="Martian Mono, monospace" font-size="10" fill="#E6ECF2">CH1 PLATFORMS</text></g>
+            <g transform="translate(24 162)"><rect width="152" height="34" rx="4" fill="#0A0C0F"/><circle cx="16" cy="17" r="4" fill="#9A8CFF"/><text x="28" y="22" font-family="Martian Mono, monospace" font-size="10" fill="#E6ECF2">CH2 INTELLIGENCE</text></g>
+            <g transform="translate(24 208)"><rect width="152" height="34" rx="4" fill="#0A0C0F"/><circle cx="16" cy="17" r="4" fill="#FFC23D"/><text x="28" y="22" font-family="Martian Mono, monospace" font-size="10" fill="#E6ECF2">CH3 SECURITY</text></g>
+            <g transform="translate(24 254)"><rect width="152" height="34" rx="4" fill="#0A0C0F"/><circle cx="16" cy="17" r="4" fill="#5EF0A0"/><text x="28" y="22" font-family="Martian Mono, monospace" font-size="10" fill="#E6ECF2">CH4 OPERATIONS</text></g>
+            <text x="100" y="330" text-anchor="middle" font-family="Martian Mono, monospace" font-size="9" fill="#465260">DIE-CUT VINYL · MATTE</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption><strong>Merchandise.</strong> Matte black ceramic mug, die-cut matte vinyl stickers, laptop placement for events. Channel stickers double as conference badges.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="tokens" aria-labelledby="h-tok">
+  <div class="sec-head"><span class="sec-num">17</span><div><h2 id="h-tok">Design tokens</h2><p>The same decisions in three production formats: CSS custom properties, WordPress theme.json, and W3C design-token JSON.</p></div></div>
+  <div class="tabs" role="tablist" aria-label="Token format">
+    <button role="tab" aria-selected="true" aria-controls="tp-css" id="tb-css" type="button">tokens.css</button>
+    <button role="tab" aria-selected="false" aria-controls="tp-wp" id="tb-wp" type="button" tabindex="-1">theme.json</button>
+    <button role="tab" aria-selected="false" aria-controls="tp-json" id="tb-json" type="button" tabindex="-1">tokens.json</button>
+  </div>
+  <div class="code" role="tabpanel" id="tp-css" aria-labelledby="tb-css" style="border-top-left-radius:0">
+    <header><span class="readout">Paste into the theme's base stylesheet</span><button class="btn-copy" type="button" data-copy="codeCss">Copy</button></header>
+<pre id="codeCss">:root {
+  /* Neutrals: blue-biased graticule ramp */
+  --jat-ink-950: #07090B;  --jat-ink-900: #0A0C0F;  --jat-ink-850: #10141A;
+  --jat-ink-800: #161B22;  --jat-ink-700: #222A34;  --jat-ink-600: #2E3845;
+  --jat-ink-500: #3D4855;  --jat-ink-450: #5A6675;  --jat-ink-400: #7D8996;
+  --jat-ink-300: #A3AFBC;  --jat-ink-100: #E6ECF2;
+
+  /* Channels */
+  --jat-ch1: #3CE3F0;  /* Platforms    · Channel Cyan */
+  --jat-ch2: #9A8CFF;  /* Intelligence · Ultraviolet  */
+  --jat-ch3: #FFC23D;  /* Security     · Amber        */
+  --jat-ch4: #5EF0A0;  /* Operations   · Signal       */
+  --jat-danger: #FF5C7A;
+
+  /* Paper set (light surfaces, print) */
+  --jat-paper: #F3F5F7;  --jat-paper-muted: #465260;
+  --jat-ch1-deep: #007C88;  --jat-ch2-deep: #5B4BD6;
+  --jat-ch3-deep: #8A5800;  --jat-ch4-deep: #0A7646;  --jat-danger-deep: #B0203C;
+
+  /* Roles */
+  --jat-bg: var(--jat-ink-900);        --jat-panel: var(--jat-ink-850);
+  --jat-raised: var(--jat-ink-800);    --jat-line: var(--jat-ink-700);
+  --jat-line-strong: var(--jat-ink-600); --jat-line-control: var(--jat-ink-450);
+  --jat-fg: var(--jat-ink-100);        --jat-fg-muted: var(--jat-ink-300);
+  --jat-fg-subtle: var(--jat-ink-400); --jat-accent: var(--jat-ch1);
+  --jat-focus: 2px solid var(--jat-ch1);
+
+  /* Type */
+  --jat-font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --jat-font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --jat-font-mono: "Martian Mono", ui-monospace, Menlo, Consolas, monospace;
+  --jat-stretch-display: 125%;  --jat-stretch-heading: 118%;
+  --jat-stretch-body: 100%;     --jat-stretch-mono: 90%;
+  --jat-text-display: clamp(3.5rem, 2rem + 5vw, 6rem);
+  --jat-text-h1: clamp(2.5rem, 1.6rem + 3vw, 3.75rem);
+  --jat-text-h2: 2.25rem;  --jat-text-h3: 1.375rem;
+  --jat-text-lg: 1.25rem;  --jat-text-md: 1.0625rem;
+  --jat-text-sm: 0.875rem; --jat-text-readout: 0.75rem;
+
+  /* Space: 4px base */
+  --jat-space-1: 4px;   --jat-space-2: 8px;   --jat-space-3: 12px;
+  --jat-space-4: 16px;  --jat-space-5: 24px;  --jat-space-6: 32px;
+  --jat-space-7: 48px;  --jat-space-8: 64px;  --jat-space-9: 96px;
+  --jat-space-10: 128px;
+
+  /* Shape and depth */
+  --jat-radius-tag: 2px;  --jat-radius-control: 6px;  --jat-radius-panel: 12px;
+  --jat-shadow-raised: 0 10px 30px -8px rgb(0 0 0 / .6);
+  --jat-glass: rgb(16 20 26 / .62);  --jat-glass-blur: 14px;
+
+  /* Motion */
+  --jat-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --jat-dur-fast: 120ms;  --jat-dur-base: 200ms;
+  --jat-dur-slow: 320ms;  --jat-dur-sweep: 640ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --jat-dur-fast: 0ms; --jat-dur-base: 0ms; --jat-dur-slow: 0ms; --jat-dur-sweep: 0ms; }
+}</pre>
+  </div>
+  <div class="code" role="tabpanel" id="tp-wp" aria-labelledby="tb-wp" hidden style="border-top-left-radius:0">
+    <header><span class="readout">Block theme · settings excerpt</span><button class="btn-copy" type="button" data-copy="codeWp">Copy</button></header>
+<pre id="codeWp">{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "layout": { "contentSize": "720px", "wideSize": "1280px" },
+    "color": {
+      "defaultPalette": false, "defaultGradients": false, "custom": false,
+      "palette": [
+        { "slug": "graticule", "name": "Graticule", "color": "#0A0C0F" },
+        { "slug": "panel", "name": "Panel", "color": "#10141A" },
+        { "slug": "raised", "name": "Raised", "color": "#161B22" },
+        { "slug": "line", "name": "Line", "color": "#222A34" },
+        { "slug": "ice", "name": "Ice", "color": "#E6ECF2" },
+        { "slug": "ink-300", "name": "Ink 300", "color": "#A3AFBC" },
+        { "slug": "ch1", "name": "CH1 Cyan", "color": "#3CE3F0" },
+        { "slug": "ch2", "name": "CH2 Ultraviolet", "color": "#9A8CFF" },
+        { "slug": "ch3", "name": "CH3 Amber", "color": "#FFC23D" },
+        { "slug": "ch4", "name": "CH4 Signal", "color": "#5EF0A0" },
+        { "slug": "paper", "name": "Paper", "color": "#F3F5F7" },
+        { "slug": "ch1-deep", "name": "Deep Cyan", "color": "#007C88" }
+      ]
+    },
+    "typography": {
+      "defaultFontSizes": false, "fluid": true,
+      "fontFamilies": [
+        { "slug": "display", "name": "Archivo",
+          "fontFamily": "Archivo, 'Helvetica Neue', Arial, sans-serif",
+          "fontFace": [{ "fontFamily": "Archivo", "fontWeight": "100 900",
+            "fontStretch": "62% 125%", "fontStyle": "normal",
+            "src": ["file:./assets/fonts/archivo-var.woff2"] }] },
+        { "slug": "mono", "name": "Martian Mono",
+          "fontFamily": "'Martian Mono', ui-monospace, Menlo, monospace",
+          "fontFace": [{ "fontFamily": "Martian Mono", "fontWeight": "100 800",
+            "fontStretch": "75% 112.5%",
+            "src": ["file:./assets/fonts/martian-mono-var.woff2"] }] }
+      ],
+      "fontSizes": [
+        { "slug": "readout", "name": "Readout", "size": "0.75rem" },
+        { "slug": "small", "name": "Small", "size": "0.875rem" },
+        { "slug": "medium", "name": "Body", "size": "1.0625rem" },
+        { "slug": "large", "name": "Body L", "size": "1.25rem" },
+        { "slug": "h3", "name": "H3", "size": "1.375rem" },
+        { "slug": "h2", "name": "H2", "size": "2.25rem", "fluid": { "min": "1.75rem", "max": "2.25rem" } },
+        { "slug": "h1", "name": "H1", "size": "3.75rem", "fluid": { "min": "2.5rem", "max": "3.75rem" } },
+        { "slug": "display", "name": "Display", "size": "6rem", "fluid": { "min": "3.5rem", "max": "6rem" } }
+      ]
+    },
+    "spacing": {
+      "defaultSpacingSizes": false,
+      "spacingSizes": [
+        { "slug": "20", "name": "4", "size": "4px" },  { "slug": "30", "name": "8", "size": "8px" },
+        { "slug": "40", "name": "16", "size": "16px" }, { "slug": "50", "name": "24", "size": "24px" },
+        { "slug": "60", "name": "32", "size": "32px" }, { "slug": "70", "name": "48", "size": "48px" },
+        { "slug": "80", "name": "64", "size": "64px" }, { "slug": "90", "name": "96", "size": "96px" }
+      ]
+    },
+    "custom": {
+      "radius": { "tag": "2px", "control": "6px", "panel": "12px" },
+      "motion": { "ease": "cubic-bezier(.16,1,.3,1)", "fast": "120ms", "base": "200ms", "slow": "320ms" }
+    }
+  },
+  "styles": {
+    "color": { "background": "var(--wp--preset--color--graticule)", "text": "var(--wp--preset--color--ice)" },
+    "typography": { "fontFamily": "var(--wp--preset--font-family--display)", "fontSize": "var(--wp--preset--font-size--medium)", "lineHeight": "1.6" },
+    "elements": {
+      "link": { "color": { "text": "var(--wp--preset--color--ch1)" } },
+      "heading": { "typography": { "fontWeight": "620", "lineHeight": "1.05", "letterSpacing": "-0.02em" } },
+      "button": { "color": { "background": "var(--wp--preset--color--ch1)", "text": "var(--wp--preset--color--graticule)" },
+        "border": { "radius": "var(--wp--custom--radius--control)" } }
+    }
+  }
+}</pre>
+  </div>
+  <div class="code" role="tabpanel" id="tp-json" aria-labelledby="tb-json" hidden style="border-top-left-radius:0">
+    <header><span class="readout">W3C Design Tokens format · for Figma Tokens / Style Dictionary</span><button class="btn-copy" type="button" data-copy="codeJson">Copy</button></header>
+<pre id="codeJson">{
+  "color": {
+    "ink": {
+      "950": { "$type": "color", "$value": "#07090B" },
+      "900": { "$type": "color", "$value": "#0A0C0F", "$description": "Graticule" },
+      "850": { "$type": "color", "$value": "#10141A", "$description": "Panel" },
+      "800": { "$type": "color", "$value": "#161B22", "$description": "Raised" },
+      "700": { "$type": "color", "$value": "#222A34" },
+      "600": { "$type": "color", "$value": "#2E3845" },
+      "500": { "$type": "color", "$value": "#3D4855" },
+      "450": { "$type": "color", "$value": "#5A6675", "$description": "Min control border, 3.35:1" },
+      "400": { "$type": "color", "$value": "#7D8996" },
+      "300": { "$type": "color", "$value": "#A3AFBC" },
+      "100": { "$type": "color", "$value": "#E6ECF2", "$description": "Ice" }
+    },
+    "channel": {
+      "ch1": { "$type": "color", "$value": "#3CE3F0", "$description": "Platforms" },
+      "ch2": { "$type": "color", "$value": "#9A8CFF", "$description": "Intelligence" },
+      "ch3": { "$type": "color", "$value": "#FFC23D", "$description": "Security" },
+      "ch4": { "$type": "color", "$value": "#5EF0A0", "$description": "Operations" }
+    },
+    "paper": {
+      "ground": { "$type": "color", "$value": "#F3F5F7" },
+      "muted":  { "$type": "color", "$value": "#465260" },
+      "ch1":    { "$type": "color", "$value": "#007C88" },
+      "ch2":    { "$type": "color", "$value": "#5B4BD6" },
+      "ch3":    { "$type": "color", "$value": "#8A5800" },
+      "ch4":    { "$type": "color", "$value": "#0A7646" }
+    },
+    "semantic": {
+      "success": { "$type": "color", "$value": "{color.channel.ch4}" },
+      "warning": { "$type": "color", "$value": "{color.channel.ch3}" },
+      "danger":  { "$type": "color", "$value": "#FF5C7A" },
+      "info":    { "$type": "color", "$value": "{color.channel.ch1}" }
+    }
+  },
+  "font": {
+    "family": {
+      "display": { "$type": "fontFamily", "$value": ["Archivo", "Helvetica Neue", "Arial", "sans-serif"] },
+      "mono":    { "$type": "fontFamily", "$value": ["Martian Mono", "ui-monospace", "Menlo", "monospace"] }
+    },
+    "weight": { "body": { "$type": "fontWeight", "$value": 400 }, "heading": { "$type": "fontWeight", "$value": 620 }, "display": { "$type": "fontWeight", "$value": 640 } }
+  },
+  "space": {
+    "1": { "$type": "dimension", "$value": "4px" },  "2": { "$type": "dimension", "$value": "8px" },
+    "3": { "$type": "dimension", "$value": "12px" }, "4": { "$type": "dimension", "$value": "16px" },
+    "5": { "$type": "dimension", "$value": "24px" }, "6": { "$type": "dimension", "$value": "32px" },
+    "7": { "$type": "dimension", "$value": "48px" }, "8": { "$type": "dimension", "$value": "64px" },
+    "9": { "$type": "dimension", "$value": "96px" }, "10": { "$type": "dimension", "$value": "128px" }
+  },
+  "radius": { "tag": { "$type": "dimension", "$value": "2px" }, "control": { "$type": "dimension", "$value": "6px" }, "panel": { "$type": "dimension", "$value": "12px" } },
+  "duration": { "fast": { "$type": "duration", "$value": "120ms" }, "base": { "$type": "duration", "$value": "200ms" }, "slow": { "$type": "duration", "$value": "320ms" }, "sweep": { "$type": "duration", "$value": "640ms" } },
+  "easing": { "out": { "$type": "cubicBezier", "$value": [0.16, 1, 0.3, 1] } }
+}</pre>
+  </div>
+  <div class="end">
+    <svg viewBox="-4 6 306 132" width="200" height="86" role="img" aria-label="Jeremy Anderson Tech"><use href="#lk-s"/></svg>
+    <p class="readout" style="margin:0;text-align:right">Jeremy Anderson Tech Brand Book v1.0<br>Prepared October 9, 2026 · Shrewsbury, MA</p>
+  </div>
+</section>
+</main>
+<script>
+(()=>{
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ---------- Trace engine: noise → trigger → lock → burn-in ---------- */
+const TRACE_D = "M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16";
+const NS = 'http://www.w3.org/2000/svg';
+let MARK_PTS = null;
+function markPoints(){
+  if (MARK_PTS) return MARK_PTS;
+  const s = document.createElementNS(NS,'svg'); s.setAttribute('width','0'); s.setAttribute('height','0'); s.style.position='absolute';
+  const p = document.createElementNS(NS,'path'); p.setAttribute('d',TRACE_D); s.appendChild(p); document.body.appendChild(s);
+  const L = p.getTotalLength(), n = 160, out = [];
+  for (let i=0;i<=n;i++){ const q=p.getPointAtLength(L*i/n); out.push([q.x,q.y]); }
+  s.remove(); return (MARK_PTS = out);
+}
+function Scope(canvas, opt){
+  const ctx = canvas.getContext('2d');
+  const o = Object.assign({markH:.36, markX:.7, markY:.45, sweeps:3, sweepMs:760, cursors:false, thin:1.6, color:css('--ch1')||'#3CE3F0', mobile:null}, opt);
+  let W=0,H=0,dpr=1, poly=[], markRange=[0,0], barSeg=null, scale=1, done=false, raf=0, started=false, ptr=null;
+  const seeds = Array.from({length:8},()=>[Math.random()*6.28, Math.random()*6.28, (Math.random()-.5)]);
+  function layout(){
+    const r = canvas.getBoundingClientRect(); if (r.width<2||r.height<2) { poly=[]; return; } dpr = Math.min(2, devicePixelRatio||1);
+    W = Math.max(1, r.width); H = Math.max(1, r.height); canvas.width = W*dpr; canvas.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const m = (o.mobile && W < 700) ? Object.assign({}, o, o.mobile) : o;
+    scale = H*m.markH/56; const ox = W*m.markX - 54.5*scale, oy = H*m.markY - 40*scale;
+    const mp = markPoints().map(([x,y])=>[ox+x*scale, oy+y*scale]);
+    const yIn = oy+50*scale, yOut = oy+16*scale;
+    poly = []; const step = 6;
+    for (let x=0; x<mp[0][0]; x+=step) poly.push([x,yIn]);
+    markRange = [poly.length, poly.length+mp.length-1];
+    poly.push(...mp);
+    for (let x=mp[mp.length-1][0]+step; x<=W+step; x+=step) poly.push([x,yOut]);
+    barSeg = [[ox+70*scale, yOut],[ox+100*scale, yOut]];
+  }
+  function noisy(k, amp, shift){
+    const sd = seeds[k%seeds.length];
+    return poly.map(([x,y],i)=>{
+      const n = Math.sin(x*.021+sd[0])*.6 + Math.sin(x*.0047+sd[1])*.4 + (Math.random()-.5)*.55;
+      return [x+shift, y + amp*n];
+    });
+  }
+  function stroke(pts, a, b, w, alpha){
+    if (!pts||!pts.length||b<=a) return; b=Math.min(b,pts.length-1); ctx.globalAlpha = alpha; ctx.lineWidth = w; ctx.strokeStyle = o.color; ctx.lineJoin='round'; ctx.lineCap='round';
+    ctx.beginPath(); ctx.moveTo(pts[a][0],pts[a][1]); for (let i=a+1;i<=b;i++) ctx.lineTo(pts[i][0],pts[i][1]); ctx.stroke(); ctx.globalAlpha = 1;
+  }
+  function drawLocked(burn){
+    ctx.clearRect(0,0,W,H);
+    stroke(poly, 0, poly.length-1, o.thin, 1);
+    const w = o.thin + (8*scale - o.thin)*burn;
+    stroke(poly, markRange[0], markRange[1], w, 1);
+    if (burn>0){ ctx.globalAlpha=burn; ctx.lineWidth=w; ctx.strokeStyle=o.color; ctx.lineCap='round'; ctx.beginPath(); ctx.moveTo(barSeg[0][0],barSeg[0][1]); ctx.lineTo(barSeg[1][0],barSeg[1][1]); ctx.stroke(); ctx.globalAlpha=1; }
+    if (ptr && o.cursors) drawCursors();
+  }
+  function drawCursors(){
+    const [x,y] = ptr; ctx.save(); ctx.setLineDash([3,5]); ctx.lineWidth=1; ctx.strokeStyle = css('--ink-300')||'#A3AFBC'; ctx.globalAlpha=.7;
+    ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); ctx.restore();
+    const dx = (x/W*10).toFixed(2), dy = ((H/2-y)/H*8).toFixed(2);
+    const label = `X ${dx} div   Y ${dy>0?'+':''}${dy} div`;
+    ctx.font = `500 11px ${css('--f-mono')||'monospace'}`; const tw = ctx.measureText(label).width;
+    const lx = Math.min(x+12, W-tw-18), ly = Math.max(y-12, 22);
+    ctx.fillStyle='rgba(7,9,11,.85)'; ctx.fillRect(lx-6, ly-15, tw+12, 22); ctx.fillStyle = css('--ink-100')||'#E6ECF2'; ctx.fillText(label, lx, ly);
+  }
+  function run(onState){
+    cancelAnimationFrame(raf); done=false; layout();
+    if (reduce){ drawLocked(1); done=true; onState&&onState('lock'); return; }
+    const amps = [.2,.09,.03].map(a=>a*H), shifts=[ (Math.random()-.5)*.24*W, (Math.random()-.5)*.1*W, (Math.random()-.5)*.025*W ];
+    const trails = []; let k=0, t0=performance.now(); let cur = noisy(0, amps[0], shifts[0]); onState&&onState('run');
+    const BURN = 420;
+    function frame(now){
+      const t = now - t0;
+      if (k < o.sweeps){
+        const p = Math.min(1, t/o.sweepMs), idx = Math.floor(p*(cur.length-1));
+        ctx.clearRect(0,0,W,H);
+        trails.forEach((tr,i)=>stroke(tr,0,tr.length-1,o.thin, .14*(i+1)/trails.length));
+        stroke(cur, 0, idx, o.thin, .95);
+        const h = cur[idx]; if (h){ ctx.fillStyle=o.color; ctx.beginPath(); ctx.arc(h[0],h[1],2.6,0,6.3); ctx.fill(); }
+        if (p>=1){ trails.push(cur); if (trails.length>2) trails.shift(); k++; t0=now; if (k<o.sweeps) cur = noisy(k, amps[k], shifts[k]); else onState&&onState('lock'); }
+        raf = requestAnimationFrame(frame);
+      } else {
+        const b = Math.min(1, t/BURN), e = 1-Math.pow(1-b,4);
+        drawLocked(e);
+        if (b<1) raf = requestAnimationFrame(frame); else { done=true; onState&&onState('settled'); }
+      }
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  if (o.cursors){
+    const host = canvas.parentElement;
+    host.addEventListener('pointermove', e=>{ if(!done||e.pointerType==='touch') return; const r=canvas.getBoundingClientRect(); ptr=[e.clientX-r.left, e.clientY-r.top]; drawLocked(1); });
+    host.addEventListener('pointerleave', ()=>{ if(!done) return; ptr=null; drawLocked(1); });
+  }
+  let rT; addEventListener('resize', ()=>{ clearTimeout(rT); rT=setTimeout(()=>{ if(done){ layout(); drawLocked(1);} else if(started){ run(o.onState); } },150); });
+  const io = new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting && !started){ started=true; run(o.onState); } }); },{threshold:.25});
+  io.observe(canvas);
+  return { replay:()=>run(o.onState) };
+}
+const cover = document.getElementById('coverTrace');
+if (cover) Scope(cover, {markH:.34, markX:.7, markY:.25, cursors:true, mobile:{markH:.15, markX:.5, markY:.16}});
+const mini = document.getElementById('miniTrace'); if (mini) Scope(mini, {markH:.36, markX:.62, markY:.48, sweeps:2});
+const elev = document.getElementById('elevTrace'); if (elev) Scope(elev, {markH:.55, markX:.78, markY:.5, sweeps:2, thin:2});
+const demoState = document.getElementById('demoState');
+const demo = document.getElementById('demoTrace');
+if (demo){ const d = Scope(demo, {markH:.4, markX:.6, markY:.52, cursors:true, onState:s=>{ demoState.textContent = s==='run'?'Run · searching':s==='lock'?"Trig'd · locking":'Settled'; demoState.style.color = s==='settled'?'var(--ch4)':s==='lock'?'var(--ch1)':''; }});
+  document.getElementById('demoBtn').addEventListener('click', ()=>d.replay()); }
+
+/* Lissajous exploration */
+const lp = document.getElementById('lissPath');
+if (lp){ let d=''; for(let i=0;i<=360;i++){ const t=i/360*Math.PI*2; d+=(i?'L':'M')+(60+42*Math.sin(3*t+Math.PI/2)).toFixed(2)+' '+(40+30*Math.sin(2*t)).toFixed(2); } lp.setAttribute('d',d); }
+
+/* Icons */
+const ICONS = [
+ ['Platforms','<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M6 7h.01M8.5 7h.01"/>'],
+ ['Code','<path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12"/>'],
+ ['Intelligence','<circle cx="6" cy="7" r="2"/><circle cx="18" cy="7" r="2"/><circle cx="12" cy="18" r="2"/><path d="M8 7h8M7 9l4 7.3M17 9l-4 7.3"/>'],
+ ['Security','<path d="M12 3l7 3v5c0 4.6-3 8-7 10-4-2-7-5.4-7-10V6z"/><path d="M8 13h2l1.5-3.5 2 5.5 1.5-2H16"/>'],
+ ['Hosting','<rect x="4" y="4" width="16" height="6" rx="1.5"/><rect x="4" y="14" width="16" height="6" rx="1.5"/><path d="M8 7h.01M8 17h.01M12 7h4M12 17h4"/>'],
+ ['Integrations','<path d="M9 15l6-6M10.5 6.5l1-1a4 4 0 0 1 5.7 5.7l-1 1M13.5 17.5l-1 1a4 4 0 0 1-5.7-5.7l1-1"/>'],
+ ['Visibility','<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4M8 11.5c1-1.8 2-1.8 3 0s2 1.8 3 0"/>'],
+ ['Performance','<path d="M4 17a8 8 0 1 1 16 0"/><path d="M12 17l4-5"/><path d="M12 17h.01"/>'],
+ ['Accessibility','<circle cx="12" cy="4.5" r="1.6"/><path d="M5.5 8.5 12 10l6.5-1.5M12 10v4.5M9 20.5l3-6 3 6"/>'],
+ ['Calendar','<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/>'],
+ ['Email','<rect x="3" y="6" width="18" height="12" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/>'],
+ ['Arrow','<path d="M5 12h14M13 6l6 6-6 6"/>'],
+ ['External','<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'],
+ ['Trigger','<path d="M3 15h4.5c.8 0 1.3-.4 1.6-1.2L11.5 7l3 9.5c.2.6.6.9 1.2.9H21"/><path d="M15.5 7H21"/>']
+];
+const ig = document.getElementById('iconGrid');
+if (ig) ig.innerHTML = ICONS.map(([n,p])=>`<figure><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg><figcaption>${n}</figcaption></figure>`).join('');
+
+/* Width scrubber */
+const wd = document.getElementById('wdth'), wo = document.getElementById('wdthOut'), sb = document.getElementById('specBig');
+if (wd) wd.addEventListener('input', ()=>{ sb.style.fontStretch = wd.value+'%'; wo.textContent = wd.value; });
+
+/* Copy */
+function copyText(btn, text){
+  const ok = ()=>{ btn.dataset.done=''; const t=btn.textContent; btn.textContent='Copied'; setTimeout(()=>{ delete btn.dataset.done; btn.textContent=t; },1600); };
+  try { navigator.clipboard.writeText(text).then(ok, ()=>fallback()); } catch(e){ fallback(); }
+  function fallback(){ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); ok(); }catch(_){ btn.textContent='Select and copy'; } ta.remove(); }
+}
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copyText(b, document.getElementById(b.dataset.copy).textContent)));
+document.querySelectorAll('[data-copy-html]').forEach(b=>b.addEventListener('click',()=>copyText(b, document.getElementById(b.dataset.copyHtml).innerHTML.trim())));
+
+/* Tabs */
+const tabs = [...document.querySelectorAll('[role=tab]')];
+function sel(t){ tabs.forEach(x=>{ const on=x===t; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1; document.getElementById(x.getAttribute('aria-controls')).hidden=!on; }); }
+tabs.forEach((t,i)=>{ t.addEventListener('click',()=>sel(t)); t.addEventListener('keydown',e=>{ if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ const n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length]; sel(n); n.focus(); e.preventDefault(); } }); });
+
+/* Scroll spy + mobile jump */
+const links = [...document.querySelectorAll('#toc a')];
+const spy = new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting){ links.forEach(a=>a.setAttribute('aria-current', a.getAttribute('href')==='#'+en.target.id ? 'true':'false')); } }); },{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section.section').forEach(s=>spy.observe(s));
+const js = document.getElementById('jumpSel'); if (js) js.addEventListener('change', ()=>{ const t=document.querySelector(js.value); if(t) t.scrollIntoView({behavior: reduce?'auto':'smooth'}); });
+})();
+</script>
+
+<p style="position:fixed;right:12px;bottom:12px;margin:0;z-index:9"><a href="../" style="font:500 12px Martian Mono,monospace;background:#10141A;border:1px solid #2E3845;border-radius:6px;padding:8px 10px;color:#3CE3F0;text-decoration:none">View website concept →</a></p>
+</body>
+</html>
