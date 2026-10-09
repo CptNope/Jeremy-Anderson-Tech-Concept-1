@@ -244,13 +244,13 @@ def channel_page(key, slug, title, h1, lede, outcome, svcs, packages, proof, faq
 <section class="section" aria-labelledby="out-h"><div class="wrap aside-col">
   <div><h2 id="out-h" style="margin-bottom:var(--s5)">{outcome[0]}</h2><p class="lede">{outcome[1]}</p>
     <div class="svc-grid" style="margin-top:var(--s7)">{svc_html}</div></div>
-  <aside class="sticky-card" aria-label="Get started">
+  <section class="sticky-card" aria-label="Get started">
     <span class="readout" style="color:var({c})">{i} · {n}</span>
     <span class="amt">{packages[0][2]}</span><span class="muted" style="margin-top:-8px">{packages[0][0]}, the usual starting point</span>
     <a class="btn btn-primary" href="contact.html">Book a discovery call{ARROW}</a>
     <a class="btn btn-secondary" href="#packages">Compare packages</a>
     <p class="readout" style="margin:0">Free 30-minute call · Proposal in 3 business days</p>
-  </aside>
+  </section>
 </div></section>
 <section class="section alt" id="packages" aria-labelledby="pk-h" style="scroll-margin-top:72px"><div class="wrap">
   <div class="section-head"><h2 id="pk-h">Packages</h2><p class="lede">Fixed fees with a signed scope, or hourly at the published rate.</p></div>

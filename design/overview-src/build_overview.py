@@ -162,6 +162,7 @@ html = f'''<!doctype html>
 <meta property="og:image" content="img/preview-site.jpg">
 <meta name="theme-color" content="#0A0C0F">
 <link rel="icon" href="brand-book/assets/jat-mark.svg" type="image/svg+xml">
+<script>document.documentElement.classList.add('js')</script>
 {FONTS}
 <link rel="stylesheet" href="site/site.css">
 {CSS}

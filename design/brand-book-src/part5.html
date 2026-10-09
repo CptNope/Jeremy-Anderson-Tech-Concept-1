@@ -398,7 +398,8 @@
 </main>
 <script>
 (()=>{
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+const hasIO = 'IntersectionObserver' in window;
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
 /* ---------- Trace engine: noise → trigger → lock → burn-in ---------- */
@@ -414,7 +415,8 @@ function markPoints(){
   s.remove(); return (MARK_PTS = out);
 }
 function Scope(canvas, opt){
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext && canvas.getContext('2d');
+  if (!ctx) return {replay(){}};
   const o = Object.assign({markH:.36, markX:.7, markY:.45, sweeps:3, sweepMs:760, cursors:false, thin:1.6, color:css('--ch1')||'#3CE3F0', mobile:null}, opt);
   let W=0,H=0,dpr=1, poly=[], markRange=[0,0], barSeg=null, scale=1, done=false, raf=0, started=false, ptr=null;
   const seeds = Array.from({length:8},()=>[Math.random()*6.28, Math.random()*6.28, (Math.random()-.5)]);
@@ -490,8 +492,8 @@ function Scope(canvas, opt){
     host.addEventListener('pointerleave', ()=>{ if(!done) return; ptr=null; drawLocked(1); });
   }
   let rT; addEventListener('resize', ()=>{ clearTimeout(rT); rT=setTimeout(()=>{ if(done){ layout(); drawLocked(1);} else if(started){ run(o.onState); } },150); });
-  const io = new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting && !started){ started=true; run(o.onState); } }); },{threshold:.25});
-  io.observe(canvas);
+  if (!hasIO) { started=true; run(o.onState); }
+  else { const io = new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting && !started){ started=true; run(o.onState); io.disconnect(); } }); },{threshold:.25}); io.observe(canvas); }
   return { replay:()=>run(o.onState) };
 }
 const cover = document.getElementById('coverTrace');
@@ -547,8 +549,8 @@ tabs.forEach((t,i)=>{ t.addEventListener('click',()=>sel(t)); t.addEventListener
 
 /* Scroll spy + mobile jump */
 const links = [...document.querySelectorAll('#toc a')];
-const spy = new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting){ links.forEach(a=>a.setAttribute('aria-current', a.getAttribute('href')==='#'+en.target.id ? 'true':'false')); } }); },{rootMargin:'-40% 0px -55% 0px'});
-document.querySelectorAll('section.section').forEach(s=>spy.observe(s));
+const spy = !hasIO ? null : new IntersectionObserver(es=>{ es.forEach(en=>{ if(en.isIntersecting){ links.forEach(a=>a.setAttribute('aria-current', a.getAttribute('href')==='#'+en.target.id ? 'true':'false')); } }); },{rootMargin:'-40% 0px -55% 0px'});
+if (spy) document.querySelectorAll('section.section').forEach(s=>spy.observe(s));
 const js = document.getElementById('jumpSel'); if (js) js.addEventListener('change', ()=>{ const t=document.querySelector(js.value); if(t) t.scrollIntoView({behavior: reduce?'auto':'smooth'}); });
 })();
 </script>

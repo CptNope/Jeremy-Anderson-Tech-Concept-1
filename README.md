@@ -359,6 +359,7 @@ Hosting is planned on Jeremy's Cloudways/DigitalOcean infrastructure.
 
 ## Known limits and next steps
 
+- **Hardening.** See `design/review/hardening.md`: accessible mobile menu, a resilient contact form, no-JS fallbacks, old-browser guards and long-text wrapping. axe reports 0 violations on all pages.
 - **Scope of the final review.** The last fix batch (inline channel IDs on phones, diagram width, axes on mobile) has not been re-scored by the reviewer.
 - **Possible upgrades** the reviewer noted:
   - phosphor persistence on the monogram;

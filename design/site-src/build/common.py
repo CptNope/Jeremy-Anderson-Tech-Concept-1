@@ -20,8 +20,9 @@ CBAR_CSS = """<style>
 .cbar .s{display:none}
 @media (max-width:640px){.cbar .tag,.cbar .home .l,.cbar .l{display:none}.cbar .s{display:inline}.cbar-in,.cbar ul{gap:14px}.cbar .home{margin-right:auto}}
 </style>"""
-def concept_bar(prefix, active):
-    def cur(k): return ' aria-current="page"' if k==active else ''
+def concept_bar(prefix, active, level='page'):
+    """level='page' when this exact page is the destination, 'true' when inside that section."""
+    def cur(k): return f' aria-current="{level}"' if k==active else ''
     mark = '<svg viewBox="1 6 108 68" aria-hidden="true"><g fill="none" stroke="#3CE3F0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg>'
     ext = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 3h4v4M13 3 7 9M11 9v3.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
     return f"""{CBAR_CSS}<nav class="cbar" aria-label="Concept"><div class="cbar-in">
@@ -70,11 +71,11 @@ def jsonld(obj):
 def header(active):
     items = ''.join(f'<li><a class="nl" href="{h}"{" aria-current=\"page\"" if active==k else ""}>{t}</a></li>' for h,t,k in NAV)
     return f'''<a class="skip" href="#main">Skip to content</a>
-{concept_bar('../','site') if PAGES else ''}
+{concept_bar('../','site', 'page' if active=='home' else 'true') if PAGES else ''}
 <header class="site-header"><div class="wrap">
   <a class="brand" href="index.html" aria-label="Jeremy Anderson Tech, home"><svg viewBox="1 6 468 68" aria-hidden="true"><use href="#lk-h"/></svg></a>
   <nav class="nav" aria-label="Primary">
-    <ul>{items}</ul>
+    <ul id="primary-menu">{items}</ul>
     <a class="btn btn-primary btn-sm" href="contact.html">Book a call{ARROW}</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primary-menu"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="lbl">Menu</span></button>
   </nav>
@@ -124,6 +125,7 @@ def page(title, desc, path, active, body, schema=None, is_index=False):
 <meta property="og:type" content="website"><meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{canonical}">
 <meta name="theme-color" content="#0A0C0F">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='1 6 108 68'%3E%3Cg fill='none' stroke='%233CE3F0' stroke-width='9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16'/%3E%3Cpath d='M70 16 H100'/%3E%3C/g%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
 {FONTS}
 <link rel="stylesheet" href="site.css">'''
     schemas = [ORG] + (schema or [])

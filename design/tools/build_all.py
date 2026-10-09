@@ -32,7 +32,7 @@ head = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
 sys.path.insert(0, str(D/'site-src/build'))
 from common import concept_bar  # noqa: E402
 # The concept bar is fixed in the brand book so the fixed section rail can sit beneath it.
-bar = concept_bar('../', 'brand') + (
+bar = '<a class="skip" href="#top">Skip to content</a>\n' + concept_bar('../', 'brand') + (
     '<style>.cbar{position:fixed;top:0;left:0;right:0}body{padding-top:41px}'
     '.rail{top:41px!important}html{scroll-padding-top:65px}'
     '@media (max-width:1079px){.rail{top:41px!important}}</style>')

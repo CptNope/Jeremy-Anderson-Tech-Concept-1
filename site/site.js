@@ -1,17 +1,47 @@
 (()=>{
 'use strict';
-const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mq = q => (window.matchMedia ? matchMedia(q) : {matches:false});
+const onMq = (m, fn) => { if (!m) return; if (m.addEventListener) m.addEventListener('change', fn); else if (m.addListener) m.addListener(fn); };
+const reduce = mq('(prefers-reduced-motion: reduce)').matches;
+/* Run fn once when el scrolls into view; run immediately where IntersectionObserver is missing. */
+const whenVisible = (el, fn, threshold=.2) => {
+  if (!('IntersectionObserver' in window)) { fn(); return; }
+  const io = new IntersectionObserver((es)=>{ if (es.some(e=>e.isIntersecting)) { io.disconnect(); fn(); } }, {threshold});
+  io.observe(el);
+};
+/* Isolate each feature so one failure never disables navigation or the form. */
+const safe = (name, fn) => { try { fn(); } catch (err) { if (window.console) console.warn('[jat] ' + name + ' disabled:', err); } };
 const root = getComputedStyle(document.documentElement);
 const tok = n => root.getPropertyValue(n).trim();
 
 /* ---------- Mobile navigation ---------- */
-const nav = document.querySelector('.nav'), mb = document.querySelector('.menu-btn');
-if (nav && mb){
-  const set = open => { nav.classList.toggle('open', open); mb.setAttribute('aria-expanded', open); mb.querySelector('.lbl').textContent = open ? 'Close' : 'Menu'; document.body.style.overflow = open ? 'hidden' : ''; };
-  mb.addEventListener('click', ()=> set(!nav.classList.contains('open')));
-  addEventListener('keydown', e=>{ if (e.key==='Escape' && nav.classList.contains('open')){ set(false); mb.focus(); } });
-  matchMedia('(min-width:1080px)').addEventListener('change', e=>{ if (e.matches) set(false); });
-}
+safe('navigation', () => {
+  const nav = document.querySelector('.nav'), mb = document.querySelector('.menu-btn');
+  if (!nav || !mb) return;
+  const links = () => [...nav.querySelectorAll('a[href]'), mb];
+  const isOpen = () => nav.classList.contains('open');
+  const set = (open, returnFocus) => {
+    nav.classList.toggle('open', open);
+    mb.setAttribute('aria-expanded', String(open));
+    mb.querySelector('.lbl').textContent = open ? 'Close' : 'Menu';
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) { const first = nav.querySelector('a[href]'); if (first) first.focus(); }
+    else if (returnFocus) mb.focus();
+  };
+  mb.addEventListener('click', () => set(!isOpen(), true));
+  nav.addEventListener('click', e => { if (isOpen() && e.target.closest('a[href]')) set(false, false); });
+  document.addEventListener('keydown', e => {
+    if (!isOpen()) return;
+    if (e.key === 'Escape') { e.preventDefault(); set(false, true); return; }
+    if (e.key === 'Tab') {           /* keep focus inside the open menu */
+      const f = links().filter(el => el.offsetParent !== null); if (!f.length) return;
+      const first = f[0], last = f[f.length-1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+  onMq(mq('(min-width:1080px)'), e => { if (e.matches && isOpen()) set(false, false); });
+});
 
 /* ---------- Trace engine: noise → trigger → lock → burn-in ---------- */
 const TRACE_D = "M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16";
@@ -35,7 +65,8 @@ function axes(ctx,W,H,full){
   ctx.stroke(); ctx.restore();
 }
 function Scope(canvas, opt){
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext && canvas.getContext('2d');
+  if (!ctx) return {replay(){}};
   const o = Object.assign({markH:.36, markX:.7, markY:.45, sweeps:3, sweepMs:760, cursors:false, thin:1.6, color:tok('--ch1')||'#3CE3F0', mobile:null, onState:null, mark:true, startX:0}, opt);
   let sx=0,W=0,H=0,poly=[],mr=[0,0],bar=null,scale=1,done=false,raf=0,started=false,ptr=null;
   const seeds = Array.from({length:6},()=>[Math.random()*6.28, Math.random()*6.28]);
@@ -89,11 +120,12 @@ function Scope(canvas, opt){
     host.addEventListener('pointermove',e=>{ if(!done||e.pointerType==='touch') return; const r=canvas.getBoundingClientRect(); ptr=[e.clientX-r.left,e.clientY-r.top]; if(ptr[1]<0||ptr[1]>H){ptr=null;} locked(1); });
     host.addEventListener('pointerleave',()=>{ if(!done) return; ptr=null; locked(1); }); }
   let rT; addEventListener('resize',()=>{ clearTimeout(rT); rT=setTimeout(()=>{ if(done){ layout(); locked(1);} },150); });
-  new IntersectionObserver((es,ob)=>{ es.forEach(en=>{ if(en.isIntersecting&&!started){ started=true; run(); ob.disconnect(); } }); },{threshold:.2}).observe(canvas);
+  whenVisible(canvas, ()=>{ if(!started){ started=true; run(); } });
   return {replay:run};
 }
 window.JATScope = Scope;
 
+safe('hero trace', () => {
 const hero = document.getElementById('heroTrace');
 if (hero){
   const hs = document.querySelector('.hero-state'), lbl = hs && hs.querySelector('.lbl');
@@ -105,10 +137,11 @@ document.querySelectorAll('canvas[data-trace]').forEach(c=>{
   const col = c.dataset.color ? tok(c.dataset.color) : undefined;
   Scope(c,{markH:+(c.dataset.h||.42), markX:+(c.dataset.x||.62), markY:+(c.dataset.y||.5), sweeps:+(c.dataset.sweeps||2), color:col||tok('--ch1'), mark:c.dataset.mark!=='false', cursors:c.dataset.cursors==='true'});
 });
+});
 
 /* ---------- Page-head channel waveforms ---------- */
 function wave(c){
-  const ctx=c.getContext('2d'), kind=c.dataset.wave, col=tok(c.dataset.color||'--ch1')||'#3CE3F0'; let W,H,started=false;
+  const ctx=c.getContext && c.getContext('2d'); if(!ctx) return; const kind=c.dataset.wave, col=tok(c.dataset.color||'--ch1')||'#3CE3F0'; let W,H,started=false;
   const f={
     step:x=>{ const x0=.22; if(x<x0) return .7; const t=(x-x0)/.07; return .32+(.7-.32)*Math.exp(-t)*Math.cos(t*2.4); },
     burst:x=>{ const e=Math.exp(-Math.pow((x-.55)/.16,2)); return .5-.28*e*Math.sin(x*70); },
@@ -121,14 +154,14 @@ function wave(c){
     ctx.beginPath(); const n=Math.max(2,Math.floor(W*p/2)); for(let i=0;i<=n;i++){ const x=i*2; const y=f(x/W)*H; i?ctx.lineTo(x,y):ctx.moveTo(x,y); } ctx.stroke();
     if(p<1){ const x=n*2, y=f(x/W)*H; ctx.fillStyle=col; ctx.beginPath(); ctx.arc(x,y,2.6,0,6.3); ctx.fill(); } }
   function run(){ size(); if(reduce){ draw(1); return; } const t0=performance.now(); const fr=now=>{ const p=Math.min(1,(now-t0)/900); draw(1-Math.pow(1-p,3)); if(p<1) requestAnimationFrame(fr); }; requestAnimationFrame(fr); }
-  new IntersectionObserver((es,ob)=>{ if(es[0].isIntersecting&&!started){ started=true; run(); ob.disconnect(); } }).observe(c);
+  whenVisible(c, ()=>{ if(!started){ started=true; run(); } });
   let t; addEventListener('resize',()=>{ clearTimeout(t); t=setTimeout(()=>{ if(started){ size(); draw(1);} },150); });
 }
-document.querySelectorAll('canvas[data-wave]').forEach(wave);
+safe('page-head waves', () => document.querySelectorAll('canvas[data-wave]').forEach(wave));
 
 /* ---------- Versus: unaligned vendors vs one locked signal ---------- */
 function drawVersus(c, mode){
-  const ctx=c.getContext('2d');
+  const ctx=c.getContext && c.getContext('2d'); if(!ctx) return;
   function paint(){
     const r=c.getBoundingClientRect(); if(r.width<2) return; const dpr=Math.min(2,devicePixelRatio||1);
     c.width=r.width*dpr; c.height=r.height*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); const W=r.width,H=r.height;
@@ -151,7 +184,7 @@ function drawVersus(c, mode){
   }
   paint(); let t; addEventListener('resize',()=>{ clearTimeout(t); t=setTimeout(paint,150); });
 }
-document.querySelectorAll('canvas[data-versus]').forEach(c=>drawVersus(c,c.dataset.versus));
+safe('comparison traces', () => document.querySelectorAll('canvas[data-versus]').forEach(c=>drawVersus(c,c.dataset.versus)));
 
 /* ---------- Copy buttons ---------- */
 document.querySelectorAll('[data-copy-text]').forEach(btn=>btn.addEventListener('click',()=>{
@@ -162,30 +195,90 @@ document.querySelectorAll('[data-copy-text]').forEach(btn=>btn.addEventListener(
 }));
 
 /* ---------- Contact form ---------- */
-const form = document.getElementById('leadForm');
-if (form){
+safe('contact form', () => {
+  const form = document.getElementById('leadForm'); if (!form) return;
   const status = document.getElementById('formStatus');
+  const submit = form.querySelector('[type=submit]');
+  const DRAFT = 'jat-inquiry-draft';
+  const label = el => (form.querySelector(`label[for="${el.id}"]`)||{}).textContent || el.name;
+  const domain = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/\S*)?$/i;
   const rules = {
-    name: v=> v.trim().length>1 || 'Add your name so we know who to reply to.',
-    email: v=> /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Add an email address like you@company.com.',
-    message: v=> v.trim().length>=20 || 'Tell us a little more: what should the system do? (20 characters minimum)'
+    name: v => { v=v.trim(); return v.length < 2 ? 'Add your name so we know who to reply to.' : v.length > 100 ? 'Use 100 characters or fewer.' : true; },
+    email: v => { v=v.trim(); return !v ? 'Add your email address so we can reply.' : v.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? 'Check the email address. It should look like you@company.com.' : true; },
+    site: v => { v=v.trim(); return !v || domain.test(v) ? true : 'Add the full address, like mycompany.com, or leave it blank.'; },
+    message: v => { const n=v.trim().length; return n < 20 ? `Tell us a little more about what the system should do (${20-n} more character${20-n===1?'':'s'}).` : n > 4000 ? 'Keep it under 4,000 characters. You can share more on the call.' : true; }
+  };
+  /* Wire each error message to its field so screen readers read it on focus. */
+  Object.keys(rules).forEach(name => {
+    const el = form.elements[name]; if (!el) return;
+    const msg = el.closest('.field').querySelector('.msg'); if (!msg) return;
+    msg.id = `${name}-error`; msg.removeAttribute('role');
+  });
+  const describe = (el, on) => {
+    const ids = (el.getAttribute('aria-describedby')||'').split(' ').filter(Boolean).filter(i => i !== `${el.name}-error`);
+    if (on) ids.push(`${el.name}-error`);
+    ids.length ? el.setAttribute('aria-describedby', ids.join(' ')) : el.removeAttribute('aria-describedby');
   };
   function check(el){
-    const f=el.closest('.field'), rule=rules[el.name]; if(!rule) return true;
-    const r=rule(el.value); if (r===true){ f.removeAttribute('data-err'); el.removeAttribute('aria-invalid'); return true; }
-    f.setAttribute('data-err',''); el.setAttribute('aria-invalid','true'); f.querySelector('.msg span').textContent=r; return false;
+    const f = el.closest('.field'), rule = rules[el.name]; if (!rule) return true;
+    const r = rule(el.value);
+    if (r === true){ f.removeAttribute('data-err'); el.removeAttribute('aria-invalid'); describe(el,false); return true; }
+    f.setAttribute('data-err',''); el.setAttribute('aria-invalid','true'); f.querySelector('.msg span').textContent = r; describe(el,true); return false;
   }
-  form.querySelectorAll('input,textarea').forEach(el=>el.addEventListener('blur',()=>{ if(el.value) check(el); }));
-  form.addEventListener('submit',e=>{
-    e.preventDefault(); const bad=[...form.querySelectorAll('[name=name],[name=email],[name=message]')].filter(el=>!check(el));
-    if (bad.length){ bad[0].focus(); status.hidden=false; status.removeAttribute('data-kind'); status.textContent=`${bad.length} field${bad.length>1?'s need':' needs'} attention before sending.`; return; }
-    const ch=[...form.querySelectorAll('[name=channel]:checked')].map(i=>i.value).join(', ')||'not specified';
-    status.hidden=false; status.dataset.kind='ok';
-    status.innerHTML=`<strong>Ready to send.</strong> This concept page isn't connected to email yet, so nothing was sent. In the live site this goes to info@jeremyanderson.tech, and a written proposal follows within three business days of the discovery call. Summary: ${ch}.`;
-    status.focus();
+  Object.keys(rules).forEach(name => {
+    const el = form.elements[name]; if (!el) return;
+    el.addEventListener('blur', () => { if (el.value.trim()) check(el); });
+    el.addEventListener('input', () => { if (el.hasAttribute('aria-invalid')) check(el); });   /* clear errors as soon as they are fixed */
   });
-}
+  /* Message counter */
+  const msgEl = form.elements.message, counter = document.getElementById('msgCount');
+  const count = () => { if (!counter) return; const n = msgEl.value.trim().length; counter.textContent = `${n.toLocaleString()} / 4,000`; counter.dataset.over = n > 4000 ? '' : null; if (n<=4000) delete counter.dataset.over; };
+  if (msgEl) { msgEl.addEventListener('input', count); }
+  /* Keep a draft on this device so a refresh or failed send never loses the message. */
+  const fields = ['name','email','org','site','budget','when','message'];
+  const save = () => { try { const d = {}; fields.forEach(n => { if (form.elements[n]) d[n] = form.elements[n].value; }); d.channel = [...form.querySelectorAll('[name=channel]:checked')].map(i=>i.value); sessionStorage.setItem(DRAFT, JSON.stringify(d)); } catch(_){} };
+  try {
+    const d = JSON.parse(sessionStorage.getItem(DRAFT) || 'null');
+    if (d) { fields.forEach(n => { if (d[n] && form.elements[n]) form.elements[n].value = d[n]; }); (d.channel||[]).forEach(v => { const c = form.querySelector(`[name=channel][value="${CSS.escape(v)}"]`); if (c) c.checked = true; }); }
+  } catch(_){}
+  count();
+  form.addEventListener('input', save); form.addEventListener('change', save);
+
+  const say = (kind, parts) => {               /* build status text without innerHTML */
+    status.hidden = false; kind ? status.dataset.kind = kind : status.removeAttribute('data-kind');
+    status.textContent = '';
+    parts.forEach(p => status.appendChild(typeof p === 'string' ? document.createTextNode(p) : p));
+    status.focus();
+  };
+  let busy = false;
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (busy) return;                                       /* ignore double submits */
+    if (form.elements.company_url && form.elements.company_url.value) return;   /* honeypot: bots fill hidden fields */
+    const bad = Object.keys(rules).map(n => form.elements[n]).filter(el => el && !check(el));
+    if (bad.length){
+      const list = document.createElement('ul');
+      bad.forEach(el => { const li = document.createElement('li'); const a = document.createElement('a'); a.href = '#'+el.id; a.textContent = label(el).replace(/\s*\(optional\)\s*/,''); a.addEventListener('click', ev => { ev.preventDefault(); el.focus(); }); li.appendChild(a); list.appendChild(li); });
+      const strong = document.createElement('strong'); strong.textContent = `${bad.length} field${bad.length>1?'s need':' needs'} attention before sending:`;
+      say('', [strong, list]);
+      return;
+    }
+    if (navigator.onLine === false){
+      const strong = document.createElement('strong'); strong.textContent = 'You appear to be offline. ';
+      say('', [strong, 'Your message is saved on this device. Reconnect and send again, or email info@jeremyanderson.tech.']);
+      return;
+    }
+    busy = true; submit.disabled = true; submit.setAttribute('aria-busy','true');
+    const lbl = submit.firstChild; const orig = lbl.textContent; lbl.textContent = 'Checking… ';
+    setTimeout(() => {
+      busy = false; submit.disabled = false; submit.removeAttribute('aria-busy'); lbl.textContent = orig;
+      const ch = [...form.querySelectorAll('[name=channel]:checked')].map(i=>i.value).join(', ') || 'not specified';
+      const strong = document.createElement('strong'); strong.textContent = 'Ready to send. ';
+      say('ok', [strong, `This concept page isn't connected to email yet, so nothing was sent and your draft stays on this device. In the live site this goes to info@jeremyanderson.tech, and a written proposal follows within three business days of the discovery call. Channels: ${ch}.`]);
+    }, 700);
+  });
+});
 
 /* ---------- Year ---------- */
-document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+safe('year', () => document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear()));
 })();

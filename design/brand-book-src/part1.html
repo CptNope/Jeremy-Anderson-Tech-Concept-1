@@ -42,6 +42,8 @@ h2{font-size:clamp(2rem,4.2vw,3.25rem);font-stretch:118%;letter-spacing:-.02em}
 h3{font-size:1.375rem;font-stretch:112%;margin-top:var(--s8);margin-bottom:var(--s3)}
 h4{font-size:1.0625rem;font-stretch:108%;font-weight:600;margin-bottom:var(--s2)}
 p{margin:0 0 var(--s4);max-width:68ch}
+.skip{position:absolute;left:16px;top:-80px;z-index:100;background:var(--ch1);color:var(--ink-900);padding:10px 14px;border-radius:var(--r-control);font-weight:600;text-decoration:none}.skip:focus{top:52px}
+h3.as-h4{font-size:1.0625rem;font-stretch:108%;font-weight:600;line-height:1.25;margin:0 0 var(--s2)}
 .lede{font-size:1.25rem;line-height:1.5;color:var(--fg);max-width:60ch}
 .muted{color:var(--fg-muted)}
 .mono,.readout{font-family:var(--f-mono);font-stretch:90%}
@@ -77,6 +79,9 @@ main{margin-left:var(--rail);padding-inline:clamp(16px,5vw,80px);padding-block:0
 .sec-head p{margin-top:var(--s4);color:var(--fg-muted);font-size:1.0625rem}
 .cols{display:grid;gap:var(--s6) var(--s7);grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
 .cols>*{min-width:0}
+.sec-head>*,.kv dd,.kv dt,.pillars>div,.values>div,.persona,.rewrite>div,.dodont>div,.taglines li>*{min-width:0;overflow-wrap:break-word}
+@media (max-width:480px){h1,h2,h3,h4,.statement{overflow-wrap:anywhere}}
+.pillars h4{flex-wrap:wrap}.screen-bar{flex-wrap:wrap}.ch{white-space:normal}
 .two{display:grid;gap:var(--s6);grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
 .two>*{min-width:0}
 
@@ -131,7 +136,7 @@ main{margin-left:var(--rail);padding-inline:clamp(16px,5vw,80px);padding-block:0
 .values p{font-size:.9375rem;color:var(--fg-muted);margin:0}
 .persona{display:grid;gap:var(--s4);padding:var(--s5);background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel)}
 .persona header{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s2)}
-.persona h4{font-size:1.25rem;margin:0}
+.persona h4,.persona h3.as-h4{font-size:1.25rem;margin:0}
 .persona dl{margin:0;display:grid;gap:var(--s3)}
 .persona dt{font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);font-stretch:90%}
 .persona dd{margin:0;font-size:.9375rem}

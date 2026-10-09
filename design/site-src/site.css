@@ -318,3 +318,28 @@ fieldset.field{border:0;margin:0;padding:0}
 .diagram-scroll>div{padding:var(--s4)}
 @media (max-width:760px){.diagram-scroll>div{min-width:820px}.diagram-hint{display:block!important}}
 @media (max-width:700px){.plate-lbl{display:none}}
+
+/* form hardening */
+.field-hint{display:flex;justify-content:space-between;gap:var(--s4);align-items:baseline}
+.field-hint .count{flex:none;text-transform:none;letter-spacing:0}
+.field-hint .count[data-over]{color:var(--danger)}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-status ul{margin:var(--s2) 0 0;padding-left:1.1em;display:grid;gap:4px}
+.form-status a{color:var(--ch1)}
+.btn[aria-busy="true"]{cursor:progress;opacity:.85}
+.input,.field,.form-row>*{min-width:0}
+.form-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:640px){.form-row{grid-template-columns:minmax(0,1fr)}}
+/* long words never push the page wider */
+h1,h2,h3,.lede,.statement{overflow-wrap:break-word;hyphens:manual}
+@media (max-width:480px){.hero h1,.page-head h1,.close h2{overflow-wrap:anywhere}}
+/* no-JS: show the navigation links instead of a menu button that cannot open */
+html:not(.js) .menu-btn{display:none!important}
+@media (max-width:1079px){html:not(.js) .site-header .wrap{flex-wrap:wrap;padding-block:8px}html:not(.js) .nav ul{display:flex;flex-wrap:wrap}html:not(.js) .nav a.nl{min-height:40px;padding:0 10px}}
+.price-row>*,.sticky-card>*,.ch-row>*,.facts li>*,.timeline li>*,.work-meta>*{min-width:0;overflow-wrap:anywhere}
+@media (max-width:480px){.btn{white-space:normal;text-align:center;line-height:1.25;padding-block:10px}.link-arrow{white-space:normal}}
+.mono,code,.copy-line .mono{overflow-wrap:anywhere}
+.foot-grid>*,.section-head>*,.two-col>*,.founder>*,.files li>*,.deliv a>*,.pages>*{min-width:0}
+.files a{flex-wrap:wrap}
+.check-list li>*,.svc-grid>section>*,.rules li>*{min-width:0;overflow-wrap:anywhere}
+.concept-note,.foot-base>*{overflow-wrap:anywhere;min-width:0}

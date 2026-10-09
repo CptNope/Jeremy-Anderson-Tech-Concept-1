@@ -45,9 +45,9 @@ def case(slug, path, title, h1, lede, tags, plate, facts, sections, arch, links,
 <section class="section" style="padding-top:0;border-top:0" aria-label="Case study"><div class="wrap aside-col">
   <article class="prose">{sec}
     <h2>Architecture</h2>
-    <div class="screen diagram-scroll" style="margin-top:var(--s4)"><div>{arch}</div></div><p class="readout diagram-hint" style="display:none;margin-top:var(--s2)">Swipe to see the full diagram</p>
+    <div class="screen diagram-scroll" style="margin-top:var(--s4)" tabindex="0" role="region" aria-label="Architecture diagram, scrolls horizontally"><div>{arch}</div></div><p class="readout diagram-hint" style="display:none;margin-top:var(--s2)">Swipe to see the full diagram</p>
   </article>
-  <aside class="sticky-card" aria-label="Project facts"><ul class="facts" style="border-top:0">{fl}</ul><div class="links-row" style="flex-direction:column;gap:0">{ll}</div><a class="btn btn-primary" href="contact.html">Build something like this{ARROW}</a></aside>
+  <section class="sticky-card" aria-label="Project facts"><ul class="facts" style="border-top:0">{fl}</ul><div class="links-row" style="flex-direction:column;gap:0">{ll}</div><a class="btn btn-primary" href="contact.html">Build something like this{ARROW}</a></section>
 </div></section>
 {close_cta('Need a system this dependable?','Tell us what it has to do. You will have a written proposal within three business days.')}'''
     open(OUT+slug,'w').write(page(f'{title} · Work · Jeremy Anderson Tech', desc, path, 'work', body, [app]))
@@ -181,18 +181,19 @@ blog = {"@context":"https://schema.org","@type":"Blog","name":"Jeremy Anderson T
 open(OUT+'insights.html','w').write(page('Insights · Jeremy Anderson Tech','Build logs, security notes and engineering field notes from Jeremy Anderson Tech.','/blog/','insights',insights,[blog]))
 
 # ---------------- CONTACT ----------------
-ERR = '<span class="msg" role="alert"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 4v3.5M7 9.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span></span></span>'
+ERR = '<span class="msg"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 4v3.5M7 9.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span></span></span>'
 contact = page_head([('index.html','Home'),(None,'Contact')],'Tell us what the system needs to do.','Send a few details and we will set up a free 30-minute discovery call. You will have a written proposal within three business days of that call.') + f'''
 <section class="section" aria-labelledby="ct1"><div class="wrap aside-col">
-  <form class="form" id="leadForm" novalidate aria-labelledby="ct1">
+  <noscript><p class="form-status">This form needs JavaScript. Email <strong>info@jeremyanderson.tech</strong> with what the system should do, and we'll reply with times for a call.</p></noscript>
+  <form class="form" id="leadForm" method="post" novalidate aria-labelledby="ct1">
     <h2 id="ct1" class="vh">Project inquiry</h2>
     <div class="form-row">
-      <div class="field"><label for="name">Name</label><input class="input" id="name" name="name" autocomplete="name" required>{ERR}</div>
-      <div class="field"><label for="email">Work email</label><input class="input" id="email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">{ERR}</div>
+      <div class="field"><label for="name">Name</label><input class="input" id="name" name="name" autocomplete="name" required maxlength="100" spellcheck="false">{ERR}</div>
+      <div class="field"><label for="email">Work email</label><input class="input" id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="you@company.com" spellcheck="false" autocapitalize="off">{ERR}</div>
     </div>
     <div class="form-row">
-      <div class="field"><label for="org">Company or organization <span class="muted">(optional)</span></label><input class="input" id="org" name="org" autocomplete="organization"></div>
-      <div class="field"><label for="site">Current website <span class="muted">(optional)</span></label><input class="input" id="site" name="site" inputmode="url" placeholder="mycompany.com"></div>
+      <div class="field"><label for="org">Company or organization <span class="muted">(optional)</span></label><input class="input" id="org" name="org" autocomplete="organization" maxlength="120"></div>
+      <div class="field"><label for="site">Current website <span class="muted">(optional)</span></label><input class="input" id="site" name="site" inputmode="url" autocomplete="url" maxlength="200" placeholder="mycompany.com" spellcheck="false" autocapitalize="off">{ERR}</div>
     </div>
     <fieldset class="field"><legend>What do you need? <span class="muted">(choose any)</span></legend>
       <div class="choices">
@@ -205,11 +206,12 @@ contact = page_head([('index.html','Home'),(None,'Contact')],'Tell us what the s
       <div class="field"><label for="budget">Budget range</label><select class="input" id="budget" name="budget"><option value="">Not sure yet</option><option>Under $2,500</option><option>$2,500 – $7,500</option><option>$7,500 – $15,000</option><option>$15,000 or more</option><option>Monthly care plan</option></select></div>
       <div class="field"><label for="when">Ideal start</label><select class="input" id="when" name="when"><option value="">Flexible</option><option>As soon as possible</option><option>Within 1–2 months</option><option>Next quarter</option></select></div>
     </div>
-    <div class="field"><label for="message">What should the system do?</label><textarea class="input" id="message" name="message" required aria-describedby="msgHint"></textarea><span class="hint" id="msgHint">A few sentences is plenty: the problem, who uses it, and any deadline.</span>{ERR}</div>
-    <div class="cta-row"><button class="btn btn-primary" type="submit">Request a discovery call{ARROW}</button><span class="readout">Proposal within 3 business days of the call</span></div>
+    <div class="field"><label for="message">What should the system do?</label><textarea class="input" id="message" name="message" required maxlength="4000" aria-describedby="msgHint msgCount"></textarea><span class="hint field-hint"><span id="msgHint">A few sentences is plenty: the problem, who uses it, and any deadline.</span><span class="readout count" id="msgCount" aria-live="off">0 / 4,000</span></span>{ERR}</div>
+    <div class="hp" aria-hidden="true"><label for="company_url">Leave this field empty</label><input id="company_url" name="company_url" tabindex="-1" autocomplete="off"></div>
+    <div class="cta-row"><button class="btn btn-primary" type="submit">Request a discovery call {ARROW}</button><span class="readout">Proposal within 3 business days of the call</span></div>
     <div class="form-status" id="formStatus" role="status" tabindex="-1" hidden></div>
   </form>
-  <aside class="sticky-card" aria-label="What happens next">
+  <section class="sticky-card" aria-label="What happens next">
     <h2 class="readout" style="color:var(--fg)">What happens next</h2>
     <ol class="steps" style="grid-template-columns:1fr;border-top:0;border-left:1px solid var(--line);margin-left:4px">
       <li style="border-right:0;padding:0 0 var(--s4) var(--s5)"><h3 style="font-size:1rem">We reply</h3><span class="n">First</span><p>With times for a 30-minute call.</p></li>
@@ -218,7 +220,7 @@ contact = page_head([('index.html','Home'),(None,'Contact')],'Tell us what the s
     </ol>
     <div class="copy-line"><span class="mono" style="font-size:.875rem">info@jeremyanderson.tech</span><button class="btn-copy" type="button" data-copy-text="info@jeremyanderson.tech">Copy</button></div>
     <p class="readout" style="margin:0">Shrewsbury, MA · Serving Massachusetts and remote clients</p>
-  </aside>
+  </section>
 </div></section>'''
 cp = {"@context":"https://schema.org","@type":"ContactPage","name":"Contact Jeremy Anderson Tech","url":BASE+"/contact/","about":{"@id":BASE+"/#org"}}
 open(OUT+'contact.html','w').write(page('Contact · Jeremy Anderson Tech','Book a free 30-minute discovery call with Jeremy Anderson Tech. Written proposal within three business days.','/contact/','contact',contact,[cp]))
@@ -261,15 +263,15 @@ bl_rows=''.join(f'<tr><td class="mono">{a}</td><td>{b}</td></tr>' for a,b in BLO
 sitemap = page_head([('index.html','Home'),(None,'Site map')],'Site map and architecture.','Every page in the new information architecture, its production URL, the schema it emits, and how existing URLs keep their search equity.') + f'''
 <section class="section" aria-labelledby="sm1"><div class="wrap">
   <div class="section-head"><h2 id="sm1">Information architecture</h2><p class="lede">Concept pages link to their production URLs. Phase 2 splits channel sections into individual service landing pages.</p></div>
-  <div style="overflow-x:auto"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:760px;font-size:.9375rem"><thead><tr><th>Production URL</th><th>Page</th><th>Concept file</th><th>Mode</th><th>Schema</th></tr></thead><tbody>{ia_rows}</tbody></table></div>
+  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="Information architecture table"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:760px;font-size:.9375rem"><thead><tr><th>Production URL</th><th>Page</th><th>Concept file</th><th>Mode</th><th>Schema</th></tr></thead><tbody>{ia_rows}</tbody></table></div>
 </div></section>
 <section class="section alt" aria-labelledby="sm2"><div class="wrap">
   <div class="section-head"><h2 id="sm2">Redirect map</h2><p class="lede">Existing projects and blog posts keep their URLs. Only consolidated service pages and thin tag archives move.</p></div>
-  <div style="overflow-x:auto"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:640px;font-size:.9375rem"><thead><tr><th>Current URL</th><th>New URL</th><th>Action</th></tr></thead><tbody>{rd_rows}</tbody></table></div>
+  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="Redirect map table"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:640px;font-size:.9375rem"><thead><tr><th>Current URL</th><th>New URL</th><th>Action</th></tr></thead><tbody>{rd_rows}</tbody></table></div>
 </div></section>
 <section class="section" aria-labelledby="sm3"><div class="wrap two-col">
   <div><h2 id="sm3">WordPress block plan</h2><p class="lede" style="margin-top:var(--s4)">Custom blocks in a <code class="mono">jat</code> namespace, styled from theme.json tokens, so the team edits content without touching layout.</p></div>
-  <div style="overflow-x:auto"><table class="spec-table" style="width:100%;border-collapse:collapse;font-size:.9375rem"><thead><tr><th>Block</th><th>Purpose</th></tr></thead><tbody>{bl_rows}</tbody></table></div>
+  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="WordPress block plan table"><table class="spec-table" style="width:100%;border-collapse:collapse;font-size:.9375rem"><thead><tr><th>Block</th><th>Purpose</th></tr></thead><tbody>{bl_rows}</tbody></table></div>
 </div></section>
 <style>.spec-table th{{text-align:left;font-family:var(--f-mono);font-stretch:90%;font-weight:500;font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);padding:10px 14px 10px 0;border-bottom:1px solid var(--line)}}.spec-table td{{padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}}.spec-table td.mono{{font-size:.8125rem}}</style>
 {close_cta()}'''
