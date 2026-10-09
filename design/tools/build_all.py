@@ -8,7 +8,8 @@ Steps
  2. identity/logos.py                -> brand-book/assets/*.svg
  3. identity/sprite.py               -> identity/sprite.html     (inline <symbol> sprite)
  4. brand-book-src/part1..5.html     -> brand-book/index.html
- 5. site-src/ (site.css, site.js, build/*.py) -> repository root (*.html, site.css, site.js)
+ 5. site-src/ (site.css, site.js, build/*.py) -> site/ (*.html, site.css, site.js)
+ 6. overview-src/build_overview.py -> index.html (concept overview with the concept bar)
 """
 import subprocess, sys, shutil
 from pathlib import Path
@@ -28,13 +29,24 @@ head = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
         '<meta name="robots" content="noindex">\n<meta name="theme-color" content="#0A0C0F">\n'
         '<link rel="icon" href="assets/jat-mark.svg" type="image/svg+xml">\n</head>\n<body>\n')
-back = ('<p style="position:fixed;right:12px;bottom:12px;margin:0;z-index:9"><a href="../" style="font:500 12px Martian Mono,monospace;'
-        'background:#10141A;border:1px solid #2E3845;border-radius:6px;padding:8px 10px;color:#3CE3F0;text-decoration:none">View website concept →</a></p>')
+sys.path.insert(0, str(D/'site-src/build'))
+from common import concept_bar  # noqa: E402
+# The concept bar is fixed in the brand book so the fixed section rail can sit beneath it.
+bar = concept_bar('../', 'brand') + (
+    '<style>.cbar{position:fixed;top:0;left:0;right:0}body{padding-top:41px}'
+    '.rail{top:41px!important}html{scroll-padding-top:65px}'
+    '@media (max-width:1079px){.rail{top:41px!important}}</style>')
+back = ''
+head = head.replace('<body>\n', '<body>\n' + bar + '\n')
 (ROOT/'brand-book').mkdir(exist_ok=True)
 (ROOT/'brand-book/index.html').write_text(head + body + '\n' + back + '\n</body>\n</html>\n')
 print('> brand-book/index.html')
 
 # site
-shutil.copy(D/'site-src/site.css', ROOT/'site.css'); shutil.copy(D/'site-src/site.js', ROOT/'site.js')
-run(sys.executable, D/'site-src/build/pages2.py', env={**__import__('os').environ, 'PAGES':'1', 'OUT':str(ROOT)+'/'})
+(ROOT/'site').mkdir(exist_ok=True)
+shutil.copy(D/'site-src/site.css', ROOT/'site/site.css'); shutil.copy(D/'site-src/site.js', ROOT/'site/site.js')
+run(sys.executable, D/'site-src/build/pages2.py', env={**__import__('os').environ, 'PAGES':'1', 'OUT':str(ROOT/'site')+'/'})
+
+# overview (repository root)
+run(sys.executable, D/'overview-src/build_overview.py')
 print('Done.')

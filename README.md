@@ -6,8 +6,9 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 
 | | |
 |---|---|
-| **Website concept** | https://cptnope.github.io/Jeremy-Anderson-Tech-Concept-1/ |
+| **Concept overview** | https://cptnope.github.io/Jeremy-Anderson-Tech-Concept-1/ |
 | **Brand book** | https://cptnope.github.io/Jeremy-Anderson-Tech-Concept-1/brand-book/ |
+| **Site prototype** | https://cptnope.github.io/Jeremy-Anderson-Tech-Concept-1/site/ |
 | **Status** | v1 concept for review, October 2026. Not the live site. |
 | **Search** | Excluded with `noindex` on every page and a `robots.txt` that blocks all crawlers |
 
@@ -61,22 +62,23 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 
 ```
 /
-├── index.html                  Home
-├── services.html               Services and full pricing (+ FAQ)
-├── platforms.html              CH1 channel page
-├── intelligence.html           CH2 channel page
-├── security.html               CH3 channel page
-├── operations.html             CH4 channel page
-├── work.html                   Work index
-├── work-gods-eye-lite.html     Case study
-├── work-cytoscape.html         Case study
-├── work-chronos-canon.html     Case study
-├── about.html                  Studio and founder
-├── approach.html               Process, quality bar, terms
-├── insights.html               Blog index (links to existing posts)
-├── contact.html                Lead form (client-side validation, not connected)
-├── sitemap.html                IA, redirect map, WordPress block plan
-├── site.css · site.js          Shared styles and behavior (built copies)
+├── index.html                  Concept overview: deliverables, page index, design files, ground rules
+├── img/                        Preview images used on the overview
+├── site/                       Site prototype
+│   ├── index.html              Home
+│   ├── services.html           Services and full pricing (+ FAQ)
+│   ├── platforms.html          CH1 channel page
+│   ├── intelligence.html       CH2 channel page
+│   ├── security.html           CH3 channel page
+│   ├── operations.html         CH4 channel page
+│   ├── work.html               Work index
+│   ├── work-*.html             Three case studies
+│   ├── about.html              Studio and founder
+│   ├── approach.html           Process, quality bar, terms
+│   ├── insights.html           Blog index (links to existing posts)
+│   ├── contact.html            Lead form (client-side validation, not connected)
+│   ├── sitemap.html            IA, redirect map, WordPress block plan
+│   └── site.css · site.js      Shared styles and behavior (built copies)
 ├── brand-book/
 │   ├── index.html              The brand book (17 sections)
 │   └── assets/*.svg            Production logo files
@@ -90,7 +92,8 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 ├── design/                     All design source and tooling
 │   ├── identity/               Wordmark outliner, logo + sprite generators, explorations
 │   ├── brand-book-src/         Brand book source (part1–part5.html)
-│   ├── site-src/               site.css, site.js and the Python page builder
+│   ├── site-src/               site.css, site.js and the Python page builder (incl. the concept bar)
+│   ├── overview-src/           Overview page builder
 │   ├── tools/                  build_all.py, capture.py
 │   ├── fonts/                  Where to put the font files (not committed)
 │   └── review/                 Finish-review record and iteration captures
@@ -210,11 +213,30 @@ All identity elements are SVG. Recolor them through custom properties; never edi
 
 ---
 
+## Concept overview and navigation
+
+The repository root is a **concept overview**, matching the other concept repos (Oshare Concept 1, REWAP). It has:
+- a hero with links to both deliverables;
+- preview cards for the brand book and the site prototype;
+- an index of every prototype page;
+- the design files, linked to GitHub (`#design-files`);
+- the ground rules for the concept.
+
+A thin **concept bar** sits on top of every page:
+
+> JAT Concept 1 · Brand Book · Site Prototype · Design Files · GitHub
+
+- **Site prototype:** the bar sits above the site's own header and scrolls away, so the site's sticky header takes over.
+- **Brand book:** the bar is fixed, and the section rail sits beneath it.
+- **Phones:** the labels shorten to Overview · Brand · Site · Files · GitHub.
+
+The current page is marked with `aria-current` and a cyan underline. The bar's markup and styles come from `concept_bar()` in `design/site-src/build/common.py`.
+
 ## Website
 
-**15 static pages.** HTML, CSS and vanilla JS. No framework and no hosting build step.
+**15 static pages** in `/site/`. HTML, CSS and vanilla JS. No framework and no hosting build step.
 
-| Concept page | Planned production URL | Schema |
+| Concept page (in `/site/`) | Planned production URL | Schema |
 |---|---|---|
 | `index.html` | `/` | WebSite, ProfessionalService |
 | `services.html` | `/services/` | FAQPage |
@@ -283,7 +305,7 @@ The work was built with Claude using the **Impeccable** design skill in the orde
 **Requirements.** Python 3.10+. Optional: `fontTools` to re-outline the wordmark, and `playwright` for captures.
 
 ```bash
-# Rebuild everything served by Pages (logos, sprite, brand book, all site pages)
+# Rebuild everything served by Pages (logos, sprite, brand book, site pages, overview)
 python3 design/tools/build_all.py
 
 # Also re-outline the wordmark from the font (put Archivo-Variable.ttf in design/fonts first)
@@ -295,7 +317,7 @@ python3 -m http.server 8000      # then open http://localhost:8000
 
 # Capture desktop + mobile screenshots into .impeccable/review/
 pip install playwright && playwright install chromium
-python3 design/tools/capture.py index services platforms brand-book/index
+python3 design/tools/capture.py index site/index site/services brand-book/index
 ```
 
 The build is deterministic: running `build_all.py` on an unchanged checkout produces no git diff.
@@ -309,6 +331,8 @@ The build is deterministic: running `build_all.py` on an unchanged checkout prod
 | Project schematics and architecture diagrams | `design/site-src/build/plates.py` |
 | Styles and behavior | `design/site-src/site.css` and `site.js` (copied to the root on build) |
 | Brand book | `design/brand-book-src/part1–5.html` |
+| Overview page | `design/overview-src/build_overview.py` |
+| Concept bar | `concept_bar()` in `design/site-src/build/common.py` |
 | Logo geometry | `TRACE` / `BAR` in `design/identity/logos.py` and `sprite.py` |
 
 **Deploy.** In GitHub, open **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, then select `main` and `/ (root)`. Every push to `main` republishes.

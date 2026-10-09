@@ -8,6 +8,25 @@
 <link rel="icon" href="assets/jat-mark.svg" type="image/svg+xml">
 </head>
 <body>
+<style>
+.cbar{background:#07090B;border-bottom:1px solid #222A34;font-family:"Martian Mono",ui-monospace,Menlo,monospace;font-stretch:90%;font-size:12px;letter-spacing:.04em;position:relative;z-index:70}
+.cbar-in{max-width:1376px;margin-inline:auto;padding-inline:clamp(16px,4vw,48px);display:flex;align-items:center;gap:20px;min-height:40px;overflow-x:auto;scrollbar-width:none}
+.cbar-in::-webkit-scrollbar{display:none}
+.cbar a{color:#A3AFBC;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:40px;white-space:nowrap}
+.cbar a:hover{color:#E6ECF2}
+.cbar a:focus-visible{outline:2px solid #3CE3F0;outline-offset:-2px;border-radius:2px}
+.cbar .home{color:#E6ECF2;font-weight:600;margin-right:auto}
+.cbar .home svg{width:22px;height:14px;flex:none}
+.cbar ul{list-style:none;margin:0;padding:0;display:flex;gap:20px}
+.cbar a[aria-current=page]{color:#E6ECF2;box-shadow:inset 0 -2px 0 #3CE3F0}
+.cbar .ext svg{width:11px;height:11px}
+.cbar .tag{color:#7D8996;border:1px solid #2E3845;border-radius:2px;padding:2px 6px;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em}
+.cbar .s{display:none}
+@media (max-width:640px){.cbar .tag,.cbar .home .l,.cbar .l{display:none}.cbar .s{display:inline}.cbar-in,.cbar ul{gap:14px}.cbar .home{margin-right:auto}}
+</style><nav class="cbar" aria-label="Concept"><div class="cbar-in">
+  <a class="home" href="../"><svg viewBox="1 6 108 68" aria-hidden="true"><g fill="none" stroke="#3CE3F0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg><span class="l">JAT Concept 1</span><span class="s">Overview</span> <span class="tag">Calibrated Signal</span></a>
+  <ul><li><a href="../brand-book/" aria-current="page"><span class="l">Brand Book</span><span class="s">Brand</span></a></li><li><a href="../site/"><span class="l">Site Prototype</span><span class="s">Site</span></a></li><li><a href="../#design-files"><span class="l">Design Files</span><span class="s">Files</span></a></li><li><a class="ext" href="https://github.com/CptNope/Jeremy-Anderson-Tech-Concept-1" rel="noopener">GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 3h4v4M13 3 7 9M11 9v3.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul>
+</div></nav><style>.cbar{position:fixed;top:0;left:0;right:0}body{padding-top:41px}.rail{top:41px!important}html{scroll-padding-top:65px}@media (max-width:1079px){.rail{top:41px!important}}</style>
 <title>JAT Brand Book</title>
 <meta name="description" content="Jeremy Anderson Tech brand book: strategy, identity, color, type, motion, components and production tokens.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -368,7 +387,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
     </article>
   </div>
   <h3>Buying motivations, in order</h3>
-  <div class="scroll-x"><table class="spec">
+  <div class="scroll-x" tabindex="0"><table class="spec">
     <thead><tr><th>Motivation</th><th>What the buyer needs to see</th><th>Where the brand answers it</th></tr></thead>
     <tbody>
       <tr><td>Trust</td><td>A real person, real work, a clear process</td><td>Founder page, open-source case studies, approach page</td></tr>
@@ -416,7 +435,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
     </div>
   </div>
   <h3>Channel promises</h3>
-  <div class="scroll-x"><table class="spec">
+  <div class="scroll-x" tabindex="0"><table class="spec">
     <thead><tr><th>Channel</th><th>Promise (client language)</th><th>Entry offer</th><th>Flagship</th></tr></thead>
     <tbody>
       <tr><td><span class="ch" style="--c:var(--ch1)"><i></i><b>CH1</b> Platforms</span></td><td>A website or app that wins work, loads fast and is easy to update.</td><td class="mono">Business Site · $3,500</td><td class="mono">Custom Platform · $7,500</td></tr>
@@ -459,7 +478,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
         </g>
       </svg>
     </div>
-    <div class="scroll-x"><table class="spec">
+    <div class="scroll-x" tabindex="0"><table class="spec">
       <thead><tr><th>Alternative</th><th>Strength</th><th>Gap JAT fills</th></tr></thead>
       <tbody>
         <tr><td>DIY builders</td><td>Cheap, fast to start</td><td>Security, performance, custom function, someone to call</td></tr>
@@ -481,7 +500,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
 
 <section class="section" id="voice" aria-labelledby="h-voice">
   <div class="sec-head"><span class="sec-num">06</span><div><h2 id="h-voice">Personality, tone and voice</h2><p>The voice of a senior engineer explaining a system to the owner who depends on it.</p></div></div>
-  <div class="scroll-x"><table class="spec">
+  <div class="scroll-x" tabindex="0"><table class="spec">
     <thead><tr><th>Trait</th><th>We are</th><th>We are not</th></tr></thead>
     <tbody>
       <tr><td><h4 style="margin:0">Precise</h4></td><td>Specific numbers, named deliverables, exact timelines</td><td>Pedantic, jargon-heavy</td></tr>
@@ -612,7 +631,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
     </div>
     <div>
       <p>Keep at least X clear on every side, where X is one grid division: the height of the J tail, or about 0.29 × the mark's height. Never place other marks, text or edges inside that zone.</p>
-      <div class="scroll-x"><table class="spec">
+      <div class="scroll-x" tabindex="0"><table class="spec">
         <thead><tr><th>Logo</th><th>Screen</th><th>Print</th><th>Below minimum</th></tr></thead>
         <tbody>
           <tr><td>Horizontal</td><td class="mono">160 px</td><td class="mono">38 mm</td><td>Use the monogram</td></tr>
@@ -645,7 +664,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
   <div class="two" style="align-items:start">
     <div class="code">
       <header><span class="readout">jat-mark.svg · 282 bytes</span><button class="btn-copy" type="button" data-copy="svgMark">Copy SVG</button></header>
-<pre id="svgMark"><span class="k">&lt;svg</span> xmlns=<span class="s">"http://www.w3.org/2000/svg"</span> viewBox=<span class="s">"1 6 108 68"</span>
+<pre tabindex="0" id="svgMark"><span class="k">&lt;svg</span> xmlns=<span class="s">"http://www.w3.org/2000/svg"</span> viewBox=<span class="s">"1 6 108 68"</span>
      role=<span class="s">"img"</span> aria-label=<span class="s">"JAT"</span><span class="k">&gt;</span>
   <span class="k">&lt;g</span> fill=<span class="s">"none"</span> stroke=<span class="s">"#3CE3F0"</span> stroke-width=<span class="s">"8"</span>
      stroke-linecap=<span class="s">"round"</span> stroke-linejoin=<span class="s">"round"</span><span class="k">&gt;</span>
@@ -655,7 +674,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
 <span class="k">&lt;/svg&gt;</span></pre>
     </div>
     <div>
-      <div class="scroll-x"><table class="spec">
+      <div class="scroll-x" tabindex="0"><table class="spec">
         <thead><tr><th>File</th><th>Use</th></tr></thead>
         <tbody>
           <tr><td class="mono">jat-mark.svg</td><td>Monogram, Channel Cyan</td></tr>
@@ -701,7 +720,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
   <div class="two" style="margin-top:var(--s5)">
     <div>
       <h3 style="margin-top:var(--s4)">Semantic</h3>
-      <div class="scroll-x"><table class="spec">
+      <div class="scroll-x" tabindex="0"><table class="spec">
         <thead><tr><th>Role</th><th>Dark UI</th><th>Light / print</th></tr></thead>
         <tbody>
           <tr><td>Success</td><td class="mono"><span class="ch" style="--c:#5EF0A0"><i></i>#5EF0A0</span></td><td class="mono">#0A7646 · 5.2:1</td></tr>
@@ -729,7 +748,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
   </div>
   <div class="chart-legend readout"><span>Graticule 72%</span><span>Panels 18%</span><span>Ice 7%</span><span style="color:var(--ch1)">Channels 3%</span></div>
   <h3>Contrast matrix</h3>
-  <div class="scroll-x"><table class="spec matrix">
+  <div class="scroll-x" tabindex="0"><table class="spec matrix">
     <thead><tr><th>Text on</th><th>Graticule #0A0C0F</th><th>Panel #10141A</th><th>Raised #161B22</th><th>Cyan #3CE3F0</th></tr></thead>
     <tbody>
       <tr><td><span class="sample" style="background:#E6ECF2"></span>Ice</td><td class="ratio pass">16.5 AAA</td><td class="ratio pass">15.5 AAA</td><td class="ratio pass">14.5 AAA</td><td class="ratio fail">1.3 fail</td></tr>
@@ -966,7 +985,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
     <button class="btn btn-primary" type="button" aria-disabled="true"><svg class="spin" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2a6 6 0 1 0 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Sending</button>
     <button class="btn btn-primary" type="button" disabled>Disabled</button>
   </div>
-  <div class="scroll-x" style="margin-top:var(--s4)"><table class="spec"><thead><tr><th>Variant</th><th>Use</th><th>Rule</th></tr></thead><tbody>
+  <div class="scroll-x" tabindex="0" style="margin-top:var(--s4)"><table class="spec"><thead><tr><th>Variant</th><th>Use</th><th>Rule</th></tr></thead><tbody>
     <tr><td>Primary</td><td>The single main action in a view</td><td>One per viewport. Graticule text on Cyan.</td></tr>
     <tr><td>Secondary</td><td>Alternative paths</td><td>Ink 450 border, turns Cyan on hover.</td></tr>
     <tr><td>Ghost</td><td>Inline and tertiary actions</td><td>Always underlined so it reads as a link.</td></tr>
@@ -1014,7 +1033,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
     <div><h4>Canvas</h4><p class="muted">Decorative canvases are <code>aria-hidden</code>; every diagram has a text alternative. Canvases pause when off screen.</p></div>
   </div>
   <h3>Breakpoints</h3>
-  <div class="scroll-x"><table class="spec"><thead><tr><th>Name</th><th>Min width</th><th>Grid</th><th>Behavior</th></tr></thead><tbody>
+  <div class="scroll-x" tabindex="0"><table class="spec"><thead><tr><th>Name</th><th>Min width</th><th>Grid</th><th>Behavior</th></tr></thead><tbody>
     <tr><td>Phone</td><td class="mono">0</td><td>4 col</td><td>Single column. Hero trace sits above the headline. Readout strip becomes 2 × 2.</td></tr>
     <tr><td>Tablet</td><td class="mono">768px</td><td>8 col</td><td>Two-column content. Navigation stays collapsed.</td></tr>
     <tr><td>Laptop</td><td class="mono">1080px</td><td>12 col</td><td>Full navigation. Hero text left, trace right.</td></tr>
@@ -1221,7 +1240,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
   </div>
   <div class="code" role="tabpanel" id="tp-css" aria-labelledby="tb-css" style="border-top-left-radius:0">
     <header><span class="readout">Paste into the theme's base stylesheet</span><button class="btn-copy" type="button" data-copy="codeCss">Copy</button></header>
-<pre id="codeCss">:root {
+<pre tabindex="0" id="codeCss">:root {
   /* Neutrals: blue-biased graticule ramp */
   --jat-ink-950: #07090B;  --jat-ink-900: #0A0C0F;  --jat-ink-850: #10141A;
   --jat-ink-800: #161B22;  --jat-ink-700: #222A34;  --jat-ink-600: #2E3845;
@@ -1282,7 +1301,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
   </div>
   <div class="code" role="tabpanel" id="tp-wp" aria-labelledby="tb-wp" hidden style="border-top-left-radius:0">
     <header><span class="readout">Block theme · settings excerpt</span><button class="btn-copy" type="button" data-copy="codeWp">Copy</button></header>
-<pre id="codeWp">{
+<pre tabindex="0" id="codeWp">{
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 3,
   "settings": {
@@ -1358,7 +1377,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
   </div>
   <div class="code" role="tabpanel" id="tp-json" aria-labelledby="tb-json" hidden style="border-top-left-radius:0">
     <header><span class="readout">W3C Design Tokens format · for Figma Tokens / Style Dictionary</span><button class="btn-copy" type="button" data-copy="codeJson">Copy</button></header>
-<pre id="codeJson">{
+<pre tabindex="0" id="codeJson">{
   "color": {
     "ink": {
       "950": { "$type": "color", "$value": "#07090B" },
@@ -1576,6 +1595,6 @@ const js = document.getElementById('jumpSel'); if (js) js.addEventListener('chan
 })();
 </script>
 
-<p style="position:fixed;right:12px;bottom:12px;margin:0;z-index:9"><a href="../" style="font:500 12px Martian Mono,monospace;background:#10141A;border:1px solid #2E3845;border-radius:6px;padding:8px 10px;color:#3CE3F0;text-decoration:none">View website concept →</a></p>
+
 </body>
 </html>
