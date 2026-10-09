@@ -1,0 +1,23 @@
+<html><body style="margin:0;background:#0A0C0F;display:grid;grid-template-columns:repeat(3,360px);gap:20px;padding:20px">
+<style>svg{background:#10141A;width:360px;height:240px}</style>
+<!-- A1 -->
+<svg viewBox="-8 0 128 80"><g fill="none" stroke="#3CE3F0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M8 36 V46 Q8 64 24 64 Q34 64 37 56 L52 16 L68 64 H84 V16"/><path d="M68 16 H102"/></g></svg>
+<!-- A2 thinner, square joins -->
+<svg viewBox="-8 0 128 80"><g fill="none" stroke="#3CE3F0" stroke-width="7" stroke-linecap="round" stroke-linejoin="miter">
+<path d="M10 34 V46 Q10 64 26 64 Q35 64 38 56 L53 16 L69 64 H84 V16"/><path d="M70 16 H100"/></g><circle cx="10" cy="34" r="6" fill="#E6ECF2"/></svg>
+<!-- A3 bar as trigger level with marker -->
+<svg viewBox="-8 0 128 80"><g fill="none" stroke="#3CE3F0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+<path d="M10 34 V46 Q10 64 26 64 Q35 64 38 56 L53 16 L69 64 H84 V16"/></g><path d="M66 16 H104" stroke="#9A8CFF" stroke-width="7" stroke-linecap="round"/><path d="M110 16 l8 -6 v12z" fill="#9A8CFF"/></svg>
+<!-- B graticule cell -->
+<svg viewBox="0 0 120 80"><rect x="20" y="4" width="72" height="72" fill="none" stroke="#2E3845" stroke-width="2"/><path d="M44 4V76M68 4V76M20 28H92M20 52H92" stroke="#222A34" stroke-width="1.5"/><g fill="none" stroke="#3CE3F0" stroke-width="6" stroke-linecap="square"><path d="M38 20 V52 Q38 64 28 64"/><path d="M48 64 L56 20 L64 64 M51 48 H61"/><path d="M70 20 H90 M80 20 V64"/></g></svg>
+<!-- C lissajous -->
+<svg viewBox="0 0 120 80"><path fill="none" stroke="#3CE3F0" stroke-width="4" d="" id="liss"/><script>
+let d='';for(let i=0;i<=400;i++){const t=i/400*Math.PI*2;const x=60+44*Math.sin(3*t+Math.PI/2);const y=40+32*Math.sin(2*t);d+=(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)}document.getElementById('liss').setAttribute('d',d)</script></svg>
+<!-- A2 small sizes -->
+<div style="background:#10141A;width:360px;height:240px;display:flex;gap:24px;align-items:center;justify-content:center">
+<svg viewBox="-8 0 128 80" style="width:96px;height:64px;background:none"><g fill="none" stroke="#3CE3F0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 34 V46 Q10 64 26 64 Q35 64 38 56 L53 16 L69 64 H84 V16"/><path d="M70 16 H100"/></g></svg>
+<svg viewBox="-8 0 128 80" style="width:36px;height:24px;background:none"><g fill="none" stroke="#3CE3F0" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"><path d="M10 34 V46 Q10 64 26 64 Q35 64 38 56 L53 16 L69 64 H84 V16"/><path d="M70 16 H100"/></g></svg>
+<svg viewBox="-8 0 128 80" style="width:24px;height:16px;background:none"><g fill="none" stroke="#3CE3F0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M10 34 V46 Q10 64 26 64 Q35 64 38 56 L53 16 L69 64 H84 V16"/><path d="M70 16 H100"/></g></svg>
+</div>
+</body></html>

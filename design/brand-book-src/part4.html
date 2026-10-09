@@ -1,0 +1,192 @@
+
+<style>
+.elev-wrap{background:var(--ink-950);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+.elev-wrap .elev{border:0}
+.icons{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+@media (max-width:700px){.icons{grid-template-columns:repeat(auto-fill,minmax(84px,1fr))}}
+.icons figure{margin:0;box-shadow:inset -1px -1px 0 var(--line);display:grid;justify-items:center;gap:10px;padding:18px 8px 12px}
+.icons svg{width:32px;height:32px;color:var(--fg)}
+.icons figcaption{font-family:var(--f-mono);font-size:.625rem;color:var(--fg-muted);font-stretch:90%;text-transform:uppercase;letter-spacing:.05em}
+.motion-demo{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--s5);align-items:stretch}
+@media (max-width:800px){.motion-demo{grid-template-columns:1fr}}
+.photo-frame{aspect-ratio:4/3;border:1px dashed var(--line-strong);border-radius:10px;display:grid;place-items:center;text-align:center;padding:var(--s4);color:var(--fg-muted);font-size:.875rem;background:repeating-linear-gradient(-45deg,transparent 0 10px,rgba(159,180,200,.03) 10px 11px)}
+/* components */
+.cmp-row{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+.btn{--h:44px;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--h);padding:0 18px;border-radius:var(--r-control);font-family:var(--f-display);font-stretch:108%;font-weight:600;font-size:.9375rem;letter-spacing:.005em;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background var(--t-base) var(--ease-out),color var(--t-base) var(--ease-out),border-color var(--t-base) var(--ease-out),transform var(--t-fast) var(--ease-out)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--ch1);color:var(--ink-900)}
+.btn-primary:hover{background:#7AEDF6}
+.btn-secondary{background:transparent;color:var(--fg);border-color:var(--line-control)}
+.btn-secondary:hover{border-color:var(--ch1);color:var(--ch1)}
+.btn-ghost{background:transparent;color:var(--ch1);padding-inline:6px;text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}
+.btn[disabled],.btn[aria-disabled="true"]{background:var(--ink-800);color:var(--ink-400);border-color:var(--line);cursor:not-allowed;transform:none}
+.btn .arrow{width:16px;height:16px;transition:transform var(--t-base) var(--ease-out)}
+.btn:hover .arrow{transform:translateX(3px)}
+.btn .spin{width:16px;height:16px;animation:spin 900ms linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.btn .spin{animation:none}.btn .arrow{transition:none}}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-size:.875rem;font-weight:550}
+.field .hint{font-size:.8125rem;color:var(--fg-muted)}
+.input{min-height:44px;width:100%;background:var(--ink-950);color:var(--fg);border:1px solid var(--line-control);border-radius:var(--r-control);padding:10px 12px;font:inherit;font-size:1rem;caret-color:var(--ch1);transition:border-color var(--t-base) var(--ease-out),box-shadow var(--t-base) var(--ease-out)}
+.input::placeholder{color:var(--ink-400)}
+.input:hover{border-color:var(--ink-400)}
+.input:focus{outline:none;border-color:var(--ch1);box-shadow:0 0 0 3px rgba(60,227,240,.18)}
+.field.err .input{border-color:var(--danger)}
+.field .msg{display:flex;gap:6px;align-items:center;font-size:.8125rem;color:var(--danger)}
+.readout-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--line);gap:1px}
+.readout-strip a{background:var(--ink-950);padding:12px 14px;text-decoration:none;color:var(--fg);display:grid;gap:4px;transition:background var(--t-base) var(--ease-out)}
+.readout-strip a:hover{background:var(--ink-850)}
+.readout-strip .v{font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:.9375rem}
+@media (max-width:640px){.readout-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.price-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:var(--s5);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.price-row .name{font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:1.125rem}
+.price-row .p{font-family:var(--f-mono);font-stretch:90%;font-size:1rem;color:var(--fg);font-variant-numeric:tabular-nums}
+.price-row .d{font-family:var(--f-mono);font-stretch:90%;font-size:.75rem;color:var(--fg-muted)}
+@media (max-width:560px){.price-row{grid-template-columns:1fr auto}.price-row .d{grid-column:1/-1}}
+.toast{display:inline-flex;gap:10px;align-items:center;background:var(--ink-800);border:1px solid var(--line-strong);border-radius:8px;padding:10px 14px;font-size:.875rem;box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
+/* applications */
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:var(--s6) var(--s5)}
+.apps figure{margin:0;min-width:0}
+.apps .stage{border:1px solid var(--line);border-radius:var(--r-panel);background:#0d1014;padding:var(--s5);display:grid;place-items:center;overflow:hidden}
+.apps svg.mock{width:100%;height:auto;display:block}
+.apps figcaption{margin-top:var(--s2);font-size:.875rem;color:var(--fg-muted)}
+.apps figcaption strong{color:var(--fg)}
+.sig{background:#fff;color:#0A0C0F;border-radius:8px;padding:20px;font-family:Arial,Helvetica,sans-serif;width:100%;max-width:520px}
+/* tokens */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:-1px;overflow-x:auto}
+.tabs button{font-family:var(--f-mono);font-stretch:90%;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;background:transparent;color:var(--fg-muted);border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;padding:10px 14px;cursor:pointer;min-height:40px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--fg);background:var(--panel);border-color:var(--line);box-shadow:inset 0 2px 0 var(--ch1)}
+.end{margin-top:var(--s10);padding-top:var(--s7);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:end;gap:var(--s5);flex-wrap:wrap}
+</style>
+
+<section class="section" id="imagery" aria-labelledby="h-img">
+  <div class="sec-head"><span class="sec-num">13</span><div><h2 id="h-img">Photography, illustration, iconography, motion</h2><p>Show real work and real people. Draw systems as signals. Move like an instrument settling.</p></div></div>
+  <h3 style="margin-top:0">Photography</h3>
+  <div class="two">
+    <div>
+      <p>Photography documents. It shows Jeremy working with clients, real screens of shipped projects, and the places in Central Massachusetts where the work happens. It never illustrates abstract ideas like "security" or "AI".</p>
+      <dl class="kv"><dt>Light</dt><dd>Natural daylight, side-lit, cool neutral white balance.</dd><dt>Grade</dt><dd>Shadows lifted toward Ink 900, saturation −15%, skin tones untouched. No color casts in channel hues.</dd><dt>Framing</dt><dd>Generous negative space on one side so graticule overlays and readouts can sit beside, never on, faces.</dd><dt>Screens</dt><dd>Capture real browser windows at 2× and place them in plain device frames. No fake code, no lens flares.</dd></dl>
+    </div>
+    <div>
+      <div class="dodont">
+        <div><span class="tag" style="color:var(--ch4)">Shot list to commission</span><ul><li>Founder portrait, working at his desk in Shrewsbury</li><li>Founder in a discovery meeting with a client team</li><li>Laptop and phone running God's Eye Lite in the field</li><li>Detail: hands sketching an architecture on paper</li><li>Worcester and Boston street context, early morning</li></ul></div>
+        <div><span class="tag" style="color:var(--danger)">Never</span><ul><li>Hooded hackers, binary rain, padlocks</li><li>Glowing brains, robot hands, particle spheres</li><li>Handshake stock and fake office teams</li><li>AI-generated people or offices</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <h3>Illustration: trace diagrams</h3>
+  <p>Systems are drawn as signal paths on a graticule. Single 1.5px strokes, channel color by discipline, labels in Martian Mono. Every diagram must describe something real.</p>
+  <div class="screen">
+    <div class="screen-bar"><span class="readout">God's Eye Lite · data path</span><span class="readout">Public architecture</span></div>
+    <svg viewBox="0 0 960 300" role="img" aria-labelledby="gelT" style="width:100%;height:auto;display:block">
+      <title id="gelT">God's Eye Lite architecture: public APIs and agency feeds flow to the browser app. GitHub Actions builds the camera catalog as static data. A Cloudflare Worker fills gaps browsers cannot reach directly. A service worker caches the app and saved map areas on the device.</title>
+      <g font-family="Martian Mono, monospace" font-size="11" fill="#A3AFBC">
+        <g fill="#0A0C0F" stroke-width="1.5">
+          <rect x="30" y="40" width="222" height="64" rx="6" stroke="#5EF0A0"/><rect x="30" y="196" width="222" height="64" rx="6" stroke="#5EF0A0"/>
+          <rect x="385" y="118" width="190" height="64" rx="6" stroke="#3CE3F0"/>
+          <rect x="740" y="40" width="190" height="64" rx="6" stroke="#FFC23D"/><rect x="740" y="196" width="190" height="64" rx="6" stroke="#9A8CFF"/>
+        </g>
+        <text x="46" y="66" fill="#5EF0A0">PUBLIC APIS</text><text x="46" y="88">orbits, quakes, weather</text>
+        <text x="46" y="222" fill="#5EF0A0">GITHUB ACTIONS</text><text x="46" y="244">camera catalog → JSON</text>
+        <text x="401" y="144" fill="#3CE3F0">BROWSER APP</text><text x="401" y="166">React · CesiumJS · PWA</text>
+        <text x="756" y="66" fill="#FFC23D">LOCAL KEY VAULT</text><text x="756" y="88">encrypted on device</text>
+        <text x="756" y="222" fill="#9A8CFF">SERVICE WORKER</text><text x="756" y="244">offline map areas</text>
+        <g fill="none" stroke-width="1.5">
+          <path d="M252 72H300Q320 72 320 92V130Q320 150 340 150H385" stroke="#5EF0A0"/>
+          <path d="M252 228H300Q320 228 320 208V170Q320 150 340 150" stroke="#5EF0A0"/>
+          <path d="M575 150H640Q660 150 660 130V92Q660 72 680 72H740" stroke="#FFC23D"/>
+          <path d="M660 170V208Q660 228 680 228H740" stroke="#9A8CFF"/>
+          <path d="M480 182V250H300" stroke="#3D4855" stroke-dasharray="3 4"/>
+        </g>
+        <text x="320" y="276" fill="#7D8996">CLOUDFLARE WORKER fills blocked feeds</text>
+        <g fill="#3CE3F0"><circle cx="385" cy="150" r="3"/><circle cx="575" cy="150" r="3"/></g>
+      </g>
+    </svg>
+  </div>
+  <h3>Iconography</h3>
+  <p>Authored on a 24px grid, 1.5px stroke, round caps and joins, 2px interior padding. Icons share the mark's stroke logic. They label; they never decorate headings.</p>
+  <div class="icons" id="iconGrid"></div>
+  <h3>Motion</h3>
+  <div class="motion-demo">
+    <div class="screen" style="min-height:280px;position:relative">
+      <canvas id="demoTrace" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"></canvas>
+      <div class="screen-bar" style="position:relative;background:rgba(16,20,26,.8)"><span class="readout" id="demoState">Run</span><button class="btn-copy" type="button" id="demoBtn">Re-trigger</button></div>
+    </div>
+    <div>
+      <dl class="kv">
+        <dt>Triggered</dt><dd>Things arrive unsettled and lock into place, then stop. One trigger sequence per page, on the hero.</dd>
+        <dt>Measured</dt><dd>Durations come from tokens: 120 / 200 / 320 / 640 ms. Exponential ease-out <code>cubic-bezier(.16,1,.3,1)</code>.</dd>
+        <dt>Quiet at rest</dt><dd>After a sequence completes, the canvas stops drawing. Nothing loops in the background.</dd>
+        <dt>Answers the pointer</dt><dd>Measurement cursors follow the pointer on screens; hover states shift by 3px or a border color, never bounce.</dd>
+        <dt>Reduced motion</dt><dd>Render the locked final frame immediately. Remove sweeps and smooth scrolling.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="components" aria-labelledby="h-cmp">
+  <div class="sec-head"><span class="sec-num">14</span><div><h2 id="h-cmp">UI components and interaction</h2><p>Every control is rebuilt in the instrument's vocabulary. These are live and keyboard operable.</p></div></div>
+  <h3 style="margin-top:0">Buttons</h3>
+  <div class="cmp-row">
+    <a class="btn btn-primary" href="#components">Book a discovery call<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="btn btn-secondary" href="#components">See the work</a>
+    <a class="btn btn-ghost" href="#components">View pricing</a>
+    <button class="btn btn-primary" type="button" aria-disabled="true"><svg class="spin" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2a6 6 0 1 0 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Sending</button>
+    <button class="btn btn-primary" type="button" disabled>Disabled</button>
+  </div>
+  <div class="scroll-x" style="margin-top:var(--s4)"><table class="spec"><thead><tr><th>Variant</th><th>Use</th><th>Rule</th></tr></thead><tbody>
+    <tr><td>Primary</td><td>The single main action in a view</td><td>One per viewport. Graticule text on Cyan.</td></tr>
+    <tr><td>Secondary</td><td>Alternative paths</td><td>Ink 450 border, turns Cyan on hover.</td></tr>
+    <tr><td>Ghost</td><td>Inline and tertiary actions</td><td>Always underlined so it reads as a link.</td></tr>
+  </tbody></table></div>
+  <h3>Form fields</h3>
+  <div class="cols">
+    <div class="field"><label for="f1">Work email</label><input class="input" id="f1" type="email" placeholder="you@company.com" autocomplete="email"><span class="hint">Used only to reply about your project.</span></div>
+    <div class="field err"><label for="f2">Website</label><input class="input" id="f2" type="text" value="mycompany" aria-invalid="true" aria-describedby="f2m"><span class="msg" id="f2m"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M7 4v3.5M7 9.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>Add the full address, like mycompany.com</span></div>
+    <div class="field"><label for="f3">What do you need?</label><select class="input" id="f3"><option>CH1 Platforms: a new website</option><option>CH2 Intelligence: an AI tool</option><option>CH3 Security: an audit</option><option>CH4 Operations: hosting and care</option></select></div>
+  </div>
+  <h3>Channel tags and readout strip</h3>
+  <div class="cmp-row" style="margin-bottom:var(--s4)"><span class="ch" style="--c:var(--ch1)"><i></i><b>CH1</b> Platforms</span><span class="ch" style="--c:var(--ch2)"><i></i><b>CH2</b> Intelligence</span><span class="ch" style="--c:var(--ch3)"><i></i><b>CH3</b> Security</span><span class="ch" style="--c:var(--ch4)"><i></i><b>CH4</b> Operations</span></div>
+  <nav class="readout-strip" aria-label="Service channels example">
+    <a href="#components"><span class="readout" style="color:var(--ch1)">CH1</span><span class="v">Platforms</span><span class="readout">from $3,500</span></a>
+    <a href="#components"><span class="readout" style="color:var(--ch2)">CH2</span><span class="v">Intelligence</span><span class="readout">from $1,200</span></a>
+    <a href="#components"><span class="readout" style="color:var(--ch3)">CH3</span><span class="v">Security</span><span class="readout">from $850</span></a>
+    <a href="#components"><span class="readout" style="color:var(--ch4)">CH4</span><span class="v">Operations</span><span class="readout">from $350/mo</span></a>
+  </nav>
+  <h3>Price rows</h3>
+  <div>
+    <div class="price-row"><span class="name">Business Site</span><span class="p">$3,500</span><span class="d">3–4 WEEKS · 30 DAYS SUPPORT</span></div>
+    <div class="price-row"><span class="name">Custom Platform</span><span class="p">$7,500</span><span class="d">5–7 WEEKS · 60 DAYS SUPPORT</span></div>
+    <div class="price-row"><span class="name">Enterprise System</span><span class="p">$15,000+</span><span class="d">8–12 WEEKS · 90 DAYS SUPPORT</span></div>
+  </div>
+  <h3>Feedback</h3>
+  <div class="cmp-row"><span class="toast" role="status"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5 5.5 10l6-6.5" stroke="var(--ch4)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Copied to clipboard</span></div>
+  <h3>Interaction principles</h3>
+  <ul class="muted" style="padding-left:1.1em;display:grid;gap:6px;max-width:70ch">
+    <li>Controls name their action: "Book a discovery call", never "Submit" or "Learn more".</li>
+    <li>Hover reveals measurement, not decoration: borders turn Cyan, arrows advance 3px.</li>
+    <li>Every interactive element has a 44px minimum target and a visible Cyan focus ring.</li>
+    <li>Errors state what is wrong and how to fix it, next to the field.</li>
+    <li>No modals for tasks that do not need interruption. Forms live in the page.</li>
+  </ul>
+</section>
+
+<section class="section" id="access" aria-labelledby="h-a11y">
+  <div class="sec-head"><span class="sec-num">15</span><div><h2 id="h-a11y">Accessibility and responsive rules</h2><p>WCAG 2.2 AA is the floor. The founder holds W3C/WAI accessibility certification, so the brand must visibly live up to it.</p></div></div>
+  <div class="cols">
+    <div><h4>Contrast</h4><p class="muted">Body text ≥ 4.5:1, large text and UI boundaries ≥ 3:1. Use the matrix in section 10. Channel colors never carry body text on paper.</p></div>
+    <div><h4>Focus</h4><p class="muted">2px Cyan outline with 2px offset on every focusable element. Never remove focus styles. Skip link first in the tab order.</p></div>
+    <div><h4>Reduced motion</h4><p class="muted">Respect <code>prefers-reduced-motion</code>: static locked trace, no sweeps, no smooth scroll, no parallax. Motion is never required to understand content.</p></div>
+    <div><h4>Not color alone</h4><p class="muted">Channels always show their number and name. States pair color with an icon and text.</p></div>
+    <div><h4>Targets and type</h4><p class="muted">44 × 44px minimum targets. Body text at least 16px. Text resizes to 200% without loss.</p></div>
+    <div><h4>Canvas</h4><p class="muted">Decorative canvases are <code>aria-hidden</code>; every diagram has a text alternative. Canvases pause when off screen.</p></div>
+  </div>
+  <h3>Breakpoints</h3>
+  <div class="scroll-x"><table class="spec"><thead><tr><th>Name</th><th>Min width</th><th>Grid</th><th>Behavior</th></tr></thead><tbody>
+    <tr><td>Phone</td><td class="mono">0</td><td>4 col</td><td>Single column. Hero trace sits above the headline. Readout strip becomes 2 × 2.</td></tr>
+    <tr><td>Tablet</td><td class="mono">768px</td><td>8 col</td><td>Two-column content. Navigation stays collapsed.</td></tr>
+    <tr><td>Laptop</td><td class="mono">1080px</td><td>12 col</td><td>Full navigation. Hero text left, trace right.</td></tr>
+    <tr><td>Wide</td><td class="mono">1440px</td><td>12 col</td><td>Content caps at 1280px; graticule screens may run full bleed.</td></tr>
+  </tbody></table></div>
+</section>

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-09T13:40:00-04:00",
+  "title": "Design System: Jeremy Anderson Tech",
+  "extensions": {
+    "colorMeta": {
+      "graticule": { "role": "neutral", "displayName": "Graticule", "tonalRamp": ["#07090B","#0A0C0F","#10141A","#161B22","#222A34","#2E3845","#3D4855","#5A6675"] },
+      "ice": { "role": "neutral", "displayName": "Ice", "tonalRamp": ["#5A6675","#7D8996","#A3AFBC","#C3CDD7","#D6DEE6","#E6ECF2","#F0F4F7","#F8FAFC"] },
+      "ch1-cyan": { "role": "primary", "displayName": "Channel Cyan", "tonalRamp": ["#003A40","#005A63","#007C88","#00A3B2","#14C6D6","#3CE3F0","#7AEDF6","#C2F7FB"] },
+      "ch2-ultraviolet": { "role": "secondary", "displayName": "Ultraviolet", "tonalRamp": ["#221A5C","#33288A","#4636B3","#5B4BD6","#7A6BEA","#9A8CFF","#BBB1FF","#DDD8FF"] },
+      "ch3-amber": { "role": "tertiary", "displayName": "Amber", "tonalRamp": ["#3D2900","#5E3F00","#8A5800","#B87600","#E29A10","#FFC23D","#FFD579","#FFEBBE"] },
+      "ch4-signal": { "role": "tertiary", "displayName": "Signal", "tonalRamp": ["#04331F","#065130","#0A7646","#14A060","#2CC97F","#5EF0A0","#97F5C2","#D1FBE4"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and page-head headlines, Archivo width 125%." },
+      "headline": { "displayName": "Headline", "purpose": "Section heads, width 118%." },
+      "title": { "displayName": "Title", "purpose": "Component headings, width 112%." },
+      "body": { "displayName": "Body", "purpose": "Prose at normal width, 58–70ch." },
+      "label": { "displayName": "Readout", "purpose": "Data only: prices, timings, channel IDs, coordinates." }
+    },
+    "shadows": [
+      { "name": "raised", "value": "0 10px 30px -8px rgba(0,0,0,.6)", "purpose": "Toasts and lifted panels only." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(.16,1,.3,1)", "purpose": "All state transitions." },
+      { "name": "fast", "value": "120ms", "purpose": "Press feedback." },
+      { "name": "base", "value": "200ms", "purpose": "Hover color and border changes." },
+      { "name": "slow", "value": "320ms", "purpose": "Strip underline reveal." },
+      { "name": "sweep", "value": "760ms per sweep, 420ms burn-in", "purpose": "Hero trigger-lock sequence, once per page." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "640px" }, { "name": "small", "value": "760px" }, { "name": "tablet", "value": "860px" }, { "name": "laptop", "value": "1080px" }
+    ]
+  },
+  "components": [
+    { "name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "The one main action per view.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Book a discovery call<svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M3 8h10M9 4l4 4-4 4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border-radius:6px;background:#3CE3F0;color:#0A0C0F;font-family:Archivo,sans-serif;font-stretch:108%;font-weight:600;font-size:15px;text-decoration:none;transition:background .2s cubic-bezier(.16,1,.3,1)}.ds-btn-primary:hover{background:#7AEDF6}.ds-btn-primary:hover svg{transform:translateX(3px)}.ds-btn-primary svg{transition:transform .2s cubic-bezier(.16,1,.3,1)}.ds-btn-primary:focus-visible{outline:2px solid #3CE3F0;outline-offset:2px}" },
+    { "name": "Secondary Button", "kind": "button", "refersTo": "button-secondary", "description": "Alternative paths.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">See the work</a>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;min-height:48px;padding:0 20px;border-radius:6px;border:1px solid #5A6675;color:#E6ECF2;background:transparent;font-family:Archivo,sans-serif;font-stretch:108%;font-weight:600;font-size:15px;text-decoration:none;transition:border-color .2s,color .2s}.ds-btn-secondary:hover{border-color:#3CE3F0;color:#3CE3F0}.ds-btn-secondary:focus-visible{outline:2px solid #3CE3F0;outline-offset:2px}" },
+    { "name": "Text Input", "kind": "input", "refersTo": "input", "description": "Form field with cyan focus ring.",
+      "html": "<label class=\"ds-field\"><span>Work email</span><input class=\"ds-input\" placeholder=\"you@company.com\"></label>",
+      "css": ".ds-field{display:grid;gap:6px;color:#E6ECF2;font-family:Archivo,sans-serif;font-size:15px}.ds-input{min-height:48px;background:#07090B;color:#E6ECF2;border:1px solid #5A6675;border-radius:6px;padding:11px 13px;font:inherit;caret-color:#3CE3F0}.ds-input::placeholder{color:#7D8996}.ds-input:focus{outline:none;border-color:#3CE3F0;box-shadow:0 0 0 3px rgba(60,227,240,.18)}" },
+    { "name": "Channel Tag", "kind": "chip", "refersTo": "channel-tag", "description": "Identifies a service channel.",
+      "html": "<span class=\"ds-ch\" style=\"--c:#9A8CFF\"><i></i><b>CH2</b> Intelligence</span>",
+      "css": ".ds-ch{display:inline-flex;align-items:center;gap:.5em;font-family:'Martian Mono',monospace;font-stretch:90%;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#E6ECF2;border:1px solid #2E3845;border-radius:2px;padding:3px 7px 3px 6px}.ds-ch i{width:8px;height:8px;border-radius:50%;background:var(--c)}.ds-ch b{font-weight:500;color:var(--c)}" },
+    { "name": "Channel Strip", "kind": "nav", "description": "Readout navigation into the four channels.",
+      "html": "<nav class=\"ds-strip\"><a href=\"#\" style=\"--c:#3CE3F0\"><span class=\"v\"><span class=\"id\">CH1</span> Platforms</span><span class=\"p\">from $3,500</span></a><a href=\"#\" style=\"--c:#FFC23D\"><span class=\"v\"><span class=\"id\">CH3</span> Security</span><span class=\"p\">from $850</span></a></nav>",
+      "css": ".ds-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#222A34}.ds-strip a{display:grid;gap:4px;background:#07090B;padding:16px 24px;text-decoration:none;color:#E6ECF2}.ds-strip a:hover{background:#10141A}.ds-strip .v{font-family:Archivo,sans-serif;font-stretch:115%;font-weight:600}.ds-strip .id{font-family:'Martian Mono',monospace;font-size:12px;color:var(--c)}.ds-strip .p{font-family:'Martian Mono',monospace;font-size:12px;color:#A3AFBC}" },
+    { "name": "Price Row", "kind": "custom", "description": "Published package price with timing readout.",
+      "html": "<div class=\"ds-price\"><span class=\"n\">Custom Platform</span><span class=\"a\">$7,500</span><span class=\"t\">5–7 WEEKS</span></div>",
+      "css": ".ds-price{display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:baseline;padding:24px 0;border-bottom:1px solid #222A34;color:#E6ECF2}.ds-price .n{font-family:Archivo,sans-serif;font-stretch:112%;font-weight:600;font-size:19px}.ds-price .a{font-family:'Martian Mono',monospace;font-size:17px}.ds-price .t{font-family:'Martian Mono',monospace;font-size:12px;color:#A3AFBC}" }
+  ],
+  "narrative": {
+    "northStar": "The Calibrated Instrument",
+    "overview": "Every page is a modern digital oscilloscope screen. A graticule-black ground carries faint 10 × 8 measurement divisions; one beam-drawn trace arrives unsettled, triggers, and locks steady. The JAT monogram is that trace: a step response whose transient spells J, A and T.",
+    "keyCharacteristics": ["Graticule-black ground with 10 × 8 divisions and centre-axis tick rulers on signature screens","One trace, one lock sequence per page; canvases stop drawing when settled","Channel colors as identifiers (CH1 cyan, CH2 ultraviolet, CH3 amber, CH4 signal)","Expanded grotesk display, normal-width body, mono only for data","Hairline frames, small radii, no decorative shadows"],
+    "rules": [
+      { "name": "The Identifier Rule", "body": "Channel colors label a service line or a state. They never fill large areas, never tint body text, and always travel with their CH number and name.", "section": "colors" },
+      { "name": "The Cyan-Carries-Ink Rule", "body": "Text on Channel Cyan is always Graticule (12.5:1).", "section": "colors" },
+      { "name": "The Data-Only Mono Rule", "body": "Martian Mono appears only when the content is data. A headline in mono is a costume.", "section": "typography" },
+      { "name": "The Bezel Rule", "body": "Glass exists only where a trace moves beneath it. It is never a card style.", "section": "elevation" }
+    ],
+    "dos": ["Do draw systems as single-stroke trace diagrams on a graticule, labeled in Martian Mono.","Do keep channel color to identifiers with their CH number and name.","Do publish prices and timings in mono readouts.","Do stop canvases once the trace has locked."],
+    "donts": ["Don't add glows, bloom or gradients to the monogram or traces.","Don't use glowing brains, particle spheres, padlocks, binary rain or AI-generated people.","Don't place kicker labels above headings; channel IDs sit inline with names.","Don't use glass as a card style or monospace for headlines."]
+  }
+}

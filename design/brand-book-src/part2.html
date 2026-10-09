@@ -1,0 +1,373 @@
+<style>
+/* identity + color + type */
+.logo-stage{display:grid;place-items:center;min-height:300px;padding:var(--s7) var(--s5)}
+.logo-stage svg{display:block}
+.explore{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:var(--s4)}
+.explore figure{margin:0;border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden;background:var(--panel)}
+.explore .art{aspect-ratio:3/2;display:grid;place-items:center;background:var(--ink-950);border-bottom:1px solid var(--line)}
+.explore figcaption{padding:var(--s4) var(--s5) var(--s5);font-size:.9375rem;color:var(--fg-muted)}
+.explore figcaption strong{display:flex;justify-content:space-between;gap:var(--s3);color:var(--fg);font-family:var(--f-display);font-stretch:110%;font-weight:600;margin-bottom:4px}
+.verdict{font-family:var(--f-mono);font-size:.625rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:2px;border:1px solid var(--line-strong);color:var(--fg-subtle);align-self:center;font-stretch:90%}
+.verdict.go{color:var(--ink-900);background:var(--ch4);border-color:var(--ch4)}
+.lockups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--s4)}
+.lockups figure{margin:0}
+.lockups .art{border:1px solid var(--line);border-radius:var(--r-panel);display:grid;place-items:center;min-height:200px;padding:var(--s6)}
+.lockups figcaption{margin-top:var(--s2);font-size:.875rem;color:var(--fg-muted)}
+.on-paper{background:var(--paper);--mk:var(--ch1-deep);--lk-name:var(--paper-ink);--lk-tech:var(--paper-muted);--lk-rule:#9AA6B2}
+.on-ink{background:var(--ink-950)}
+.on-cyan{background:var(--ch1);--mk:var(--ink-900);--lk-name:var(--ink-900);--lk-tech:#0d3d43;--lk-rule:#0d5a62}
+.on-mono{background:var(--ink-850);--mk:var(--ink-100);--lk-name:var(--ink-100);--lk-tech:var(--ink-300)}
+.construct{position:relative}
+.construct svg{width:100%;height:auto;display:block}
+.misuse{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:var(--s3)}
+.misuse figure{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+.misuse .art{height:130px;display:grid;place-items:center;background:var(--ink-950);position:relative;border-bottom:1px solid var(--line);overflow:hidden}
+.misuse .art::after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent calc(50% - 1px),rgba(255,92,122,.75) 50%,transparent calc(50% + 1px))}
+.misuse figcaption{padding:10px 12px;font-size:.8125rem;color:var(--fg-muted);display:flex;gap:8px;align-items:baseline}
+.misuse figcaption svg{flex:none;position:relative;top:2px}
+.code{position:relative;background:var(--ink-950);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+.code pre{margin:0;padding:var(--s5);overflow:auto;font-family:var(--f-mono);font-size:.75rem;line-height:1.7;color:var(--fg-muted);font-stretch:90%;max-height:520px}
+.code pre .k{color:var(--ch2)}.code pre .s{color:var(--ch4)}.code pre .c{color:var(--fg-subtle)}.code pre .v{color:var(--ch1)}
+.code header{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);padding:8px 8px 8px 14px;border-bottom:1px solid var(--line);background:var(--panel)}
+.btn-copy{font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.04em;text-transform:uppercase;color:var(--fg);background:var(--ink-800);border:1px solid var(--line-control);border-radius:var(--r-control);padding:6px 10px;cursor:pointer;min-height:32px;font-stretch:90%}
+.btn-copy:hover{border-color:var(--ch1);color:var(--ch1)}
+.btn-copy[data-done]{color:var(--ink-900);background:var(--ch4);border-color:var(--ch4)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:var(--s3)}
+.sw{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);display:grid;grid-template-rows:auto 1fr}
+.sw .chip{height:96px;background:var(--c);position:relative;display:flex;align-items:flex-end;justify-content:space-between;padding:8px 10px;font-family:var(--f-mono);font-size:.6875rem;font-stretch:90%}
+.sw .chip.big{height:150px}
+.sw .info{padding:10px 12px;display:grid;gap:2px;font-size:.8125rem}
+.sw .info b{font-family:var(--f-display);font-stretch:108%;font-weight:600;font-size:.9375rem}
+.sw .info span{font-family:var(--f-mono);color:var(--fg-muted);font-size:.6875rem;font-stretch:90%;font-variant-numeric:tabular-nums}
+.ramp{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.ramp div{height:84px;background:var(--c);display:flex;align-items:flex-end;padding:6px;font-family:var(--f-mono);font-size:.5625rem;color:var(--t,var(--ink-100));font-stretch:85%}
+@media (max-width:700px){.ramp{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.ratio{font-family:var(--f-mono);font-size:.75rem;font-variant-numeric:tabular-nums;font-stretch:90%}
+.pass{color:var(--ch4)}.fail{color:var(--danger)}.large{color:var(--ch3)}
+.matrix td,.matrix th{text-align:center!important;padding:10px 8px!important}
+.matrix td:first-child,.matrix th:first-child{text-align:left!important}
+.matrix .sample{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1px solid var(--line-strong)}
+.specimen{border:1px solid var(--line);border-radius:var(--r-panel);padding:var(--s6);background:var(--panel);overflow:hidden}
+.specimen .big{font-family:var(--f-display);font-size:clamp(4rem,12vw,10rem);line-height:.85;font-stretch:125%;font-weight:640;letter-spacing:-.04em}
+.specimen .row{display:flex;flex-wrap:wrap;gap:var(--s5);align-items:baseline;margin-top:var(--s4)}
+.wdth-scrub{display:grid;gap:var(--s3);margin-top:var(--s5)}
+.wdth-scrub label{font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);display:flex;justify-content:space-between;font-stretch:90%}
+input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
+.scale-row{display:grid;grid-template-columns:150px 1fr;gap:var(--s5);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.scale-row .meta{font-family:var(--f-mono);font-size:.6875rem;color:var(--fg-subtle);line-height:1.6;font-stretch:90%}
+.scale-row .sample{min-width:0;overflow-wrap:anywhere}
+@media (max-width:640px){.scale-row{grid-template-columns:1fr;gap:4px}}
+.spacebars{display:grid;gap:8px}
+.spacebars div{display:grid;grid-template-columns:72px 56px 1fr;align-items:center;gap:var(--s3);font-family:var(--f-mono);font-size:.6875rem;color:var(--fg-muted);font-stretch:90%}
+.spacebars i{height:12px;background:var(--ch1);opacity:.85;border-radius:1px;display:block}
+.elev{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:var(--s5);padding:var(--s7) var(--s5);background:var(--ink-950);border:1px solid var(--line);border-radius:var(--r-panel)}
+.elev div{height:120px;border-radius:var(--r-panel);padding:12px;display:flex;flex-direction:column;justify-content:space-between;font-size:.8125rem}
+.elev .e0{background:transparent;border:1px dashed var(--line)}
+.elev .e1{background:var(--ink-850);border:1px solid var(--line)}
+.elev .e2{background:var(--ink-800);border:1px solid var(--line-strong);box-shadow:0 1px 0 rgba(230,236,242,.04) inset,0 10px 30px -8px rgba(0,0,0,.6)}
+.elev .e3{background:rgba(16,20,26,.62);backdrop-filter:blur(14px) saturate(120%);border:1px solid rgba(230,236,242,.12);box-shadow:0 1px 0 rgba(230,236,242,.08) inset,0 24px 48px -12px rgba(0,0,0,.7)}
+.elev-wrap{position:relative}
+.elev-wrap canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:var(--r-panel)}
+.radii{display:flex;flex-wrap:wrap;gap:var(--s5)}
+.radii div{width:96px;height:72px;border:1px solid var(--ch1);display:grid;place-items:end start;padding:8px;font-family:var(--f-mono);font-size:.6875rem;color:var(--fg-muted);font-stretch:90%}
+</style>
+<!--SPRITE-->
+<aside class="rail" aria-label="Brand book index">
+  <a href="#top" aria-label="Jeremy Anderson Tech brand book, top"><svg class="lockup" viewBox="1 6 468 68"><use href="#lk-h"/></svg></a>
+  <nav aria-label="Sections">
+    <ol id="toc">
+      <li><a href="#positioning"><span class="n">01</span>Positioning</a></li>
+      <li><a href="#purpose"><span class="n">02</span>Purpose &amp; values</a></li>
+      <li><a href="#audiences"><span class="n">03</span>Audiences</a></li>
+      <li><a href="#architecture"><span class="n">04</span>Brand architecture</a></li>
+      <li><a href="#landscape"><span class="n">05</span>Competitive landscape</a></li>
+      <li><a href="#voice"><span class="n">06</span>Personality &amp; voice</a></li>
+      <li><a href="#taglines"><span class="n">07</span>Taglines</a></li>
+      <li><a href="#logo"><span class="n">08</span>Logo system</a></li>
+      <li><a href="#vector"><span class="n">09</span>Vector files</a></li>
+      <li><a href="#color"><span class="n">10</span>Color</a></li>
+      <li><a href="#type"><span class="n">11</span>Typography</a></li>
+      <li><a href="#grid"><span class="n">12</span>Grid &amp; space</a></li>
+      <li><a href="#imagery"><span class="n">13</span>Imagery &amp; motion</a></li>
+      <li><a href="#components"><span class="n">14</span>UI components</a></li>
+      <li><a href="#access"><span class="n">15</span>Accessibility</a></li>
+      <li><a href="#applications"><span class="n">16</span>Applications</a></li>
+      <li><a href="#tokens"><span class="n">17</span>Design tokens</a></li>
+    </ol>
+  </nav>
+  <div class="meta readout">v1.0 · 2026-10-09<br>Future Systems · Calibrated Signal</div>
+  <label class="jump" for="jumpSel"><span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Jump to section</span>
+    <select id="jumpSel" style="background:transparent;color:inherit;border:0;font:inherit;max-width:100%">
+      <option value="#top">Contents</option>
+      <option value="#positioning">01 Positioning</option><option value="#purpose">02 Purpose &amp; values</option><option value="#audiences">03 Audiences</option><option value="#architecture">04 Architecture</option><option value="#landscape">05 Landscape</option><option value="#voice">06 Voice</option><option value="#taglines">07 Taglines</option><option value="#logo">08 Logo</option><option value="#vector">09 Vector</option><option value="#color">10 Color</option><option value="#type">11 Type</option><option value="#grid">12 Grid</option><option value="#imagery">13 Imagery &amp; motion</option><option value="#components">14 Components</option><option value="#access">15 Accessibility</option><option value="#applications">16 Applications</option><option value="#tokens">17 Tokens</option>
+    </select>
+  </label>
+</aside>
+
+<main id="top">
+<header class="cover" aria-label="Cover">
+  <div class="graticule" aria-hidden="true"></div>
+  <canvas id="coverTrace" aria-hidden="true"></canvas>
+  <div class="cover-inner">
+    <h1>Brand<br>Book</h1>
+    <p class="sub">Jeremy Anderson Tech. The strategy, identity and production system for a founder-led engineering studio that builds, secures and runs the systems a business depends on.</p>
+  </div>
+  <div class="cover-strip" role="list">
+    <div role="listitem"><span class="readout">Version</span><span class="v">1.0 · Oct 9, 2026</span></div>
+    <div role="listitem"><span class="readout">Direction</span><span class="v">01 Future Systems</span></div>
+    <div role="listitem"><span class="readout">World</span><span class="v">Calibrated Signal</span></div>
+    <div role="listitem"><span class="readout">Owner</span><span class="v">Jeremy Anderson</span></div>
+    <div role="listitem"><span class="readout">Status</span><span class="v" style="color:var(--ch4)">Proposed for approval</span></div>
+  </div>
+</header>
+
+<section class="section" id="positioning" aria-labelledby="h-pos">
+  <div class="sec-head"><span class="sec-num">01</span><div><h2 id="h-pos">Positioning</h2><p>What Jeremy Anderson Tech is, who it is for, and the claim no neighbor can truthfully copy.</p></div></div>
+  <p class="statement">For organizations that run on their website and software, Jeremy Anderson Tech is the engineering studio that <em>designs, builds, secures and runs the whole system</em>, so one accountable expert owns the outcome.</p>
+  <h3>Positioning statement</h3>
+  <dl class="kv">
+    <dt>For</dt><dd>Small and mid-sized businesses in Central Massachusetts and Greater Boston, plus research organizations and funded teams anywhere, whose website, tools and data have become operational infrastructure.</dd>
+    <dt>Who need</dt><dd>Systems that work on day one and keep working: secure, accessible, fast, found in search and AI answers, and understood by the people who pay for them.</dd>
+    <dt>JAT is</dt><dd>A founder-led engineering studio covering web platforms, applied AI, cybersecurity and infrastructure under one roof.</dd>
+    <dt>Unlike</dt><dd>Web shops that hand off at launch, large agencies that route you through account managers, and IT providers who do not build software.</dd>
+    <dt>Because</dt><dd>The person who architects the system also hardens it, hosts it and answers when it needs attention, at prices published before the first call.</dd>
+  </dl>
+  <h3>Strategic differentiation</h3>
+  <div class="pillars">
+    <div><h4><span class="ch" style="--c:var(--ch1)"><i></i>One</span>Accountable lead</h4><p>One engineer spans web, AI, security and hosting. No hand-offs between vendors, no blame gaps.</p></div>
+    <div><h4><span class="ch" style="--c:var(--ch3)"><i></i>Default</span>Secure and accessible</h4><p>Hardening and WCAG 2.2 AA are part of every build, backed by W3C/WAI accessibility certification, never upsold.</p></div>
+    <div><h4><span class="ch" style="--c:var(--ch2)"><i></i>Open</span>Published pricing</h4><p>Fixed-fee packages and hourly rates are on the website. Scope changes go through written change orders.</p></div>
+    <div><h4><span class="ch" style="--c:var(--ch4)"><i></i>Run</span>Built to be operated</h4><p>Managed hosting, monitoring and care plans continue the work after launch on infrastructure JAT runs.</p></div>
+    <div><h4><span class="ch" style="--c:var(--ink-100)"><i></i>Public</span>Proof you can inspect</h4><p>Open-source projects with live demos and public code, so buyers judge the engineering directly.</p></div>
+  </div>
+  <h3>Current state and the move</h3>
+  <div class="rewrite">
+    <div><h4 class="muted">Today on jeremyanderson.tech</h4><p class="muted" style="margin:0">A freelancer portfolio. The hero leads with a personal name and the label "Software Architect" while the page title says "Full-Stack Developer &amp; WordPress Engineer". Skills are grouped by technology. Services, prices and process are strong but buried two clicks deep.</p></div>
+    <div><h4>The move</h4><p style="margin:0">An agency presentation that leads with the outcome, organizes everything into four service channels, puts pricing and process in plain view, and lets the open-source work prove the engineering. Jeremy stays visible as the founder and the person you will work with.</p></div>
+  </div>
+</section>
+
+<section class="section" id="purpose" aria-labelledby="h-pur">
+  <div class="sec-head"><span class="sec-num">02</span><div><h2 id="h-pur">Purpose, mission, vision, values</h2><p>The reasons behind every decision in this book.</p></div></div>
+  <div class="two">
+    <dl class="kv">
+      <dt>Purpose</dt><dd class="lede" style="font-size:1.125rem">Give organizations without an engineering department technology they can depend on.</dd>
+      <dt>Mission</dt><dd>Design, build, secure and run web platforms, software and AI systems that hold steady under real use, and explain them in plain language.</dd>
+      <dt>Vision</dt><dd>A region where a twenty-person business runs on systems engineered as carefully as an enterprise's.</dd>
+    </dl>
+    <div class="screen" style="min-height:240px"><canvas id="miniTrace" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%"></canvas><div class="screen-bar" style="position:relative"><span class="readout">Step response</span><span class="readout" style="color:var(--ch4)">Settled</span></div><p class="cap" style="position:absolute;left:14px;bottom:10px;margin:0">The mark is a step response: a system moves to a new level and settles there.</p></div>
+  </div>
+  <h3>Core values</h3>
+  <div class="values">
+    <div><h4>Measure first</h4><p>Audit, test and benchmark before recommending. Decisions follow evidence.</p></div>
+    <div><h4>Plain language</h4><p>Every recommendation is explained so the person paying for it can repeat it to their team.</p></div>
+    <div><h4>Secure by default</h4><p>Least privilege, current software and monitored logs are the starting point of every build.</p></div>
+    <div><h4>Built for everyone</h4><p>Accessibility is a requirement, tested with keyboards and screen readers before launch.</p></div>
+    <div><h4>Own the outcome</h4><p>If something we built breaks, we answer for it. Misestimates are not billed.</p></div>
+    <div><h4>Show the work</h4><p>Prices, process and code are public wherever possible.</p></div>
+  </div>
+</section>
+
+<section class="section" id="audiences" aria-labelledby="h-aud">
+  <div class="sec-head"><span class="sec-num">03</span><div><h2 id="h-aud">Audiences and personas</h2><p>Lead with small and mid-sized businesses; keep two strong secondary paths open.</p></div></div>
+  <p class="note">Personas are composite archetypes built from the services JAT sells and the questions buyers ask. They are planning tools, not real clients, and must never appear on the website as testimonials.</p>
+  <div class="cols" style="margin-top:var(--s5)">
+    <article class="persona">
+      <header><h4>The owner-operator</h4><span class="ch" style="--c:var(--ch1)"><i></i>Primary</span></header>
+      <dl>
+        <div><dt>Situation</dt><dd>Runs a 10–60 person service business in Worcester County or MetroWest. The website was built years ago by someone who is no longer reachable.</dd></div>
+        <div><dt>Wants</dt><dd>More qualified leads, a site that looks as good as the work, and one person who answers.</dd></div>
+        <div><dt>Fears</dt><dd>Getting hacked, paying for a rebuild that fails, being talked down to.</dd></div>
+        <div><dt>Buys</dt><dd>Business Site or Custom Platform, Security Hardening, Watchdog or Guardian care.</dd></div>
+        <div><dt>Message</dt><dd>"Fixed price, plain answers, and the person who builds it keeps it running."</dd></div>
+      </dl>
+    </article>
+    <article class="persona">
+      <header><h4>The research program lead</h4><span class="ch" style="--c:var(--ch2)"><i></i>Secondary</span></header>
+      <dl>
+        <div><dt>Situation</dt><dd>Coordinates a study, lab or scientific program at a university, hospital or biotech. Owns a site that recruits participants or communicates findings.</dd></div>
+        <div><dt>Wants</dt><dd>Accessible, compliant pages, careful data handling, tools that make complex science legible.</dd></div>
+        <div><dt>Fears</dt><dd>Compliance findings, broken migrations, vendors who do not understand research.</dd></div>
+        <div><dt>Buys</dt><dd>Custom Platform, MDPA Compliance Review, Technical SEO, Partner care.</dd></div>
+        <div><dt>Message</dt><dd>"Accessibility-certified engineering that respects how research works."</dd></div>
+      </dl>
+    </article>
+    <article class="persona">
+      <header><h4>The funded operator</h4><span class="ch" style="--c:var(--ch3)"><i></i>Secondary</span></header>
+      <dl>
+        <div><dt>Situation</dt><dd>Founder or operations lead at a startup or mid-market company with real data and repetitive workflows.</dd></div>
+        <div><dt>Wants</dt><dd>AI tools that solve one operational problem, private by design, shipped fast by a senior builder.</dd></div>
+        <div><dt>Fears</dt><dd>Hype projects that never reach production, data leaving their control, hiring too early.</dd></div>
+        <div><dt>Buys</dt><dd>AI Discovery, Custom AI Tool, SIEM/SOC Setup, Embedded Dev retainer.</dd></div>
+        <div><dt>Message</dt><dd>"Production AI on your data, with security designed in from the first sketch."</dd></div>
+      </dl>
+    </article>
+  </div>
+  <h3>Buying motivations, in order</h3>
+  <div class="scroll-x"><table class="spec">
+    <thead><tr><th>Motivation</th><th>What the buyer needs to see</th><th>Where the brand answers it</th></tr></thead>
+    <tbody>
+      <tr><td>Trust</td><td>A real person, real work, a clear process</td><td>Founder page, open-source case studies, approach page</td></tr>
+      <tr><td>Cost certainty</td><td>Prices before the call</td><td>Published packages and hourly rates</td></tr>
+      <tr><td>Risk reduction</td><td>Security, backups, support windows</td><td>Security channel, care plans, post-launch support terms</td></tr>
+      <tr><td>Growth</td><td>Leads, search and AI-answer visibility</td><td>Platforms and Operations channels, SEO/AEO/GEO</td></tr>
+      <tr><td>Speed</td><td>Start dates and timelines</td><td>Timeline readouts on every package</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="section" id="architecture" aria-labelledby="h-arch">
+  <div class="sec-head"><span class="sec-num">04</span><div><h2 id="h-arch">Brand architecture</h2><p>One masterbrand, four service channels, three ways to engage.</p></div></div>
+  <p>Jeremy Anderson Tech is a branded house. Services are grouped into four channels, named the way an oscilloscope names its inputs. Each channel owns one color, used only as an identifier. The channels describe what the client gets; the services underneath describe how.</p>
+  <div class="screen" style="margin-top:var(--s5)">
+    <div class="screen-body" style="padding:var(--s5)">
+      <svg viewBox="0 0 960 360" role="img" aria-labelledby="archT" style="width:100%;height:auto;display:block;min-width:0">
+        <title id="archT">Brand architecture: the Jeremy Anderson Tech masterbrand feeds four channels: CH1 Platforms, CH2 Intelligence, CH3 Security, CH4 Operations, each with its services.</title>
+        <g font-family="Martian Mono, monospace" font-size="11" fill="#A3AFBC">
+          <rect x="370" y="14" width="220" height="56" rx="8" fill="#10141A" stroke="#2E3845"/>
+          <use href="#lk-h" x="392" y="27" width="176" height="26" style="--lk-rule:#3D4855"/>
+          <path d="M480 70V110M120 110H840M120 110V140M360 110V140M600 110V140M840 110V140" stroke="#3D4855" stroke-width="1.5" fill="none"/>
+          <g>
+            <rect x="20" y="140" width="200" height="200" rx="8" fill="#0A0C0F" stroke="#3CE3F0" stroke-opacity=".55"/>
+            <text x="36" y="166" fill="#3CE3F0">CH1</text><text x="36" y="192" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="19" font-weight="600" style="font-stretch:115%">Platforms</text>
+            <text x="36" y="226">Web design</text><text x="36" y="248">WordPress engineering</text><text x="36" y="270">Custom software</text><text x="36" y="292">Progressive web apps</text>
+          </g>
+          <g>
+            <rect x="260" y="140" width="200" height="200" rx="8" fill="#0A0C0F" stroke="#9A8CFF" stroke-opacity=".55"/>
+            <text x="276" y="166" fill="#9A8CFF">CH2</text><text x="276" y="192" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="19" font-weight="600" style="font-stretch:115%">Intelligence</text>
+            <text x="276" y="226">AI development</text><text x="276" y="248">Automation</text><text x="276" y="270">Private LLMs &amp; RAG</text><text x="276" y="292">Integrations &amp; APIs</text>
+          </g>
+          <g>
+            <rect x="500" y="140" width="200" height="200" rx="8" fill="#0A0C0F" stroke="#FFC23D" stroke-opacity=".55"/>
+            <text x="516" y="166" fill="#FFC23D">CH3</text><text x="516" y="192" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="19" font-weight="600" style="font-stretch:115%">Security</text>
+            <text x="516" y="226">Audits</text><text x="516" y="248">Hardening</text><text x="516" y="270">SIEM / SOC monitoring</text><text x="516" y="292">MA privacy compliance</text>
+          </g>
+          <g>
+            <rect x="740" y="140" width="200" height="200" rx="8" fill="#0A0C0F" stroke="#5EF0A0" stroke-opacity=".55"/>
+            <text x="756" y="166" fill="#5EF0A0">CH4</text><text x="756" y="192" fill="#E6ECF2" font-family="Archivo, sans-serif" font-size="19" font-weight="600" style="font-stretch:115%">Operations</text>
+            <text x="756" y="226">Managed hosting</text><text x="756" y="248">Care plans</text><text x="756" y="270">Performance</text><text x="756" y="292">SEO / AEO / GEO</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <h3>Channel promises</h3>
+  <div class="scroll-x"><table class="spec">
+    <thead><tr><th>Channel</th><th>Promise (client language)</th><th>Entry offer</th><th>Flagship</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ch" style="--c:var(--ch1)"><i></i><b>CH1</b> Platforms</span></td><td>A website or app that wins work, loads fast and is easy to update.</td><td class="mono">Business Site · $3,500</td><td class="mono">Custom Platform · $7,500</td></tr>
+      <tr><td><span class="ch" style="--c:var(--ch2)"><i></i><b>CH2</b> Intelligence</span></td><td>AI and automation that removes real work, on data you control.</td><td class="mono">AI Discovery · $1,200</td><td class="mono">Custom AI Tool · from $8,500</td></tr>
+      <tr><td><span class="ch" style="--c:var(--ch3)"><i></i><b>CH3</b> Security</span></td><td>Know where you are exposed, close the gaps, and see attacks coming.</td><td class="mono">Security Audit · $850</td><td class="mono">Hardening · $2,400</td></tr>
+      <tr><td><span class="ch" style="--c:var(--ch4)"><i></i><b>CH4</b> Operations</span></td><td>Hosting, updates, monitoring and search visibility handled every month.</td><td class="mono">Watchdog · $350/mo</td><td class="mono">Guardian · $850/mo</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Engagement models</h3>
+  <div class="cols">
+    <div><h4>Fixed-fee packages</h4><p class="muted">Signed scope, 50% deposit, defined timeline, 30–90 days post-launch support.</p></div>
+    <div><h4>Hourly</h4><p class="muted">$115–$185 by discipline, two-hour minimum. Prepaid 20-hour blocks save 10%.</p></div>
+    <div><h4>Care retainers</h4><p class="muted">Watchdog, Guardian, Partner and Embedded Dev. Three-month minimum, response times guaranteed.</p></div>
+  </div>
+  <h3>Naming rules</h3>
+  <ul class="muted" style="max-width:68ch;display:grid;gap:6px;padding-left:1.1em">
+    <li>Write the full name "Jeremy Anderson Tech" on first mention; "JAT" after that, and in compact UI.</li>
+    <li>Channels are written as <code>CH1 Platforms</code> in UI and as plain "Platforms" in running prose.</li>
+    <li>Existing package and retainer names stay unchanged. They already rank and appear on proposals.</li>
+    <li>Never invent sub-brands or product names for one-off client work.</li>
+  </ul>
+</section>
+
+<section class="section" id="landscape" aria-labelledby="h-land">
+  <div class="sec-head"><span class="sec-num">05</span><div><h2 id="h-land">Competitive landscape</h2><p>Who else the buyer is considering, what they do well, and the gap JAT fills.</p></div></div>
+  <div class="two" style="align-items:start">
+    <div class="screen">
+      <div class="screen-bar"><span class="readout">XY mode · qualitative</span><span class="readout">Not measured data</span></div>
+      <svg viewBox="0 0 520 420" role="img" aria-labelledby="landT" style="width:100%;height:auto;display:block">
+        <title id="landT">Qualitative positioning map. Horizontal axis: disciplines covered, from one to web, AI, security and operations. Vertical axis: access to the senior engineer, from account managers to direct. JAT sits top right; freelancers top left; large agencies bottom right; MSPs and IT providers lower middle; local web shops center; DIY builders bottom left; AI consultancies upper middle.</title>
+        <g font-family="Martian Mono, monospace" font-size="10.5" fill="#A3AFBC">
+          <path d="M60 30V370H500" stroke="#5A6675" stroke-width="1.5" fill="none"/>
+          <path d="M280 30V370M60 200H500" stroke="#3D4855" stroke-dasharray="3 5"/>
+          <text x="62" y="392">ONE DISCIPLINE</text><text x="498" y="392" text-anchor="end">WEB+AI+SEC+OPS</text>
+          <text x="40" y="370" transform="rotate(-90 40 370)">ACCOUNT MANAGERS</text><text x="40" y="30" text-anchor="end" transform="rotate(-90 40 30)">DIRECT ENGINEER</text>
+          <g fill="#7D8996"><circle cx="120" cy="80" r="6"/><circle cx="120" cy="330" r="6"/><circle cx="250" cy="215" r="6"/><circle cx="410" cy="320" r="6"/><circle cx="330" cy="270" r="6"/><circle cx="215" cy="110" r="6"/></g>
+          <text x="132" y="84">Freelancers</text><text x="132" y="334">DIY builders</text><text x="262" y="219">Local web shops</text><text x="422" y="314">Large</text><text x="422" y="328">agencies</text><text x="342" y="274">MSPs / IT</text><text x="227" y="114">AI consultancies</text>
+          <circle cx="440" cy="70" r="14" fill="none" stroke="#3CE3F0" stroke-width="1.5"/><circle cx="440" cy="70" r="6" fill="#3CE3F0"/>
+          <text x="440" y="104" text-anchor="middle" fill="#3CE3F0">JAT</text>
+        </g>
+      </svg>
+    </div>
+    <div class="scroll-x"><table class="spec">
+      <thead><tr><th>Alternative</th><th>Strength</th><th>Gap JAT fills</th></tr></thead>
+      <tbody>
+        <tr><td>DIY builders</td><td>Cheap, fast to start</td><td>Security, performance, custom function, someone to call</td></tr>
+        <tr><td>Freelancers</td><td>Direct and affordable</td><td>Breadth beyond design; hosting, security and continuity</td></tr>
+        <tr><td>Local web shops</td><td>Design portfolios, local presence</td><td>Engineering depth, AI, security programs</td></tr>
+        <tr><td>Large digital agencies</td><td>Capacity, process</td><td>Price, direct senior access, small-business focus</td></tr>
+        <tr><td>MSPs / IT providers</td><td>Networks, devices, help desks</td><td>Building websites, software and AI</td></tr>
+        <tr><td>AI consultancies</td><td>Strategy decks</td><td>Shipping to production and securing it</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <h3>Differentiation strategy</h3>
+  <div class="cols">
+    <div><h4>Compete on accountability</h4><p class="muted">Every page repeats the same promise: the person who builds the system keeps it running.</p></div>
+    <div><h4>Make price a trust signal</h4><p class="muted">Show packages early. Most competitors hide price; publishing it filters for serious buyers.</p></div>
+    <div><h4>Prove with the site itself</h4><p class="muted">The new site is the demonstration: fast, accessible, hardened, schema-rich. Its scores belong on the Approach page once measured.</p></div>
+  </div>
+</section>
+
+<section class="section" id="voice" aria-labelledby="h-voice">
+  <div class="sec-head"><span class="sec-num">06</span><div><h2 id="h-voice">Personality, tone and voice</h2><p>The voice of a senior engineer explaining a system to the owner who depends on it.</p></div></div>
+  <div class="scroll-x"><table class="spec">
+    <thead><tr><th>Trait</th><th>We are</th><th>We are not</th></tr></thead>
+    <tbody>
+      <tr><td><h4 style="margin:0">Precise</h4></td><td>Specific numbers, named deliverables, exact timelines</td><td>Pedantic, jargon-heavy</td></tr>
+      <tr><td><h4 style="margin:0">Calm</h4></td><td>Steady under pressure, especially about security</td><td>Cold, alarmist</td></tr>
+      <tr><td><h4 style="margin:0">Candid</h4></td><td>Clear about cost, risk and trade-offs</td><td>Blunt, dismissive</td></tr>
+      <tr><td><h4 style="margin:0">Curious</h4></td><td>Interested in how a client's business actually works</td><td>Showing off technology for its own sake</td></tr>
+      <tr><td><h4 style="margin:0">Protective</h4></td><td>Looking out for the client's data, users and budget</td><td>Fear-selling</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Messaging rules</h3>
+  <div class="dodont">
+    <div><span class="tag" style="color:var(--ch4)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5 5 9l5-6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Do</span>
+      <ul><li>Lead with the outcome, name the technology second.</li><li>Use numbers that can be verified, or none.</li><li>State prices and timelines plainly.</li><li>Write short sentences in active voice.</li><li>Say "we" for the studio and "Jeremy" when it is personally him.</li><li>Explain one technical idea per paragraph.</li></ul></div>
+    <div><span class="tag" style="color:var(--danger)"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 3 6 6M9 3 3 9" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>Don't</span>
+      <ul><li>Invent clients, quotes, metrics or team members.</li><li>Use fear to sell security.</li><li>Lead with a stack list.</li><li>Promise "100%", "bulletproof" or "guaranteed rankings".</li><li>Use "cutting-edge", "synergy", "revolutionary", "AI-powered" as filler.</li><li>Use hacker, hoodie or brain imagery in words or pictures.</li></ul></div>
+  </div>
+  <h3>Before and after</h3>
+  <div class="rewrite">
+    <div><span class="readout">Current</span><p style="margin-top:6px" class="muted">"I design and build secure, accessible, and compliant web platforms, AI-assisted systems, and custom software solutions."</p></div>
+    <div><span class="readout" style="color:var(--ch1)">Rewritten</span><p style="margin-top:6px">"We build the website, software and AI your business runs on, then secure it, host it and keep it running. Prices are published. You work directly with the engineer."</p></div>
+  </div>
+  <div class="rewrite" style="margin-top:var(--s3)">
+    <div><span class="readout">Current</span><p style="margin-top:6px" class="muted">"Let's Build Something Amazing"</p></div>
+    <div><span class="readout" style="color:var(--ch1)">Rewritten</span><p style="margin-top:6px">"Tell us what the system needs to do. You'll have a written proposal within three business days."</p></div>
+  </div>
+  <h3>Message hierarchy</h3>
+  <ol class="muted" style="max-width:68ch;display:grid;gap:8px;padding-left:1.3em">
+    <li><strong style="color:var(--fg)">Tagline.</strong> Systems that hold steady.</li>
+    <li><strong style="color:var(--fg)">Positioning line.</strong> Web platforms, AI and security, built and run by one accountable engineering studio.</li>
+    <li><strong style="color:var(--fg)">Channel promises.</strong> One sentence each, from section 04.</li>
+    <li><strong style="color:var(--fg)">Proof.</strong> Public projects, published prices, certifications, a documented process.</li>
+    <li><strong style="color:var(--fg)">Action.</strong> Book a free 30-minute discovery call.</li>
+  </ol>
+</section>
+
+<section class="section" id="taglines" aria-labelledby="h-tag">
+  <div class="sec-head"><span class="sec-num">07</span><div><h2 id="h-tag">Tagline</h2><p>Eight candidates tested against the positioning. One recommendation.</p></div></div>
+  <ul class="taglines">
+    <li class="pick"><span class="t">Systems that hold steady.</span><span class="why">Recommended. Names the outcome buyers want (stability) and is literally what the mark draws: a signal that settles at a new level.</span></li>
+    <li><span class="t">Built, secured, kept running.</span><span class="why">Clear service summary; strong as a positioning line under the tagline.</span></li>
+    <li><span class="t">Calibrated for what's next.</span><span class="why">Fits the instrument world but says little about the buyer's problem.</span></li>
+    <li><span class="t">One engineer. Every layer.</span><span class="why">Sharp differentiator; may read as small capacity to larger buyers.</span></li>
+    <li><span class="t">Intelligent by design.</span><span class="why">The brief's theme line. Good for an internal direction name; generic as a public tagline.</span></li>
+    <li><span class="t">Measure twice. Ship once.</span><span class="why">Memorable, but borrowed from carpentry and widely used.</span></li>
+    <li><span class="t">Signal over noise.</span><span class="why">On theme; heavily used across tech marketing.</span></li>
+    <li><span class="t">Engineering you can see.</span><span class="why">Supports the open-source proof; abstract on its own.</span></li>
+  </ul>
+  <div class="screen" style="margin-top:var(--s6);padding:var(--s8) var(--s6);text-align:left">
+    <svg viewBox="1 6 108 68" width="72" height="46" aria-hidden="true"><use href="#mk"/></svg>
+    <p style="font-family:var(--f-display);font-stretch:125%;font-weight:640;font-size:clamp(2rem,6vw,4.5rem);letter-spacing:-.03em;line-height:.95;margin:var(--s5) 0 var(--s3);max-width:none">Systems that<br>hold steady.</p>
+    <p class="muted" style="margin:0">Web platforms, AI and security, built and run by one accountable engineering studio.</p>
+  </div>
+</section>

@@ -1,0 +1,294 @@
+
+<section class="section" id="logo" aria-labelledby="h-logo">
+  <div class="sec-head"><span class="sec-num">08</span><div><h2 id="h-logo">Logo system</h2><p>A monogram drawn as one beam trace, a wordmark set in outlined Archivo Expanded, and a ruler that measures.</p></div></div>
+  <div class="screen"><div class="logo-stage"><svg viewBox="1 6 468 68" style="width:min(100%,720px);height:auto" role="img" aria-label="Jeremy Anderson Tech primary horizontal logo"><use href="#lk-h"/></svg></div></div>
+  <p class="cap">Primary horizontal lockup on Graticule. The JAT trace reads as a step response: the line enters at rest, the J and A form the transient, and the T settles at the trigger level.</p>
+
+  <h3>Exploration</h3>
+  <div class="explore">
+    <figure>
+      <div class="art"><svg viewBox="1 6 108 68" width="168" height="106" aria-hidden="true"><use href="#mk"/></svg></div>
+      <figcaption><strong>A · Trace <span class="verdict go">Selected</span></strong>One continuous stroke spells J, A, T as a signal settling at a new level. Owns the instrument world, scales to 16px, and needs no box.</figcaption>
+    </figure>
+    <figure>
+      <div class="art"><svg viewBox="0 0 120 80" width="168" height="112" aria-hidden="true"><rect x="24" y="4" width="72" height="72" fill="none" stroke="#2E3845" stroke-width="2"/><path d="M48 4V76M72 4V76M24 28H96M24 52H96" stroke="#222A34" stroke-width="1.5"/><g fill="none" stroke="#3CE3F0" stroke-width="6"><path d="M42 20V52Q42 64 32 64"/><path d="M52 64 60 20 68 64M55 48H65"/><path d="M74 20H94M84 20V64"/></g></svg></div>
+      <figcaption><strong>B · Graticule cell <span class="verdict">Declined</span></strong>Letters set inside a 3×3 measurement grid. Legible, but it is a typeset monogram in a box; it borrows the world without drawing it.</figcaption>
+    </figure>
+    <figure>
+      <div class="art"><svg viewBox="0 0 120 80" width="168" height="112" aria-hidden="true"><path id="lissPath" fill="none" stroke="#3CE3F0" stroke-width="3.5" d=""/></svg></div>
+      <figcaption><strong>C · Lissajous <span class="verdict">Declined</span></strong>A 3:2 Lissajous figure. Beautiful and on-theme, but it carries no letters, sits close to the banned "orbital" cliché, and blurs below 32px.</figcaption>
+    </figure>
+  </div>
+
+  <h3>Construction</h3>
+  <div class="two" style="align-items:center">
+    <div class="screen construct">
+      <svg viewBox="-12 -2 132 84" role="img" aria-labelledby="consT">
+        <title id="consT">Construction grid. The mark sits on a 16-unit grid. Trigger level at y 16, baseline at y 64, stroke 8 units with round caps and joins.</title>
+        <g stroke="#222A34" stroke-width=".4">
+          <path d="M0 0V80M16 0V80M32 0V80M48 0V80M64 0V80M80 0V80M96 0V80M112 0V80M0 0H112M0 16H112M0 32H112M0 48H112M0 64H112M0 80H112"/>
+        </g>
+        <path d="M-10 16H118" stroke="#9A8CFF" stroke-width=".5" stroke-dasharray="2 2"/>
+        <path d="M-10 64H118" stroke="#9A8CFF" stroke-width=".5" stroke-dasharray="2 2"/>
+        <g opacity=".95"><use href="#mk" x="1" y="6" width="108" height="68"/></g>
+        <g fill="none" stroke="#E6ECF2" stroke-width=".35"><path d="M9 50V64M23 64Q9 64 9 50" stroke-dasharray="1 1"/></g>
+        <g font-family="Martian Mono, monospace" font-size="3.2" fill="#A3AFBC">
+          <text x="-10" y="14" fill="#9A8CFF">TRIG 16</text><text x="-10" y="62" fill="#9A8CFF">BASE 64</text>
+          <text x="98" y="78">X = 16u</text>
+        </g>
+        <path d="M96 72H112" stroke="#FFC23D" stroke-width=".6"/><path d="M96 70.5V73.5M112 70.5V73.5" stroke="#FFC23D" stroke-width=".6"/>
+      </svg>
+    </div>
+    <dl class="kv">
+      <dt>Grid</dt><dd>16-unit divisions on a 108 × 68 artboard (viewBox <code>1 6 108 68</code>).</dd>
+      <dt>Stroke</dt><dd>8 units, round caps, round joins. Half of one division.</dd>
+      <dt>Levels</dt><dd>Trigger level y 16. Baseline y 64. The J tail starts at y 50.</dd>
+      <dt>Apex</dt><dd>The A peaks exactly on the trigger level at x 52; the T bar starts 18 units later.</dd>
+      <dt>Unit X</dt><dd>One division, 16 units. X sets clear space and lockup spacing.</dd>
+    </dl>
+  </div>
+
+  <h3>Primary and secondary logos</h3>
+  <div class="lockups">
+    <figure><div class="art on-ink"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption><strong style="color:var(--fg)">Primary · horizontal.</strong> Website header, proposals, signatures. Min 160px / 38mm wide.</figcaption></figure>
+    <figure><div class="art on-ink"><svg viewBox="-4 6 306 132" style="width:min(100%,240px);height:auto"><use href="#lk-s"/></svg></div><figcaption><strong style="color:var(--fg)">Secondary · stacked.</strong> Square formats, apparel, cover pages. Min 96px / 24mm wide.</figcaption></figure>
+    <figure><div class="art on-ink"><svg viewBox="1 6 108 68" style="width:120px;height:auto"><use href="#mk"/></svg></div><figcaption><strong style="color:var(--fg)">Monogram.</strong> Favicons, social avatars, small UI, merchandise. Min 16px / 5mm wide.</figcaption></figure>
+    <figure><div class="art on-ink"><svg viewBox="0 0 128 128" style="width:112px;height:112px"><use href="#icon"/></svg></div><figcaption><strong style="color:var(--fg)">App icon.</strong> PWA, iOS/Android home screen, Slack. 28/128 corner radius.</figcaption></figure>
+  </div>
+  <h3>Color variants</h3>
+  <div class="lockups">
+    <figure><div class="art on-ink"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption>Full color on Graticule. Default.</figcaption></figure>
+    <figure><div class="art on-paper"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption>Print and light surfaces. Mark in Deep Cyan.</figcaption></figure>
+    <figure><div class="art on-cyan"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption>Reversed on Channel Cyan. Merchandise, event signage.</figcaption></figure>
+    <figure><div class="art on-mono"><svg viewBox="1 6 468 68" style="width:100%;height:auto"><use href="#lk-h"/></svg></div><figcaption>Single color Ice. Embossing, etching, one-color print.</figcaption></figure>
+  </div>
+  <h3>Clear space and minimum size</h3>
+  <div class="two" style="align-items:center">
+    <div class="screen plain" style="padding:var(--s6)">
+      <svg viewBox="-60 -50 588 168" role="img" aria-labelledby="csT" style="width:100%;height:auto;display:block">
+        <title id="csT">Clear space equals X, one grid division, on every side of the lockup.</title>
+        <rect x="-15" y="-9" width="498" height="98" fill="none" stroke="#FFC23D" stroke-width="1" stroke-dasharray="4 4"/>
+        <g fill="rgba(255,194,61,.12)" stroke="#FFC23D" stroke-width=".8"><rect x="-15" y="-9" width="16" height="16"/><rect x="467" y="73" width="16" height="16"/><rect x="200" y="-9" width="16" height="16"/><rect x="200" y="73" width="16" height="16"/></g>
+        <g font-family="Martian Mono, monospace" font-size="11" fill="#FFC23D"><text x="-15" y="-18">X</text><text x="200" y="-18">X</text></g>
+        <use href="#lk-h" x="1" y="6" width="468" height="68"/>
+      </svg>
+    </div>
+    <div>
+      <p>Keep at least X clear on every side, where X is one grid division: the height of the J tail, or about 0.29 × the mark's height. Never place other marks, text or edges inside that zone.</p>
+      <div class="scroll-x"><table class="spec">
+        <thead><tr><th>Logo</th><th>Screen</th><th>Print</th><th>Below minimum</th></tr></thead>
+        <tbody>
+          <tr><td>Horizontal</td><td class="mono">160 px</td><td class="mono">38 mm</td><td>Use the monogram</td></tr>
+          <tr><td>Stacked</td><td class="mono">96 px</td><td class="mono">24 mm</td><td>Use the monogram</td></tr>
+          <tr><td>Monogram</td><td class="mono">16 px</td><td class="mono">5 mm</td><td>Do not reproduce</td></tr>
+        </tbody>
+      </table></div>
+      <div style="display:flex;gap:var(--s5);align-items:end;margin-top:var(--s4);flex-wrap:wrap">
+        <svg viewBox="1 6 468 68" width="160" height="23" aria-label="Horizontal at 160 pixels" role="img"><use href="#lk-h"/></svg>
+        <svg viewBox="1 6 108 68" width="24" height="15" aria-label="Monogram at 24 pixels" role="img"><use href="#mk"/></svg>
+        <svg viewBox="1 6 108 68" width="16" height="10" aria-label="Monogram at 16 pixels" role="img"><use href="#mk"/></svg>
+      </div>
+    </div>
+  </div>
+  <h3>Improper usage</h3>
+  <div class="misuse">
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" style="transform:rotate(-14deg)" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not rotate or skew.</figcaption></figure>
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="140" height="48" preserveAspectRatio="none" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not stretch or squash.</figcaption></figure>
+    <figure><div class="art" style="--mk:#FF6B2C"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not recolor outside the palette.</figcaption></figure>
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" style="filter:drop-shadow(0 0 8px #3CE3F0) drop-shadow(0 0 18px #3CE3F0)" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not add glows or bloom.</figcaption></figure>
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><defs><linearGradient id="badg" x1="0" x2="1"><stop offset="0" stop-color="#3CE3F0"/><stop offset="1" stop-color="#9A8CFF"/></linearGradient></defs><g fill="none" stroke="url(#badg)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not apply gradients.</figcaption></figure>
+    <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><g fill="none" stroke="#3CE3F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not change the stroke weight.</figcaption></figure>
+    <figure><div class="art" style="background:repeating-linear-gradient(35deg,#3a2a54 0 14px,#1d5a63 14px 28px,#5a3b16 28px 42px)"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not place on busy backgrounds.</figcaption></figure>
+    <figure><div class="art"><span style="font-family:Georgia,serif;font-size:1.25rem;color:#E6ECF2;display:flex;align-items:center;gap:10px"><svg viewBox="1 6 108 68" width="48" height="30" aria-hidden="true"><use href="#mk"/></svg>Jeremy Anderson</span></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not retype the wordmark.</figcaption></figure>
+  </div>
+</section>
+
+<section class="section" id="vector" aria-labelledby="h-vec">
+  <div class="sec-head"><span class="sec-num">09</span><div><h2 id="h-vec">Vector-first identity</h2><p>Every identity element is SVG source. Raster files are exported from these, never edited directly.</p></div></div>
+  <div class="two" style="align-items:start">
+    <div class="code">
+      <header><span class="readout">jat-mark.svg · 282 bytes</span><button class="btn-copy" type="button" data-copy="svgMark">Copy SVG</button></header>
+<pre id="svgMark"><span class="k">&lt;svg</span> xmlns=<span class="s">"http://www.w3.org/2000/svg"</span> viewBox=<span class="s">"1 6 108 68"</span>
+     role=<span class="s">"img"</span> aria-label=<span class="s">"JAT"</span><span class="k">&gt;</span>
+  <span class="k">&lt;g</span> fill=<span class="s">"none"</span> stroke=<span class="s">"#3CE3F0"</span> stroke-width=<span class="s">"8"</span>
+     stroke-linecap=<span class="s">"round"</span> stroke-linejoin=<span class="s">"round"</span><span class="k">&gt;</span>
+    <span class="k">&lt;path</span> d=<span class="s">"M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"</span><span class="k">/&gt;</span>
+    <span class="k">&lt;path</span> d=<span class="s">"M70 16 H100"</span><span class="k">/&gt;</span>
+  <span class="k">&lt;/g&gt;</span>
+<span class="k">&lt;/svg&gt;</span></pre>
+    </div>
+    <div>
+      <div class="scroll-x"><table class="spec">
+        <thead><tr><th>File</th><th>Use</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">jat-mark.svg</td><td>Monogram, Channel Cyan</td></tr>
+          <tr><td class="mono">jat-mark-ice.svg / -ink.svg</td><td>One-color monogram for dark / light</td></tr>
+          <tr><td class="mono">jat-lockup-horizontal.svg</td><td>Primary logo, dark surfaces</td></tr>
+          <tr><td class="mono">jat-lockup-horizontal-light.svg</td><td>Primary logo, paper and light</td></tr>
+          <tr><td class="mono">jat-lockup-stacked.svg</td><td>Secondary logo</td></tr>
+          <tr><td class="mono">jat-icon.svg</td><td>App icon, favicon source</td></tr>
+        </tbody>
+      </table></div>
+      <h4 style="margin-top:var(--s5)">Production rules</h4>
+      <ul class="muted" style="padding-left:1.1em;display:grid;gap:6px;font-size:.9375rem">
+        <li>The wordmark is outlined from Archivo Expanded (width 125, weight 620, tracking +40). TECH uses weight 380, tracking +320. No live text inside logo files.</li>
+        <li>The monogram stays a stroke in source files so weight can be audited. Expand strokes only for embroidery, vinyl cutting and laser etching.</li>
+        <li>Recolor with <code>currentColor</code> or the <code>--mk</code>, <code>--lk-name</code>, <code>--lk-tech</code>, <code>--lk-rule</code> custom properties. Never edit path data.</li>
+        <li>Favicons: export <code>jat-icon.svg</code> at 16, 32, 180, 192 and 512 px; ship the SVG as <code>rel="icon"</code> for modern browsers.</li>
+        <li>Print: convert to CMYK at the printer using the values in section 10. Spot alternative: Pantone 319 C for Channel Cyan.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="color" aria-labelledby="h-col">
+  <div class="sec-head"><span class="sec-num">10</span><div><h2 id="h-col">Color</h2><p>An oscilloscope screen: a near-black graticule, ice-white readouts, and four channel colors that identify, never decorate.</p></div></div>
+  <h3 style="margin-top:0">Primary</h3>
+  <div class="swatches">
+    <div class="sw"><div class="chip big" style="--c:#0A0C0F;border-bottom:1px solid var(--line);color:#A3AFBC"><span>BG</span><span>16.5:1 Ice</span></div><div class="info"><b>Graticule</b><span>#0A0C0F · RGB 10 12 15</span><span>CMYK 70 60 55 85</span></div></div>
+    <div class="sw"><div class="chip big" style="--c:#E6ECF2;color:#0A0C0F"><span>FG</span><span>16.5:1</span></div><div class="info"><b>Ice</b><span>#E6ECF2 · RGB 230 236 242</span><span>CMYK 6 2 1 0</span></div></div>
+    <div class="sw"><div class="chip big" style="--c:#3CE3F0;color:#0A0C0F"><span>CH1</span><span>12.5:1 on BG</span></div><div class="info"><b>Channel Cyan</b><span>#3CE3F0 · RGB 60 227 240</span><span>CMYK 60 0 10 0 · PMS 319 C</span></div></div>
+  </div>
+  <h3>Channels</h3>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="--c:#3CE3F0;color:#0A0C0F"><span>CH1</span><span>Platforms</span></div><div class="info"><b>Channel Cyan</b><span>#3CE3F0 · 60 227 240</span><span>Primary actions, mark, links</span></div></div>
+    <div class="sw"><div class="chip" style="--c:#9A8CFF;color:#0A0C0F"><span>CH2</span><span>Intelligence</span></div><div class="info"><b>Ultraviolet</b><span>#9A8CFF · 154 140 255</span><span>7.1:1 on Graticule</span></div></div>
+    <div class="sw"><div class="chip" style="--c:#FFC23D;color:#0A0C0F"><span>CH3</span><span>Security</span></div><div class="info"><b>Amber</b><span>#FFC23D · 255 194 61</span><span>12.2:1 on Graticule</span></div></div>
+    <div class="sw"><div class="chip" style="--c:#5EF0A0;color:#0A0C0F"><span>CH4</span><span>Operations</span></div><div class="info"><b>Signal</b><span>#5EF0A0 · 94 240 160</span><span>13.5:1 on Graticule</span></div></div>
+  </div>
+  <h3>Neutrals</h3>
+  <div class="ramp" role="list" aria-label="Neutral ramp">
+    <div role="listitem" style="--c:#07090B">950<br>07090B</div><div role="listitem" style="--c:#0A0C0F">900<br>0A0C0F</div><div role="listitem" style="--c:#10141A">850<br>10141A</div><div role="listitem" style="--c:#161B22">800<br>161B22</div><div role="listitem" style="--c:#222A34">700<br>222A34</div><div role="listitem" style="--c:#2E3845">600<br>2E3845</div><div role="listitem" style="--c:#3D4855">500<br>3D4855</div><div role="listitem" style="--c:#5A6675">450<br>5A6675</div><div role="listitem" style="--c:#7D8996;--t:#07090B">400<br>7D8996</div><div role="listitem" style="--c:#A3AFBC;--t:#07090B">300<br>A3AFBC</div><div role="listitem" style="--c:#E6ECF2;--t:#07090B">100<br>E6ECF2</div>
+  </div>
+  <p class="cap">Neutrals carry a slight blue bias toward Channel Cyan. 950–800 are surfaces, 700–500 are lines, 450 is the minimum for form control borders (3.35:1), 400–100 are text.</p>
+  <div class="two" style="margin-top:var(--s5)">
+    <div>
+      <h3 style="margin-top:var(--s4)">Semantic</h3>
+      <div class="scroll-x"><table class="spec">
+        <thead><tr><th>Role</th><th>Dark UI</th><th>Light / print</th></tr></thead>
+        <tbody>
+          <tr><td>Success</td><td class="mono"><span class="ch" style="--c:#5EF0A0"><i></i>#5EF0A0</span></td><td class="mono">#0A7646 · 5.2:1</td></tr>
+          <tr><td>Warning</td><td class="mono"><span class="ch" style="--c:#FFC23D"><i></i>#FFC23D</span></td><td class="mono">#8A5800 · 5.5:1</td></tr>
+          <tr><td>Danger</td><td class="mono"><span class="ch" style="--c:#FF5C7A"><i></i>#FF5C7A</span></td><td class="mono">#B0203C · 6.2:1</td></tr>
+          <tr><td>Info</td><td class="mono"><span class="ch" style="--c:#3CE3F0"><i></i>#3CE3F0</span></td><td class="mono">#007C88 · 4.5:1</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cap">Semantic colors share hues with channels. Always pair them with an icon or word so state never depends on color alone.</p>
+    </div>
+    <div>
+      <h3 style="margin-top:var(--s4)">Paper set</h3>
+      <div class="swatches" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,110px),1fr))">
+        <div class="sw"><div class="chip" style="--c:#F3F5F7;color:#0A0C0F;height:64px"><span>Paper</span></div><div class="info"><span>#F3F5F7</span></div></div>
+        <div class="sw"><div class="chip" style="--c:#007C88;color:#fff;height:64px"><span>Deep Cyan</span></div><div class="info"><span>#007C88</span></div></div>
+        <div class="sw"><div class="chip" style="--c:#5B4BD6;color:#fff;height:64px"><span>Deep UV</span></div><div class="info"><span>#5B4BD6</span></div></div>
+        <div class="sw"><div class="chip" style="--c:#465260;color:#fff;height:64px"><span>Slate</span></div><div class="info"><span>#465260</span></div></div>
+      </div>
+      <p class="cap">For proposals, invoices and anything printed on white stock. Channel colors switch to their deep versions on paper.</p>
+    </div>
+  </div>
+  <h3>Proportion</h3>
+  <div style="display:flex;height:40px;border-radius:8px;overflow:hidden;border:1px solid var(--line)" role="img" aria-label="Color proportion: Graticule and surfaces 72 percent, panels 18 percent, Ice text 7 percent, channel colors 3 percent">
+    <div style="flex:72;background:#0A0C0F"></div><div style="flex:18;background:#161B22"></div><div style="flex:7;background:#E6ECF2"></div><div style="flex:1.6;background:#3CE3F0"></div><div style="flex:.5;background:#9A8CFF"></div><div style="flex:.5;background:#FFC23D"></div><div style="flex:.4;background:#5EF0A0"></div>
+  </div>
+  <div class="chart-legend readout"><span>Graticule 72%</span><span>Panels 18%</span><span>Ice 7%</span><span style="color:var(--ch1)">Channels 3%</span></div>
+  <h3>Contrast matrix</h3>
+  <div class="scroll-x"><table class="spec matrix">
+    <thead><tr><th>Text on</th><th>Graticule #0A0C0F</th><th>Panel #10141A</th><th>Raised #161B22</th><th>Cyan #3CE3F0</th></tr></thead>
+    <tbody>
+      <tr><td><span class="sample" style="background:#E6ECF2"></span>Ice</td><td class="ratio pass">16.5 AAA</td><td class="ratio pass">15.5 AAA</td><td class="ratio pass">14.5 AAA</td><td class="ratio fail">1.3 fail</td></tr>
+      <tr><td><span class="sample" style="background:#A3AFBC"></span>Ink 300</td><td class="ratio pass">8.8 AAA</td><td class="ratio pass">8.3 AAA</td><td class="ratio pass">7.8 AAA</td><td class="ratio fail">1.4 fail</td></tr>
+      <tr><td><span class="sample" style="background:#7D8996"></span>Ink 400</td><td class="ratio pass">5.5 AA</td><td class="ratio pass">5.2 AA</td><td class="ratio pass">4.9 AA</td><td class="ratio fail">2.3 fail</td></tr>
+      <tr><td><span class="sample" style="background:#3CE3F0"></span>Cyan</td><td class="ratio pass">12.5 AAA</td><td class="ratio pass">11.8 AAA</td><td class="ratio pass">11.1 AAA</td><td>—</td></tr>
+      <tr><td><span class="sample" style="background:#9A8CFF"></span>Ultraviolet</td><td class="ratio pass">7.1 AAA</td><td class="ratio pass">6.7 AA</td><td class="ratio pass">6.2 AA</td><td class="ratio fail">1.8 fail</td></tr>
+      <tr><td><span class="sample" style="background:#FF5C7A"></span>Danger</td><td class="ratio pass">6.6 AA</td><td class="ratio pass">6.2 AA</td><td class="ratio pass">5.8 AA</td><td class="ratio fail">1.9 fail</td></tr>
+      <tr><td><span class="sample" style="background:#0A0C0F"></span>Graticule</td><td>—</td><td>—</td><td>—</td><td class="ratio pass">12.5 AAA</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">AA requires 4.5:1 for body text and 3:1 for large text and UI boundaries. On Channel Cyan, use only Graticule text.</p>
+</section>
+
+<section class="section" id="type" aria-labelledby="h-type">
+  <div class="sec-head"><span class="sec-num">11</span><div><h2 id="h-type">Typography</h2><p>One variable family stretched like instrument lettering, plus a monospace for anything that is measured.</p></div></div>
+  <div class="specimen">
+    <div class="big" id="specBig">Hold steady</div>
+    <div class="row"><span class="readout">Archivo · variable · wdth 62–125 · wght 100–900 · SIL OFL 1.1</span></div>
+    <div class="wdth-scrub">
+      <label for="wdth"><span>Width axis</span><span id="wdthOut">125</span></label>
+      <input type="range" id="wdth" min="62" max="125" value="125" step="1">
+    </div>
+  </div>
+  <div class="two" style="margin-top:var(--s5)">
+    <div class="specimen">
+      <p style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:1.75rem;line-height:1.1;margin-bottom:var(--s3)">Archivo Expanded</p>
+      <p class="muted" style="margin:0">Display and headings, width 112–125. Wide letters echo the lettering on test equipment panels and give short headlines authority without heavy weight.</p>
+      <p style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:1.25rem;letter-spacing:.02em;margin:var(--s4) 0 0">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</p>
+    </div>
+    <div class="specimen">
+      <p style="font-family:var(--f-mono);font-stretch:90%;font-size:1.25rem;line-height:1.2;margin-bottom:var(--s3)">Martian Mono</p>
+      <p class="muted" style="margin:0">Readouts only: prices, timelines, measurements, channel IDs, code. Never for headlines or paragraphs. Width 90 keeps tables compact.</p>
+      <p style="font-family:var(--f-mono);font-stretch:90%;font-size:.9375rem;margin:var(--s4) 0 0;font-variant-numeric:tabular-nums">$7,500 · 5–7 WKS · CH1<br>0123456789 Δt 2.40 ms</p>
+    </div>
+  </div>
+  <h3>Type scale</h3>
+  <div>
+    <div class="scale-row"><div class="meta">Display<br>clamp(3.5–6rem) · 0.92<br>wdth 125 · wght 640 · −0.035em</div><div class="sample" style="font-family:var(--f-display);font-stretch:125%;font-weight:640;font-size:clamp(2.5rem,6vw,4.5rem);line-height:.92;letter-spacing:-.035em">Hold steady.</div></div>
+    <div class="scale-row"><div class="meta">H1<br>clamp(2.5–3.75rem) · 1.0<br>wdth 120 · wght 620</div><div class="sample" style="font-family:var(--f-display);font-stretch:120%;font-weight:620;font-size:clamp(2rem,4.5vw,3.25rem);line-height:1;letter-spacing:-.025em">Custom WordPress platforms</div></div>
+    <div class="scale-row"><div class="meta">H2<br>2.25rem · 1.05<br>wdth 118 · wght 620</div><div class="sample" style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:2rem;line-height:1.05;letter-spacing:-.02em">What's included</div></div>
+    <div class="scale-row"><div class="meta">H3<br>1.375rem · 1.15<br>wdth 112 · wght 600</div><div class="sample" style="font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:1.375rem;line-height:1.15">Security hardening package</div></div>
+    <div class="scale-row"><div class="meta">Body L<br>1.25rem · 1.5<br>wdth 100 · wght 400</div><div class="sample" style="font-size:1.25rem;line-height:1.5">We build the website, software and AI your business runs on.</div></div>
+    <div class="scale-row"><div class="meta">Body<br>1.0625rem · 1.6<br>wdth 100 · wght 400</div><div class="sample" style="font-size:1.0625rem;line-height:1.6">Every build includes basic hardening, SSL, Core Web Vitals optimization and on-page schema.</div></div>
+    <div class="scale-row"><div class="meta">Small<br>0.875rem · 1.5</div><div class="sample" style="font-size:.875rem;line-height:1.5;color:var(--fg-muted)">Prices exclude third-party licenses and hosting.</div></div>
+    <div class="scale-row"><div class="meta">Readout<br>0.75rem · mono · caps<br>wdth 90 · +0.06em</div><div class="sample readout" style="color:var(--fg)">5–7 weeks · 60 days support</div></div>
+  </div>
+  <h3>Pairing rules</h3>
+  <ul class="muted" style="padding-left:1.1em;display:grid;gap:6px;max-width:68ch">
+    <li>Headings run expanded (112–125); body text stays at width 100 for reading comfort.</li>
+    <li>Emphasis comes from weight and width, never italics, color gradients or underlines.</li>
+    <li>Mono appears only when the content is data. A headline in mono is a costume.</li>
+    <li>Running text measure: 60–72 characters. Headings wrap with <code>text-wrap: balance</code>.</li>
+  </ul>
+  <h3>Licensing</h3>
+  <p>Archivo (Omnibus-Type) and Martian Mono (Evil Martians) are licensed under the SIL Open Font License 1.1: free for commercial use, embedding, self-hosting and modification. For WordPress, self-host WOFF2 subsets (Latin, Latin-Ext) from the theme, preload the display axis instance used above the fold, include the OFL text in <code>/assets/fonts/</code>, and do not sell the fonts on their own.</p>
+</section>
+
+<section class="section" id="grid" aria-labelledby="h-grid">
+  <div class="sec-head"><span class="sec-num">12</span><div><h2 id="h-grid">Grid, space, radii, borders, elevation</h2><p>Two grids: a 12-column layout grid for pages, and a 10 × 8 graticule for signature screens.</p></div></div>
+  <div class="two">
+    <div>
+      <h4>Layout grid</h4>
+      <svg viewBox="0 0 480 220" role="img" aria-labelledby="lgT" style="width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px;background:var(--ink-950)">
+        <title id="lgT">12 columns, 24 pixel gutters, 1280 pixel maximum content width, fluid side margins.</title>
+        <g fill="rgba(60,227,240,.10)" stroke="rgba(60,227,240,.35)" stroke-width=".6"><rect x="30" y="20" width="27.5" height="180"/><rect x="65.5" y="20" width="27.5" height="180"/><rect x="101" y="20" width="27.5" height="180"/><rect x="136.5" y="20" width="27.5" height="180"/><rect x="172" y="20" width="27.5" height="180"/><rect x="207.5" y="20" width="27.5" height="180"/><rect x="243" y="20" width="27.5" height="180"/><rect x="278.5" y="20" width="27.5" height="180"/><rect x="314" y="20" width="27.5" height="180"/><rect x="349.5" y="20" width="27.5" height="180"/><rect x="385" y="20" width="27.5" height="180"/><rect x="420.5" y="20" width="27.5" height="180"/></g>
+        <g font-family="Martian Mono, monospace" font-size="9" fill="#A3AFBC"><text x="30" y="214">1280 MAX · 12 COL · 24 GUTTER</text></g>
+      </svg>
+      <dl class="kv" style="margin-top:var(--s4)"><dt>Mobile</dt><dd>4 columns, 16px gutters, 16px margins</dd><dt>Tablet</dt><dd>8 columns, 20px gutters, 32px margins</dd><dt>Desktop</dt><dd>12 columns, 24px gutters, fluid margins, 1280px max</dd></dl>
+    </div>
+    <div>
+      <h4>Graticule</h4>
+      <div class="screen" style="aspect-ratio:10/8;background-size:10% 12.5%,10% 12.5%,2% 2.5%,2% 2.5%;position:relative">
+        <svg viewBox="0 0 100 80" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true"><path d="M50 0V80M0 40H100" stroke="rgba(159,180,200,.22)" stroke-width=".3"/></svg>
+      </div>
+      <p class="cap">10 × 8 major divisions, 5 minor ticks each, center axes slightly brighter. Used for hero screens, case-study diagrams and data. Never as a page-wide wallpaper behind text.</p>
+    </div>
+  </div>
+  <h3>Spacing tokens</h3>
+  <div class="spacebars">
+    <div><span>--s1</span><span>4px</span><i style="width:4px"></i></div><div><span>--s2</span><span>8px</span><i style="width:8px"></i></div><div><span>--s3</span><span>12px</span><i style="width:12px"></i></div><div><span>--s4</span><span>16px</span><i style="width:16px"></i></div><div><span>--s5</span><span>24px</span><i style="width:24px"></i></div><div><span>--s6</span><span>32px</span><i style="width:32px"></i></div><div><span>--s7</span><span>48px</span><i style="width:48px"></i></div><div><span>--s8</span><span>64px</span><i style="width:64px"></i></div><div><span>--s9</span><span>96px</span><i style="width:96px"></i></div><div><span>--s10</span><span>128px</span><i style="width:128px"></i></div>
+  </div>
+  <p class="cap">4px base, mirroring one minor graticule tick. Space above a heading is always larger than space below it.</p>
+  <div class="two" style="margin-top:var(--s5)">
+    <div><h4>Radii</h4><div class="radii"><div style="border-radius:0">0 · screens</div><div style="border-radius:2px">2 · tags</div><div style="border-radius:6px">6 · controls</div><div style="border-radius:12px">12 · panels</div></div></div>
+    <div><h4>Borders</h4><dl class="kv"><dt>Hairline</dt><dd>1px Ink 700. Default divider and panel edge.</dd><dt>Strong</dt><dd>1px Ink 600. Raised panels, tags.</dd><dt>Control</dt><dd>1px Ink 450. Inputs and buttons (3:1+).</dd><dt>Focus</dt><dd>2px Channel Cyan, 2px offset.</dd></dl></div>
+  </div>
+  <h3>Elevation</h3>
+  <div class="elev-wrap">
+    <canvas id="elevTrace" aria-hidden="true"></canvas>
+    <div class="elev" style="position:relative;background:transparent">
+      <div class="e0"><span class="readout">E0 · Ground</span><span class="muted">Page background</span></div>
+      <div class="e1"><span class="readout">E1 · Panel</span><span class="muted">Ink 850 + hairline</span></div>
+      <div class="e2"><span class="readout">E2 · Raised</span><span class="muted">Ink 800 + soft shadow</span></div>
+      <div class="e3"><span class="readout">E3 · Bezel glass</span><span class="muted">Only over a live trace</span></div>
+    </div>
+  </div>
+  <p class="cap">Depth comes from tone steps and hairlines. Glass (E3) is reserved for overlays that sit on top of a moving trace, like the scope's bezel; it is never a card style.</p>
+</section>
