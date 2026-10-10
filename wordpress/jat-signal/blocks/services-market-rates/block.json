@@ -1,0 +1,41 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "developer-portfolio/services-market-rates",
+	"version": "1.0.0",
+	"title": "Services Market Rates",
+	"category": "jat",
+	"icon": "chart-bar",
+	"description": "Market context bar showing competitor rate ranges for comparison.",
+	"keywords": [
+		"market",
+		"rates",
+		"comparison",
+		"pricing"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"cards": {
+			"type": "string",
+			"default": "[{\"label\":\"Boston WP Agency Rate\",\"range\":\"$150–$250/hr\",\"note\":\"Agency overhead + markup\"},{\"label\":\"Senior WP Freelancer (US)\",\"range\":\"$80–$150/hr\",\"note\":\"National range, 5–10+ yrs exp\"},{\"label\":\"AI Consultant Freelance (US)\",\"range\":\"$150–$300/hr\",\"note\":\"Senior independent, tech hub\"},{\"label\":\"Cybersecurity Consultant\",\"range\":\"$100–$200/hr\",\"note\":\"Freelance, IT security focus\"}]"
+		}
+	},
+	"textdomain": "jat-signal",
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

@@ -9,7 +9,8 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 | **Concept overview** | https://cptnope.github.io/Jeremy-Anderson-Tech-Concept-1/ |
 | **Brand book** | https://cptnope.github.io/Jeremy-Anderson-Tech-Concept-1/brand-book/ |
 | **Site prototype** | https://cptnope.github.io/Jeremy-Anderson-Tech-Concept-1/site/ |
-| **Status** | v1 concept for review, October 2026. Not the live site. |
+| **WordPress theme** | JAT Signal 1.0.0: [download `jat-signal.zip`](https://github.com/CptNope/Jeremy-Anderson-Tech-Concept-1/releases/latest) · source in [`wordpress/jat-signal/`](wordpress/jat-signal/) |
+| **Status** | v1 concept for review, October 2026. The static concept is not the live site; the WordPress theme is ready to install on it. |
 | **Search** | Excluded with `noindex` on every page and a `robots.txt` that blocks all crawlers |
 
 ---
@@ -25,7 +26,7 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 7. [Content rules and placeholders](#content-rules-and-placeholders)
 8. [How it was made](#how-it-was-made)
 9. [Build, preview, deploy](#build-preview-deploy)
-10. [WordPress phase 2](#wordpress-phase-2)
+10. [WordPress theme](#wordpress-theme)
 11. [Known limits and next steps](#known-limits-and-next-steps)
 12. [Licenses](#licenses)
 
@@ -78,7 +79,7 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 │   ├── approach.html           Process, quality bar, terms
 │   ├── insights.html           Blog index (links to existing posts)
 │   ├── contact.html            Lead form (client-side validation, not connected)
-│   ├── sitemap.html            IA, redirect map, WordPress block plan
+│   ├── sitemap.html            IA, redirect map, WordPress blocks
 │   └── site.css · site.js      Shared styles and behavior (built copies)
 ├── brand-book/
 │   ├── index.html              The brand book (17 sections)
@@ -98,6 +99,8 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 │   ├── tools/                  build_all.py, capture.py, typeset_roles.py, subset_fonts.py
 │   ├── fonts/                  Source TTFs for the wordmark and font subsetting (not committed)
 │   └── review/                 Finish-review record and iteration captures
+├── wordpress/
+│   └── jat-signal/             WordPress block theme (JAT Signal), released as jat-signal.zip
 ├── robots.txt                  Disallow all (concept)
 └── .nojekyll                   Serve files as-is on GitHub Pages
 ```
@@ -264,7 +267,7 @@ The current page is marked with `aria-current` and a cyan underline. The bar's m
 | `contact.html` | `/contact/` | ContactPage |
 | `sitemap.html` | — | — |
 
-Phase 2 splits the channel sections into individual service pages using the anchors already in place (`platforms.html#wordpress` → `/services/platforms/wordpress/`, and so on). `sitemap.html` holds the full IA, the redirect map and the WordPress block plan.
+A later phase can split the channel sections into individual service pages using the anchors already in place (`platforms.html#wordpress` → `/services/platforms/wordpress/`, and so on). `sitemap.html` holds the full IA, the redirect map and the blocks built in the WordPress theme.
 
 **Signature interactions**
 - **Hero:** a noise-to-lock trace with centre-axis ticks, plus measurement cursors that follow the pointer (X/Y in divisions).
@@ -349,26 +352,53 @@ The build is deterministic: running `build_all.py` on an unchanged checkout prod
 | Concept bar | `concept_bar()` in `design/site-src/build/common.py` |
 | Type roles (selector → role map) | `design/tools/typeset_roles.py` |
 | Logo geometry | `TRACE` / `BAR` in `design/identity/logos.py` and `sprite.py` |
+| WordPress theme | `wordpress/jat-signal/`. There's no build step; see its README for the file map and packaging |
 
 **Deploy.** In GitHub, open **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, then select `main` and `/ (root)`. Every push to `main` republishes.
 
 ---
 
-## WordPress phase 2
+## WordPress theme
 
-Hosting is planned on Jeremy's Cloudways/DigitalOcean infrastructure.
+**JAT Signal** is the phase 2 deliverable: this concept built as a full-site-editing WordPress block theme. Its source is in [`wordpress/jat-signal/`](wordpress/jat-signal/), and each version is published as a [GitHub release](https://github.com/CptNope/Jeremy-Anderson-Tech-Concept-1/releases/latest) with an installable `jat-signal.zip`. The full guide is in [`wordpress/jat-signal/README.md`](wordpress/jat-signal/README.md), and changes are listed in [`CHANGELOG.md`](wordpress/jat-signal/CHANGELOG.md).
 
-- **Block theme.** Use the `theme.json` in brand book §17 for the palette, fonts (self-hosted WOFF2), font sizes, spacing and button styles.
-- **Custom blocks** (`jat/` namespace):
-  - `hero-scope`, `channel-strip`, `channel-rows`, `versus`
-  - `price-table`, fed from a Packages custom post type
-  - `steps`, `work-feature`, `case-facts`
-  - `faq`, which emits FAQPage schema
-  - `close-cta`
-  - `lead-form`, which posts to a REST endpoint with a nonce and a honeypot
-- **Content types:** Packages, with channel taxonomy, price, timeline and badge fields; and Projects, keeping the existing `/project/{slug}/` URLs.
-- **Redirects.** Existing project and blog URLs stay as they are. Consolidated service pages and tag archives get 301s, listed in `sitemap.html`.
-- **Production setup.** Remove `noindex` and `robots.txt` at launch. Keep the canonical URLs as built.
+**Two ways it installs**
+
+| Site | What activation does |
+|---|---|
+| **jeremyanderson.tech**, or any site running Developer Portfolio | Restyles every existing page, project, service and post as it is. Adds Approach, Contact and the four channel pages as drafts, and changes nothing else. **Appearance › JAT Signal** applies the concept layout to Home, Services, About and Projects, with one-click restore. |
+| **A brand-new WordPress install** | Sets up the complete site: the 27 services and prices, Home, Services, Projects, About and Blog with the concept layouts, the concept pages and the legal pages. |
+
+**Install.** Back up the site. Then go to **Appearance › Themes › Add New › Upload Theme**, upload `jat-signal.zip` and select **Activate**.
+
+**How the concept maps to the theme**
+
+| Concept | Theme |
+|---|---|
+| `site.css`, `site.js` | `assets/css/theme.css`, `assets/js/theme.js`. The concept's styles and behavior carry over unchanged, plus a WordPress layer for template parts, core blocks and the editor. |
+| Tokens in `DESIGN.md` and brand book §17 | `theme.json` palette, fonts, sizes and spacing. Developer Portfolio's preset slugs are kept and remapped. |
+| Home, Services, About, Work pages | Concept layouts built from existing `developer-portfolio/*` blocks and new `jat/*` blocks |
+| Channel pages, Approach, Contact | Pages created by the theme, using the concept copy |
+| Lead form (validates, doesn't send) | `jat/contact-form`. Messages are emailed with `wp_mail()` and stored under **Inquiries**, with a nonce, a honeypot, a minimum fill time and a rate limit. |
+| Planned blocks (`hero-scope`, `channel-rows`, `price-table`, `faq`, …) | Built as `developer-portfolio/hero-section`, `jat/channels`, `jat/price-list` and `developer-portfolio/services-faq`. The full list is in `sitemap.html`. |
+| Planned Packages post type | Not added. The existing `service` post type and `service_category` taxonomy already carry prices, so live data needed no migration. |
+
+**Compatibility.** The theme keeps everything Developer Portfolio's saved content depends on:
+- the 22 `developer-portfolio/*` blocks, with the same attributes and defaults;
+- the `project` and `service` post types, their taxonomies and meta;
+- the page templates and preset slugs;
+- the patterns, the `[faq]` shortcode and the `{year}` token.
+
+Existing `/project/{slug}/`, `/service/{slug}/` and blog URLs don't change.
+
+**Tested** on WordPress 7.1.3 with PHP 8.3, both on a copy of jeremyanderson.tech and on a brand-new install:
+- every template at 1440px and 390px;
+- axe-core: no violations;
+- no PHP notices or console errors;
+- the block editor and the Site Editor;
+- concept apply and restore, the contact form and theme switching.
+
+**Still to do at launch.** The static concept stays `noindex` with a blocking `robots.txt`; the theme doesn't add either. Redirects for consolidated service pages and tag archives (listed in `sitemap.html`) belong in a redirect plugin or the server config, not the theme.
 
 ---
 
@@ -384,6 +414,7 @@ Hosting is planned on Jeremy's Cloudways/DigitalOcean infrastructure.
   - phosphor persistence on the monogram;
   - more measurement readouts in the case studies;
   - more variety in home section heads.
+- **WordPress theme.** Real project screenshots and a founder portrait still need to be added in WordPress. Until then, the theme shows the project schematics and the JAT mark. Email delivery depends on the host, so use an SMTP plugin on shared hosting.
 - **Optional `/lab/` page.** An interactive "Signal Lab" showcase is in the IA as a phase 3 idea.
 
 ---

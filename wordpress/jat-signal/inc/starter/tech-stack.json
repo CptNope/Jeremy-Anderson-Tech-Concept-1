@@ -1,0 +1,60 @@
+[
+    {
+        "name": "Frontend & UI",
+        "color": "violet",
+        "badges": [
+            "React",
+            "TypeScript",
+            "Tailwind CSS",
+            "HTML5",
+            "CSS3",
+            "Block Editor"
+        ]
+    },
+    {
+        "name": "Backend & Platforms",
+        "color": "cyan",
+        "badges": [
+            "PHP",
+            "WordPress",
+            "Node.js",
+            "REST APIs",
+            "MySQL",
+            "PostgreSQL"
+        ]
+    },
+    {
+        "name": "AI Systems & Automation",
+        "color": "emerald",
+        "badges": [
+            "Local LLMs",
+            "RAG",
+            "Vector Databases",
+            "Python",
+            "Prompt Engineering"
+        ]
+    },
+    {
+        "name": "Security, Infrastructure & DevOps",
+        "color": "rose",
+        "badges": [
+            "SIEM",
+            "Hardening",
+            "Cloudflare",
+            "DigitalOcean",
+            "GitHub Actions",
+            "Docker"
+        ]
+    },
+    {
+        "name": "Tools & Design",
+        "color": "amber",
+        "badges": [
+            "Figma",
+            "Git",
+            "VS Code",
+            "Playwright",
+            "Vite"
+        ]
+    }
+]

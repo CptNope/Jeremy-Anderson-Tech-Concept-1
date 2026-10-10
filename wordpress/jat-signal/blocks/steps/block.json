@@ -1,0 +1,43 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/steps",
+	"version": "1.0.0",
+	"title": "Process steps",
+	"category": "jat",
+	"icon": "editor-ol",
+	"description": "A numbered process across the page (stacks on narrow screens).",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "From first call to a system that runs itself."
+		},
+		"lede": {
+			"type": "string",
+			"default": "Most projects go from first contact to signed scope in one to two weeks, and start one to two weeks after that."
+		},
+		"items": {
+			"type": "string",
+			"default": "[{\"title\": \"Discovery call\", \"meta\": \"Day 0\", \"text\": \"30 minutes, free. What the system needs to do and what it's worth to you.\", \"note\": \"\"}, {\"title\": \"Written proposal\", \"meta\": \"3 days\", \"text\": \"Scope, price, timeline and what's out of scope, in plain language.\", \"note\": \"\"}, {\"title\": \"Scope and deposit\", \"meta\": \"Signed\", \"text\": \"50% deposit on fixed-fee projects. Changes go through written change orders.\", \"note\": \"\"}, {\"title\": \"Build and harden\", \"meta\": \"Weeks\", \"text\": \"Design, engineering, security and accessibility testing, with reviews as it takes shape.\", \"note\": \"\"}, {\"title\": \"Launch and run\", \"meta\": \"Ongoing\", \"text\": \"30 to 90 days of included support, then an optional care plan.\", \"note\": \"\"}]"
+		},
+		"linkText": {
+			"type": "string",
+			"default": "How we work, in detail"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/approach/"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

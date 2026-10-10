@@ -258,13 +258,27 @@ REDIR = [
  ('/project-tag/{tag}/','/work/','301 (noindex tag archives)'),('/{post-slug}/','unchanged','keep'),('/category/{cat}/','/blog/?category={cat}','keep or 301'),
  ('/about','unchanged','keep'),('/privacy-policy/ · /terms-of-service/ · /accessibility/','unchanged','keep'),
 ]
-BLOCKS = [('jat/hero-scope','Hero with canvas trace, headline, CTAs, channel strip'),('jat/channel-strip','Four-channel readout navigation'),('jat/channel-rows','Channel rows with promise, services, entry price'),('jat/versus','Two graticule screens comparing states'),('jat/price-table','Price rows from a Packages custom post type'),('jat/steps','Numbered process with time readouts'),('jat/work-feature','Featured project with schematic plate and facts'),('jat/case-facts','Sticky facts sidebar for case studies'),('jat/faq','Accessible details list emitting FAQPage schema'),('jat/close-cta','Closing call to action with copyable email'),('jat/lead-form','Inquiry form posting to a REST endpoint with nonce and honeypot')]
+BLOCKS = [('developer-portfolio/hero-section','Hero: canvas trace, headline, cycling role line, CTAs, optional channel strip (planned as jat/hero-scope)'),
+ ('jat/channels','Channel rows with promise, services and live entry price, or a compact strip (planned as jat/channel-rows and jat/channel-strip)'),
+ ('jat/versus','Two graticule screens: four vendors against one studio'),
+ ('jat/price-list','Price rows read from the Services post type (planned as jat/price-table)'),
+ ('jat/steps','Numbered process with time readouts'),
+ ('developer-portfolio/featured-projects','Featured project with plate and facts, plus project cards (planned as jat/work-feature)'),
+ ('jat/project-facts','Sticky facts sidebar on case studies (planned as jat/case-facts)'),
+ ('developer-portfolio/services-faq','Accessible details list emitting FAQPage schema (planned as jat/faq)'),
+ ('developer-portfolio/contact-cta','Closing call to action with copyable email (planned as jat/close-cta)'),
+ ('jat/contact-form','Inquiry form: nonce, honeypot, rate limit, email plus a stored copy (planned as jat/lead-form)'),
+ ('jat/page-head','Breadcrumbs, title, lede and the channel waveform on every inner page'),
+ ('jat/channel-intro','Channel page body: service areas with checklists and a sticky starting price'),
+ ('jat/check-grid','Quality bar and beliefs as a check grid'),
+ ('jat/founder','Founder band with portrait and timeline'),
+ ('jat/service-summary · jat/archive-list · jat/post-nav · jat/site-footer','Service sidebar, archives, previous/next links, footer')]
 ia_rows=''.join(f'<tr><td class="mono">{p}</td><td>{t}</td><td>{"<a href=\""+h+"\">"+h+"</a>" if h!="—" else "—"}</td><td>{m}</td><td class="mono">{s}</td></tr>' for p,t,h,m,s in IA)
 rd_rows=''.join(f'<tr><td class="mono">{a}</td><td class="mono">{b}</td><td>{c}</td></tr>' for a,b,c in REDIR)
 bl_rows=''.join(f'<tr><td class="mono">{a}</td><td>{b}</td></tr>' for a,b in BLOCKS)
 sitemap = page_head([('index.html','Home'),(None,'Site map')],'Site map and architecture.','Every page in the new information architecture, its production URL, the schema it emits, and how existing URLs keep their search equity.') + f'''
 <section class="section" aria-labelledby="sm1"><div class="wrap">
-  <div class="section-head"><h2 id="sm1">Information architecture</h2><p class="lede">Concept pages link to their production URLs. Phase 2 splits channel sections into individual service landing pages.</p></div>
+  <div class="section-head"><h2 id="sm1">Information architecture</h2><p class="lede">Concept pages link to their production URLs. A later phase can split channel sections into individual service landing pages.</p></div>
   <div style="overflow-x:auto" tabindex="0" role="region" aria-label="Information architecture table"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:760px"><thead><tr><th>Production URL</th><th>Page</th><th>Concept file</th><th>Mode</th><th>Schema</th></tr></thead><tbody>{ia_rows}</tbody></table></div>
 </div></section>
 <section class="section alt" aria-labelledby="sm2"><div class="wrap">
@@ -272,10 +286,10 @@ sitemap = page_head([('index.html','Home'),(None,'Site map')],'Site map and arch
   <div style="overflow-x:auto" tabindex="0" role="region" aria-label="Redirect map table"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:640px"><thead><tr><th>Current URL</th><th>New URL</th><th>Action</th></tr></thead><tbody>{rd_rows}</tbody></table></div>
 </div></section>
 <section class="section" aria-labelledby="sm3"><div class="wrap two-col">
-  <div><h2 id="sm3">WordPress block plan</h2><p class="lede" style="margin-top:var(--s4)">Custom blocks in a <code class="mono">jat</code> namespace, styled from theme.json tokens, so the team edits content without touching layout.</p></div>
-  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="WordPress block plan table"><table class="spec-table" style="width:100%;border-collapse:collapse"><thead><tr><th>Block</th><th>Purpose</th></tr></thead><tbody>{bl_rows}</tbody></table></div>
+  <div><h2 id="sm3">WordPress blocks</h2><p class="lede" style="margin-top:var(--s4)">Built in the JAT Signal block theme. New blocks use the <code class="mono">jat</code> namespace. Where an existing Developer Portfolio block already did the job, the theme restyles it instead, so live pages keep working. The theme keeps today's <code class="mono">/projects/</code> URL for the work index.</p></div>
+  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="WordPress blocks table"><table class="spec-table" style="width:100%;border-collapse:collapse"><thead><tr><th>Block</th><th>Purpose</th></tr></thead><tbody>{bl_rows}</tbody></table></div>
 </div></section>
 <style>.spec-table th{{text-align:left;font-family:var(--f-mono);font-stretch:90%;font-weight:400;font-size:var(--t-label);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);padding:10px 14px 10px 0;border-bottom:1px solid var(--line)}}.spec-table td{{padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}}.spec-table td.mono{{font-size:var(--t-label-long)}}</style>
 {close_cta()}'''
-open(OUT+'sitemap.html','w').write(page('Site Map · Jeremy Anderson Tech','Information architecture, redirect map and WordPress block plan for the Jeremy Anderson Tech website.','/sitemap/','',sitemap))
+open(OUT+'sitemap.html','w').write(page('Site Map · Jeremy Anderson Tech','Information architecture, redirect map and WordPress blocks for the Jeremy Anderson Tech website.','/sitemap/','',sitemap))
 print('ok2')

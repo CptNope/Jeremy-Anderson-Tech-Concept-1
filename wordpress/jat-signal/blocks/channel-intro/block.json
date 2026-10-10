@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/channel-intro",
+	"version": "1.0.0",
+	"title": "Channel introduction",
+	"category": "jat",
+	"icon": "info-outline",
+	"description": "A channel page opener: outcome, service areas, and a sticky card with the starting package from your Services.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"channel": {
+			"type": "string",
+			"default": "ch1"
+		},
+		"heading": {
+			"type": "string",
+			"default": ""
+		},
+		"lede": {
+			"type": "string",
+			"default": ""
+		},
+		"items": {
+			"type": "string",
+			"default": "[]"
+		},
+		"ctaText": {
+			"type": "string",
+			"default": "Book a discovery call"
+		},
+		"ctaUrl": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

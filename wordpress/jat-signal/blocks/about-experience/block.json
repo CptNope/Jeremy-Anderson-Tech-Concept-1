@@ -1,0 +1,79 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "developer-portfolio/about-experience",
+	"version": "1.0.0",
+	"title": "About Experience",
+	"category": "jat",
+	"icon": "portfolio",
+	"description": "Work experience timeline with education and achievements cards.",
+	"keywords": [
+		"experience",
+		"work",
+		"education",
+		"achievements",
+		"timeline"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		},
+		"sectionLabel": {
+			"type": "string",
+			"default": "// experience"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Where I've Worked"
+		},
+		"headingHighlight": {
+			"type": "string",
+			"default": "Worked"
+		},
+		"jobs": {
+			"type": "string",
+			"default": "[{\"role\":\"Senior Full-Stack Developer\",\"period\":\"2023 - Present\",\"company\":\"TechNova Inc.\",\"description\":\"Leading the frontend architecture team, building scalable React applications with TypeScript, and mentoring junior developers.\"},{\"role\":\"Full-Stack Developer\",\"period\":\"2020 - 2023\",\"company\":\"CloudBase Systems\",\"description\":\"Developed cloud-native applications, implemented CI/CD pipelines, and built real-time data visualization dashboards.\"},{\"role\":\"Frontend Developer\",\"period\":\"2018 - 2020\",\"company\":\"PixelCraft Agency\",\"description\":\"Built responsive web applications and e-commerce platforms for clients across fintech, healthcare, and education.\"}]"
+		},
+		"eduEmoji": {
+			"type": "string",
+			"default": "🎓"
+		},
+		"eduTitle": {
+			"type": "string",
+			"default": "Education"
+		},
+		"eduItems": {
+			"type": "string",
+			"default": "[{\"title\":\"B.S. Computer Science\",\"subtitle\":\"UC Berkeley, 2018\"},{\"title\":\"AWS Solutions Architect\",\"subtitle\":\"Professional Certification, 2022\"}]"
+		},
+		"achieveEmoji": {
+			"type": "string",
+			"default": "🏆"
+		},
+		"achieveTitle": {
+			"type": "string",
+			"default": "Achievements"
+		},
+		"achieveItems": {
+			"type": "string",
+			"default": "[{\"title\":\"GitHub Star 2025\",\"subtitle\":\"Recognized for open source contributions\"},{\"title\":\"ReactConf Speaker 2024\",\"subtitle\":\"Talk: \\\"Scaling React for Enterprise\\\"\"}]"
+		}
+	},
+	"textdomain": "jat-signal",
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

@@ -1,0 +1,74 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "developer-portfolio/projects-listing",
+	"version": "1.0.0",
+	"title": "Projects Listing",
+	"category": "jat",
+	"icon": "portfolio",
+	"description": "Full projects page listing with hero header, project grid, and pagination.",
+	"keywords": [
+		"projects",
+		"portfolio",
+		"listing",
+		"archive"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"sectionLabel": {
+			"type": "string",
+			"default": "// projects"
+		},
+		"heading": {
+			"type": "string",
+			"default": "All Projects"
+		},
+		"headingHighlight": {
+			"type": "string",
+			"default": "Projects"
+		},
+		"description": {
+			"type": "string",
+			"default": "A collection of applications, tools, and experiments I've built."
+		},
+		"perPage": {
+			"type": "number",
+			"default": 9
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"splitProprietary": {
+			"type": "boolean",
+			"default": true
+		},
+		"proprietaryHeading": {
+			"type": "string",
+			"default": "Proprietary systems"
+		},
+		"proprietaryDescription": {
+			"type": "string",
+			"default": "Client and internal systems. The code stays private; ask on a discovery call and we can walk through relevant work."
+		}
+	},
+	"textdomain": "jat-signal",
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

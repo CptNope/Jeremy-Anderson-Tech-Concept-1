@@ -1,0 +1,43 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/site-footer",
+	"version": "1.0.0",
+	"title": "Site footer",
+	"category": "jat",
+	"icon": "align-full-width",
+	"description": "Lockup, studio line, email, link columns and profiles.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"blurb": {
+			"type": "string",
+			"default": "Web platforms, AI and security, built and run by one accountable engineering studio in Shrewsbury, Massachusetts."
+		},
+		"githubUrl": {
+			"type": "string",
+			"default": "https://github.com/CptNope?tab=repositories"
+		},
+		"linkedinUrl": {
+			"type": "string",
+			"default": "https://www.linkedin.com/in/jeremy-anderson-53963b222/"
+		},
+		"xUrl": {
+			"type": "string",
+			"default": "https://x.com/JeremyA59964523"
+		},
+		"note": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

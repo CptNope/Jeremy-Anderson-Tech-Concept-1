@@ -1,0 +1,55 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/price-list",
+	"version": "1.0.0",
+	"title": "Price list",
+	"category": "jat",
+	"icon": "money-alt",
+	"description": "Chosen services (or one category) as price rows, straight from the Services post type.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "Prices before the first call."
+		},
+		"lede": {
+			"type": "string",
+			"default": "Fixed fees with a signed scope. If we misestimate, you don't pay for it. Hourly work and monthly care plans are published too."
+		},
+		"postIds": {
+			"type": "string",
+			"default": "[]"
+		},
+		"category": {
+			"type": "string",
+			"default": ""
+		},
+		"count": {
+			"type": "number",
+			"default": 5
+		},
+		"showFeatures": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkText": {
+			"type": "string",
+			"default": "See every package, rate and add-on"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/services/"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

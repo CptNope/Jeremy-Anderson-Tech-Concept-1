@@ -1,0 +1,63 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/versus",
+	"version": "1.0.0",
+	"title": "Versus",
+	"category": "jat",
+	"icon": "image-flip-horizontal",
+	"description": "Two trace screens: four vendors out of phase versus one accountable lead.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "Most small businesses run on four vendors that never talk to each other."
+		},
+		"lede": {
+			"type": "string",
+			"default": "A designer built the site, a host runs it, an IT company \"handles security\", and an agency sends SEO reports. When something breaks, everyone points somewhere else."
+		},
+		"leftLabel": {
+			"type": "string",
+			"default": "Four vendors"
+		},
+		"leftState": {
+			"type": "string",
+			"default": "Free-running"
+		},
+		"leftTitle": {
+			"type": "string",
+			"default": "Out of phase"
+		},
+		"leftText": {
+			"type": "string",
+			"default": "Each vendor optimizes their own piece. Handoffs drop context, and nobody owns the whole system."
+		},
+		"rightLabel": {
+			"type": "string",
+			"default": "One studio"
+		},
+		"rightState": {
+			"type": "string",
+			"default": "Locked"
+		},
+		"rightTitle": {
+			"type": "string",
+			"default": "One accountable lead"
+		},
+		"rightText": {
+			"type": "string",
+			"default": "The engineer who architects your system also secures it, hosts it and answers when it needs attention."
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,20 @@
+/* JAT Signal: editor canvas only (loaded after theme.css through add_editor_style). */
+.editor-styles-wrapper{background:var(--bg);color:var(--fg)}
+/* Server-rendered previews: one block reads as one section, and a hover outline marks it. */
+.jat-ssr{position:relative}
+.jat-ssr>div>*{margin-block:0}
+.jat-ssr__loading{min-height:160px;display:grid;place-items:center;border:1px dashed var(--line-strong);border-radius:8px;color:var(--fg-muted)}
+.jat-ssr__empty{padding:var(--s5);border:1px dashed var(--line-strong);border-radius:8px;text-align:center}
+.jat-ssr .components-placeholder{background:var(--ink-850);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line-strong)}
+/* Animated traces don't run in the editor; show the still parts of each frame instead. */
+.jat-ssr canvas{display:none}
+.jat-ssr .hero-state .dot{background:var(--ch4)}
+/* The sticky header would cover blocks while scrolling the editor canvas. */
+.jat-ssr .site-header{position:relative!important;top:auto!important}
+.jat-ssr a,.jat-ssr button,.jat-ssr input,.jat-ssr select,.jat-ssr textarea,.jat-ssr summary{pointer-events:none}
+.jat-editor-note{padding:var(--s4);border:1px dashed var(--line-strong);border-radius:8px;font-size:var(--t-small);color:var(--fg-muted)}
+/* Template parts in the site editor. */
+.editor-styles-wrapper .site-header-part{position:relative}
+/* Theme blocks are full-bleed sections, as on the front end (where post content sits in .canvas). */
+.editor-styles-wrapper .is-layout-constrained>:is([data-type^="jat/"],[data-type^="developer-portfolio/"]),
+.editor-styles-wrapper .is-root-container>:is([data-type^="jat/"],[data-type^="developer-portfolio/"]){max-width:none!important;margin-inline:0!important}

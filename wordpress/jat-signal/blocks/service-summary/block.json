@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/service-summary",
+	"version": "1.0.0",
+	"title": "Service summary",
+	"category": "jat",
+	"icon": "money-alt",
+	"description": "Sticky price card for a service: price, timing, tier, what’s included and a call to action.",
+	"textdomain": "jat-signal",
+	"attributes": {},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

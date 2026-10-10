@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/founder",
+	"version": "1.0.0",
+	"title": "Founder",
+	"category": "jat",
+	"icon": "admin-users",
+	"description": "Portrait, short introduction and a timeline of facts.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "You work with Jeremy, every time."
+		},
+		"text": {
+			"type": "string",
+			"default": "Jeremy Anderson has built for the web since 1998, co-founded an IT and web company in San Antonio, and now leads every engagement personally, from the first call through every update after launch."
+		},
+		"imageId": {
+			"type": "number",
+			"default": 0
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"imageAlt": {
+			"type": "string",
+			"default": ""
+		},
+		"caption": {
+			"type": "string",
+			"default": "Shrewsbury, MA"
+		},
+		"items": {
+			"type": "string",
+			"default": "[{\"y\": \"Since 1998\", \"text\": \"Building websites, systems and software\"}, {\"y\": \"W3C / WAI\", \"text\": \"Web accessibility professional certification\"}, {\"y\": \"2022 →\", \"text\": \"AI consultant and developer for research and science communication\"}, {\"y\": \"Ongoing\", \"text\": \"Computer science studies at Harvard; attends OWASP security events\"}]"
+		},
+		"linkText": {
+			"type": "string",
+			"default": "About the studio"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/about/"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

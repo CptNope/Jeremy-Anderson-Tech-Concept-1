@@ -1,0 +1,74 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "developer-portfolio/latest-posts",
+	"version": "1.0.0",
+	"title": "Latest Posts",
+	"category": "jat",
+	"icon": "admin-post",
+	"description": "Display selected blog posts.",
+	"keywords": [
+		"blog",
+		"posts",
+		"articles",
+		"latest"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"sectionLabel": {
+			"type": "string",
+			"default": "// latest posts"
+		},
+		"heading": {
+			"type": "string",
+			"default": "From the Blog"
+		},
+		"headingHighlight": {
+			"type": "string",
+			"default": "Blog"
+		},
+		"linkText": {
+			"type": "string",
+			"default": "Read all posts →"
+		},
+		"linkUrl": {
+			"type": "string",
+			"default": "/blog"
+		},
+		"postIds": {
+			"type": "string",
+			"default": "[]"
+		},
+		"count": {
+			"type": "number",
+			"default": 3
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"related": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"textdomain": "jat-signal",
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

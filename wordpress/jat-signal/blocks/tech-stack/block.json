@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "developer-portfolio/tech-stack",
+	"version": "1.0.0",
+	"title": "Tech Stack",
+	"category": "jat",
+	"icon": "editor-code",
+	"description": "Displays technology categories with colored badges from page meta.",
+	"keywords": [
+		"tech",
+		"stack",
+		"skills",
+		"technologies"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+		"anchor": true,
+		"className": true
+	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Technologies I Work With"
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"usesContext": [
+		"postId",
+		"postType"
+	],
+	"textdomain": "jat-signal",
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

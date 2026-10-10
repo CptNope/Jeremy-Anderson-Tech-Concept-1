@@ -1,0 +1,47 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/contact-form",
+	"version": "1.0.0",
+	"title": "Contact form",
+	"category": "jat",
+	"icon": "email",
+	"description": "Inquiry form that emails you and keeps a copy under Inquiries. Can show a Contact Form 7 form instead.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "Project inquiry"
+		},
+		"submitText": {
+			"type": "string",
+			"default": "Request a discovery call"
+		},
+		"cf7": {
+			"type": "string",
+			"default": ""
+		},
+		"asideTitle": {
+			"type": "string",
+			"default": "What happens next"
+		},
+		"steps": {
+			"type": "string",
+			"default": "[{\"meta\": \"01 · Reply\", \"title\": \"We reply\", \"text\": \"Within one business day, with times for a 30-minute call.\"}, {\"meta\": \"02 · Call\", \"title\": \"Discovery\", \"text\": \"Video, phone or in person in Greater Boston and Worcester.\"}, {\"meta\": \"03 · 3 business days\", \"title\": \"Proposal\", \"text\": \"Written scope, price and timeline.\"}]"
+		},
+		"showChannels": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

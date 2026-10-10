@@ -1,0 +1,535 @@
+{
+ "categories": [
+  {
+   "slug": "add-ons",
+   "name": "Add-Ons",
+   "description": ""
+  },
+  {
+   "slug": "ai-packages",
+   "name": "AI Packages",
+   "description": ""
+  },
+  {
+   "slug": "hourly-rates",
+   "name": "Hourly Rates",
+   "description": ""
+  },
+  {
+   "slug": "monthly-retainers",
+   "name": "Monthly Retainers",
+   "description": ""
+  },
+  {
+   "slug": "security-packages",
+   "name": "Security Packages",
+   "description": ""
+  },
+  {
+   "slug": "wordpress-packages",
+   "name": "WordPress Packages",
+   "description": ""
+  }
+ ],
+ "services": [
+  {
+   "title": "WordPress Development",
+   "slug": "wordpress-development",
+   "excerpt": "",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "hourly-rates"
+   ],
+   "meta": {
+    "service_price": "$115/hr",
+    "service_price_note": "Standard dev work",
+    "service_badge_type": "wp",
+    "service_typical_uses": "Theme customization, plugin dev, bug fixes, WooCommerce, performance tuning, FSE work",
+    "service_min_hours": "2 hrs",
+    "service_sort_order": "1",
+    "service_subtitle": "WordPress"
+   }
+  },
+  {
+   "title": "AI Systems &amp; Consulting",
+   "slug": "ai-systems-consulting",
+   "excerpt": "",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "hourly-rates"
+   ],
+   "meta": {
+    "service_price": "$185/hr",
+    "service_price_note": "AI strategy + build",
+    "service_badge_type": "ai",
+    "service_typical_uses": "RAG systems, local LLM setup, AI workflow design, prompt engineering, AI tool integration",
+    "service_min_hours": "2 hrs",
+    "service_sort_order": "2",
+    "service_subtitle": "AI"
+   }
+  },
+  {
+   "title": "Cybersecurity Consulting",
+   "slug": "cybersecurity-consulting",
+   "excerpt": "",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "hourly-rates"
+   ],
+   "meta": {
+    "service_price": "$135/hr",
+    "service_price_note": "Hardening + audits",
+    "service_badge_type": "sec",
+    "service_typical_uses": "Security audits, WordPress hardening, log monitoring setup, SIEM configuration, compliance review",
+    "service_min_hours": "2 hrs",
+    "service_sort_order": "3",
+    "service_subtitle": "Security"
+   }
+  },
+  {
+   "title": "Full-Stack / Custom Dev",
+   "slug": "full-stack-custom-dev",
+   "excerpt": "",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "hourly-rates"
+   ],
+   "meta": {
+    "service_price": "$125/hr",
+    "service_price_note": "Full-stack builds",
+    "service_badge_type": "wp",
+    "service_typical_uses": "React apps, Node.js backends, REST APIs, custom web applications, PWAs",
+    "service_min_hours": "2 hrs",
+    "service_sort_order": "4",
+    "service_subtitle": "React · Node.js · PHP"
+   }
+  },
+  {
+   "title": "Strategy &amp; Technical Advisory",
+   "slug": "strategy-technical-advisory",
+   "excerpt": "",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "hourly-rates"
+   ],
+   "meta": {
+    "service_price": "$165/hr",
+    "service_price_note": "Calls + roadmapping",
+    "service_badge_type": "ai",
+    "service_typical_uses": "Architecture planning, tech stack decisions, vendor evaluation, project scoping, AI roadmaps",
+    "service_min_hours": "1 hr",
+    "service_sort_order": "5",
+    "service_subtitle": "Consulting"
+   }
+  },
+  {
+   "title": "Business Site",
+   "slug": "business-site",
+   "excerpt": "A clean, fast, mobile-friendly WordPress site for small local businesses that need a professional web presence without the agency price tag.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "wordpress-packages"
+   ],
+   "meta": {
+    "service_price": "$3,500",
+    "service_price_note": "flat fee · 3–4 week delivery",
+    "service_tier": "Starter",
+    "service_badge_type": "wp",
+    "service_featured": "",
+    "service_cta_text": "Get a Quote →",
+    "service_cta_url": "mailto:info@jeremyanderson.tech",
+    "service_sort_order": "1",
+    "service_features": "[\"Up to 8 pages (Home, About, Services, Contact + 4 more)\",\"Custom child theme or FSE theme configuration\",\"Mobile responsive + Core Web Vitals optimized\",\"On-page SEO setup (Yoast/RankMath, meta, schema)\",\"Contact form + Google Maps integration\",\"Basic security hardening + SSL\",\"30-day post-launch support\"]"
+   }
+  },
+  {
+   "title": "Custom Platform",
+   "slug": "custom-platform",
+   "excerpt": "A fully custom WordPress build with tailored functionality, custom plugin development, and a polished design system. The right fit for growing businesses and funded startups.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "wordpress-packages"
+   ],
+   "meta": {
+    "service_price": "$7,500",
+    "service_price_note": "flat fee · 5–7 week delivery",
+    "service_tier": "Most Requested",
+    "service_badge_type": "wp",
+    "service_featured": "1",
+    "service_cta_text": "Get a Quote →",
+    "service_cta_url": "mailto:info@jeremyanderson.tech",
+    "service_sort_order": "2",
+    "service_features": "[\"Unlimited pages, custom post types & taxonomies\",\"Custom plugin development (up to 2 features)\",\"Full Site Editing theme with custom block patterns\",\"Advanced SEO + local schema markup\",\"Performance optimization (caching, CDN, image pipeline)\",\"Security hardening + login protection\",\"REST API integration (up to 1 third-party service)\",\"CMS training session for your team\",\"60-day post-launch support\"]"
+   }
+  },
+  {
+   "title": "Complex System",
+   "slug": "complex-system",
+   "excerpt": "Large-scale WordPress platforms, multi-site networks, complex plugin ecosystems, WooCommerce stores, and sites requiring advanced security or compliance requirements.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "wordpress-packages"
+   ],
+   "meta": {
+    "service_price": "$15,000+",
+    "service_price_note": "scoped + quoted · 8–12 weeks",
+    "service_tier": "Enterprise",
+    "service_badge_type": "wp",
+    "service_featured": "",
+    "service_cta_text": "Schedule a Call →",
+    "service_cta_url": "mailto:info@jeremyanderson.tech",
+    "service_sort_order": "3",
+    "service_features": "[\"Architecture planning & technical specification\",\"Custom plugin suite (unlimited scope)\",\"Multi-site / network configuration\",\"WooCommerce with custom checkout & integrations\",\"SIEM/SOC dashboard integration for monitoring\",\"Advanced security framework + compliance review\",\"Load testing + scalability planning\",\"Developer documentation + handoff\",\"90-day post-launch support\"]"
+   }
+  },
+  {
+   "title": "AI Discovery",
+   "slug": "ai-discovery",
+   "excerpt": "A focused advisory engagement to identify where AI can realistically help your business, what it would cost to build, and what to prioritize first.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "ai-packages"
+   ],
+   "meta": {
+    "service_price": "$1,200",
+    "service_price_note": "flat fee · 1-week engagement",
+    "service_tier": "Jumpstart",
+    "service_badge_type": "ai",
+    "service_featured": "",
+    "service_cta_text": "Book Discovery →",
+    "service_cta_url": "mailto:info@jeremyanderson.tech",
+    "service_sort_order": "1",
+    "service_features": "[\"2-hour discovery workshop (remote)\",\"Workflow audit u2014 identify top 3 AI opportunities\",\"Feasibility assessment for each opportunity\",\"Build-vs-buy recommendation\",\"Detailed written roadmap + cost estimates\",\"30-min follow-up Q&A call\"]"
+   }
+  },
+  {
+   "title": "Custom AI Tool",
+   "slug": "custom-ai-tool",
+   "excerpt": "Design and build a focused, production-ready AI tool that solves one real operational problem. RAG systems, conversational interfaces, log analyzers, document assistants, and more.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "ai-packages"
+   ],
+   "meta": {
+    "service_price": "$8,500",
+    "service_price_note": "starting price · scoped per project",
+    "service_tier": "Build",
+    "service_badge_type": "ai",
+    "service_featured": "1",
+    "service_cta_text": "Get a Quote →",
+    "service_cta_url": "mailto:info@jeremyanderson.tech",
+    "service_sort_order": "2",
+    "service_features": "[\"Full scope definition & architecture document\",\"Local or cloud LLM selection + setup\",\"Vector database / RAG pipeline (if applicable)\",\"Custom web interface or API integration\",\"Prompt engineering + testing\",\"Integration with existing systems (WordPress, etc.)\",\"Documentation + staff training session\",\"60-day post-launch support\"]"
+   }
+  },
+  {
+   "title": "AI System Integration",
+   "slug": "ai-system-integration",
+   "excerpt": "End-to-end AI infrastructure for organizations ready to deploy AI across multiple workflows — including knowledge management, automation pipelines, and monitoring systems.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "ai-packages"
+   ],
+   "meta": {
+    "service_price": "$20,000+",
+    "service_price_note": "scoped + quoted · 8–14 weeks",
+    "service_tier": "Scale",
+    "service_badge_type": "ai",
+    "service_featured": "",
+    "service_cta_text": "Schedule a Call →",
+    "service_cta_url": "mailto:info@jeremyanderson.tech",
+    "service_sort_order": "3",
+    "service_features": "[\"Multi-tool AI architecture design\",\"Knowledge base + RAG system at scale\",\"Automation workflow integration (n8n, custom)\",\"AI-assisted monitoring & alerting systems\",\"Data privacy review + local LLM deployment options\",\"Team training + change management support\",\"Infrastructure documentation\",\"90-day support + iteration sprints\"]"
+   }
+  },
+  {
+   "title": "Security Audit",
+   "slug": "security-audit",
+   "excerpt": "A thorough review of your WordPress site's security posture with a prioritized remediation report. Know exactly what's at risk and what to fix first.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "security-packages"
+   ],
+   "meta": {
+    "service_price": "$850",
+    "service_price_note": "flat fee · delivered in 5 business days",
+    "service_tier": "Essential",
+    "service_badge_type": "sec",
+    "service_featured": "",
+    "service_cta_text": "Order Audit →",
+    "service_cta_url": "mailto:info@jeremyanderson.tech",
+    "service_sort_order": "1",
+    "service_features": "[\"Plugin & theme vulnerability scan\",\"User roles & permissions review\",\"Login security & 2FA assessment\",\"SSL/TLS configuration check\",\"File permission & server config review\",\"Written report with risk ratings + fix priority\",\"30-min debrief call\"]"
+   }
+  },
+  {
+   "title": "Hardening Package",
+   "slug": "hardening-package",
+   "excerpt": "Audit plus full implementation — we don't just tell you what to fix, we fix it. Leaves your site in a measurably more secure state with documentation of every change made.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "security-packages"
+   ],
+   "meta": {
+    "service_price": "$2,400",
+    "service_price_note": "flat fee · 1–2 week delivery",
+    "service_tier": "Complete",
+    "service_badge_type": "sec",
+    "service_featured": "1",
+    "service_cta_text": "Get a Quote →",
+    "service_cta_url": "mailto:info@jeremyanderson.tech",
+    "service_sort_order": "2",
+    "service_features": "[\"Full security audit (as above)\",\"WordPress core, plugin & theme hardening\",\"Login protection + brute-force blocking\",\"Two-factor authentication setup\",\"Security headers + WAF configuration\",\"Log monitoring setup (fail2ban, audit logs)\",\"Malware scan + cleanup (if needed)\",\"MDPA / compliance checklist review\",\"Written documentation of all changes\"]"
+   }
+  },
+  {
+   "title": "SIEM / SOC Setup",
+   "slug": "siem-soc-setup",
+   "excerpt": "Design and deploy a centralized security monitoring system for organizations managing multiple WordPress sites or web applications across shared or distributed infrastructure.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "security-packages"
+   ],
+   "meta": {
+    "service_price": "$4,500+",
+    "service_price_note": "scoped + quoted · 2–4 weeks",
+    "service_tier": "Infrastructure",
+    "service_badge_type": "sec",
+    "service_featured": "",
+    "service_cta_text": "Schedule a Call →",
+    "service_cta_url": "mailto:info@jeremyanderson.tech",
+    "service_sort_order": "3",
+    "service_features": "[\"Architecture design for multi-site monitoring\",\"Centralized logging pipeline setup\",\"Alert rules for common attack patterns\",\"AI-assisted log analysis integration\",\"Uptime + availability monitoring\",\"Incident response runbook\",\"Dashboard for non-technical staff\",\"60-day support + tuning\"]"
+   }
+  },
+  {
+   "title": "Watchdog",
+   "slug": "watchdog",
+   "excerpt": "",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "monthly-retainers"
+   ],
+   "meta": {
+    "service_price": "$350",
+    "service_price_note": "per month",
+    "service_tier": "Tier 1",
+    "service_badge_type": "maint",
+    "service_hours_included": "~3 hrs/mo included · extra at $115/hr",
+    "service_color_bar": "#334155",
+    "service_sort_order": "1",
+    "service_features": "[\"WordPress core, plugin & theme updates\",\"Weekly uptime monitoring\",\"Automated offsite backups\",\"Monthly security scan\",\"48-hr response time for issues\",\"Monthly status email\"]"
+   }
+  },
+  {
+   "title": "Guardian",
+   "slug": "guardian",
+   "excerpt": "",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "monthly-retainers"
+   ],
+   "meta": {
+    "service_price": "$850",
+    "service_price_note": "per month",
+    "service_tier": "Tier 2",
+    "service_badge_type": "maint",
+    "service_hours_included": "~7 hrs/mo included · extra at $110/hr",
+    "service_color_bar": "#3b82f6",
+    "service_sort_order": "2",
+    "service_features": "[\"Everything in Watchdog\",\"Priority 24-hr response time\",\"Performance monitoring + CWV tracking\",\"Monthly 30-min strategy call\",\"Minor content & design edits\",\"Quarterly security report\",\"Plugin conflict resolution\"]"
+   }
+  },
+  {
+   "title": "Partner",
+   "slug": "partner",
+   "excerpt": "",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "monthly-retainers"
+   ],
+   "meta": {
+    "service_price": "$1,800",
+    "service_price_note": "per month",
+    "service_tier": "Tier 3",
+    "service_badge_type": "maint",
+    "service_hours_included": "~15 hrs/mo included · extra at $105/hr",
+    "service_color_bar": "#34d399",
+    "service_sort_order": "3",
+    "service_features": "[\"Everything in Guardian\",\"Priority 12-hr response time\",\"Active dev hours (features, fixes, improvements)\",\"Monthly 1-hr strategy + roadmap call\",\"SEO monitoring + technical SEO fixes\",\"MDPA / compliance monitoring\",\"AI tool maintenance (if applicable)\",\"Quarterly full security audit\"]"
+   }
+  },
+  {
+   "title": "Embedded Dev",
+   "slug": "embedded-dev",
+   "excerpt": "",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "monthly-retainers"
+   ],
+   "meta": {
+    "service_price": "$4,200",
+    "service_price_note": "per month",
+    "service_tier": "Tier 4",
+    "service_badge_type": "maint",
+    "service_hours_included": "~40 hrs/mo · effectively part-time",
+    "service_color_bar": "#f59e0b",
+    "service_sort_order": "4",
+    "service_features": "[\"Everything in Partner\",\"Priority same-day response\",\"Dedicated dev capacity for new features\",\"Slack/Teams direct access during business hours\",\"Weekly sync call\",\"Covers WordPress + AI + Security work\",\"Annual architecture review\",\"Best fit for agencies & growing startups\"]"
+   }
+  },
+  {
+   "title": "Performance Optimization",
+   "slug": "performance-optimization",
+   "excerpt": "Core Web Vitals audit + implementation. Target: 90+ PageSpeed on desktop and mobile. Covers caching, image optimization, CDN setup, and asset delivery.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "add-ons"
+   ],
+   "meta": {
+    "service_price": "$650",
+    "service_icon": "⚡",
+    "service_sort_order": "1"
+   }
+  },
+  {
+   "title": "Local SEO Setup",
+   "slug": "local-seo-setup",
+   "excerpt": "Google Business Profile optimization, local schema markup, NAP consistency audit, and on-page local keyword implementation for Boston/Worcester area businesses.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "add-ons"
+   ],
+   "meta": {
+    "service_price": "$550",
+    "service_icon": "🗺️",
+    "service_sort_order": "2"
+   }
+  },
+  {
+   "title": "Schema &amp; AEO Markup",
+   "slug": "schema-aeo-markup",
+   "excerpt": "Full structured data implementation: Person, Organization, FAQ, HowTo, Article, and BreadcrumbList schema — optimized for Google rich results and AI engine citations.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "add-ons"
+   ],
+   "meta": {
+    "service_price": "$475",
+    "service_icon": "🤖",
+    "service_sort_order": "3"
+   }
+  },
+  {
+   "title": "Site Migration",
+   "slug": "site-migration",
+   "excerpt": "Full WordPress migration between hosts with zero downtime, DNS management, SSL transfer, and post-migration testing. Includes 30-day monitoring period.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "add-ons"
+   ],
+   "meta": {
+    "service_price": "$750",
+    "service_icon": "🔄",
+    "service_sort_order": "4"
+   }
+  },
+  {
+   "title": "Custom Gutenberg Block",
+   "slug": "custom-gutenberg-block",
+   "excerpt": "A single fully custom Gutenberg block with editor controls, frontend rendering, and full FSE compatibility. Additional blocks at $650/each.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "add-ons"
+   ],
+   "meta": {
+    "service_price": "$950",
+    "service_icon": "🧩",
+    "service_sort_order": "5"
+   }
+  },
+  {
+   "title": "MDPA Compliance Review",
+   "slug": "mdpa-compliance-review",
+   "excerpt": "WordPress-specific Massachusetts Data Privacy Act compliance audit: cookie consent, plugin telemetry, data handling practices, and remediation checklist.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "add-ons"
+   ],
+   "meta": {
+    "service_price": "$675",
+    "service_icon": "📋",
+    "service_sort_order": "6"
+   }
+  },
+  {
+   "title": "AI Readiness Assessment",
+   "slug": "ai-readiness-assessment",
+   "excerpt": "A 90-minute structured workshop + written report identifying your top 3 AI automation opportunities, ranked by effort and impact. Great first step before committing to a build.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "add-ons"
+   ],
+   "meta": {
+    "service_price": "$495",
+    "service_icon": "🧠",
+    "service_sort_order": "7"
+   }
+  },
+  {
+   "title": "WordPress CMS Training",
+   "slug": "wordpress-cms-training",
+   "excerpt": "A 2-hour live training session (remote or in-person, Worcester/Boston area) for your team covering content editing, media management, and site maintenance basics.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "add-ons"
+   ],
+   "meta": {
+    "service_price": "$350",
+    "service_icon": "🎓",
+    "service_sort_order": "8"
+   }
+  },
+  {
+   "title": "Technical SEO Audit",
+   "slug": "technical-seo-audit",
+   "excerpt": "Full crawl analysis, metadata audit, Core Web Vitals, structured data gaps, crawlability issues, and a prioritized fix list. Includes Google Search Console setup if needed.",
+   "content": "",
+   "menu_order": 0,
+   "categories": [
+    "add-ons"
+   ],
+   "meta": {
+    "service_price": "$575",
+    "service_icon": "🔍",
+    "service_sort_order": "9"
+   }
+  }
+ ]
+}

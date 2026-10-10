@@ -1,0 +1,43 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/check-grid",
+	"version": "1.0.0",
+	"title": "Check grid",
+	"category": "jat",
+	"icon": "yes-alt",
+	"description": "Service areas or standards in a two-column grid, each with an outcome and an optional checklist.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "The quality bar every build meets"
+		},
+		"lede": {
+			"type": "string",
+			"default": "These standards are part of the price, not extras."
+		},
+		"channel": {
+			"type": "string",
+			"default": ""
+		},
+		"layout": {
+			"type": "string",
+			"default": "grid"
+		},
+		"items": {
+			"type": "string",
+			"default": "[{\"title\": \"Accessibility\", \"outcome\": \"WCAG 2.2 AA.\", \"text\": \"Keyboard and screen reader testing before launch, reduced-motion support, and contrast checked against real colors, not guesses.\", \"points\": []}, {\"title\": \"Performance\", \"outcome\": \"Core Web Vitals in the green.\", \"text\": \"Image, caching and asset work tuned for mid-range phones, with a 90+ PageSpeed target on optimization work.\", \"points\": []}, {\"title\": \"Security\", \"outcome\": \"Hardened from day one.\", \"text\": \"Least-privilege roles, current software, login protection and SSL on every build. Deeper hardening is available as a package.\", \"points\": []}, {\"title\": \"Search and answers\", \"outcome\": \"Structured to be found.\", \"text\": \"Semantic HTML, on-page SEO and schema markup so search engines and AI assistants understand your business.\", \"points\": []}]"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

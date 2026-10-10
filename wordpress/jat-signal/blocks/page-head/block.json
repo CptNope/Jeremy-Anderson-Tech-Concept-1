@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/page-head",
+	"version": "1.0.0",
+	"title": "Page head",
+	"category": "jat",
+	"icon": "heading",
+	"description": "Breadcrumbs, title, lede and a channel waveform. Leave the title empty to use the current page, post or archive title.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"lede": {
+			"type": "string",
+			"default": ""
+		},
+		"channel": {
+			"type": "string",
+			"default": ""
+		},
+		"wave": {
+			"type": "string",
+			"default": ""
+		},
+		"showCrumbs": {
+			"type": "boolean",
+			"default": true
+		},
+		"showMeta": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

@@ -1,0 +1,126 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "developer-portfolio/about-intro",
+	"version": "1.0.0",
+	"title": "About Intro",
+	"category": "jat",
+	"icon": "id-alt",
+	"description": "About page intro with bio, image, location, and stats grid.",
+	"keywords": [
+		"about",
+		"bio",
+		"stats",
+		"introduction"
+	],
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "wide"
+		},
+		"sectionLabel": {
+			"type": "string",
+			"default": "// about me"
+		},
+		"heading": {
+			"type": "string",
+			"default": "The Developer Behind the Code"
+		},
+		"headingHighlight": {
+			"type": "string",
+			"default": "Developer"
+		},
+		"imageUrl": {
+			"type": "string",
+			"default": "https://images.unsplash.com/photo-1719400471588-575b23e27bd7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXZlbG9wZXIlMjB3b3Jrc3BhY2UlMjBkYXJrJTIwY29kaW5nfGVufDF8fHx8MTc3MjExNjI4NHww&ixlib=rb-4.1.0&q=80&w=1080"
+		},
+		"imageAlt": {
+			"type": "string",
+			"default": "Jeremy Anderson"
+		},
+		"location": {
+			"type": "string",
+			"default": "San Francisco, CA"
+		},
+		"greeting": {
+			"type": "string",
+			"default": "Hi, I'm Jeremy!"
+		},
+		"bio1": {
+			"type": "string",
+			"default": "I'm a passionate full-stack developer with 8+ years of experience building modern web applications. I specialize in React, TypeScript, and Node.js, with a deep interest in performance optimization and developer experience."
+		},
+		"bio2": {
+			"type": "string",
+			"default": "When I'm not writing code, you'll find me contributing to open source projects, writing technical blog posts, or exploring the latest in cloud-native technologies. I believe in writing clean, maintainable code that solves real problems."
+		},
+		"bio3": {
+			"type": "string",
+			"default": "I'm currently open to freelance opportunities and interesting collaborations. If you have a project in mind, I'd love to hear about it!"
+		},
+		"stat1Emoji": {
+			"type": "string",
+			"default": "💻"
+		},
+		"stat1Number": {
+			"type": "string",
+			"default": "8+"
+		},
+		"stat1Label": {
+			"type": "string",
+			"default": "Years of Experience"
+		},
+		"stat2Emoji": {
+			"type": "string",
+			"default": "💼"
+		},
+		"stat2Number": {
+			"type": "string",
+			"default": "50+"
+		},
+		"stat2Label": {
+			"type": "string",
+			"default": "Projects Completed"
+		},
+		"stat3Emoji": {
+			"type": "string",
+			"default": "🌍"
+		},
+		"stat3Number": {
+			"type": "string",
+			"default": "120+"
+		},
+		"stat3Label": {
+			"type": "string",
+			"default": "Open Source Contributions"
+		},
+		"stat4Emoji": {
+			"type": "string",
+			"default": "☕"
+		},
+		"stat4Number": {
+			"type": "string",
+			"default": "∞"
+		},
+		"stat4Label": {
+			"type": "string",
+			"default": "Cups of Coffee"
+		}
+	},
+	"textdomain": "jat-signal",
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php",
+	"usesContext": [
+		"postId",
+		"postType"
+	]
+}

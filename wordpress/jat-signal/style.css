@@ -1,0 +1,17 @@
+/*
+Theme Name: JAT Signal
+Theme URI: https://jeremyanderson.tech/
+Author: Jeremy Anderson
+Author URI: https://jeremyanderson.tech/
+Description: The Calibrated Signal identity for Jeremy Anderson Tech as a full-site-editing block theme. A drop-in replacement for the Developer Portfolio theme: it keeps every developer-portfolio/* block, the Projects and Services post types, their taxonomies and meta, and the page templates, so switching themes restyles the existing site without losing content. Adds the concept's page layouts, a working contact form, and a one-click screen to apply them.
+Requires at least: 6.6
+Tested up to: 7.1
+Requires PHP: 8.0
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: jat-signal
+Tags: full-site-editing, block-patterns, block-styles, custom-colors, editor-style, portfolio, dark, accessibility-ready, wide-blocks, translation-ready
+*/
+
+/* Styles live in theme.json and assets/css/theme.css. */

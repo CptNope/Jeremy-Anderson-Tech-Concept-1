@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/channels",
+	"version": "1.0.0",
+	"title": "Service channels",
+	"category": "jat",
+	"icon": "columns",
+	"description": "The four channels (Platforms, Intelligence, Security, Operations) with live starting prices from your Services.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"layout": {
+			"type": "string",
+			"default": "rows"
+		},
+		"heading": {
+			"type": "string",
+			"default": "Four channels. One engineer on every layer."
+		},
+		"lede": {
+			"type": "string",
+			"default": "Choose one channel or combine them. Every build includes basic security hardening, accessibility and performance work as standard."
+		},
+		"items": {
+			"type": "string",
+			"default": "[{\"key\": \"ch1\", \"promise\": \"A website or app that wins work, loads fast, and your team can update without calling anyone.\", \"points\": [\"Web design and redesign\", \"Custom WordPress engineering\", \"Custom software and PWAs\", \"Migrations without losing search rank\"]}, {\"key\": \"ch2\", \"promise\": \"AI and automation that removes real work from your week, running on data you control.\", \"points\": [\"AI discovery and roadmaps\", \"Custom AI tools and assistants\", \"Private LLMs and document search (RAG)\", \"Integrations and workflow automation\"]}, {\"key\": \"ch3\", \"promise\": \"Know where you are exposed, close the gaps, and see attacks before they become incidents.\", \"points\": [\"Security audits\", \"WordPress and server hardening\", \"SIEM and SOC monitoring\", \"Massachusetts privacy (MDPA) review\"]}, {\"key\": \"ch4\", \"promise\": \"Hosting, updates, backups, monitoring and search visibility, handled every month.\", \"points\": [\"Managed hosting\", \"Care plans with response times\", \"Performance and Core Web Vitals\", \"SEO, AEO and GEO visibility\"]}]"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}

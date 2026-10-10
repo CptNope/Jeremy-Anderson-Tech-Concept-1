@@ -28,16 +28,18 @@ PAGES = [
               ('approach.html','Approach','Process, quality bar, handoff, terms'),
               ('insights.html','Insights','Field notes linking existing posts'),
               ('contact.html','Contact','Lead form with validation (not connected)'),
-              ('sitemap.html','Site map','IA, redirect map, WordPress block plan')]),
+              ('sitemap.html','Site map','IA, redirect map, WordPress blocks')]),
 ]
 
 FILES = [
-  ('README.md', BLOB+'README.md', 'Everything about this concept: idea, map, build, deploy, WordPress plan'),
+  ('README.md', BLOB+'README.md', 'Everything about this concept: idea, map, build, deploy, WordPress theme'),
   ('PRODUCT.md', BLOB+'PRODUCT.md', 'Product truth: users, positioning, prices, evidence'),
   ('DESIGN.md', BLOB+'DESIGN.md', 'Design system record with machine-readable tokens'),
   ('.impeccable/surfaces/site-index-html.md', BLOB+'.impeccable/surfaces/site-index-html.md', 'Direction contract for Calibrated Signal'),
   ('.impeccable/design.json', BLOB+'.impeccable/design.json', 'Tonal ramps, motion, breakpoints, component snippets'),
   ('brand-book/assets', TREE+'brand-book/assets', 'Production SVG logos: mark, lockups, icon'),
+  ('wordpress/jat-signal', TREE+'wordpress/jat-signal', 'JAT Signal WordPress block theme: source, guide and changelog'),
+  ('Releases', REPO+'/releases/latest', 'Installable theme: jat-signal.zip'),
   ('design/identity', TREE+'design/identity', 'Wordmark outliner, logo and sprite generators, explorations'),
   ('design/brand-book-src', TREE+'design/brand-book-src', 'Brand book source'),
   ('design/site-src', TREE+'design/site-src', 'Site styles, trace engine and Python page builder'),
@@ -143,7 +145,7 @@ body = f'''{SPRITE}
     <li>{CHECK}<span><strong>Published facts.</strong> Prices, timelines, package labels and founder facts come from the current jeremyanderson.tech.</span></li>
     <li>{CHECK}<span><strong>Labeled placeholders.</strong> The founder portrait is marked "to be photographed"; project visuals are labeled schematics; the contact form validates but does not send.</span></li>
     <li>{CHECK}<span><strong>Out of search.</strong> Every page is <code class="mono">noindex</code> and <code class="mono">robots.txt</code> blocks crawlers until launch.</span></li>
-    <li>{CHECK}<span><strong>Built to ship.</strong> Phase 2 is a WordPress block theme on Cloudways using the brand book's theme.json and the <code class="mono">jat/</code> block plan.</span></li>
+    <li>{CHECK}<span><strong>Built to ship.</strong> The JAT Signal WordPress block theme carries this design onto the live site without losing content, and sets up a complete site on a new install. <a href="{REPO}/releases/latest" rel="noopener">Download the theme</a>.</span></li>
   </ul>
 </div></section>
 </main>

@@ -1,0 +1,31 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jat/archive-list",
+	"version": "1.0.0",
+	"title": "Archive list",
+	"category": "jat",
+	"icon": "list-view",
+	"description": "Lists the posts of the current archive or search (main query) with pagination.",
+	"textdomain": "jat-signal",
+	"attributes": {
+		"layout": {
+			"type": "string",
+			"default": "auto"
+		},
+		"emptyText": {
+			"type": "string",
+			"default": "Nothing here yet."
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [
+			"full"
+		],
+		"anchor": true,
+		"className": true
+	},
+	"editorScript": "jat-blocks-editor",
+	"render": "file:./render.php"
+}
