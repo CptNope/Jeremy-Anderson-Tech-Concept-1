@@ -1,0 +1,84 @@
+# Publishes the JAT Signal WordPress theme as a GitHub release.
+#
+# Runs when the theme (or its release notes) changes on main, or by hand from the Actions tab.
+# The version comes from the "Version:" line in wordpress/jat-signal/style.css. If a release
+# for that version already exists, nothing happens, so ordinary theme edits never create a
+# release. To ship a new version: bump Version in style.css (and Stable tag in readme.txt),
+# add a CHANGELOG.md entry, optionally add wordpress/release-notes/jat-signal-<version>.md,
+# and push to main.
+name: Release JAT Signal theme
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'wordpress/jat-signal/**'
+      - 'wordpress/release-notes/**'
+      - '.github/workflows/release-jat-signal.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-jat-signal
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read the theme version
+        id: version
+        run: |
+          version=$(grep -m1 -E '^Version:' wordpress/jat-signal/style.css | sed -E 's/^Version:[[:space:]]*//' | tr -d '\r[:space:]')
+          if [ -z "$version" ]; then echo "No Version: line in style.css" >&2; exit 1; fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=jat-signal-v$version" >> "$GITHUB_OUTPUT"
+
+      - name: Skip if this version is already released
+        id: exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "${{ steps.version.outputs.tag }}" >/dev/null 2>&1; then
+            echo "Release ${{ steps.version.outputs.tag }} already exists; nothing to do."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build jat-signal.zip
+        if: steps.exists.outputs.skip == 'false'
+        run: |
+          cd wordpress
+          zip -qrX ../jat-signal.zip jat-signal -x '*.DS_Store'
+          cd ..
+          unzip -l jat-signal.zip | tail -1
+          sha256sum jat-signal.zip
+
+      - name: Write release notes
+        if: steps.exists.outputs.skip == 'false'
+        run: |
+          v="${{ steps.version.outputs.version }}"
+          notes="wordpress/release-notes/jat-signal-$v.md"
+          if [ -f "$notes" ]; then
+            cp "$notes" notes.md
+          else
+            # Fall back to this version's section of the changelog.
+            awk -v v="$v" '$0 ~ "^## "v"( |$)" {on=1; next} /^## / {if (on) exit} on' wordpress/jat-signal/CHANGELOG.md > notes.md
+            printf '\n### Install\nGo to **Appearance › Themes › Add New › Upload Theme**, upload **`jat-signal.zip`** as it is, and select **Activate**. Back up the site first.\n' >> notes.md
+          fi
+
+      - name: Publish the release
+        if: steps.exists.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" jat-signal.zip \
+            --target "$GITHUB_SHA" \
+            --title "JAT Signal ${{ steps.version.outputs.version }} · WordPress block theme" \
+            --notes-file notes.md \
+            --latest

@@ -100,7 +100,9 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 │   ├── fonts/                  Source TTFs for the wordmark and font subsetting (not committed)
 │   └── review/                 Finish-review record and iteration captures
 ├── wordpress/
-│   └── jat-signal/             WordPress block theme (JAT Signal), released as jat-signal.zip
+│   ├── jat-signal/             WordPress block theme (JAT Signal), released as jat-signal.zip
+│   └── release-notes/          Release notes per theme version
+├── .github/workflows/          release-jat-signal.yml: publishes a theme release when the version changes
 ├── robots.txt                  Disallow all (concept)
 └── .nojekyll                   Serve files as-is on GitHub Pages
 ```
@@ -352,7 +354,7 @@ The build is deterministic: running `build_all.py` on an unchanged checkout prod
 | Concept bar | `concept_bar()` in `design/site-src/build/common.py` |
 | Type roles (selector → role map) | `design/tools/typeset_roles.py` |
 | Logo geometry | `TRACE` / `BAR` in `design/identity/logos.py` and `sprite.py` |
-| WordPress theme | `wordpress/jat-signal/`. There's no build step; see its README for the file map and packaging |
+| WordPress theme | `wordpress/jat-signal/`. There's no build step; see its README for the file map. Bump `Version:` in its `style.css` and push to publish a release (`.github/workflows/release-jat-signal.yml`) |
 
 **Deploy.** In GitHub, open **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, then select `main` and `/ (root)`. Every push to `main` republishes.
 

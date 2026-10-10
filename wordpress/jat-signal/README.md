@@ -137,7 +137,18 @@ jat-signal/
     └── images/            Brand sprite and SVG logos
 ```
 
-There's no build step. Edit the files and reload. To package a release, zip the `jat-signal` folder so that the folder itself is at the root of the zip.
+There's no build step. Edit the files and reload.
+
+## Releasing a new version
+
+Releases are published automatically by the repo's GitHub Actions workflow (`.github/workflows/release-jat-signal.yml`).
+
+1. Bump `Version:` in `style.css` and `Stable tag:` in `readme.txt`.
+2. Add an entry to `CHANGELOG.md`.
+3. Optionally, write release notes in `wordpress/release-notes/jat-signal-<version>.md`. Without that file, the release uses the changelog entry.
+4. Push to `main`.
+
+The workflow zips the `jat-signal` folder, with the folder at the root of the zip as WordPress expects. It tags the commit `jat-signal-v<version>` and publishes the release with `jat-signal.zip` attached. Pushes that don't change the version publish nothing. The workflow can also be run by hand from the **Actions** tab.
 
 ## Credits
 
