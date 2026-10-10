@@ -359,6 +359,7 @@ Hosting is planned on Jeremy's Cloudways/DigitalOcean infrastructure.
 
 ## Known limits and next steps
 
+- **Adaptation.** See `design/review/adapt.md`. Navigation breakpoints follow the content (full nav from 880px, brand book rail from 960px). The hero has three layout modes, including short landscape. Every control is 44px on touch screens, and tables become cards on phones.
 - **Hardening.** See `design/review/hardening.md`: accessible mobile menu, a resilient contact form, no-JS fallbacks, old-browser guards and long-text wrapping. axe reports 0 violations on all pages.
 - **Scope of the final review.** The last fix batch (inline channel IDs on phones, diagram width, axes on mobile) has not been re-scored by the reviewer.
 - **Possible upgrades** the reviewer noted:

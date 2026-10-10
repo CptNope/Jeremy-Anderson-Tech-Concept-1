@@ -60,11 +60,11 @@ CSS = '''<style>
 .ov-hero h1{font-size:clamp(3rem,1.4rem + 6vw,6rem)}
 .ov-hero h1 span{display:block;color:var(--ch1)}
 .byline{margin-top:var(--s5)}
-@media (max-width:760px){.ov-lockup{display:none!important}}
+@media (max-width:879px),(max-height:540px) and (orientation:landscape){.ov-lockup{display:none!important}}
 .deliv{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s5)}
 @media (max-width:860px){.deliv{grid-template-columns:1fr}}
 .deliv a{display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden;background:var(--panel);text-decoration:none;color:var(--fg);transition:border-color var(--t-base) var(--ease-out)}
-.deliv a:hover{border-color:var(--ch1)}
+@media (hover:hover){.deliv a:hover{border-color:var(--ch1)}}
 .deliv img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);background:var(--ink-950)}
 .deliv .body{padding:var(--s5) var(--s5) var(--s6);display:flex;flex-direction:column;gap:var(--s3)}
 .deliv h3{font-size:clamp(1.5rem,1.2rem + 1vw,2rem);font-stretch:120%}
@@ -76,14 +76,15 @@ CSS = '''<style>
 .pg-group h3{margin-bottom:var(--s3);color:var(--fg-subtle)}
 .pg-group ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .pg-group a{display:grid;gap:2px;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--fg);min-height:44px}
-.pg-group a:hover .pn{color:var(--ch1)}
+@media (hover:hover){.pg-group a:hover .pn{color:var(--ch1)}}
 .pn{font-family:var(--f-display);font-stretch:110%;font-weight:600;transition:color var(--t-base) var(--ease-out)}
 .pd{font-size:.875rem;color:var(--fg-muted)}
 .files{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .files li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:var(--s5);padding:12px 0;border-bottom:1px solid var(--line);align-items:baseline}
-.files a{display:inline-flex;align-items:center;gap:8px;min-height:32px;text-decoration:none}
+.files a{display:inline-flex;align-items:center;gap:8px;min-height:36px;text-decoration:none}
+@media (pointer:coarse){.files a{min-height:44px}.repo-link{display:inline-flex;align-items:center;min-height:44px}}
 .files a svg{width:14px;height:14px;flex:none}
-.files a:hover .mono{text-decoration:underline}
+@media (hover:hover){.files a:hover .mono{text-decoration:underline}}
 .files .mono{font-size:.875rem}
 .files .muted{font-size:.9375rem}
 @media (max-width:640px){.files li{grid-template-columns:1fr;gap:2px}}
@@ -117,8 +118,8 @@ body = f'''{SPRITE}
 <section class="section" aria-labelledby="dl-h"><div class="wrap">
   <div class="section-head"><h2 id="dl-h">Two deliverables, one system.</h2><p class="lede">The brand book defines the identity and its production tokens. The site prototype applies them to every page the agency needs.</p></div>
   <div class="deliv">
-    <a href="brand-book/"><img src="img/preview-brand-book.jpg" width="1200" height="750" alt="Brand book cover: the JAT trace mark on a graticule screen beside the title Brand Book" loading="lazy" decoding="async"><div class="body"><span class="readout">17 sections</span><h3>Brand Book</h3><p>Positioning, audiences, architecture, voice and tagline; the JAT logo system with construction and misuse; color, type, grid and motion; live UI components; applications from business cards to merch; tokens for CSS, theme.json and JSON.</p><span class="more">Read it{ARROW}</span></div></a>
-    <a href="site/"><img src="img/preview-site.jpg" width="1200" height="750" alt="Website hero: Systems that hold steady, with the JAT trace locking on a graticule and four service channels below" loading="lazy" decoding="async"><div class="body"><span class="readout">15 pages</span><h3>Site Prototype</h3><p>Home, services and full pricing, four channel pages, work and three open-source case studies, about, approach, insights, contact and a site map with the WordPress block plan. Static HTML that maps onto Gutenberg blocks.</p><span class="more">Explore it{ARROW}</span></div></a>
+    <a href="brand-book/"><img src="img/preview-brand-book.jpg" srcset="img/preview-brand-book-600.jpg 600w, img/preview-brand-book.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Brand book cover: the JAT trace mark on a graticule screen beside the title Brand Book" loading="lazy" decoding="async"><div class="body"><span class="readout">17 sections</span><h3>Brand Book</h3><p>Positioning, audiences, architecture, voice and tagline; the JAT logo system with construction and misuse; color, type, grid and motion; live UI components; applications from business cards to merch; tokens for CSS, theme.json and JSON.</p><span class="more">Read it{ARROW}</span></div></a>
+    <a href="site/"><img src="img/preview-site.jpg" srcset="img/preview-site-600.jpg 600w, img/preview-site.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Website hero: Systems that hold steady, with the JAT trace locking on a graticule and four service channels below" loading="lazy" decoding="async"><div class="body"><span class="readout">15 pages</span><h3>Site Prototype</h3><p>Home, services and full pricing, four channel pages, work and three open-source case studies, about, approach, insights, contact and a site map with the WordPress block plan. Static HTML that maps onto Gutenberg blocks.</p><span class="more">Explore it{ARROW}</span></div></a>
   </div>
 </div></section>
 
@@ -145,7 +146,7 @@ body = f'''{SPRITE}
 </main>
 <footer class="site-footer"><div class="wrap"><div class="foot-base" style="margin-top:0;border-top:0;padding-top:0">
   <span class="readout long">© 2026 Jeremy Anderson Tech · Shrewsbury, MA · Concept 1 for review</span>
-  <span class="concept-note">Fonts: Archivo and Martian Mono, SIL Open Font License 1.1 · <a href="{REPO}" rel="noopener">github.com/CptNope/Jeremy-Anderson-Tech-Concept-1</a></span>
+  <span class="concept-note">Fonts: Archivo and Martian Mono, SIL Open Font License 1.1 · <a class="repo-link" href="{REPO}" rel="noopener">github.com/CptNope/Jeremy-Anderson-Tech-Concept-1</a></span>
 </div></div></footer>
 <script src="site/site.js" defer></script>'''
 

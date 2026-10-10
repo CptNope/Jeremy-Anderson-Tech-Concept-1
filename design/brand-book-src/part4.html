@@ -15,13 +15,13 @@
 .btn{--h:44px;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--h);padding:0 18px;border-radius:var(--r-control);font-family:var(--f-display);font-stretch:108%;font-weight:600;font-size:.9375rem;letter-spacing:.005em;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background var(--t-base) var(--ease-out),color var(--t-base) var(--ease-out),border-color var(--t-base) var(--ease-out),transform var(--t-fast) var(--ease-out)}
 .btn:active{transform:translateY(1px)}
 .btn-primary{background:var(--ch1);color:var(--ink-900)}
-.btn-primary:hover{background:#7AEDF6}
+@media (hover:hover){.btn-primary:hover{background:#7AEDF6}}
 .btn-secondary{background:transparent;color:var(--fg);border-color:var(--line-control)}
-.btn-secondary:hover{border-color:var(--ch1);color:var(--ch1)}
+@media (hover:hover){.btn-secondary:hover{border-color:var(--ch1);color:var(--ch1)}}
 .btn-ghost{background:transparent;color:var(--ch1);padding-inline:6px;text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}
 .btn[disabled],.btn[aria-disabled="true"]{background:var(--ink-800);color:var(--ink-400);border-color:var(--line);cursor:not-allowed;transform:none}
 .btn .arrow{width:16px;height:16px;transition:transform var(--t-base) var(--ease-out)}
-.btn:hover .arrow{transform:translateX(3px)}
+@media (hover:hover){.btn:hover .arrow{transform:translateX(3px)}}
 .btn .spin{width:16px;height:16px;animation:spin 900ms linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (prefers-reduced-motion:reduce){.btn .spin{animation:none}.btn .arrow{transition:none}}
@@ -30,13 +30,13 @@
 .field .hint{font-size:.8125rem;color:var(--fg-muted)}
 .input{min-height:44px;width:100%;background:var(--ink-950);color:var(--fg);border:1px solid var(--line-control);border-radius:var(--r-control);padding:10px 12px;font:inherit;font-size:1rem;caret-color:var(--ch1);transition:border-color var(--t-base) var(--ease-out),box-shadow var(--t-base) var(--ease-out)}
 .input::placeholder{color:var(--ink-400)}
-.input:hover{border-color:var(--ink-400)}
+@media (hover:hover){.input:hover{border-color:var(--ink-400)}}
 .input:focus{outline:none;border-color:var(--ch1);box-shadow:0 0 0 3px rgba(60,227,240,.18)}
 .field.err .input{border-color:var(--danger)}
 .field .msg{display:flex;gap:6px;align-items:center;font-size:.8125rem;color:var(--danger)}
 .readout-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--line);gap:1px}
 .readout-strip a{background:var(--ink-950);padding:12px 14px;text-decoration:none;color:var(--fg);display:grid;gap:4px;transition:background var(--t-base) var(--ease-out)}
-.readout-strip a:hover{background:var(--ink-850)}
+@media (hover:hover){.readout-strip a:hover{background:var(--ink-850)}}
 .readout-strip .v{font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:.9375rem}
 @media (max-width:640px){.readout-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .price-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:var(--s5);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
@@ -59,6 +59,13 @@
 .tabs button{font-family:var(--f-mono);font-stretch:90%;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;background:transparent;color:var(--fg-muted);border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;padding:10px 14px;cursor:pointer;min-height:40px;white-space:nowrap}
 .tabs button[aria-selected="true"]{color:var(--fg);background:var(--panel);border-color:var(--line);box-shadow:inset 0 2px 0 var(--ch1)}
 .end{margin-top:var(--s10);padding-top:var(--s7);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:end;gap:var(--s5);flex-wrap:wrap}
+
+/* touch sizes last, so component rules above cannot undo them */
+@media (pointer:coarse){
+  .btn-copy,.tabs button{min-height:44px}
+  .btn-copy{padding-inline:14px}
+  .rail nav a{min-height:44px;align-items:center}
+}
 </style>
 
 <section class="section" id="imagery" aria-labelledby="h-img">
@@ -180,14 +187,16 @@
     <div><h3 class="as-h4">Focus</h3><p class="muted">2px Cyan outline with 2px offset on every focusable element. Never remove focus styles. Skip link first in the tab order.</p></div>
     <div><h3 class="as-h4">Reduced motion</h3><p class="muted">Respect <code>prefers-reduced-motion</code>: static locked trace, no sweeps, no smooth scroll, no parallax. Motion is never required to understand content.</p></div>
     <div><h3 class="as-h4">Not color alone</h3><p class="muted">Channels always show their number and name. States pair color with an icon and text.</p></div>
-    <div><h3 class="as-h4">Targets and type</h3><p class="muted">44 × 44px minimum targets. Body text at least 16px. Text resizes to 200% without loss.</p></div>
+    <div><h3 class="as-h4">Targets and type</h3><p class="muted">44 × 44px minimum targets on touch screens (<code>pointer: coarse</code>). Body text at least 16px. Text resizes to 200% without loss.</p></div>
     <div><h3 class="as-h4">Canvas</h3><p class="muted">Decorative canvases are <code>aria-hidden</code>; every diagram has a text alternative. Canvases pause when off screen.</p></div>
   </div>
   <h3>Breakpoints</h3>
   <div class="scroll-x" tabindex="0"><table class="spec"><thead><tr><th>Name</th><th>Min width</th><th>Grid</th><th>Behavior</th></tr></thead><tbody>
-    <tr><td>Phone</td><td class="mono">0</td><td>4 col</td><td>Single column. Hero trace sits above the headline. Readout strip becomes 2 × 2.</td></tr>
-    <tr><td>Tablet</td><td class="mono">768px</td><td>8 col</td><td>Two-column content. Navigation stays collapsed.</td></tr>
-    <tr><td>Laptop</td><td class="mono">1080px</td><td>12 col</td><td>Full navigation. Hero text left, trace right.</td></tr>
-    <tr><td>Wide</td><td class="mono">1440px</td><td>12 col</td><td>Content caps at 1280px; graticule screens may run full bleed.</td></tr>
+    <tr><td>Phone</td><td class="mono">0</td><td>4 col</td><td>Single column. The trace takes a band above the headline. Tables turn into label/value cards. Readout strip becomes 2 × 2.</td></tr>
+    <tr><td>Tablet</td><td class="mono">640px</td><td>8 col</td><td>Two-column content. Menu button. Hero stays stacked, with a taller trace band.</td></tr>
+    <tr><td>Laptop</td><td class="mono">880px</td><td>12 col</td><td>Full navigation (it needs 748px plus gutters). Hero copy left at most 52vw; the trace keeps to the right 40%.</td></tr>
+    <tr><td>Brand book rail</td><td class="mono">960px</td><td>rail + column</td><td>The section rail stays visible; below this it becomes a 44px Contents picker.</td></tr>
+    <tr><td>Wide</td><td class="mono">1440px</td><td>12 col</td><td>Content caps at 1280px; graticule screens may run full bleed; the brand book column centres.</td></tr>
+    <tr><td>Short landscape</td><td class="mono">≤540px tall</td><td>—</td><td>Phones on their side: compact side-by-side hero, 56px header, concept bar scrolls away.</td></tr>
   </tbody></table></div>
 </section>

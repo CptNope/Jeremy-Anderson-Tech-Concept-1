@@ -417,14 +417,15 @@ function markPoints(){
 function Scope(canvas, opt){
   const ctx = canvas.getContext && canvas.getContext('2d');
   if (!ctx) return {replay(){}};
-  const o = Object.assign({markH:.36, markX:.7, markY:.45, sweeps:3, sweepMs:760, cursors:false, thin:1.6, color:css('--ch1')||'#3CE3F0', mobile:null}, opt);
+  const o = Object.assign({markH:.36, markX:.7, markY:.45, sweeps:3, sweepMs:760, cursors:false, thin:1.6, color:css('--ch1')||'#3CE3F0', mobile:null, place:null}, opt);
   let W=0,H=0,dpr=1, poly=[], markRange=[0,0], barSeg=null, scale=1, done=false, raf=0, started=false, ptr=null;
   const seeds = Array.from({length:8},()=>[Math.random()*6.28, Math.random()*6.28, (Math.random()-.5)]);
   function layout(){
     const r = canvas.getBoundingClientRect(); if (r.width<2||r.height<2) { poly=[]; return; } dpr = Math.min(2, devicePixelRatio||1);
     W = Math.max(1, r.width); H = Math.max(1, r.height); canvas.width = W*dpr; canvas.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
-    const m = (o.mobile && W < 700) ? Object.assign({}, o, o.mobile) : o;
-    scale = H*m.markH/56; const ox = W*m.markX - 54.5*scale, oy = H*m.markY - 40*scale;
+    let ox, oy;
+    if (o.place) { const pl = o.place(W,H,r); scale = pl.unit; ox = pl.cx - 54.5*scale; oy = pl.cy - 40*scale; }
+    else { const m = (o.mobile && W < 700) ? Object.assign({}, o, o.mobile) : o; scale = H*m.markH/56; ox = W*m.markX - 54.5*scale; oy = H*m.markY - 40*scale; }
     const mp = markPoints().map(([x,y])=>[ox+x*scale, oy+y*scale]);
     const yIn = oy+50*scale, yOut = oy+16*scale;
     poly = []; const step = 6;
@@ -497,7 +498,23 @@ function Scope(canvas, opt){
   return { replay:()=>run(o.onState) };
 }
 const cover = document.getElementById('coverTrace');
-if (cover) Scope(cover, {markH:.34, markX:.7, markY:.25, cursors:true, mobile:{markH:.15, markX:.5, markY:.16}});
+if (cover) {
+  /* Place the mark where the cover copy is not: beside it when there is room, in the band above it when there is not,
+     and squeezed to the right edge on short screens. Measured from the real glyph boxes, so it holds at any width. */
+  const h1 = cover.parentElement.querySelector('h1'), sub = cover.parentElement.querySelector('.sub');
+  const textBox = (r) => { const rg = document.createRange(); rg.selectNodeContents(h1); const a = rg.getBoundingClientRect(), b = sub.getBoundingClientRect();
+    return { right: Math.max(a.right, b.left + Math.min(b.width, sub.scrollWidth)) - r.left, top: a.top - r.top }; };
+  const place = (W, H, r) => {
+    const t = textBox(r), vh = window.innerHeight;
+    const side = Math.min(.34*H/56, .36*W/100), cxSide = .72*W;
+    if (cxSide - 45.5*side > t.right + 32) return {cx:cxSide, cy:Math.min(.28*H, .38*vh), unit:side};
+    const band = Math.min((t.top - 56)/60, .36*W/100, .34*H/56);
+    if (band >= 1.9) return {cx: W < 700 ? .5*W : .7*W, cy: Math.max(28*band, t.top/2 + 6), unit:band};
+    const sq = Math.max(1.3, Math.min((W - t.right - 48)/95, .3*vh/56));
+    return {cx: W - 50*sq - 12, cy: Math.min(.3*H, .4*vh), unit:sq};
+  };
+  Scope(cover, {cursors:true, place});
+}
 const mini = document.getElementById('miniTrace'); if (mini) Scope(mini, {markH:.36, markX:.62, markY:.48, sweeps:2});
 const elev = document.getElementById('elevTrace'); if (elev) Scope(elev, {markH:.55, markX:.78, markY:.5, sweeps:2, thin:2});
 const demoState = document.getElementById('demoState');

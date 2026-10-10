@@ -40,7 +40,7 @@ safe('navigation', () => {
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
-  onMq(mq('(min-width:1080px)'), e => { if (e.matches && isOpen()) set(false, false); });
+  onMq(mq('(min-width:880px)'), e => { if (e.matches && isOpen()) set(false, false); });
 });
 
 /* ---------- Trace engine: noise → trigger → lock → burn-in ---------- */
@@ -67,14 +67,16 @@ function axes(ctx,W,H,full){
 function Scope(canvas, opt){
   const ctx = canvas.getContext && canvas.getContext('2d');
   if (!ctx) return {replay(){}};
-  const o = Object.assign({markH:.36, markX:.7, markY:.45, sweeps:3, sweepMs:760, cursors:false, thin:1.6, color:tok('--ch1')||'#3CE3F0', mobile:null, onState:null, mark:true, startX:0}, opt);
+  const o = Object.assign({markH:.36, markX:.7, markY:.45, sweeps:3, sweepMs:760, cursors:false, thin:1.6, color:tok('--ch1')||'#3CE3F0', mobile:null, place:null, onState:null, mark:true, startX:0}, opt);
   let sx=0,W=0,H=0,poly=[],mr=[0,0],bar=null,scale=1,done=false,raf=0,started=false,ptr=null;
   const seeds = Array.from({length:6},()=>[Math.random()*6.28, Math.random()*6.28]);
   function layout(){
     const r = canvas.getBoundingClientRect(); if (r.width<2||r.height<2){ poly=[]; return; }
     const dpr = Math.min(2, devicePixelRatio||1); W=r.width; H=r.height; canvas.width=W*dpr; canvas.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
-    const m = (o.mobile && W<760) ? Object.assign({},o,o.mobile) : o;
-    scale = H*m.markH/56; const ox = W*m.markX - 54.5*scale, oy = H*m.markY - 40*scale;
+    /* place(W,H) returns the mark centre and px-per-unit for the current layout mode. */
+    let m, ox, oy;
+    if (o.place){ const pl = o.place(W,H); m = {startX: pl.startX||0}; scale = pl.unit; ox = pl.cx - 54.5*scale; oy = pl.cy - 40*scale; }
+    else { m = (o.mobile && W<760) ? Object.assign({},o,o.mobile) : o; scale = H*m.markH/56; ox = W*m.markX - 54.5*scale; oy = H*m.markY - 40*scale; }
     const mp = markPoints().map(([x,y])=>[ox+x*scale, oy+y*scale]);
     const yIn = oy+50*scale, yOut = oy+16*scale; poly=[];
     sx = Math.min(W*m.startX, mp[0][0]-60); for (let x=sx; x<mp[0][0]; x+=6) poly.push([x,yIn]);
@@ -119,7 +121,7 @@ function Scope(canvas, opt){
   if (o.cursors){ const host=canvas.parentElement;
     host.addEventListener('pointermove',e=>{ if(!done||e.pointerType==='touch') return; const r=canvas.getBoundingClientRect(); ptr=[e.clientX-r.left,e.clientY-r.top]; if(ptr[1]<0||ptr[1]>H){ptr=null;} locked(1); });
     host.addEventListener('pointerleave',()=>{ if(!done) return; ptr=null; locked(1); }); }
-  let rT; addEventListener('resize',()=>{ clearTimeout(rT); rT=setTimeout(()=>{ if(done){ layout(); locked(1);} },150); });
+  let rT; addEventListener('resize',()=>{ clearTimeout(rT); rT=setTimeout(()=>{ if(done){ layout(); locked(1);} else if(started){ run(); } },150); });
   whenVisible(canvas, ()=>{ if(!started){ started=true; run(); } });
   return {replay:run};
 }
@@ -130,7 +132,19 @@ const hero = document.getElementById('heroTrace');
 if (hero){
   const hs = document.querySelector('.hero-state'), lbl = hs && hs.querySelector('.lbl');
   const words = {run:'Acquiring signal', lock:"Trig'd", settled:'Locked · stable'};
-  Scope(hero,{axes:true, markH:.36, markX:.76, markY:.36, startX:.5, cursors:true, mobile:{markH:.11, markX:.5, markY:.12, startX:0},
+  /* Three layout modes, mirrored by the hero media queries in site.css:
+     short landscape (phones on their side) -> compact, mark in the right column beside the copy
+     narrow (< 880px)                         -> mark stacked in the band above the headline
+     wide                                     -> mark in the right 40%, never crossing the copy column */
+  const heroWrap = hero.parentElement.querySelector('.wrap');
+  const shortLand = mq('(max-height:540px) and (orientation:landscape)'), narrow = mq('(max-width:879px)');
+  const place = (W,H) => {
+    const vh = window.innerHeight;
+    if (shortLand.matches) { const unit = Math.min(.36*W/100, .44*vh/56); return {cx:.78*W, cy:Math.min(.46*H, .46*vh), unit, startX:.56}; }
+    if (narrow.matches) { const band = parseFloat(getComputedStyle(heroWrap).paddingTop) || 200; const unit = Math.min(band*.58/56, .78*W/100); return {cx:.5*W, cy:band*.56, unit, startX:0}; }
+    const unit = Math.min(.36*H/56, .38*W/100); return {cx:.77*W, cy:.36*H, unit, startX:.5};
+  };
+  Scope(hero,{axes:true, place, cursors:true,
     onState:s=>{ if(!hs) return; hs.dataset.state=s; lbl.textContent=words[s]; }});
 }
 document.querySelectorAll('canvas[data-trace]').forEach(c=>{

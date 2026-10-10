@@ -160,7 +160,7 @@ A near-black instrument screen with ice-white readouts and four signal colors he
 
 ## Layout
 
-12-column container to 1280px with a fluid gutter (16–48px); content sections pace at 72–128px vertical padding, alternating Graticule and Ink 950 grounds. Section heads pair a headline left with a lede right on desktop and stack under 860px. Signature screens (hero, page heads, case-study plates) use the graticule; ordinary content sits on plain ground. Breakpoints: 640, 760, 860, 1000 and 1080px (navigation collapses below 1080). The 4px spacing base mirrors one minor graticule tick.
+12-column container to 1280px with a fluid gutter (16–48px); content sections pace at 72–128px vertical padding, alternating Graticule and Ink 950 grounds. Section heads pair a headline left with a lede right on desktop and stack under 860px. Signature screens (hero, page heads, case-study plates) use the graticule; ordinary content sits on plain ground. Breakpoints follow the content: 640px (two-column content), 880px (full navigation; it needs 748px plus gutters; below it the hero stacks the trace above the headline), 960px (brand book section rail) and a short-landscape mode at 540px tall or less (compact side-by-side hero, 56px header). Touch screens (`pointer: coarse`) raise every control to 44px; hover effects apply only where hover exists, with `:active` feedback on touch. Safe-area insets pad the gutters, header, footer and concept bar. Data tables become label/value cards below 640px. The 4px spacing base mirrors one minor graticule tick.
 
 ## Elevation & Depth
 
@@ -195,7 +195,7 @@ Small, instrument radii: 2px tags, 6px controls, 12px panels and screens. Hairli
 - **Focus:** cyan border plus a 3px 18%-cyan ring. **Error:** Danger border and an inline icon + message.
 
 ### Navigation
-- Sticky glass header with the horizontal lockup; links in Ice-muted with a 2px cyan underline for the current page; one primary "Book a call" button. Below 1080px a menu button opens a full-width Ink 950 panel.
+- Sticky glass header (68px, 56px on short landscape screens) with the horizontal lockup; links in Ice-muted with a 2px cyan underline for the current page; one primary "Book a call" button. Below 880px a menu button opens a full-width Ink 950 panel with focus kept inside.
 
 ### Scope trace (signature)
 Canvas trace that sweeps noise three times, triggers, and burns in the JAT mark at logo weight, with centre-axis ticks and pointer measurement cursors. Inner pages draw a channel waveform instead (step, burst, pulse, sine). Reduced motion renders the locked frame immediately.

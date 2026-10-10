@@ -5,18 +5,19 @@ PAGES = os.environ.get('PAGES','1')=='1'  # 1 = GitHub Pages build (full documen
 SPRITE = open(ROOT/'design/identity/sprite.html').read()
 REPO = 'https://github.com/CptNope/Jeremy-Anderson-Tech-Concept-1'
 CBAR_CSS = """<style>
-.cbar{background:#07090B;border-bottom:1px solid #222A34;font-family:"Martian Mono",ui-monospace,Menlo,monospace;font-stretch:90%;font-size:12px;letter-spacing:.04em;position:relative;z-index:70}
-.cbar-in{max-width:1376px;margin-inline:auto;padding-inline:clamp(16px,4vw,48px);display:flex;align-items:center;gap:20px;min-height:40px;overflow-x:auto;scrollbar-width:none}
+.cbar{--cbar-h:41px;background:#07090B;border-bottom:1px solid #222A34;padding-top:env(safe-area-inset-top,0px);font-family:"Martian Mono",ui-monospace,Menlo,monospace;font-stretch:90%;font-size:12px;letter-spacing:.04em;position:relative;z-index:70}
+.cbar-in{max-width:1376px;margin-inline:auto;padding-inline:max(clamp(16px,4vw,48px), env(safe-area-inset-left,0px)) max(clamp(16px,4vw,48px), env(safe-area-inset-right,0px));display:flex;align-items:center;gap:20px;min-height:calc(var(--cbar-h) - 1px);overflow-x:auto;scrollbar-width:none}
 .cbar-in::-webkit-scrollbar{display:none}
-.cbar a{color:#A3AFBC;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:40px;white-space:nowrap}
-.cbar a:hover{color:#E6ECF2}
+.cbar a{color:#A3AFBC;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:calc(var(--cbar-h) - 1px);white-space:nowrap;-webkit-tap-highlight-color:rgba(60,227,240,.16)}
+:root{--cbar-h:41px}@media (pointer:coarse){:root{--cbar-h:45px}.cbar{--cbar-h:45px}}
+@media (hover:hover){.cbar a:hover{color:#E6ECF2}}
 .cbar a:focus-visible{outline:2px solid #3CE3F0;outline-offset:-2px;border-radius:2px}
 .cbar .home{color:#E6ECF2;font-weight:600;margin-right:auto}
 .cbar .home svg{width:22px;height:14px;flex:none}
 .cbar ul{list-style:none;margin:0;padding:0;display:flex;gap:20px}
 .cbar a[aria-current=page]{color:#E6ECF2;box-shadow:inset 0 -2px 0 #3CE3F0}
 .cbar .ext svg{width:11px;height:11px}
-.cbar .tag{color:#7D8996;border:1px solid #2E3845;border-radius:2px;padding:2px 6px;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em}
+.cbar .tag{color:#7D8996;border:1px solid #2E3845;border-radius:2px;padding:2px 6px;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
 .cbar .s{display:none}
 @media (max-width:640px){.cbar .tag,.cbar .home .l,.cbar .l{display:none}.cbar .s{display:inline}.cbar-in,.cbar ul{gap:14px}.cbar .home{margin-right:auto}}
 </style>"""
@@ -65,6 +66,30 @@ ORG = {
   "knowsAbout":["WordPress","Progressive web apps","Retrieval-augmented generation","Web accessibility","Cybersecurity","SIEM","Technical SEO"]
 }
 
+import re as _re
+def stack_tables(markup, include=('spec','spec-table'), exclude=('matrix',)):
+    """Give data tables data-labels and roles so CSS can show them as label/value cards on phones."""
+    def one(m):
+        tbl=m.group(0); cls=m.group(1)
+        names=cls.split()
+        if not any(c in names for c in include) or any(c in names for c in exclude): return tbl
+        thead=_re.search(r'<thead>([\s\S]*?)</thead>', tbl)
+        if not thead: return tbl
+        heads=[_re.sub(r'<[^>]+>','',h).strip() for h in _re.findall(r'<th[^>]*>([\s\S]*?)</th>', thead.group(1))]
+        def row(rm):
+            cells=iter(heads); out=[]
+            def cell(cm_):
+                lab=next(cells,'')
+                lab=html.escape(lab, quote=True)
+                return f'<td data-label="{lab}" role="cell"{cm_.group(1)}>'
+            return _re.sub(r'<td((?:\s[^>]*)?)>', cell, rm.group(0))
+        body=_re.sub(r'<tr>[\s\S]*?</tr>', row, tbl[thead.end():])
+        head=tbl[:thead.end()].replace('<table class="'+cls+'"', '<table class="'+cls+' stack" role="table"',1)
+        head=head.replace('<tr>','<tr role="row">').replace('<th>','<th role="columnheader">')
+        body=body.replace('<tr>','<tr role="row">')
+        return head+body
+    return _re.sub(r'<table class="([^"]*)"[\s\S]*?</table>', one, markup)
+
 def jsonld(obj):
     return '<script type="application/ld+json">'+json.dumps(obj, ensure_ascii=False)+'</script>'
 
@@ -85,7 +110,7 @@ def footer():
     return f'''<footer class="site-footer"><div class="wrap">
   <div class="foot-grid">
     <div>
-      <a href="index.html" aria-label="Jeremy Anderson Tech, home" style="display:inline-block;color:var(--fg)"><svg viewBox="1 6 468 68" width="220" height="32" aria-hidden="true"><use href="#lk-h"/></svg></a>
+      <a class="foot-logo" href="index.html" aria-label="Jeremy Anderson Tech, home"><svg viewBox="1 6 468 68" width="220" height="32" aria-hidden="true"><use href="#lk-h"/></svg></a>
       <p class="muted" style="margin-top:var(--s4);max-width:36ch">Web platforms, AI and security, built and run by one accountable engineering studio in Shrewsbury, Massachusetts.</p>
       <div class="copy-line"><span class="mono">info@jeremyanderson.tech</span><button class="btn-copy" type="button" data-copy-text="info@jeremyanderson.tech">Copy</button></div>
     </div>
@@ -94,7 +119,7 @@ def footer():
     <div><h2>Studio</h2><ul>
       <li><a href="work.html">Work</a></li><li><a href="approach.html">Approach</a></li><li><a href="about.html">About</a></li><li><a href="insights.html">Insights</a></li><li><a href="contact.html">Contact</a></li><li><a href="sitemap.html">Site map</a></li>{'<li><a href="../brand-book/">Brand book</a></li><li><a href="../">Concept overview</a></li>' if PAGES else ''}</ul></div>
     <div><h2>Elsewhere</h2><ul>
-      <li><a href="https://github.com/CptNope" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/jeremy-anderson-53963b222/" rel="noopener">LinkedIn</a></li><li><a href="https://x.com/JeremyA59964523" rel="noopener">X</a></li>
+      <li><a href="https://github.com/CptNope" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/jeremy-anderson-53963b222/" rel="noopener">LinkedIn</a></li><li><a href="https://x.com/JeremyA59964523" rel="noopener">X (Twitter)</a></li>
       <li><a href="{BASE}/privacy-policy/">Privacy policy</a></li><li><a href="{BASE}/terms-of-service/">Terms of service</a></li><li><a href="{BASE}/accessibility/">Accessibility</a></li></ul></div>
   </div>
   <div class="foot-base"><span class="readout long">© <span data-year>2026</span> Jeremy Anderson Tech · Shrewsbury, MA</span><span class="concept-note">Website concept v1 for review. Not the live site.</span></div>
@@ -138,6 +163,7 @@ def page(title, desc, path, active, body, schema=None, is_index=False):
 {''.join(jsonld(s) for s in schemas)}
 <script src="site.js" defer></script>'''
     import re
+    content = stack_tables(content)
     content = re.sub(r'class="readout([^"]*)"([^>]*)>([^<]{35,})<', lambda m: f'class="readout long{m.group(1)}"{m.group(2)}>{m.group(3)}<', content)
     if is_index and not PAGES:
         return meta + '\n' + content

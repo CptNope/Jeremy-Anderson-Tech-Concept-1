@@ -30,7 +30,7 @@
 .code pre .k{color:var(--ch2)}.code pre .s{color:var(--ch4)}.code pre .c{color:var(--fg-subtle)}.code pre .v{color:var(--ch1)}
 .code header{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);padding:8px 8px 8px 14px;border-bottom:1px solid var(--line);background:var(--panel)}
 .btn-copy{font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.04em;text-transform:uppercase;color:var(--fg);background:var(--ink-800);border:1px solid var(--line-control);border-radius:var(--r-control);padding:6px 10px;cursor:pointer;min-height:32px;font-stretch:90%}
-.btn-copy:hover{border-color:var(--ch1);color:var(--ch1)}
+@media (hover:hover){.btn-copy:hover{border-color:var(--ch1);color:var(--ch1)}}
 .btn-copy[data-done]{color:var(--ink-900);background:var(--ch4);border-color:var(--ch4)}
 .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:var(--s3)}
 .sw{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel);display:grid;grid-template-rows:auto 1fr}
@@ -52,7 +52,7 @@
 .specimen .row{display:flex;flex-wrap:wrap;gap:var(--s5);align-items:baseline;margin-top:var(--s4)}
 .wdth-scrub{display:grid;gap:var(--s3);margin-top:var(--s5)}
 .wdth-scrub label{font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);display:flex;justify-content:space-between;font-stretch:90%}
-input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
+input[type=range]{accent-color:var(--ch1);width:100%;min-height:44px;cursor:pointer}
 .scale-row{display:grid;grid-template-columns:150px 1fr;gap:var(--s5);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
 .scale-row .meta{font-family:var(--f-mono);font-size:.6875rem;color:var(--fg-subtle);line-height:1.6;font-stretch:90%}
 .scale-row .sample{min-width:0;overflow-wrap:anywhere}
@@ -72,7 +72,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
 .radii div{width:96px;height:72px;border:1px solid var(--ch1);display:grid;place-items:end start;padding:8px;font-family:var(--f-mono);font-size:.6875rem;color:var(--fg-muted);font-stretch:90%}
 </style>
 <!--SPRITE-->
-<noscript><style>.jump{display:none!important}@media (max-width:1079px){.rail{flex-wrap:wrap}.rail nav{display:block!important;width:100%}.rail nav ol{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}[role=tabpanel][hidden]{display:block!important}</style></noscript>
+<noscript><style>.jump{display:none!important}@media (max-width:959px){.rail{flex-wrap:wrap}.rail nav{display:block!important;width:100%}.rail nav ol{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}[role=tabpanel][hidden]{display:block!important}</style></noscript>
 <aside class="rail" aria-label="Brand book index">
   <a href="#top" aria-label="Jeremy Anderson Tech brand book, top"><svg class="lockup" viewBox="1 6 468 68"><use href="#lk-h"/></svg></a>
   <nav aria-label="Sections">
@@ -98,7 +98,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:32px}
   </nav>
   <div class="meta readout">v1.0 · 2026-10-09<br>Future Systems · Calibrated Signal</div>
   <label class="jump" for="jumpSel"><span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Jump to section</span>
-    <select id="jumpSel" style="background:transparent;color:inherit;border:0;font:inherit;max-width:100%">
+    <select id="jumpSel" style="background:transparent;color:inherit;border:0;font:inherit">
       <option value="#top">Contents</option>
       <option value="#positioning">01 Positioning</option><option value="#purpose">02 Purpose &amp; values</option><option value="#audiences">03 Audiences</option><option value="#architecture">04 Architecture</option><option value="#landscape">05 Landscape</option><option value="#voice">06 Voice</option><option value="#taglines">07 Taglines</option><option value="#logo">08 Logo</option><option value="#vector">09 Vector</option><option value="#color">10 Color</option><option value="#type">11 Type</option><option value="#grid">12 Grid</option><option value="#imagery">13 Imagery &amp; motion</option><option value="#components">14 Components</option><option value="#access">15 Accessibility</option><option value="#applications">16 Applications</option><option value="#tokens">17 Tokens</option>
     </select>
