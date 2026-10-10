@@ -192,10 +192,19 @@ All identity elements are SVG. Recolor them through custom properties; never edi
 - Archivo variable: width 125 for display, 118 for headlines, 112 for titles, 100 for body.
 - Martian Mono at width 90 for readouts.
 
-| Style | Weight | Size | Line height |
+Ten type roles; each fixes size, weight, width, leading and tracking together, and components pick a role rather than a raw size (`design/review/typeset.md`).
+
+| Role | Size | Archivo wdth · wght | Line height |
 |---|---|---|---|
-| Display | 640 | clamp(3.25–6rem) | 0.92 |
-| Body | 400 | 1.0625rem | 1.6 |
+| Display | clamp(3.25–6rem) | 125 · 640 | 0.92 |
+| Page | clamp(2.5–4.5rem) | 125 · 640 | 0.95 |
+| Section | clamp(1.875–2.75rem) | 118 · 620 | 1.05 |
+| Title | clamp(1.375–1.75rem) | 112 · 600 | 1.15 |
+| Item | 1.125rem | 108 · 600 | 1.35 |
+| Lede | clamp(1.125–1.3125rem) | 100 · 400 | 1.5 |
+| Body | 1.0625rem | 100 · 400 | 1.6 |
+| Small | .9375rem | 100 · 430 | 1.55 |
+| Label / Data | .75rem / 1.0625rem | Martian Mono 90 · 400 | — |
 
 **Space and shape.** 4 px base (4, 8, 12, 16, 24, 32, 48, 64, 96, 128). Radii are 2 px for tags, 6 px for controls and 12 px for panels. Borders are 1 px hairlines.
 
@@ -333,6 +342,7 @@ The build is deterministic: running `build_all.py` on an unchanged checkout prod
 | Brand book | `design/brand-book-src/part1–5.html` |
 | Overview page | `design/overview-src/build_overview.py` |
 | Concept bar | `concept_bar()` in `design/site-src/build/common.py` |
+| Type roles (selector → role map) | `design/tools/typeset_roles.py` |
 | Logo geometry | `TRACE` / `BAR` in `design/identity/logos.py` and `sprite.py` |
 
 **Deploy.** In GitHub, open **Settings → Pages → Build and deployment**, choose **Deploy from a branch**, then select `main` and `/ (root)`. Every push to `main` republishes.
@@ -360,6 +370,7 @@ Hosting is planned on Jeremy's Cloudways/DigitalOcean infrastructure.
 ## Known limits and next steps
 
 - **Adaptation.** See `design/review/adapt.md`. Navigation breakpoints follow the content (full nav from 880px, brand book rail from 960px). The hero has three layout modes, including short landscape. Every control is 44px on touch screens, and tables become cards on phones.
+- **Typesetting.** See `design/review/typeset.md`. The ten-role type scale replaced about 20 one-off sizes. Mono renders only at its loaded 400–500 weights, and long readouts drop the uppercase. Fallback faces are metric-matched. Detector findings went from 131 to 26, and every remaining one is deliberate.
 - **Hardening.** See `design/review/hardening.md`: accessible mobile menu, a resilient contact form, no-JS fallbacks, old-browser guards and long-text wrapping. axe reports 0 violations on all pages.
 - **Scope of the final review.** The last fix batch (inline channel IDs on phones, diagram width, axes on mobile) has not been re-scored by the reviewer.
 - **Possible upgrades** the reviewer noted:

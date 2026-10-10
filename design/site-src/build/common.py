@@ -5,19 +5,19 @@ PAGES = os.environ.get('PAGES','1')=='1'  # 1 = GitHub Pages build (full documen
 SPRITE = open(ROOT/'design/identity/sprite.html').read()
 REPO = 'https://github.com/CptNope/Jeremy-Anderson-Tech-Concept-1'
 CBAR_CSS = """<style>
-.cbar{--cbar-h:41px;background:#07090B;border-bottom:1px solid #222A34;padding-top:env(safe-area-inset-top,0px);font-family:"Martian Mono",ui-monospace,Menlo,monospace;font-stretch:90%;font-size:12px;letter-spacing:.04em;position:relative;z-index:70}
+.cbar{--cbar-h:41px;background:#07090B;border-bottom:1px solid #222A34;padding-top:env(safe-area-inset-top,0px);font-family:"Martian Mono",ui-monospace,Menlo,monospace;font-stretch:90%;font-size:.75rem;letter-spacing:.04em;position:relative;z-index:70}
 .cbar-in{max-width:1376px;margin-inline:auto;padding-inline:max(clamp(16px,4vw,48px), env(safe-area-inset-left,0px)) max(clamp(16px,4vw,48px), env(safe-area-inset-right,0px));display:flex;align-items:center;gap:20px;min-height:calc(var(--cbar-h) - 1px);overflow-x:auto;scrollbar-width:none}
 .cbar-in::-webkit-scrollbar{display:none}
 .cbar a{color:#A3AFBC;text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:calc(var(--cbar-h) - 1px);white-space:nowrap;-webkit-tap-highlight-color:rgba(60,227,240,.16)}
 :root{--cbar-h:41px}@media (pointer:coarse){:root{--cbar-h:45px}.cbar{--cbar-h:45px}}
 @media (hover:hover){.cbar a:hover{color:#E6ECF2}}
 .cbar a:focus-visible{outline:2px solid #3CE3F0;outline-offset:-2px;border-radius:2px}
-.cbar .home{color:#E6ECF2;font-weight:600;margin-right:auto}
+.cbar .home{color:#E6ECF2;font-weight:500;margin-right:auto}
 .cbar .home svg{width:22px;height:14px;flex:none}
 .cbar ul{list-style:none;margin:0;padding:0;display:flex;gap:20px}
 .cbar a[aria-current=page]{color:#E6ECF2;box-shadow:inset 0 -2px 0 #3CE3F0}
 .cbar .ext svg{width:11px;height:11px}
-.cbar .tag{color:#7D8996;border:1px solid #2E3845;border-radius:2px;padding:2px 6px;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.cbar .tag{color:#7D8996;border:1px solid #2E3845;border-radius:2px;padding:2px 6px;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
 .cbar .s{display:none}
 @media (max-width:640px){.cbar .tag,.cbar .home .l,.cbar .l{display:none}.cbar .s{display:inline}.cbar-in,.cbar ul{gap:14px}.cbar .home{margin-right:auto}}
 </style>"""
@@ -31,7 +31,7 @@ def concept_bar(prefix, active, level='page'):
   <ul><li><a href="{prefix}brand-book/"{cur('brand')}><span class="l">Brand Book</span><span class="s">Brand</span></a></li><li><a href="{prefix}site/"{cur('site')}><span class="l">Site Prototype</span><span class="s">Site</span></a></li><li><a href="{prefix}#design-files"><span class="l">Design Files</span><span class="s">Files</span></a></li><li><a class="ext" href="{REPO}" rel="noopener">GitHub {ext}</a></li></ul>
 </div></nav>"""
 
-FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wdth,wght@75..112.5,100..800&display=swap">'
+FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=Martian+Mono:wdth,wght@87.5..100,400..500&display=swap">'
 BASE = 'https://jeremyanderson.tech'
 ARROW = '<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 EXT = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 3h4v4M13 3 7 9M11 9v3.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
@@ -89,6 +89,10 @@ def stack_tables(markup, include=('spec','spec-table'), exclude=('matrix',)):
         body=body.replace('<tr>','<tr role="row">')
         return head+body
     return _re.sub(r'<table class="([^"]*)"[\s\S]*?</table>', one, markup)
+
+def long_readouts(markup):
+    """Readouts over ~35 characters drop the caps (they read as text, not as a label)."""
+    return _re.sub(r'class="readout([^"]*)"([^>]*)>([^<]{35,})<', lambda m: f'class="readout long{m.group(1)}"{m.group(2)}>{m.group(3)}<', markup)
 
 def jsonld(obj):
     return '<script type="application/ld+json">'+json.dumps(obj, ensure_ascii=False)+'</script>'
@@ -164,7 +168,7 @@ def page(title, desc, path, active, body, schema=None, is_index=False):
 <script src="site.js" defer></script>'''
     import re
     content = stack_tables(content)
-    content = re.sub(r'class="readout([^"]*)"([^>]*)>([^<]{35,})<', lambda m: f'class="readout long{m.group(1)}"{m.group(2)}>{m.group(3)}<', content)
+    content = long_readouts(content)
     if is_index and not PAGES:
         return meta + '\n' + content
     return f'<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n{meta}\n</head>\n<body>\n{content}\n</body>\n</html>'

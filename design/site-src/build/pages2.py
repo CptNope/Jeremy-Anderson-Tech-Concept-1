@@ -214,11 +214,11 @@ contact = page_head([('index.html','Home'),(None,'Contact')],'Tell us what the s
   <section class="sticky-card" aria-label="What happens next">
     <h2 class="readout" style="color:var(--fg)">What happens next</h2>
     <ol class="steps" style="grid-template-columns:1fr;border-top:0;border-left:1px solid var(--line);margin-left:4px">
-      <li style="border-right:0;padding:0 0 var(--s4) var(--s5)"><h3 style="font-size:1rem">We reply</h3><span class="n">First</span><p>With times for a 30-minute call.</p></li>
-      <li style="border-right:0;padding:0 0 var(--s4) var(--s5)"><h3 style="font-size:1rem">Discovery</h3><span class="n">Call</span><p>Video, phone or in person in Greater Boston and Worcester.</p></li>
-      <li style="border-right:0;padding:0 0 0 var(--s5)"><h3 style="font-size:1rem">Proposal</h3><span class="n">3 business days</span><p>Written scope, price and timeline.</p></li>
+      <li style="border-right:0;padding:0 0 var(--s4) var(--s5)"><h3 class="t-item">We reply</h3><span class="n">First</span><p>With times for a 30-minute call.</p></li>
+      <li style="border-right:0;padding:0 0 var(--s4) var(--s5)"><h3 class="t-item">Discovery</h3><span class="n">Call</span><p>Video, phone or in person in Greater Boston and Worcester.</p></li>
+      <li style="border-right:0;padding:0 0 0 var(--s5)"><h3 class="t-item">Proposal</h3><span class="n">3 business days</span><p>Written scope, price and timeline.</p></li>
     </ol>
-    <div class="copy-line"><span class="mono" style="font-size:.875rem">info@jeremyanderson.tech</span><button class="btn-copy" type="button" data-copy-text="info@jeremyanderson.tech">Copy</button></div>
+    <div class="copy-line"><span class="mono">info@jeremyanderson.tech</span><button class="btn-copy" type="button" data-copy-text="info@jeremyanderson.tech">Copy</button></div>
     <p class="readout" style="margin:0">Shrewsbury, MA · Serving Massachusetts and remote clients</p>
   </section>
 </div></section>'''
@@ -263,17 +263,17 @@ bl_rows=''.join(f'<tr><td class="mono">{a}</td><td>{b}</td></tr>' for a,b in BLO
 sitemap = page_head([('index.html','Home'),(None,'Site map')],'Site map and architecture.','Every page in the new information architecture, its production URL, the schema it emits, and how existing URLs keep their search equity.') + f'''
 <section class="section" aria-labelledby="sm1"><div class="wrap">
   <div class="section-head"><h2 id="sm1">Information architecture</h2><p class="lede">Concept pages link to their production URLs. Phase 2 splits channel sections into individual service landing pages.</p></div>
-  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="Information architecture table"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:760px;font-size:.9375rem"><thead><tr><th>Production URL</th><th>Page</th><th>Concept file</th><th>Mode</th><th>Schema</th></tr></thead><tbody>{ia_rows}</tbody></table></div>
+  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="Information architecture table"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:760px"><thead><tr><th>Production URL</th><th>Page</th><th>Concept file</th><th>Mode</th><th>Schema</th></tr></thead><tbody>{ia_rows}</tbody></table></div>
 </div></section>
 <section class="section alt" aria-labelledby="sm2"><div class="wrap">
   <div class="section-head"><h2 id="sm2">Redirect map</h2><p class="lede">Existing projects and blog posts keep their URLs. Only consolidated service pages and thin tag archives move.</p></div>
-  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="Redirect map table"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:640px;font-size:.9375rem"><thead><tr><th>Current URL</th><th>New URL</th><th>Action</th></tr></thead><tbody>{rd_rows}</tbody></table></div>
+  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="Redirect map table"><table class="spec-table" style="width:100%;border-collapse:collapse;min-width:640px"><thead><tr><th>Current URL</th><th>New URL</th><th>Action</th></tr></thead><tbody>{rd_rows}</tbody></table></div>
 </div></section>
 <section class="section" aria-labelledby="sm3"><div class="wrap two-col">
   <div><h2 id="sm3">WordPress block plan</h2><p class="lede" style="margin-top:var(--s4)">Custom blocks in a <code class="mono">jat</code> namespace, styled from theme.json tokens, so the team edits content without touching layout.</p></div>
-  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="WordPress block plan table"><table class="spec-table" style="width:100%;border-collapse:collapse;font-size:.9375rem"><thead><tr><th>Block</th><th>Purpose</th></tr></thead><tbody>{bl_rows}</tbody></table></div>
+  <div style="overflow-x:auto" tabindex="0" role="region" aria-label="WordPress block plan table"><table class="spec-table" style="width:100%;border-collapse:collapse"><thead><tr><th>Block</th><th>Purpose</th></tr></thead><tbody>{bl_rows}</tbody></table></div>
 </div></section>
-<style>.spec-table th{{text-align:left;font-family:var(--f-mono);font-stretch:90%;font-weight:500;font-size:.6875rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);padding:10px 14px 10px 0;border-bottom:1px solid var(--line)}}.spec-table td{{padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}}.spec-table td.mono{{font-size:.8125rem}}</style>
+<style>.spec-table th{{text-align:left;font-family:var(--f-mono);font-stretch:90%;font-weight:400;font-size:var(--t-label);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-subtle);padding:10px 14px 10px 0;border-bottom:1px solid var(--line)}}.spec-table td{{padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}}.spec-table td.mono{{font-size:var(--t-label-long)}}</style>
 {close_cta()}'''
 open(OUT+'sitemap.html','w').write(page('Site Map · Jeremy Anderson Tech','Information architecture, redirect map and WordPress block plan for the Jeremy Anderson Tech website.','/sitemap/','',sitemap))
 print('ok2')

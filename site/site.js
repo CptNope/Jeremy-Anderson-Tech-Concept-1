@@ -98,7 +98,7 @@ function Scope(canvas, opt){
     const [x,y]=ptr; ctx.save(); ctx.setLineDash([3,5]); ctx.lineWidth=1; ctx.strokeStyle=tok('--ink-300')||'#A3AFBC'; ctx.globalAlpha=.65;
     ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); ctx.restore();
     const dx=(x/W*10).toFixed(2), dy=((H/2-y)/H*8).toFixed(2), label=`X ${dx} div   Y ${dy>0?'+':''}${dy} div`;
-    ctx.font=`500 11px ${tok('--f-mono')||'monospace'}`; const tw=ctx.measureText(label).width, lx=Math.min(x+12,W-tw-18), ly=Math.max(y-12,22);
+    ctx.font=`400 11px ${tok('--f-mono')||'monospace'}`; if('fontStretch' in ctx) ctx.fontStretch='semi-condensed'; const tw=ctx.measureText(label).width, lx=Math.min(x+12,W-tw-18), ly=Math.max(y-12,22);
     ctx.fillStyle='rgba(7,9,11,.86)'; ctx.fillRect(lx-6,ly-15,tw+12,22); ctx.fillStyle=tok('--ink-100')||'#E6ECF2'; ctx.fillText(label,lx,ly);
   }
   function run(){
@@ -193,7 +193,7 @@ function drawVersus(c, mode){
       for(let x=0;x<=W;x+=3){ let y; if(x<x0) y=y0; else { const t=(x-x0)/(W*.11); y=y1+(y0-y1)*Math.exp(-t)*Math.cos(t*2.6); } x?ctx.lineTo(x,y):ctx.moveTo(x,y); }
       ctx.stroke();
       ctx.setLineDash([3,5]); ctx.strokeStyle=tok('--ch2'); ctx.globalAlpha=.7; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(0,y1); ctx.lineTo(W,y1); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha=1;
-      ctx.font=`500 10px ${tok('--f-mono')||'monospace'}`; ctx.fillStyle=tok('--ch2'); ctx.fillText('TARGET', W-58, y1-8);
+      ctx.font=`400 11px ${tok('--f-mono')||'monospace'}`; if('fontStretch' in ctx) ctx.fontStretch='semi-condensed'; ctx.fillStyle=tok('--ch2'); ctx.fillText('TARGET', W-58, y1-8);
     }
   }
   paint(); let t; addEventListener('resize',()=>{ clearTimeout(t); t=setTimeout(paint,150); });

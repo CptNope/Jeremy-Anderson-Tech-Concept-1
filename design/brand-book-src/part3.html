@@ -99,7 +99,7 @@
     <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><defs><linearGradient id="badg" x1="0" x2="1"><stop offset="0" stop-color="#3CE3F0"/><stop offset="1" stop-color="#9A8CFF"/></linearGradient></defs><g fill="none" stroke="url(#badg)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not apply gradients.</figcaption></figure>
     <figure><div class="art"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><g fill="none" stroke="#3CE3F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not change the stroke weight.</figcaption></figure>
     <figure><div class="art" style="background:repeating-linear-gradient(35deg,#3a2a54 0 14px,#1d5a63 14px 28px,#5a3b16 28px 42px)"><svg viewBox="1 6 108 68" width="96" height="60" aria-hidden="true"><use href="#mk"/></svg></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not place on busy backgrounds.</figcaption></figure>
-    <figure><div class="art"><span style="font-family:Georgia,serif;font-size:1.25rem;color:#E6ECF2;display:flex;align-items:center;gap:10px"><svg viewBox="1 6 108 68" width="48" height="30" aria-hidden="true"><use href="#mk"/></svg>Jeremy Anderson</span></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not retype the wordmark.</figcaption></figure>
+    <figure><div class="art"><span style="font-family:Georgia,serif;font-size:var(--t-title);color:#E6ECF2;display:flex;align-items:center;gap:10px"><svg viewBox="1 6 108 68" width="48" height="30" aria-hidden="true"><use href="#mk"/></svg>Jeremy Anderson</span></div><figcaption><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="m2 2 6 6M8 2 2 8" stroke="#FF5C7A" stroke-width="1.6"/></svg>Do not retype the wordmark.</figcaption></figure>
   </div>
 </section>
 
@@ -219,29 +219,32 @@
   </div>
   <div class="two" style="margin-top:var(--s5)">
     <div class="specimen">
-      <p style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:1.75rem;line-height:1.1;margin-bottom:var(--s3)">Archivo Expanded</p>
+      <p style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:var(--t-title);line-height:1.15;margin-bottom:var(--s3)">Archivo Expanded</p>
       <p class="muted" style="margin:0">Display and headings, width 112–125. Wide letters echo the lettering on test equipment panels and give short headlines authority without heavy weight.</p>
-      <p style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:1.25rem;letter-spacing:.02em;margin:var(--s4) 0 0">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</p>
+      <p style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:var(--t-title);line-height:1.3;letter-spacing:.02em;overflow-wrap:anywhere;margin:var(--s4) 0 0">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</p>
     </div>
     <div class="specimen">
-      <p style="font-family:var(--f-mono);font-stretch:90%;font-size:1.25rem;line-height:1.2;margin-bottom:var(--s3)">Martian Mono</p>
+      <p style="font-family:var(--f-mono);font-stretch:90%;font-size:var(--t-title);line-height:1.15;margin-bottom:var(--s3)">Martian Mono</p>
       <p class="muted" style="margin:0">Readouts only: prices, timelines, measurements, channel IDs, code. Never for headlines or paragraphs. Width 90 keeps tables compact.</p>
       <p style="font-family:var(--f-mono);font-stretch:90%;font-size:.9375rem;margin:var(--s4) 0 0;font-variant-numeric:tabular-nums">$7,500 · 5–7 WKS · CH1<br>0123456789 Δt 2.40 ms</p>
     </div>
   </div>
   <h3>Type scale</h3>
+  <p class="muted">Ten roles, shared by the site and this book. Each role fixes size, weight, width, leading and tracking together; components pick a role, never a raw size.</p>
   <div>
-    <div class="scale-row"><div class="meta">Display<br>clamp(3.5–6rem) · 0.92<br>wdth 125 · wght 640 · −0.035em</div><div class="sample" style="font-family:var(--f-display);font-stretch:125%;font-weight:640;font-size:clamp(2.5rem,6vw,4.5rem);line-height:.92;letter-spacing:-.035em">Hold steady.</div></div>
-    <div class="scale-row"><div class="meta">H1<br>clamp(2.5–3.75rem) · 1.0<br>wdth 120 · wght 620</div><div class="sample" style="font-family:var(--f-display);font-stretch:120%;font-weight:620;font-size:clamp(2rem,4.5vw,3.25rem);line-height:1;letter-spacing:-.025em">Custom WordPress platforms</div></div>
-    <div class="scale-row"><div class="meta">H2<br>2.25rem · 1.05<br>wdth 118 · wght 620</div><div class="sample" style="font-family:var(--f-display);font-stretch:118%;font-weight:620;font-size:2rem;line-height:1.05;letter-spacing:-.02em">What's included</div></div>
-    <div class="scale-row"><div class="meta">H3<br>1.375rem · 1.15<br>wdth 112 · wght 600</div><div class="sample" style="font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:1.375rem;line-height:1.15">Security hardening package</div></div>
-    <div class="scale-row"><div class="meta">Body L<br>1.25rem · 1.5<br>wdth 100 · wght 400</div><div class="sample" style="font-size:1.25rem;line-height:1.5">We build the website, software and AI your business runs on.</div></div>
-    <div class="scale-row"><div class="meta">Body<br>1.0625rem · 1.6<br>wdth 100 · wght 400</div><div class="sample" style="font-size:1.0625rem;line-height:1.6">Every build includes basic hardening, SSL, Core Web Vitals optimization and on-page schema.</div></div>
-    <div class="scale-row"><div class="meta">Small<br>0.875rem · 1.5</div><div class="sample" style="font-size:.875rem;line-height:1.5;color:var(--fg-muted)">Prices exclude third-party licenses and hosting.</div></div>
-    <div class="scale-row"><div class="meta">Readout<br>0.75rem · mono · caps<br>wdth 90 · +0.06em</div><div class="sample readout" style="color:var(--fg)">5–7 weeks · 60 days support</div></div>
+    <div class="scale-row"><div class="meta">Display · <code>--t-display</code><br>clamp(3.25–6rem) · .92<br>wdth 125 · wght 640 · −.035em<br>Hero headline only</div><div class="sample r-display">Hold steady.</div></div>
+    <div class="scale-row"><div class="meta">Page · <code>--t-page</code><br>clamp(2.5–4.5rem) · .95<br>wdth 125 · wght 640 · −.03em<br>Page titles, closing statement</div><div class="sample r-page">Websites and apps that win work.</div></div>
+    <div class="scale-row"><div class="meta">Section · <code>--t-section</code><br>clamp(1.875–2.75rem) · 1.05<br>wdth 118 · wght 620 · −.02em<br>Every h2</div><div class="sample r-section">Prices before the first call.</div></div>
+    <div class="scale-row"><div class="meta">Title · <code>--t-title</code><br>clamp(1.375–1.75rem) · 1.15<br>wdth 112 · wght 600 · −.01em<br>Cards, features, channels</div><div class="sample r-title">Security hardening package</div></div>
+    <div class="scale-row"><div class="meta">Item · <code>--t-item</code><br>1.125rem · 1.35<br>wdth 108 · wght 600<br>Steps, prices, FAQ, list headings</div><div class="sample r-item">Written proposal</div></div>
+    <div class="scale-row"><div class="meta">Lede · <code>--t-lede</code><br>clamp(1.125–1.3125rem) · 1.5<br>wdth 100 · wght 400<br>Intro paragraphs</div><div class="sample r-lede">We build the website, software and AI your business runs on.</div></div>
+    <div class="scale-row"><div class="meta">Body · <code>--t-body</code><br>1.0625rem · 1.6 · 32em measure<br>wdth 100 · wght 400<br>Running text, about 70 characters a line</div><div class="sample r-body">Every build includes basic hardening, SSL, Core Web Vitals optimization and on-page schema.</div></div>
+    <div class="scale-row"><div class="meta">Small · <code>--t-small</code><br>.9375rem · 1.5<br>wdth 100 · wght 430<br>Captions, hints, secondary lists</div><div class="sample r-small">Prices exclude third-party licenses and hosting.</div></div>
+    <div class="scale-row"><div class="meta">Label · <code>--t-label</code><br>.75rem · mono · caps<br>wdth 90 · wght 400 · +.06em<br>Readouts and labels up to ~35 characters</div><div class="sample readout" style="color:var(--fg)">5–7 weeks · 60 days support</div></div>
+    <div class="scale-row"><div class="meta">Data · <code>--t-data</code><br>1.0625rem · mono · tabular<br>wdth 90 · wght 400<br>Prices, timings, measurements</div><div class="sample r-data">$7,500 · 5–7 WKS</div></div>
   </div>
   <h3>Pairing rules</h3>
-  <ul class="muted" style="padding-left:1.1em;display:grid;gap:6px;max-width:68ch">
+  <ul class="muted" style="padding-left:1.1em;display:grid;gap:6px;max-width:var(--measure)">
     <li>Headings run expanded (112–125); body text stays at width 100 for reading comfort.</li>
     <li>Emphasis comes from weight and width, never italics, color gradients or underlines.</li>
     <li>Mono appears only when the content is data. A headline in mono is a costume.</li>

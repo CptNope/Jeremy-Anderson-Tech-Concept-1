@@ -67,4 +67,4 @@ A container query switches the cover's status strip to two columns when it is na
 ## Notes
 
 - All testing used emulation. Before launch, check on a real iPhone (Safari notch insets and the select picker) and a mid-range Android phone.
-- The type-scale consolidation (`/impeccable typeset`) and font loading work (`/impeccable optimize`) from the audit are still open.
+- The type-scale consolidation is done (see `typeset.md`). Font loading work (`/impeccable optimize`) is still open.

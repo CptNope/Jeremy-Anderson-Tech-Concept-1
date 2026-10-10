@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'design/site-src/build'))
-from common import SPRITE, FONTS, ARROW, EXT, REPO, concept_bar, tag  # noqa: E402
+from common import SPRITE, FONTS, ARROW, EXT, REPO, concept_bar, tag, long_readouts  # noqa: E402
 
 BLOB = REPO + '/blob/main/'
 TREE = REPO + '/tree/main/'
@@ -57,7 +57,7 @@ def files_html():
 
 CSS = '''<style>
 .ov-hero .wrap{min-height:clamp(520px,74svh,760px)}
-.ov-hero h1{font-size:clamp(3rem,1.4rem + 6vw,6rem)}
+.ov-hero h1{font-size:var(--t-display);font-weight:640;font-stretch:125%;line-height:.92;letter-spacing:-.035em}
 .ov-hero h1 span{display:block;color:var(--ch1)}
 .byline{margin-top:var(--s5)}
 @media (max-width:879px),(max-height:540px) and (orientation:landscape){.ov-lockup{display:none!important}}
@@ -67,7 +67,7 @@ CSS = '''<style>
 @media (hover:hover){.deliv a:hover{border-color:var(--ch1)}}
 .deliv img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);background:var(--ink-950)}
 .deliv .body{padding:var(--s5) var(--s5) var(--s6);display:flex;flex-direction:column;gap:var(--s3)}
-.deliv h3{font-size:clamp(1.5rem,1.2rem + 1vw,2rem);font-stretch:120%}
+.deliv h3{font-size:var(--t-title);font-weight:600;font-stretch:112%;line-height:1.15;letter-spacing:-.01em}
 .deliv p{margin:0;color:var(--fg-muted)}
 .deliv .more{margin-top:auto;display:inline-flex;align-items:center;gap:8px;color:var(--ch1);font-weight:600}
 .pages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s6) var(--s5)}
@@ -78,18 +78,18 @@ CSS = '''<style>
 .pg-group a{display:grid;gap:2px;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--fg);min-height:44px}
 @media (hover:hover){.pg-group a:hover .pn{color:var(--ch1)}}
 .pn{font-family:var(--f-display);font-stretch:110%;font-weight:600;transition:color var(--t-base) var(--ease-out)}
-.pd{font-size:.875rem;color:var(--fg-muted)}
+.pd{color:var(--fg-muted);font-size:var(--t-small)}
 .files{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
 .files li{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:var(--s5);padding:12px 0;border-bottom:1px solid var(--line);align-items:baseline}
 .files a{display:inline-flex;align-items:center;gap:8px;min-height:36px;text-decoration:none}
 @media (pointer:coarse){.files a{min-height:44px}.repo-link{display:inline-flex;align-items:center;min-height:44px}}
 .files a svg{width:14px;height:14px;flex:none}
 @media (hover:hover){.files a:hover .mono{text-decoration:underline}}
-.files .mono{font-size:.875rem}
-.files .muted{font-size:.9375rem}
+.files .mono{font-size:var(--t-small)}
+.files .muted{font-size:var(--t-small)}
 @media (max-width:640px){.files li{grid-template-columns:1fr;gap:2px}}
 .rules{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.rules li{display:grid;grid-template-columns:18px 1fr;gap:10px;font-size:.9375rem;color:var(--fg-muted)}
+.rules li{display:grid;grid-template-columns:18px 1fr;gap:10px;color:var(--fg-muted);font-size:var(--t-body)}
 .rules li strong{color:var(--fg)}
 .rules svg{width:16px;height:16px;margin-top:4px;color:var(--ch4)}
 </style>'''
@@ -173,5 +173,5 @@ html = f'''<!doctype html>
 </body>
 </html>
 '''
-(ROOT/'index.html').write_text(html)
+(ROOT/'index.html').write_text(long_readouts(html))
 print('> index.html (overview)')

@@ -208,7 +208,7 @@ services = page_head([('index.html','Home'),(None,'Services')],'Services and pri
         <div class="price-row" style="grid-template-columns:1fr auto"><span class="name">Strategy and technical advisory</span><span class="amt">$165/hr</span></div>
         <div class="price-row" style="grid-template-columns:1fr auto"><span class="name">AI systems and consulting</span><span class="amt">$185/hr</span></div>
       </div>
-      <p class="muted" style="margin-top:var(--s4);font-size:.9375rem">Two-hour minimum (one hour for advisory). Prepaid blocks of 20+ hours save 10% and stay valid for 90 days.</p>
+      <p class="muted small" style="margin-top:var(--s4)">Two-hour minimum (one hour for advisory). Prepaid blocks of 20+ hours save 10% and stay valid for 90 days.</p>
     </div>
     <div>
       <h3 style="margin-bottom:var(--s4)">Add-ons</h3>

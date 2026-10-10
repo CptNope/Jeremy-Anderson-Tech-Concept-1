@@ -26,8 +26,8 @@ run(sys.executable, D/'identity/sprite.py')
 sprite = (D/'identity/sprite.html').read_text()
 body = ''.join((D/f'brand-book-src/part{i}.html').read_text() for i in range(1,6)).replace('<!--SPRITE-->', sprite)
 sys.path.insert(0, str(D/'site-src/build'))
-from common import stack_tables  # noqa: E402
-body = stack_tables(body)
+from common import stack_tables, long_readouts  # noqa: E402
+body = long_readouts(stack_tables(body))
 head = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
         '<meta name="robots" content="noindex">\n<meta name="theme-color" content="#0A0C0F">\n'

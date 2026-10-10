@@ -22,35 +22,65 @@ colors:
   ch1-deep: "#007C88"
 typography:
   display:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Archivo, Archivo Wide Fallback, Arial, sans-serif"
     fontSize: "clamp(3.25rem, 1.6rem + 6vw, 6rem)"
     fontWeight: 640
     lineHeight: 0.92
     letterSpacing: "-0.035em"
     fontVariation: "'wdth' 125"
+  page:
+    fontFamily: "Archivo, Archivo Wide Fallback, Arial, sans-serif"
+    fontSize: "clamp(2.5rem, 1.5rem + 4vw, 4.5rem)"
+    fontWeight: 640
+    lineHeight: 0.95
+    letterSpacing: "-0.03em"
+    fontVariation: "'wdth' 125"
   headline:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Archivo, Archivo Wide Fallback, Arial, sans-serif"
     fontSize: "clamp(1.875rem, 1.3rem + 2vw, 2.75rem)"
     fontWeight: 620
     lineHeight: 1.05
     letterSpacing: "-0.02em"
     fontVariation: "'wdth' 118"
   title:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
-    fontSize: "1.375rem"
+    fontFamily: "Archivo, Archivo Wide Fallback, Arial, sans-serif"
+    fontSize: "clamp(1.375rem, 1.2rem + .6vw, 1.75rem)"
     fontWeight: 600
     lineHeight: 1.15
+    letterSpacing: "-0.01em"
     fontVariation: "'wdth' 112"
+  item:
+    fontFamily: "Archivo, Archivo Wide Fallback, Arial, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 600
+    lineHeight: 1.35
+    fontVariation: "'wdth' 108"
+  lede:
+    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
+    fontSize: "clamp(1.125rem, 1rem + .4vw, 1.3125rem)"
+    fontWeight: 400
+    lineHeight: 1.5
   body:
-    fontFamily: "Archivo, Helvetica Neue, Arial, sans-serif"
+    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
+  small:
+    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
+    fontSize: "0.9375rem"
+    fontWeight: 430
+    lineHeight: 1.5
   label:
-    fontFamily: "Martian Mono, ui-monospace, Menlo, monospace"
+    fontFamily: "Martian Mono, Martian Mono Fallback, ui-monospace, Menlo, monospace"
     fontSize: "0.75rem"
     fontWeight: 400
     letterSpacing: "0.06em"
+    fontVariation: "'wdth' 90"
+  data:
+    fontFamily: "Martian Mono, Martian Mono Fallback, ui-monospace, Menlo, monospace"
+    fontSize: "1.0625rem"
+    fontWeight: 400
+    fontFeature: "'tnum'"
     fontVariation: "'wdth' 90"
 rounded:
   tag: "2px"
@@ -149,14 +179,27 @@ A near-black instrument screen with ice-white readouts and four signal colors he
 **Character:** Wide, test-equipment lettering for headlines; plain, readable grotesk for prose; a compact mono for every measured value.
 
 ### Hierarchy
-- **Display** (640, clamp 3.25–6rem, 0.92): hero headline and page-head H1s at width 125%.
-- **Headline** (620, clamp 1.875–2.75rem, 1.05): section heads at width 118%.
-- **Title** (600, 1.375rem, 1.15): component and card headings at width 112%.
-- **Body** (400, 1.0625rem, 1.6): prose, max 58–70ch.
-- **Label** (400, 0.75rem, +0.06em, uppercase when under ~35 characters): readouts, prices, timings, channel IDs. Longer readouts drop uppercase.
+Ten roles, shared by the site and the brand book. Each role fixes size, weight, width, leading and tracking together; a component picks a role and never sets a raw size. Tokens: `--t-display` … `--t-data` in site.css, `--jat-text-*` in the production tokens.
+- **Display** (640, clamp 3.25–6rem, .92, width 125): the hero headline only.
+- **Page** (640, clamp 2.5–4.5rem, .95, width 125): page titles and the closing statement.
+- **Headline / section** (620, clamp 1.875–2.75rem, 1.05, width 118): every h2.
+- **Title** (600, clamp 1.375–1.75rem, 1.15, width 112): card, feature and channel titles.
+- **Item** (600, 1.125rem, 1.3, width 108): steps, price names, FAQ questions, list headings, post titles.
+- **Lede** (400, clamp 1.125–1.3125rem, 1.5): intro paragraphs.
+- **Body** (400, 1.0625rem, 1.6): running text, held to a 32em measure (about 70 characters).
+- **Small** (430, .9375rem, 1.5): captions, hints and secondary lists; one notch heavier because light text thins on near-black.
+- **Label** (Martian Mono 400, .75rem, +.06em, width 90, caps up to ~35 characters; longer readouts drop the caps at .8125rem).
+- **Data** (Martian Mono 400, 1.0625rem, width 90, tabular figures): prices, timings, measurements.
+
+The brand book adds two book-only styles: a specimen size (clamp 3.5–9rem) for the cover and type specimen, and a pull-quote statement (500, clamp 1.5–2.25rem).
 
 ### Named Rules
 **The Data-Only Mono Rule.** Martian Mono appears only when the content is data. A headline in mono is a costume.
+**The Role, Not Size, Rule.** Never set a raw font size on a component; pick one of the ten roles. Adjacent roles differ in weight or width as well as size.
+**The Width-Before-Break Rule.** On screens under 400px, display and page headings narrow from width 125 to 112 before any word is allowed to break.
+
+### Loading
+Fonts request only the axes in use (Archivo width 100–125, weight 400–700; Martian Mono width 87.5–100, weight 400–500; the brand book also loads Archivo widths down to 62 for its specimen). Metric-matched fallback faces (`Archivo Fallback` at 98%, `Archivo Wide Fallback` at 118%, `Martian Mono Fallback` at 110%, with ascent and descent overrides from Archivo's real metrics) keep line breaks stable while the web fonts load. Body text is set in rem, so browser text-size settings scale every role together.
 
 ## Layout
 

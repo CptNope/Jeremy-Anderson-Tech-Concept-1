@@ -61,7 +61,7 @@ Follows the audit (15/20). Scope: the overview, all 15 site prototype pages and 
 
 ## Left for other commands
 
-- Type-scale consolidation and font-size drift against DESIGN.md: `/impeccable typeset`.
+- Type-scale consolidation and font-size drift against DESIGN.md: done in `/impeccable typeset` (`typeset.md`).
 - 44 px targets for footer links and copy buttons, and the brand book picker: `/impeccable adapt`.
 - Font subsetting and preload, and an external sprite: `/impeccable optimize`.
 - DESIGN.md refresh: `/impeccable document`.
