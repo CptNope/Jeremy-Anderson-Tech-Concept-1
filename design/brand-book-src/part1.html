@@ -1,12 +1,13 @@
 <title>JAT Brand Book</title>
 <meta name="description" content="Jeremy Anderson Tech brand book: strategy, identity, color, type, motion, components and production tokens.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Martian+Mono:wdth,wght@87.5..100,400..500&display=swap">
+<link rel="preload" href="../fonts/archivo-var-full.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/martian-mono-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Archivo Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Roboto");size-adjust:98%;ascent-override:89.6%;descent-override:21.4%;line-gap-override:0%}
+@font-face{font-family:"Archivo";src:url("../fonts/archivo-var-full.woff2") format("woff2");font-weight:400 700;font-stretch:62% 125%;font-style:normal;font-display:swap}
+@font-face{font-family:"Martian Mono";src:url("../fonts/martian-mono-var.woff2") format("woff2");font-weight:400 500;font-stretch:87.5% 100%;font-style:normal;font-display:swap}
+@font-face{font-family:"Archivo Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Roboto");size-adjust:98.4%;ascent-override:89.2%;descent-override:21.3%;line-gap-override:0%}
 @font-face{font-family:"Archivo Wide Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Roboto");size-adjust:118%;ascent-override:74.4%;descent-override:17.8%;line-gap-override:0%}
-@font-face{font-family:"Martian Mono Fallback";src:local("Menlo"),local("Consolas"),local("DejaVu Sans Mono"),local("Liberation Mono"),local("Roboto Mono");size-adjust:110%;ascent-override:90.9%;descent-override:18.2%;line-gap-override:0%}
+@font-face{font-family:"Martian Mono Fallback";src:local("Menlo"),local("DejaVu Sans Mono"),local("Liberation Mono"),local("Courier New"),local("Roboto Mono");size-adjust:109.6%;ascent-override:91.2%;descent-override:18.2%;line-gap-override:0%}
 /* Layout: instrument manual — fixed channel index rail at left, one reading column of "screens" (graticule panels) and spec tables on graticule-black. */
 :root{
   color-scheme: dark;

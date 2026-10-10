@@ -46,7 +46,20 @@ bar = '<a class="skip" href="#top">Skip to content</a>\n' + concept_bar('../', '
     '.cbar{position:static}body{padding-top:0}.rail{top:env(safe-area-inset-top,0px)!important}html{scroll-padding-top:72px}}'
     '</style>')
 back = ''
-head = head.replace('<body>\n', '<body>\n' + bar + '\n')
+# Head material (title, meta, preloads, styles) must sit in <head>, in the original cascade order (bar CSS first): in <body> the preloads are found late and the
+# first paint happens before the book's styles are parsed (a visible jump on slow connections).
+import re as _re
+lead = _re.match(r'(?:\s|<!--[\s\S]*?-->|<title>[\s\S]*?</title>|<meta[^>]*>|<link[^>]*>|<style>[\s\S]*?</style>)+', body)
+book_head, body = (lead.group(0), body[lead.end():]) if lead else ('', body)
+# Later sections' style blocks too (anything outside <noscript>), so no mid-parse restyle of painted content.
+_late = []
+body = _re.sub(r'(?<!<noscript>)<style>[\s\S]*?</style>', lambda m: (_late.append(m.group(0)), '')[1], body)
+book_head += '\n' + '\n'.join(_late)
+bar_css, bar_nav = bar.split('<nav', 1)
+skip, cbar_css = bar_css.split('\n', 1)
+fixed_css = bar_nav[bar_nav.index('</nav>') + 6:]
+bar_nav = '<nav' + bar_nav[:bar_nav.index('</nav>') + 6]
+head = head.replace('</head>\n<body>\n', cbar_css.strip() + '\n' + fixed_css.strip() + '\n' + book_head.strip() + '\n</head>\n<body>\n' + skip + '\n' + bar_nav + '\n')
 (ROOT/'brand-book').mkdir(exist_ok=True)
 (ROOT/'brand-book/index.html').write_text(head + body + '\n' + back + '\n</body>\n</html>\n')
 print('> brand-book/index.html')

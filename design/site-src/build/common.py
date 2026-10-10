@@ -31,7 +31,7 @@ def concept_bar(prefix, active, level='page'):
   <ul><li><a href="{prefix}brand-book/"{cur('brand')}><span class="l">Brand Book</span><span class="s">Brand</span></a></li><li><a href="{prefix}site/"{cur('site')}><span class="l">Site Prototype</span><span class="s">Site</span></a></li><li><a href="{prefix}#design-files"><span class="l">Design Files</span><span class="s">Files</span></a></li><li><a class="ext" href="{REPO}" rel="noopener">GitHub {ext}</a></li></ul>
 </div></nav>"""
 
-FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=Martian+Mono:wdth,wght@87.5..100,400..500&display=swap">'
+FONTS = '<link rel="preload" href="../fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="../fonts/martian-mono-var.woff2" as="font" type="font/woff2" crossorigin>'
 BASE = 'https://jeremyanderson.tech'
 ARROW = '<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 EXT = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 3h4v4M13 3 7 9M11 9v3.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'

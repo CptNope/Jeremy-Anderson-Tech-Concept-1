@@ -6,9 +6,6 @@
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0A0C0F">
 <link rel="icon" href="assets/jat-mark.svg" type="image/svg+xml">
-</head>
-<body>
-<a class="skip" href="#top">Skip to content</a>
 <style>
 .cbar{--cbar-h:41px;background:#07090B;border-bottom:1px solid #222A34;padding-top:env(safe-area-inset-top,0px);font-family:"Martian Mono",ui-monospace,Menlo,monospace;font-stretch:90%;font-size:.75rem;letter-spacing:.04em;position:relative;z-index:70}
 .cbar-in{max-width:1376px;margin-inline:auto;padding-inline:max(clamp(16px,4vw,48px), env(safe-area-inset-left,0px)) max(clamp(16px,4vw,48px), env(safe-area-inset-right,0px));display:flex;align-items:center;gap:20px;min-height:calc(var(--cbar-h) - 1px);overflow-x:auto;scrollbar-width:none}
@@ -25,19 +22,18 @@
 .cbar .tag{color:#7D8996;border:1px solid #2E3845;border-radius:2px;padding:2px 6px;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
 .cbar .s{display:none}
 @media (max-width:640px){.cbar .tag,.cbar .home .l,.cbar .l{display:none}.cbar .s{display:inline}.cbar-in,.cbar ul{gap:14px}.cbar .home{margin-right:auto}}
-</style><nav class="cbar" aria-label="Concept"><div class="cbar-in">
-  <a class="home" href="../"><svg viewBox="1 6 108 68" aria-hidden="true"><g fill="none" stroke="#3CE3F0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg><span class="l">JAT Concept 1</span><span class="s">Overview</span> <span class="tag">Calibrated Signal</span></a>
-  <ul><li><a href="../brand-book/" aria-current="page"><span class="l">Brand Book</span><span class="s">Brand</span></a></li><li><a href="../site/"><span class="l">Site Prototype</span><span class="s">Site</span></a></li><li><a href="../#design-files"><span class="l">Design Files</span><span class="s">Files</span></a></li><li><a class="ext" href="https://github.com/CptNope/Jeremy-Anderson-Tech-Concept-1" rel="noopener">GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 3h4v4M13 3 7 9M11 9v3.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul>
-</div></nav><style>.cbar{position:fixed;top:0;left:0;right:0;z-index:60}body{padding-top:calc(var(--cbar-h) + env(safe-area-inset-top,0px))}.rail{top:calc(var(--cbar-h) + env(safe-area-inset-top,0px))!important}html{scroll-padding-top:calc(var(--cbar-h) + 24px)}@media (max-width:959px){html{scroll-padding-top:calc(var(--cbar-h) + 72px)}}@media (max-height:540px) and (orientation:landscape) and (max-width:959px){.cbar{position:static}body{padding-top:0}.rail{top:env(safe-area-inset-top,0px)!important}html{scroll-padding-top:72px}}</style>
+</style>
+<style>.cbar{position:fixed;top:0;left:0;right:0;z-index:60}body{padding-top:calc(var(--cbar-h) + env(safe-area-inset-top,0px))}.rail{top:calc(var(--cbar-h) + env(safe-area-inset-top,0px))!important}html{scroll-padding-top:calc(var(--cbar-h) + 24px)}@media (max-width:959px){html{scroll-padding-top:calc(var(--cbar-h) + 72px)}}@media (max-height:540px) and (orientation:landscape) and (max-width:959px){.cbar{position:static}body{padding-top:0}.rail{top:env(safe-area-inset-top,0px)!important}html{scroll-padding-top:72px}}</style>
 <title>JAT Brand Book</title>
 <meta name="description" content="Jeremy Anderson Tech brand book: strategy, identity, color, type, motion, components and production tokens.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Martian+Mono:wdth,wght@87.5..100,400..500&display=swap">
+<link rel="preload" href="../fonts/archivo-var-full.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/martian-mono-var.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-@font-face{font-family:"Archivo Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Roboto");size-adjust:98%;ascent-override:89.6%;descent-override:21.4%;line-gap-override:0%}
+@font-face{font-family:"Archivo";src:url("../fonts/archivo-var-full.woff2") format("woff2");font-weight:400 700;font-stretch:62% 125%;font-style:normal;font-display:swap}
+@font-face{font-family:"Martian Mono";src:url("../fonts/martian-mono-var.woff2") format("woff2");font-weight:400 500;font-stretch:87.5% 100%;font-style:normal;font-display:swap}
+@font-face{font-family:"Archivo Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Roboto");size-adjust:98.4%;ascent-override:89.2%;descent-override:21.3%;line-gap-override:0%}
 @font-face{font-family:"Archivo Wide Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("Roboto");size-adjust:118%;ascent-override:74.4%;descent-override:17.8%;line-gap-override:0%}
-@font-face{font-family:"Martian Mono Fallback";src:local("Menlo"),local("Consolas"),local("DejaVu Sans Mono"),local("Liberation Mono"),local("Roboto Mono");size-adjust:110%;ascent-override:90.9%;descent-override:18.2%;line-gap-override:0%}
+@font-face{font-family:"Martian Mono Fallback";src:local("Menlo"),local("DejaVu Sans Mono"),local("Liberation Mono"),local("Courier New"),local("Roboto Mono");size-adjust:109.6%;ascent-override:91.2%;descent-override:18.2%;line-gap-override:0%}
 /* Layout: instrument manual — fixed channel index rail at left, one reading column of "screens" (graticule panels) and spec tables on graticule-black. */
 :root{
   color-scheme: dark;
@@ -327,6 +323,82 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:44px;cursor:poin
 .radii{display:flex;flex-wrap:wrap;gap:var(--s5)}
 .radii div{width:96px;height:72px;border:1px solid var(--ch1);display:grid;place-items:end start;padding:8px;font-family:var(--f-mono);font-size:var(--t-label);color:var(--fg-muted);font-stretch:90%}
 </style>
+
+<style>
+.elev-wrap{background:var(--ink-950);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+.elev-wrap .elev{border:0}
+.icons{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
+@media (max-width:700px){.icons{grid-template-columns:repeat(auto-fill,minmax(84px,1fr))}}
+.icons figure{margin:0;box-shadow:inset -1px -1px 0 var(--line);display:grid;justify-items:center;gap:10px;padding:18px 8px 12px}
+.icons svg{width:32px;height:32px;color:var(--fg)}
+.icons figcaption{font-family:var(--f-mono);font-size:var(--t-label);color:var(--fg-muted);font-stretch:90%;text-transform:uppercase;letter-spacing:.05em}
+.motion-demo{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--s5);align-items:stretch}
+@media (max-width:800px){.motion-demo{grid-template-columns:1fr}}
+.photo-frame{aspect-ratio:4/3;border:1px dashed var(--line-strong);border-radius:10px;display:grid;place-items:center;text-align:center;padding:var(--s4);color:var(--fg-muted);background:repeating-linear-gradient(-45deg,transparent 0 10px,rgba(159,180,200,.03) 10px 11px);font-size:var(--t-small)}
+/* components */
+.cmp-row{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
+.btn{--h:44px;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--h);padding:0 18px;border-radius:var(--r-control);font-family:var(--f-display);font-stretch:108%;font-weight:600;font-size:var(--t-small);letter-spacing:.005em;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background var(--t-base) var(--ease-out),color var(--t-base) var(--ease-out),border-color var(--t-base) var(--ease-out),transform var(--t-fast) var(--ease-out)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--ch1);color:var(--ink-900)}
+@media (hover:hover){.btn-primary:hover{background:#7AEDF6}}
+.btn-secondary{background:transparent;color:var(--fg);border-color:var(--line-control)}
+@media (hover:hover){.btn-secondary:hover{border-color:var(--ch1);color:var(--ch1)}}
+.btn-ghost{background:transparent;color:var(--ch1);padding-inline:6px;text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}
+.btn[disabled],.btn[aria-disabled="true"]{background:var(--ink-800);color:var(--ink-400);border-color:var(--line);cursor:not-allowed;transform:none}
+.btn .arrow{width:16px;height:16px;transition:transform var(--t-base) var(--ease-out)}
+@media (hover:hover){.btn:hover .arrow{transform:translateX(3px)}}
+.btn .spin{width:16px;height:16px;animation:spin 900ms linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.btn .spin{animation:none}.btn .arrow{transition:none}}
+.field{display:grid;gap:6px;min-width:0}
+.field label{font-weight:550;font-size:var(--t-small)}
+.field .hint{color:var(--fg-muted);font-size:var(--t-small)}
+.input{min-height:44px;width:100%;background:var(--ink-950);color:var(--fg);border:1px solid var(--line-control);border-radius:var(--r-control);padding:10px 12px;font:inherit;caret-color:var(--ch1);transition:border-color var(--t-base) var(--ease-out),box-shadow var(--t-base) var(--ease-out);font-size:var(--t-body)}
+.input::placeholder{color:var(--ink-400)}
+@media (hover:hover){.input:hover{border-color:var(--ink-400)}}
+.input:focus{outline:none;border-color:var(--ch1);box-shadow:0 0 0 3px rgba(60,227,240,.18)}
+.field.err .input{border-color:var(--danger)}
+.field .msg{display:flex;gap:6px;align-items:center;font-size:var(--t-small);color:var(--danger)}
+.readout-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--line);gap:1px}
+.readout-strip a{background:var(--ink-950);padding:12px 14px;text-decoration:none;color:var(--fg);display:grid;gap:4px;transition:background var(--t-base) var(--ease-out)}
+@media (hover:hover){.readout-strip a:hover{background:var(--ink-850)}}
+.readout-strip .v{font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:var(--t-small)}
+@media (max-width:640px){.readout-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.price-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:var(--s5);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
+.price-row .name{font-family:var(--f-display);font-size:var(--t-item);font-weight:600;font-stretch:108%;line-height:1.35;letter-spacing:0}
+.price-row .p{font-family:var(--f-mono);font-stretch:90%;color:var(--fg);font-variant-numeric:tabular-nums;font-size:var(--t-data)}
+.price-row .d{font-family:var(--f-mono);font-stretch:90%;font-size:var(--t-label);color:var(--fg-muted)}
+@media (max-width:560px){.price-row{grid-template-columns:minmax(0,1fr) auto}.price-row .d{grid-column:1/-1}}
+.price-row>*{min-width:0;overflow-wrap:anywhere}
+.toast{display:inline-flex;gap:10px;align-items:center;background:var(--ink-800);border:1px solid var(--line-strong);border-radius:8px;padding:10px 14px;font-size:var(--t-small);box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
+/* applications */
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:var(--s6) var(--s5)}
+.apps figure{margin:0;min-width:0}
+.apps .stage{border:1px solid var(--line);border-radius:var(--r-panel);background:#0d1014;padding:var(--s5);display:grid;place-items:center;overflow:hidden}
+.apps svg.mock{width:100%;height:auto;display:block}
+.apps figcaption{margin-top:var(--s2);color:var(--fg-muted);font-size:var(--t-small)}
+.apps figcaption strong{color:var(--fg)}
+.sig{background:#fff;color:#0A0C0F;border-radius:8px;padding:20px;font-family:Arial,Helvetica,sans-serif;width:100%;max-width:520px}
+/* tokens */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:-1px;overflow-x:auto}
+.tabs button{font-family:var(--f-mono);font-stretch:90%;font-size:var(--t-label);letter-spacing:.04em;text-transform:uppercase;background:transparent;color:var(--fg-muted);border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;padding:10px 14px;cursor:pointer;min-height:40px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--fg);background:var(--panel);border-color:var(--line);box-shadow:inset 0 2px 0 var(--ch1)}
+.end{margin-top:var(--s10);padding-top:var(--s7);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:end;gap:var(--s5);flex-wrap:wrap}
+
+/* touch sizes last, so component rules above cannot undo them */
+@media (pointer:coarse){
+  .btn-copy,.tabs button{min-height:44px}
+  .btn-copy{padding-inline:14px}
+  .rail nav a{min-height:44px;align-items:center}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#top">Skip to content</a>
+<nav class="cbar" aria-label="Concept"><div class="cbar-in">
+  <a class="home" href="../"><svg viewBox="1 6 108 68" aria-hidden="true"><g fill="none" stroke="#3CE3F0" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></svg><span class="l">JAT Concept 1</span><span class="s">Overview</span> <span class="tag">Calibrated Signal</span></a>
+  <ul><li><a href="../brand-book/" aria-current="page"><span class="l">Brand Book</span><span class="s">Brand</span></a></li><li><a href="../site/"><span class="l">Site Prototype</span><span class="s">Site</span></a></li><li><a href="../#design-files"><span class="l">Design Files</span><span class="s">Files</span></a></li><li><a class="ext" href="https://github.com/CptNope/Jeremy-Anderson-Tech-Concept-1" rel="noopener">GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 3h4v4M13 3 7 9M11 9v3.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul>
+</div></nav>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><path id="p-name" d="M32.643408203125 1.2000000000000002Q23.469531250000003 1.2000000000000002 16.9739013671875 -1.4521728515625Q10.478271484375 -4.104345703125 7.0087158203125 -9.6195556640625Q3.5391601562500004 -15.134765625 3.5391601562500004 -23.760839843750002V-25.169531250000002H18.612890625000002V-23.26953125Q18.612890625000002 -17.51298828125 22.208569335937504 -14.602099609375Q25.804248046875003 -11.691210937500001 32.126025390625 -11.691210937500001Q39.0521484375 -11.691210937500001 42.889135742187506 -15.2890625Q46.726123046875 -18.8869140625 46.726123046875 -26.40869140625V-68.704345703125H62.247656250000006V-27.204345703125Q62.247656250000006 -17.395654296875 58.6737548828125 -11.095654296875Q55.099853515625 -4.795654296875 48.5042236328125 -1.7978271484375Q41.90859375 1.2000000000000002 32.643408203125 1.2000000000000002ZM83.800048828125 0.0V-68.704345703125H153.473876953125V-55.813134765625H99.417236328125V-41.365185546875004H147.44345703125V-28.5130859375H99.417236328125V-12.8912109375H154.273876953125V0.0ZM174.40004882812502 0.0V-68.704345703125H229.02602539062502Q236.34340820312502 -68.704345703125 241.01513671875003 -65.7434814453125Q245.68686523437503 -62.7826171875 247.99990234375002 -57.9174072265625Q250.312939453125 -53.052197265625004 250.312939453125 -47.1478515625Q250.312939453125 -41.0130859375 247.16728515625002 -35.6630859375Q244.02163085937502 -30.313085937500002 237.45205078125002 -27.30439453125L252.00859375000002 0.0H234.43925781250002L221.93486328125002 -24.36962890625H190.012890625V0.0ZM190.012890625 -37.165185546875H224.63046875Q229.24790039062503 -37.165185546875 231.76965332031253 -39.871728515625Q234.29140625000002 -42.578271484375 234.29140625000002 -46.826123046875004Q234.29140625000002 -49.691357421875004 233.20009765625002 -51.715283203125004Q232.10878906250002 -53.739208984375004 229.94138183593753 -54.776171875Q227.77397460937502 -55.813134765625 224.63046875 -55.813134765625H190.012890625ZM270.50004882812505 0.0V-68.704345703125H340.17387695312505V-55.813134765625H286.11723632812505V-41.365185546875004H334.14345703125V-28.5130859375H286.11723632812505V-12.8912109375H340.97387695312506V0.0ZM361.10004882812507 0.0V-68.704345703125H385.36059570312506L400.7477050781251 -33.84326171875Q401.4520507812501 -32.221533203125 402.58684082031255 -29.37587890625Q403.72163085937507 -26.530224609375 404.94990234375007 -23.397607421875Q406.17817382812507 -20.264990234375002 407.15644531250007 -17.691064453125H407.85644531250006Q408.73906250000005 -19.973681640625003 409.91950683593757 -22.956298828125Q411.0999511718751 -25.938916015625 412.28474121093757 -28.8367431640625Q413.46953125000005 -31.7345703125 414.26953125000006 -33.651953125L429.6566406250001 -68.704345703125H453.38676757812505V0.0H437.77392578125006V-41.478515625Q437.77392578125006 -43.21328125 437.82392578125007 -45.352392578125006Q437.8739257812501 -47.49150390625 437.97392578125005 -49.578442382812504Q438.07392578125007 -51.665380859375006 438.1695800781251 -53.191455078125H437.36958007812507Q436.86088867187505 -51.656689453125004 436.05437011718755 -49.51540527343751Q435.24785156250005 -47.374121093750006 434.44133300781255 -45.2371826171875Q433.63481445312505 -43.100244140625 432.93046875000005 -41.478515625L414.57377929687505 0.0H399.4652343750001L381.01289062500007 -41.478515625Q380.10419921875007 -43.5306640625 379.2455078125 -45.72412109375Q378.38681640625003 -47.917578125000006 377.73029785156257 -49.897998046875Q377.07377929687505 -51.87841796875 376.57377929687505 -53.191455078125H375.77377929687503Q375.87377929687506 -51.974072265625004 375.92377929687507 -49.99365234375Q375.9737792968751 -48.013232421875 376.0237792968751 -45.819775390625004Q376.07377929687505 -43.626318359375006 376.07377929687505 -41.478515625V0.0ZM502.42607421875005 0.0V-27.769580078125003L468.79565429687506 -68.704345703125H487.5562988281251L510.14335937500005 -40.243359375000004H511.13032226562507L534.0043457031251 -68.704345703125H551.76064453125L518.0389160156251 -27.769580078125003V0.0ZM595.83046875 0.0 630.182666015625 -68.704345703125H647.817236328125L682.16943359375 0.0H665.0435546875L658.6478515625 -13.117480468750001H618.25205078125L611.860693359375 0.0ZM624.317236328125 -25.626074218750002H652.582666015625L644.721728515625 -42.20009765625Q644.230419921875 -43.287060546875004 643.2999755859375 -45.402294921875004Q642.36953125 -47.517529296875004 641.4347412109375 -49.743627929687506Q640.499951171875 -51.9697265625 639.758642578125 -53.6218994140625Q639.017333984375 -55.274072265625 638.899951171875 -55.43056640625H638.104296875Q637.217333984375 -53.443603515625 636.0825439453125 -50.860986328125Q634.94775390625 -48.278369140625 633.910791015625 -45.89140625Q632.873828125 -43.504443359375 632.178173828125 -42.104443359375004ZM698.100048828125 0.0V-68.704345703125H712.712939453125L750.156494140625 -32.925927734375Q751.42607421875 -31.852001953125 753.1956542968751 -29.99111328125Q754.965234375 -28.130224609375002 756.8826416015625 -26.1693359375Q758.800048828125 -24.208447265625 760.182666015625 -22.6388671875H760.991357421875Q760.895703125 -24.8041015625 760.7522216796874 -27.9193359375Q760.608740234375 -31.0345703125 760.608740234375 -33.04326171875V-68.704345703125H775.582470703125V0.0H761.265234375L723.79990234375 -36.091503906250004Q721.1259765625 -38.652392578125 718.20205078125 -41.7567626953125Q715.278125 -44.8611328125 713.4955078125 -46.735058593750004H712.78681640625Q712.882470703125 -45.430712890625 712.9781250000001 -42.211132812500004Q713.073779296875 -38.991552734375006 713.073779296875 -34.861083984375V0.0ZM798.800048828125 0.0V-68.704345703125H835.5478027343751Q848.156494140625 -68.704345703125 857.2173583984375 -64.7521728515625Q866.27822265625 -60.800000000000004 871.1347412109376 -53.1478271484375Q875.991259765625 -45.495654296875 875.991259765625 -34.304345703125Q875.991259765625 -23.20869140625 871.1347412109376 -15.5565185546875Q866.27822265625 -7.904345703125 857.2173583984375 -3.9521728515625Q848.156494140625 0.0 835.5478027343751 0.0ZM814.412890625 -12.8912109375H834.7173828125001Q840.15654296875 -12.8912109375 844.7435302734375 -14.186865234375Q849.3305175781251 -15.48251953125 852.7305419921876 -18.01513671875Q856.1305664062501 -20.54775390625 858.0001464843751 -24.358642578125Q859.8697265625001 -28.169531250000002 859.8697265625001 -33.204345703125V-35.50869140625Q859.8697265625001 -40.543505859375 858.0001464843751 -44.3522216796875Q856.1305664062501 -48.1609375 852.7305419921876 -50.693554687500004Q849.3305175781251 -53.226171875000006 844.7435302734375 -54.5196533203125Q840.15654296875 -55.813134765625 834.7173828125001 -55.813134765625H814.412890625ZM896.200048828125 0.0V-68.704345703125H965.8738769531251V-55.813134765625H911.817236328125V-41.365185546875004H959.8434570312501V-28.5130859375H911.817236328125V-12.8912109375H966.673876953125V0.0ZM986.800048828125 0.0V-68.704345703125H1041.426025390625Q1048.743408203125 -68.704345703125 1053.41513671875 -65.7434814453125Q1058.086865234375 -62.7826171875 1060.39990234375 -57.9174072265625Q1062.712939453125 -53.052197265625004 1062.712939453125 -47.1478515625Q1062.712939453125 -41.0130859375 1059.56728515625 -35.6630859375Q1056.421630859375 -30.313085937500002 1049.85205078125 -27.30439453125L1064.4085937500001 0.0H1046.8392578125001L1034.3348632812501 -24.36962890625H1002.412890625V0.0ZM1002.412890625 -37.165185546875H1037.03046875Q1041.647900390625 -37.165185546875 1044.1696533203126 -39.871728515625Q1046.69140625 -42.578271484375 1046.69140625 -46.826123046875004Q1046.69140625 -49.691357421875004 1045.60009765625 -51.715283203125004Q1044.5087890625 -53.739208984375004 1042.3413818359377 -54.776171875Q1040.1739746093751 -55.813134765625 1037.03046875 -55.813134765625H1002.412890625ZM1116.6564453125 1.2000000000000002Q1108.808642578125 1.2000000000000002 1101.96953125 0.24565429687500007Q1095.130419921875 -0.70869140625 1090.0 -3.1630371093750003Q1084.869580078125 -5.617382812500001 1082.0000244140624 -10.0239013671875Q1079.1304687499999 -14.430419921875 1079.1304687499999 -21.330419921875002Q1079.1304687499999 -21.530419921875 1079.1304687499999 -21.8325927734375Q1079.1304687499999 -22.134765625 1079.23046875 -22.34345703125H1094.625927734375Q1094.525927734375 -21.943457031250002 1094.4781005859375 -21.402148437500003Q1094.4302734374999 -20.86083984375 1094.4302734374999 -20.17822265625Q1094.4302734374999 -17.082568359375 1097.099853515625 -15.1477783203125Q1099.76943359375 -13.21298828125 1104.70859375 -12.3281982421875Q1109.64775390625 -11.443408203125001 1116.2608398437499 -11.443408203125001Q1119.1173828125 -11.443408203125001 1122.028271484375 -11.684716796875001Q1124.93916015625 -11.926025390625 1127.6065673828125 -12.4151611328125Q1130.273974609375 -12.904296875 1132.397900390625 -13.7869140625Q1134.5218261718749 -14.66953125 1135.7587890625 -15.997802734375Q1136.995751953125 -17.32607421875 1136.995751953125 -19.104345703125002Q1136.995751953125 -21.669580078125 1134.65009765625 -23.1956787109375Q1132.304443359375 -24.721777343750002 1128.3109619140623 -25.702221679687504Q1124.3174804687499 -26.682666015625003 1119.3283447265624 -27.373974609375004Q1114.3392089843749 -28.065283203125002 1109.0000732421875 -28.9131103515625Q1103.6609375 -29.7609375 1098.6718017578125 -31.2109375Q1093.682666015625 -32.6609375 1089.6891845703126 -34.96962890625Q1085.695703125 -37.2783203125 1083.350048828125 -40.939184570312506Q1081.00439453125 -44.600048828125004 1081.00439453125 -49.9130859375Q1081.00439453125 -54.765234375000006 1083.3413330078124 -58.48696289062501Q1085.678271484375 -62.208691406250004 1090.2173828125 -64.7608642578125Q1094.756494140625 -67.313037109375 1101.3260498046875 -68.60869140625Q1107.8956054687499 -69.904345703125 1116.356494140625 -69.904345703125Q1124.9217285156249 -69.904345703125 1131.3412841796874 -68.51520996093751Q1137.7608398437499 -67.12607421875 1142.0064697265625 -64.53041992187501Q1146.252099609375 -61.934765625000004 1148.3433837890625 -58.2673828125Q1150.4346679687499 -54.6 1150.4346679687499 -50.043505859375V-48.460888671875004H1135.239208984375V-49.721777343750006Q1135.239208984375 -51.9130859375 1132.8870117187498 -53.6065673828125Q1130.534814453125 -55.300048828125 1126.486962890625 -56.2978759765625Q1122.439111328125 -57.295703125 1117.2608398437499 -57.295703125Q1110.1651367187499 -57.295703125 1105.721630859375 -56.408740234375Q1101.278125 -55.52177734375 1099.2020263671875 -53.993505859375006Q1097.125927734375 -52.465234375 1097.125927734375 -50.595654296875004Q1097.125927734375 -48.3173828125 1099.47158203125 -46.934765625Q1101.8172363281249 -45.5521484375 1105.8107177734373 -44.715185546875006Q1109.80419921875 -43.87822265625 1114.7933349609375 -43.1869140625Q1119.782470703125 -42.49560546875 1125.1216064453124 -41.6021240234375Q1130.4607421875 -40.708642578125 1135.4498779296875 -39.3108154296875Q1140.439013671875 -37.91298828125 1144.4324951171875 -35.5608154296875Q1148.4259765625 -33.208642578125 1150.771630859375 -29.6521240234375Q1153.1172851562499 -26.09560546875 1153.1172851562499 -20.8869140625Q1153.1172851562499 -12.865185546875 1148.5020751953125 -7.9956298828125005Q1143.886865234375 -3.1260742187500004 1135.6716552734374 -0.9630371093750001Q1127.4564453125 1.2000000000000002 1116.6564453125 1.2000000000000002ZM1213.2381097593075 1.2000000000000002Q1199.6077889414166 1.2000000000000002 1189.6669559941456 -2.9565185546875Q1179.7261230468748 -7.113037109375 1174.3652587890624 -15.063037109375001Q1169.0043945312498 -23.013037109375002 1169.0043945312498 -34.35269709543569Q1169.0043945312498 -45.786962890625006 1174.3652587890624 -53.69130859375001Q1179.7261230468748 -61.595654296875004 1189.6669559941456 -65.75Q1199.6077889414166 -69.904345703125 1213.2381097593075 -69.904345703125Q1226.9999999999998 -69.904345703125 1236.9152099609373 -65.75Q1246.8304199218749 -61.595654296875004 1252.1912841796875 -53.69130859375001Q1257.5521484375 -45.786962890625006 1257.5521484375 -34.35269709543569Q1257.5521484375 -23.013037109375002 1252.1912841796875 -15.063037109375001Q1246.8304199218749 -7.113037109375 1236.9152099609373 -2.9565185546875Q1226.9999999999998 1.2000000000000002 1213.2381097593075 1.2000000000000002ZM1213.278271484375 -11.691210937500001Q1219.4130859374998 -11.691210937500001 1224.5522460937498 -13.084692382812502Q1229.6914062499998 -14.478173828125001 1233.4914306640624 -17.1629638671875Q1237.291455078125 -19.847753906250002 1239.4088623046873 -23.916975911458337Q1241.52626953125 -27.98619791666667 1241.52626953125 -33.300000000000004V-35.604345703125Q1241.52626953125 -40.897828151755135 1239.4088623046873 -44.92720997431507Q1237.291455078125 -48.956591796875 1233.4914306640624 -51.639208984375Q1229.6914062499998 -54.321826171875 1224.5522460937498 -55.66748046875Q1219.4130859374998 -57.013134765625004 1213.278271484375 -57.013134765625004Q1207.14345703125 -57.013134765625004 1202.004296875 -55.66748046875Q1196.86513671875 -54.321826171875 1193.0651123046873 -51.639208984375Q1189.265087890625 -48.956591796875 1187.1955078125 -44.92720997431507Q1185.125927734375 -40.897828151755135 1185.125927734375 -35.604345703125V-33.300000000000004Q1185.125927734375 -27.98619791666667 1187.1955078125 -23.916975911458337Q1189.265087890625 -19.847753906250002 1193.0651123046873 -17.1629638671875Q1196.86513671875 -14.478173828125001 1202.004296875 -13.084692382812502Q1207.14345703125 -11.691210937500001 1213.278271484375 -11.691210937500001ZM1277.8000488281248 0.0V-68.704345703125H1292.4129394531249L1329.8564941406248 -32.925927734375Q1331.1260742187499 -31.852001953125 1332.895654296875 -29.99111328125Q1334.6652343749997 -28.130224609375002 1336.5826416015623 -26.1693359375Q1338.5000488281248 -24.208447265625 1339.8826660156249 -22.6388671875H1340.6913574218747Q1340.5957031249998 -24.8041015625 1340.4522216796872 -27.9193359375Q1340.308740234375 -31.0345703125 1340.308740234375 -33.04326171875V-68.704345703125H1355.2824707031248V0.0H1340.965234375L1303.49990234375 -36.091503906250004Q1300.8259765624998 -38.652392578125 1297.9020507812497 -41.7567626953125Q1294.9781249999999 -44.8611328125 1293.1955078124997 -46.735058593750004H1292.4868164062498Q1292.5824707031247 -45.430712890625 1292.678125 -42.211132812500004Q1292.7737792968749 -38.991552734375006 1292.7737792968749 -34.861083984375V0.0Z"/><path id="p-tech" d="M33.904296875 0.0V-59.422021484375H2.80107421875V-68.6497314453125H75.482275390625V-59.422021484375H44.379052734375V0.0ZM121.15617675781252 0.0V-68.6497314453125H188.64543457031252V-59.7701416015625H131.6309326171875V-39.590869140625H182.997314453125V-30.711279296875002H131.6309326171875V-8.87958984375H189.4454345703125V0.0ZM278.2508056640625 1.2000000000000002Q264.85349121093753 1.2000000000000002 255.67969970703126 -2.8751342773437503Q246.50590820312502 -6.950268554687501 241.85617675781253 -14.900268554687502Q237.20644531250002 -22.850268554687503 237.20644531250002 -34.3497314453125Q237.20644531250002 -51.3497314453125 247.78023681640627 -60.5997314453125Q258.3540283203125 -69.8497314453125 278.0 -69.8497314453125Q289.44919433593753 -69.8497314453125 298.14838867187507 -66.87647705078125Q306.84758300781255 -63.90322265625 311.7221801757813 -58.004833984375Q316.59677734375003 -52.1064453125 316.59677734375003 -43.3064453125H306.27121582031253Q306.27121582031253 -49.5631591796875 302.69366455078125 -53.46611328125Q299.11611328125 -57.3690673828125 292.71127929687503 -59.1696044921875Q286.30644531250005 -60.9701416015625 277.800537109375 -60.9701416015625Q268.996240234375 -60.9701416015625 262.26654052734375 -58.19393310546875Q255.5368408203125 -55.417724609375 251.7336181640625 -49.78829345703125Q247.9303955078125 -44.1588623046875 247.9303955078125 -35.649731445312504V-33.2Q247.9303955078125 -24.339526367187503 251.78388671875 -18.710363769531252Q255.63737792968752 -13.081201171875001 262.46734619140625 -10.380395507812501Q269.297314453125 -7.6795898437500005 278.2021484375 -7.6795898437500005Q286.8572509765625 -7.6795898437500005 293.18641357421876 -9.530664062500001Q299.515576171875 -11.381738281250001 303.01799316406255 -15.284692382812501Q306.52041015625 -19.187646484375 306.52041015625 -25.243823242187503H316.69677734375Q316.69677734375 -16.493017578125002 311.79677734375 -10.594628906250001Q306.89677734375005 -4.696240234375 298.2475830078125 -1.7481201171874998Q289.598388671875 1.2000000000000002 278.2508056640625 1.2000000000000002ZM367.2561767578125 0.0V-68.6497314453125H377.73093261718753V-39.6892578125H429.40751953125005V-68.6497314453125H439.88227539062507V0.0H429.40751953125005V-30.4615478515625H377.73093261718753V0.0Z"/><path id="p-jat" d="M33.21744384765625 1.2000000000000002Q23.747851562500003 1.2000000000000002 17.069573974609376 -1.460870361328125Q10.39129638671875 -4.12174072265625 6.843463134765625 -9.697833251953124Q3.2956298828125004 -15.27392578125 3.2956298828125004 -24.004370117187502V-25.447851562500002H19.865332031250002V-23.5478515625Q19.865332031250002 -17.9652587890625 23.24357299804688 -15.21092529296875Q26.621813964843753 -12.456591796875001 32.63048095703125 -12.456591796875001Q39.260888671875 -12.456591796875001 42.84564819335938 -15.845703125Q46.43040771484375 -19.234814453125 46.43040771484375 -26.4434814453125V-68.72174072265625H63.639257812500006V-27.22174072265625Q63.639257812500006 -17.37825927734375 59.96968383789063 -11.07825927734375Q56.30010986328125 -4.77825927734375 49.52183227539062 -1.789129638671875Q42.7435546875 1.2000000000000002 33.21744384765625 1.2000000000000002ZM75.35214843749999 0.0 109.51300048828125 -68.72174072265625H128.88707275390624L163.0479248046875 0.0H144.217333984375L138.239111328125 -12.386889648437501H99.0609619140625L93.10447998046875 0.0ZM105.38707275390624 -25.730444335937502H131.91300048828126L124.60870361328125 -41.3999267578125Q124.15218505859374 -42.434704589843754 123.30001831054688 -44.410778808593754Q122.4478515625 -46.386853027343754 121.57394409179688 -48.51727905273438Q120.70003662109374 -50.647705078125 119.99351806640624 -52.30857543945312Q119.28699951171875 -53.96944580078125 119.10003662109375 -54.3520751953125H118.32177734375Q117.48699951171875 -52.41729736328125 116.41309204101563 -49.90426025390625Q115.3391845703125 -47.39122314453125 114.35440673828126 -45.0564453125Q113.36962890625 -42.72166748046875 112.69136962890624 -41.321667480468754ZM199.85214843750003 0.0V-54.1260009765625H169.63477783203126V-68.72174072265625H247.33488769531255V-54.1260009765625H217.11751708984377V0.0Z"/></defs><symbol id="mk" viewBox="1 6 108 68"><g style="stroke:var(--mk,#3CE3F0)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></symbol><symbol id="lk-h" viewBox="1 6 468 68"><g style="stroke:var(--mk,#3CE3F0)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g><use href="#p-name" transform="translate(124.00 33) scale(0.24781)" style="fill:var(--lk-name,#E6ECF2)"/><use href="#p-tech" transform="translate(124.00 64) scale(0.24781)" style="fill:var(--lk-tech,#A3AFBC)"/><g style="stroke:var(--lk-rule,#3D4855)" stroke-width="1.5" fill="none"><path d="M245.7 64H462.2"/><path d="M245.7 64V54"/><path d="M263.7 64V59"/><path d="M281.8 64V59"/><path d="M299.8 64V59"/><path d="M317.9 64V59"/><path d="M335.9 64V59"/><path d="M354.0 64V54"/><path d="M372.0 64V59"/><path d="M390.1 64V59"/><path d="M408.1 64V59"/><path d="M426.1 64V59"/><path d="M444.2 64V59"/><path d="M462.2 64V54"/></g></symbol><symbol id="lk-s" viewBox="-4 6 306 132"><g transform="translate(94.22 0)"><g style="stroke:var(--mk,#3CE3F0)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></g><use href="#p-name" transform="translate(0.00 105) scale(0.21866)" style="fill:var(--lk-name,#E6ECF2)"/><use href="#p-tech" transform="translate(99.95 134) scale(0.21866)" style="fill:var(--lk-tech,#A3AFBC)"/></symbol><symbol id="icon" viewBox="0 0 128 128"><rect width="128" height="128" rx="28" fill="#0A0C0F"/><rect x="8" y="8" width="112" height="112" rx="20" fill="#10141A"/><g stroke="#1B222B" stroke-width="1"><path d="M24 8V120"/><path d="M40 8V120"/><path d="M56 8V120"/><path d="M72 8V120"/><path d="M88 8V120"/><path d="M104 8V120"/><path d="M8 24H120"/><path d="M8 40H120"/><path d="M8 56H120"/><path d="M8 72H120"/><path d="M8 88H120"/><path d="M8 104H120"/></g><g transform="translate(9.5 24)"><g style="stroke:var(--mk,#3CE3F0)" fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16"/><path d="M70 16 H100"/></g></g></symbol></svg>
 <noscript><style>.jump{display:none!important}@media (max-width:959px){.rail{flex-wrap:wrap}.rail nav{display:block!important;width:100%}.rail nav ol{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}}[role=tabpanel][hidden]{display:block!important}</style></noscript>
 <aside class="rail" aria-label="Brand book index">
@@ -926,74 +998,7 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:44px;cursor:poin
   <p class="cap">Depth comes from tone steps and hairlines. Glass (E3) is reserved for overlays that sit on top of a moving trace, like the scope's bezel; it is never a card style.</p>
 </section>
 
-<style>
-.elev-wrap{background:var(--ink-950);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
-.elev-wrap .elev{border:0}
-.icons{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;background:var(--panel);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden}
-@media (max-width:700px){.icons{grid-template-columns:repeat(auto-fill,minmax(84px,1fr))}}
-.icons figure{margin:0;box-shadow:inset -1px -1px 0 var(--line);display:grid;justify-items:center;gap:10px;padding:18px 8px 12px}
-.icons svg{width:32px;height:32px;color:var(--fg)}
-.icons figcaption{font-family:var(--f-mono);font-size:var(--t-label);color:var(--fg-muted);font-stretch:90%;text-transform:uppercase;letter-spacing:.05em}
-.motion-demo{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--s5);align-items:stretch}
-@media (max-width:800px){.motion-demo{grid-template-columns:1fr}}
-.photo-frame{aspect-ratio:4/3;border:1px dashed var(--line-strong);border-radius:10px;display:grid;place-items:center;text-align:center;padding:var(--s4);color:var(--fg-muted);background:repeating-linear-gradient(-45deg,transparent 0 10px,rgba(159,180,200,.03) 10px 11px);font-size:var(--t-small)}
-/* components */
-.cmp-row{display:flex;flex-wrap:wrap;gap:var(--s3);align-items:center}
-.btn{--h:44px;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--h);padding:0 18px;border-radius:var(--r-control);font-family:var(--f-display);font-stretch:108%;font-weight:600;font-size:var(--t-small);letter-spacing:.005em;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background var(--t-base) var(--ease-out),color var(--t-base) var(--ease-out),border-color var(--t-base) var(--ease-out),transform var(--t-fast) var(--ease-out)}
-.btn:active{transform:translateY(1px)}
-.btn-primary{background:var(--ch1);color:var(--ink-900)}
-@media (hover:hover){.btn-primary:hover{background:#7AEDF6}}
-.btn-secondary{background:transparent;color:var(--fg);border-color:var(--line-control)}
-@media (hover:hover){.btn-secondary:hover{border-color:var(--ch1);color:var(--ch1)}}
-.btn-ghost{background:transparent;color:var(--ch1);padding-inline:6px;text-decoration:underline;text-underline-offset:.25em;text-decoration-thickness:1px}
-.btn[disabled],.btn[aria-disabled="true"]{background:var(--ink-800);color:var(--ink-400);border-color:var(--line);cursor:not-allowed;transform:none}
-.btn .arrow{width:16px;height:16px;transition:transform var(--t-base) var(--ease-out)}
-@media (hover:hover){.btn:hover .arrow{transform:translateX(3px)}}
-.btn .spin{width:16px;height:16px;animation:spin 900ms linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media (prefers-reduced-motion:reduce){.btn .spin{animation:none}.btn .arrow{transition:none}}
-.field{display:grid;gap:6px;min-width:0}
-.field label{font-weight:550;font-size:var(--t-small)}
-.field .hint{color:var(--fg-muted);font-size:var(--t-small)}
-.input{min-height:44px;width:100%;background:var(--ink-950);color:var(--fg);border:1px solid var(--line-control);border-radius:var(--r-control);padding:10px 12px;font:inherit;caret-color:var(--ch1);transition:border-color var(--t-base) var(--ease-out),box-shadow var(--t-base) var(--ease-out);font-size:var(--t-body)}
-.input::placeholder{color:var(--ink-400)}
-@media (hover:hover){.input:hover{border-color:var(--ink-400)}}
-.input:focus{outline:none;border-color:var(--ch1);box-shadow:0 0 0 3px rgba(60,227,240,.18)}
-.field.err .input{border-color:var(--danger)}
-.field .msg{display:flex;gap:6px;align-items:center;font-size:var(--t-small);color:var(--danger)}
-.readout-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--line);gap:1px}
-.readout-strip a{background:var(--ink-950);padding:12px 14px;text-decoration:none;color:var(--fg);display:grid;gap:4px;transition:background var(--t-base) var(--ease-out)}
-@media (hover:hover){.readout-strip a:hover{background:var(--ink-850)}}
-.readout-strip .v{font-family:var(--f-display);font-stretch:112%;font-weight:600;font-size:var(--t-small)}
-@media (max-width:640px){.readout-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.price-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:var(--s5);align-items:baseline;padding:var(--s4) 0;border-bottom:1px solid var(--line)}
-.price-row .name{font-family:var(--f-display);font-size:var(--t-item);font-weight:600;font-stretch:108%;line-height:1.35;letter-spacing:0}
-.price-row .p{font-family:var(--f-mono);font-stretch:90%;color:var(--fg);font-variant-numeric:tabular-nums;font-size:var(--t-data)}
-.price-row .d{font-family:var(--f-mono);font-stretch:90%;font-size:var(--t-label);color:var(--fg-muted)}
-@media (max-width:560px){.price-row{grid-template-columns:minmax(0,1fr) auto}.price-row .d{grid-column:1/-1}}
-.price-row>*{min-width:0;overflow-wrap:anywhere}
-.toast{display:inline-flex;gap:10px;align-items:center;background:var(--ink-800);border:1px solid var(--line-strong);border-radius:8px;padding:10px 14px;font-size:var(--t-small);box-shadow:0 10px 30px -8px rgba(0,0,0,.6)}
-/* applications */
-.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:var(--s6) var(--s5)}
-.apps figure{margin:0;min-width:0}
-.apps .stage{border:1px solid var(--line);border-radius:var(--r-panel);background:#0d1014;padding:var(--s5);display:grid;place-items:center;overflow:hidden}
-.apps svg.mock{width:100%;height:auto;display:block}
-.apps figcaption{margin-top:var(--s2);color:var(--fg-muted);font-size:var(--t-small)}
-.apps figcaption strong{color:var(--fg)}
-.sig{background:#fff;color:#0A0C0F;border-radius:8px;padding:20px;font-family:Arial,Helvetica,sans-serif;width:100%;max-width:520px}
-/* tokens */
-.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:-1px;overflow-x:auto}
-.tabs button{font-family:var(--f-mono);font-stretch:90%;font-size:var(--t-label);letter-spacing:.04em;text-transform:uppercase;background:transparent;color:var(--fg-muted);border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;padding:10px 14px;cursor:pointer;min-height:40px;white-space:nowrap}
-.tabs button[aria-selected="true"]{color:var(--fg);background:var(--panel);border-color:var(--line);box-shadow:inset 0 2px 0 var(--ch1)}
-.end{margin-top:var(--s10);padding-top:var(--s7);border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:end;gap:var(--s5);flex-wrap:wrap}
 
-/* touch sizes last, so component rules above cannot undo them */
-@media (pointer:coarse){
-  .btn-copy,.tabs button{min-height:44px}
-  .btn-copy{padding-inline:14px}
-  .rail nav a{min-height:44px;align-items:center}
-}
-</style>
 
 <section class="section" id="imagery" aria-labelledby="h-img">
   <div class="sec-head"><span class="sec-num">13</span><div><h2 id="h-img">Photography, illustration, iconography, motion</h2><p>Show real work and real people. Draw systems as signals. Move like an instrument settling.</p></div></div>
@@ -1550,19 +1555,24 @@ input[type=range]{accent-color:var(--ch1);width:100%;min-height:44px;cursor:poin
 (()=>{
 const reduce = !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
 const hasIO = 'IntersectionObserver' in window;
-const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const CSSV = new Map(); let rootCS = null;
+const css = n => { if (!CSSV.has(n)) { rootCS = rootCS || getComputedStyle(document.documentElement); CSSV.set(n, rootCS.getPropertyValue(n).trim()); } return CSSV.get(n); };
 
 /* ---------- Trace engine: noise → trigger → lock → burn-in ---------- */
 const TRACE_D = "M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16";
 const NS = 'http://www.w3.org/2000/svg';
 let MARK_PTS = null;
+/* The mark is constant geometry, so sample it with arithmetic instead of SVG getPointAtLength
+   (which forced a full-document layout per call). 160 points, evenly spaced by arc length. */
 function markPoints(){
   if (MARK_PTS) return MARK_PTS;
-  const s = document.createElementNS(NS,'svg'); s.setAttribute('width','0'); s.setAttribute('height','0'); s.style.position='absolute';
-  const p = document.createElementNS(NS,'path'); p.setAttribute('d',TRACE_D); s.appendChild(p); document.body.appendChild(s);
-  const L = p.getTotalLength(), n = 160, out = [];
-  for (let i=0;i<=n;i++){ const q=p.getPointAtLength(L*i/n); out.push([q.x,q.y]); }
-  s.remove(); return (MARK_PTS = out);
+  const fine=[[9,50]], q=(a,b,c,t)=>(1-t)*(1-t)*a+2*(1-t)*t*b+t*t*c;
+  [[9,64,23,64],[33,64,36,57]].forEach(([cx,cy,x,y])=>{ const [x0,y0]=fine[fine.length-1]; for(let i=1;i<=48;i++){ const t=i/48; fine.push([q(x0,cx,x,t),q(y0,cy,y,t)]); } });
+  [[52,16],[68,64],[84,64],[84,16]].forEach(p=>fine.push(p));
+  const cum=[0]; for(let i=1;i<fine.length;i++) cum.push(cum[i-1]+Math.hypot(fine[i][0]-fine[i-1][0],fine[i][1]-fine[i-1][1]));
+  const L=cum[cum.length-1], n=160, out=[]; let j=1;
+  for(let i=0;i<=n;i++){ const d=L*i/n; while(j<cum.length-1&&cum[j]<d) j++; const s=cum[j]-cum[j-1], t=s?(d-cum[j-1])/s:0; out.push([fine[j-1][0]+(fine[j][0]-fine[j-1][0])*t, fine[j-1][1]+(fine[j][1]-fine[j-1][1])*t]); }
+  return (MARK_PTS = out);
 }
 function Scope(canvas, opt){
   const ctx = canvas.getContext && canvas.getContext('2d');

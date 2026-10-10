@@ -11,8 +11,9 @@ const whenVisible = (el, fn, threshold=.2) => {
 };
 /* Isolate each feature so one failure never disables navigation or the form. */
 const safe = (name, fn) => { try { fn(); } catch (err) { if (window.console) console.warn('[jat] ' + name + ' disabled:', err); } };
-const root = getComputedStyle(document.documentElement);
-const tok = n => root.getPropertyValue(n).trim();
+/* Tokens never change at runtime: read each once (a live computed-style read forces a style recalc). */
+const TOK = new Map(); let rootCS = null;
+const tok = n => { if (!TOK.has(n)) { rootCS = rootCS || getComputedStyle(document.documentElement); TOK.set(n, rootCS.getPropertyValue(n).trim()); } return TOK.get(n); };
 
 /* ---------- Mobile navigation ---------- */
 safe('navigation', () => {
@@ -47,13 +48,17 @@ safe('navigation', () => {
 const TRACE_D = "M9 50 Q9 64 23 64 Q33 64 36 57 L52 16 L68 64 H84 V16";
 const NS = 'http://www.w3.org/2000/svg';
 let MARK = null;
+/* The mark is constant geometry, so sample it with arithmetic instead of SVG getPointAtLength
+   (which forced a full-document layout per call). 160 points, evenly spaced by arc length. */
 function markPoints(){
   if (MARK) return MARK;
-  const s = document.createElementNS(NS,'svg'); s.setAttribute('width','0'); s.setAttribute('height','0'); s.style.position='absolute';
-  const p = document.createElementNS(NS,'path'); p.setAttribute('d',TRACE_D); s.appendChild(p); document.body.appendChild(s);
-  const L = p.getTotalLength(), n = 160, out=[];
-  for (let i=0;i<=n;i++){ const q=p.getPointAtLength(L*i/n); out.push([q.x,q.y]); }
-  s.remove(); return (MARK = out);
+  const fine=[[9,50]], q=(a,b,c,t)=>(1-t)*(1-t)*a+2*(1-t)*t*b+t*t*c;
+  [[9,64,23,64],[33,64,36,57]].forEach(([cx,cy,x,y])=>{ const [x0,y0]=fine[fine.length-1]; for(let i=1;i<=48;i++){ const t=i/48; fine.push([q(x0,cx,x,t),q(y0,cy,y,t)]); } });
+  [[52,16],[68,64],[84,64],[84,16]].forEach(p=>fine.push(p));
+  const cum=[0]; for(let i=1;i<fine.length;i++) cum.push(cum[i-1]+Math.hypot(fine[i][0]-fine[i-1][0],fine[i][1]-fine[i-1][1]));
+  const L=cum[cum.length-1], n=160, out=[]; let j=1;
+  for(let i=0;i<=n;i++){ const d=L*i/n; while(j<cum.length-1&&cum[j]<d) j++; const s=cum[j]-cum[j-1], t=s?(d-cum[j-1])/s:0; out.push([fine[j-1][0]+(fine[j][0]-fine[j-1][0])*t, fine[j-1][1]+(fine[j][1]-fine[j-1][1])*t]); }
+  return (MARK = out);
 }
 function axes(ctx,W,H,full){
   if(W<760&&full) return;
@@ -196,7 +201,7 @@ function drawVersus(c, mode){
       ctx.font=`400 11px ${tok('--f-mono')||'monospace'}`; if('fontStretch' in ctx) ctx.fontStretch='semi-condensed'; ctx.fillStyle=tok('--ch2'); ctx.fillText('TARGET', W-58, y1-8);
     }
   }
-  paint(); let t; addEventListener('resize',()=>{ clearTimeout(t); t=setTimeout(paint,150); });
+  let shown=false; whenVisible(c, ()=>{ shown=true; paint(); }, 0); let t; addEventListener('resize',()=>{ if(!shown) return; clearTimeout(t); t=setTimeout(paint,150); });
 }
 safe('comparison traces', () => document.querySelectorAll('canvas[data-versus]').forEach(c=>drawVersus(c,c.dataset.versus)));
 

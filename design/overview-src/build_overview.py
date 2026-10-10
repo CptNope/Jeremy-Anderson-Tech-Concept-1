@@ -65,6 +65,7 @@ CSS = '''<style>
 @media (max-width:860px){.deliv{grid-template-columns:1fr}}
 .deliv a{display:grid;grid-template-rows:auto 1fr;border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden;background:var(--panel);text-decoration:none;color:var(--fg);transition:border-color var(--t-base) var(--ease-out)}
 @media (hover:hover){.deliv a:hover{border-color:var(--ch1)}}
+.deliv picture{display:block}
 .deliv img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);background:var(--ink-950)}
 .deliv .body{padding:var(--s5) var(--s5) var(--s6);display:flex;flex-direction:column;gap:var(--s3)}
 .deliv h3{font-size:var(--t-title);font-weight:600;font-stretch:112%;line-height:1.15;letter-spacing:-.01em}
@@ -118,8 +119,8 @@ body = f'''{SPRITE}
 <section class="section" aria-labelledby="dl-h"><div class="wrap">
   <div class="section-head"><h2 id="dl-h">Two deliverables, one system.</h2><p class="lede">The brand book defines the identity and its production tokens. The site prototype applies them to every page the agency needs.</p></div>
   <div class="deliv">
-    <a href="brand-book/"><img src="img/preview-brand-book.jpg" srcset="img/preview-brand-book-600.jpg 600w, img/preview-brand-book.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Brand book cover: the JAT trace mark on a graticule screen beside the title Brand Book" loading="lazy" decoding="async"><div class="body"><span class="readout">17 sections</span><h3>Brand Book</h3><p>Positioning, audiences, architecture, voice and tagline; the JAT logo system with construction and misuse; color, type, grid and motion; live UI components; applications from business cards to merch; tokens for CSS, theme.json and JSON.</p><span class="more">Read it{ARROW}</span></div></a>
-    <a href="site/"><img src="img/preview-site.jpg" srcset="img/preview-site-600.jpg 600w, img/preview-site.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Website hero: Systems that hold steady, with the JAT trace locking on a graticule and four service channels below" loading="lazy" decoding="async"><div class="body"><span class="readout">15 pages</span><h3>Site Prototype</h3><p>Home, services and full pricing, four channel pages, work and three open-source case studies, about, approach, insights, contact and a site map with the WordPress block plan. Static HTML that maps onto Gutenberg blocks.</p><span class="more">Explore it{ARROW}</span></div></a>
+    <a href="brand-book/"><picture><source type="image/avif" srcset="img/preview-brand-book-600.avif 600w, img/preview-brand-book.avif 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><source type="image/webp" srcset="img/preview-brand-book-600.webp 600w, img/preview-brand-book.webp 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><img src="img/preview-brand-book.jpg" srcset="img/preview-brand-book-600.jpg 600w, img/preview-brand-book.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Brand book cover: the JAT trace mark on a graticule screen beside the title Brand Book" loading="lazy" decoding="async"></picture><div class="body"><span class="readout">17 sections</span><h3>Brand Book</h3><p>Positioning, audiences, architecture, voice and tagline; the JAT logo system with construction and misuse; color, type, grid and motion; live UI components; applications from business cards to merch; tokens for CSS, theme.json and JSON.</p><span class="more">Read it{ARROW}</span></div></a>
+    <a href="site/"><picture><source type="image/avif" srcset="img/preview-site-600.avif 600w, img/preview-site.avif 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><source type="image/webp" srcset="img/preview-site-600.webp 600w, img/preview-site.webp 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><img src="img/preview-site.jpg" srcset="img/preview-site-600.jpg 600w, img/preview-site.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Website hero: Systems that hold steady, with the JAT trace locking on a graticule and four service channels below" loading="lazy" decoding="async"></picture><div class="body"><span class="readout">15 pages</span><h3>Site Prototype</h3><p>Home, services and full pricing, four channel pages, work and three open-source case studies, about, approach, insights, contact and a site map with the WordPress block plan. Static HTML that maps onto Gutenberg blocks.</p><span class="more">Explore it{ARROW}</span></div></a>
   </div>
 </div></section>
 
@@ -160,11 +161,11 @@ html = f'''<!doctype html>
 <meta name="robots" content="noindex">
 <meta property="og:title" content="JAT Concept 1 · Calibrated Signal">
 <meta property="og:description" content="Brand book and website prototype for Jeremy Anderson Tech.">
-<meta property="og:image" content="img/preview-site.jpg">
+<meta property="og:image" content="https://cptnope.github.io/Jeremy-Anderson-Tech-Concept-1/img/preview-site.jpg">
 <meta name="theme-color" content="#0A0C0F">
 <link rel="icon" href="brand-book/assets/jat-mark.svg" type="image/svg+xml">
 <script>document.documentElement.classList.add('js')</script>
-{FONTS}
+{FONTS.replace('../fonts/', 'fonts/')}
 <link rel="stylesheet" href="site/site.css">
 {CSS}
 </head>

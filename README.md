@@ -63,7 +63,8 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 ```
 /
 ├── index.html                  Concept overview: deliverables, page index, design files, ground rules
-├── img/                        Preview images used on the overview
+├── img/                        Overview preview images (AVIF, WebP, JPEG; 600 and 1200 wide)
+├── fonts/                      Self-hosted Latin-subset variable WOFF2 + OFL licenses
 ├── site/                       Site prototype
 │   ├── index.html              Home
 │   ├── services.html           Services and full pricing (+ FAQ)
@@ -94,8 +95,8 @@ Brand identity, brand book and working website concept for **Jeremy Anderson Tec
 │   ├── brand-book-src/         Brand book source (part1–part5.html)
 │   ├── site-src/               site.css, site.js and the Python page builder (incl. the concept bar)
 │   ├── overview-src/           Overview page builder
-│   ├── tools/                  build_all.py, capture.py
-│   ├── fonts/                  Where to put the font files (not committed)
+│   ├── tools/                  build_all.py, capture.py, typeset_roles.py, subset_fonts.py
+│   ├── fonts/                  Source TTFs for the wordmark and font subsetting (not committed)
 │   └── review/                 Finish-review record and iteration captures
 ├── robots.txt                  Disallow all (concept)
 └── .nojekyll                   Serve files as-is on GitHub Pages
@@ -317,6 +318,10 @@ The work was built with Claude using the **Impeccable** design skill in the orde
 # Rebuild everything served by Pages (logos, sprite, brand book, site pages, overview)
 python3 design/tools/build_all.py
 
+# Rebuild the self-hosted font subsets (put both variable TTFs in design/fonts first; see design/fonts/README.md)
+pip install fonttools brotli
+python3 design/tools/subset_fonts.py
+
 # Also re-outline the wordmark from the font (put Archivo-Variable.ttf in design/fonts first)
 pip install fonttools
 python3 design/tools/build_all.py --wordmark
@@ -370,6 +375,7 @@ Hosting is planned on Jeremy's Cloudways/DigitalOcean infrastructure.
 ## Known limits and next steps
 
 - **Adaptation.** See `design/review/adapt.md`. Navigation breakpoints follow the content (full nav from 880px, brand book rail from 960px). The hero has three layout modes, including short landscape. Every control is 44px on touch screens, and tables become cards on phones.
+- **Performance.** See `design/review/optimize.md`. Fonts are self-hosted subsets, preloaded, with no third-party requests. Mark geometry is computed without forcing layout, token reads are cached, and off-screen canvases wait until they're visible. The previews ship as AVIF and WebP. On throttled mobile, FCP and LCP improved 20–25% across the site, fonts arrive 33–41% sooner, and the brand book no longer shifts while loading.
 - **Typesetting.** See `design/review/typeset.md`. The ten-role type scale replaced about 20 one-off sizes. Mono renders only at its loaded 400–500 weights, and long readouts drop the uppercase. Fallback faces are metric-matched. Detector findings went from 131 to 26, and every remaining one is deliberate.
 - **Hardening.** See `design/review/hardening.md`: accessible mobile menu, a resilient contact form, no-JS fallbacks, old-browser guards and long-text wrapping. axe reports 0 violations on all pages.
 - **Scope of the final review.** The last fix batch (inline channel IDs on phones, diagram width, axes on mobile) has not been re-scored by the reviewer.
@@ -378,12 +384,11 @@ Hosting is planned on Jeremy's Cloudways/DigitalOcean infrastructure.
   - more measurement readouts in the case studies;
   - more variety in home section heads.
 - **Optional `/lab/` page.** An interactive "Signal Lab" showcase is in the IA as a phase 3 idea.
-- **Font loading.** Fonts load from Google Fonts in the concept. The production theme should self-host them.
 
 ---
 
 ## Licenses
 
 - **Design, copy and code** © 2026 Jeremy Anderson Tech. All rights reserved unless stated otherwise.
-- **Fonts:** Archivo (Omnibus-Type) and Martian Mono (Evil Martians), both under the SIL Open Font License 1.1, loaded from Google Fonts.
+- **Fonts:** Archivo (Omnibus-Type) and Martian Mono (Evil Martians), both under the SIL Open Font License 1.1, self-hosted as Latin-subset WOFF2 in `/fonts/` with their license texts.
 - **Third-party projects referenced:** God's Eye Lite, Cytoscape: Immune Defense and Chronos & Canon live in their own repositories under [github.com/CptNope](https://github.com/CptNope).

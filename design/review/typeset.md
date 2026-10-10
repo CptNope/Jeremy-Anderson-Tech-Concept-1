@@ -64,4 +64,4 @@ Each step from body up is at least 1.25×. Small text on near-black gets weight 
 ## Notes
 
 - Captures used the fallback faces, because Google Fonts can't be reached from the build environment. Check the real Archivo widths once on the live Pages URL.
-- Self-hosting a subset WOFF2 and preloading it is part of `/impeccable optimize`.
+- Self-hosted subset fonts with preloads followed in `/impeccable optimize` (`optimize.md`); the fallback sizes were remeasured against the real fonts there.

@@ -199,7 +199,7 @@ The brand book adds two book-only styles: a specimen size (clamp 3.5–9rem) for
 **The Width-Before-Break Rule.** On screens under 400px, display and page headings narrow from width 125 to 112 before any word is allowed to break.
 
 ### Loading
-Fonts request only the axes in use (Archivo width 100–125, weight 400–700; Martian Mono width 87.5–100, weight 400–500; the brand book also loads Archivo widths down to 62 for its specimen). Metric-matched fallback faces (`Archivo Fallback` at 98%, `Archivo Wide Fallback` at 118%, `Martian Mono Fallback` at 110%, with ascent and descent overrides from Archivo's real metrics) keep line breaks stable while the web fonts load. Body text is set in rem, so browser text-size settings scale every role together.
+Fonts are self-hosted from `/fonts/`: Latin-subset variable WOFF2 instanced to the axes in use (Archivo width 100–125, weight 400–700, 50KB; Martian Mono width 87.5–100, weight 400–500, 20KB; the brand book loads a 74KB Archivo with widths down to 62 for its specimen slider). Each page preloads its two files and uses `font-display: swap`. Metric-matched fallback faces (`Archivo Fallback` at 98.4%, `Archivo Wide Fallback` at 118%, `Martian Mono Fallback` at 109.6%, sizes measured against the real fonts, with ascent and descent overrides from Archivo's real metrics) keep line breaks stable while the web fonts load. Body text is set in rem, so browser text-size settings scale every role together.
 
 ## Layout
 
