@@ -44,7 +44,7 @@ POSTS = [
  ('Attending OWASP BASC Boston 2026: AI, AppSec, and the future of backported security', BASE+'/attending-owasp-basc-boston-2026-ai-appsec-and-the-future-of-backported-security/','Cybersecurity','2026-04-22','Apr 22, 2026','Notes from the conference on AI-assisted backporting and keeping legacy systems secure.'),
 ]
 def posts_html(n=3):
-    return '<div class="posts">'+''.join(f'''<a class="post" href="{u}"><div class="meta"><span class="readout">{c}</span><time class="readout" datetime="{d}">{dd}</time></div><h3>{t}</h3><p>{x}</p><span class="readout" style="color:var(--ch1)">Read on the current site</span></a>''' for t,u,c,d,dd,x in POSTS[:n])+'</div>'
+    return '<div class="posts">'+''.join(f'''<a class="post" href="{u}"><h3>{t}</h3><p>{x}</p><div class="meta"><span class="readout">{c}</span><time class="readout" datetime="{d}">{dd}</time></div><span class="post-more">Read on the current site{EXT}</span></a>''' for t,u,c,d,dd,x in POSTS[:n])+'</div>'
 
 # ---------------- HOME ----------------
 home = f'''
@@ -57,7 +57,7 @@ home = f'''
       <h1 id="hero-h">Systems that hold steady.</h1>
       <p class="lede">We build the website, software and AI your business runs on, then secure it, host it and keep it running. Prices are published. You work directly with the engineer.</p>
       <div class="cta-row"><a class="btn btn-primary" href="contact.html">Book a discovery call{ARROW}</a><a class="btn btn-secondary" href="work.html">See the work</a></div>
-      <p class="readout note">Free 30-minute call · Written proposal in 3 business days</p>
+      <p class="readout note">Free 30-minute call · Written proposal in 3&nbsp;business&nbsp;days</p>
     </div>
     {strip_html()}
   </div>
@@ -249,7 +249,7 @@ def channel_page(key, slug, title, h1, lede, outcome, svcs, packages, proof, faq
     <span class="amt">{packages[0][2]}</span><span class="muted" style="margin-top:-8px">{packages[0][0]}, the usual starting point</span>
     <a class="btn btn-primary" href="contact.html">Book a discovery call{ARROW}</a>
     <a class="btn btn-secondary" href="#packages">Compare packages</a>
-    <p class="readout" style="margin:0">Free 30-minute call · Proposal in 3 business days</p>
+    <p class="readout" style="margin:0">Free 30-minute call · Proposal in 3&nbsp;business&nbsp;days</p>
   </section>
 </div></section>
 <section class="section alt" id="packages" aria-labelledby="pk-h" style="scroll-margin-top:72px"><div class="wrap">

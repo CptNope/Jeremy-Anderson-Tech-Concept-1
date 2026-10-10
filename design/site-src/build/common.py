@@ -126,7 +126,7 @@ def footer():
       <li><a href="https://github.com/CptNope" rel="noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/jeremy-anderson-53963b222/" rel="noopener">LinkedIn</a></li><li><a href="https://x.com/JeremyA59964523" rel="noopener">X (Twitter)</a></li>
       <li><a href="{BASE}/privacy-policy/">Privacy policy</a></li><li><a href="{BASE}/terms-of-service/">Terms of service</a></li><li><a href="{BASE}/accessibility/">Accessibility</a></li></ul></div>
   </div>
-  <div class="foot-base"><span class="readout long">© <span data-year>2026</span> Jeremy Anderson Tech · Shrewsbury, MA</span><span class="concept-note">Website concept v1 for review. Not the live site.</span></div>
+  <div class="foot-base"><span class="readout long">© <span data-year>2026</span> Jeremy Anderson Tech · Shrewsbury,&nbsp;MA</span><span class="concept-note">Website concept v1 for review. Not the live site.</span></div>
 </div></footer>'''
 
 def close_cta(title='Tell us what the system needs to do.', body="A free 30-minute discovery call, then a written proposal within three business days."):

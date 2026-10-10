@@ -44,10 +44,12 @@ def case(slug, path, title, h1, lede, tags, plate, facts, sections, arch, links,
 </div></section>
 <section class="section" style="padding-top:0;border-top:0" aria-label="Case study"><div class="wrap aside-col">
   <article class="prose">{sec}
-    <h2>Architecture</h2>
-    <div class="screen diagram-scroll" style="margin-top:var(--s4)" tabindex="0" role="region" aria-label="Architecture diagram, scrolls horizontally"><div>{arch}</div></div><p class="readout diagram-hint" style="display:none;margin-top:var(--s2)">Swipe to see the full diagram</p>
   </article>
   <section class="sticky-card" aria-label="Project facts"><ul class="facts" style="border-top:0">{fl}</ul><div class="links-row" style="flex-direction:column;gap:0">{ll}</div><a class="btn btn-primary" href="contact.html">Build something like this{ARROW}</a></section>
+</div></section>
+<section class="section" style="padding-top:var(--s7);border-top:0" aria-labelledby="arch-h"><div class="wrap">
+    <h2 id="arch-h">Architecture</h2>
+    <div class="screen diagram-scroll" style="margin-top:var(--s4)" tabindex="0" role="region" aria-label="Architecture diagram"><div>{arch}</div></div><p class="readout diagram-hint" style="display:none;margin-top:var(--s2)">Swipe to see the full diagram</p>
 </div></section>
 {close_cta('Need a system this dependable?','Tell us what it has to do. You will have a written proposal within three business days.')}'''
     open(OUT+slug,'w').write(page(f'{title} · Work · Jeremy Anderson Tech', desc, path, 'work', body, [app]))

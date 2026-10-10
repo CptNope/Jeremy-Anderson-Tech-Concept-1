@@ -41,8 +41,9 @@ FILES = [
   ('design/identity', TREE+'design/identity', 'Wordmark outliner, logo and sprite generators, explorations'),
   ('design/brand-book-src', TREE+'design/brand-book-src', 'Brand book source'),
   ('design/site-src', TREE+'design/site-src', 'Site styles, trace engine and Python page builder'),
-  ('design/tools', TREE+'design/tools', 'build_all.py and capture.py'),
-  ('design/review/finish-review.md', BLOB+'design/review/finish-review.md', 'Finish review findings, fixes and verdicts'),
+  ('design/tools', TREE+'design/tools', 'Build, type-role, font-subset and capture scripts'),
+  ('fonts', TREE+'fonts', 'Self-hosted Archivo and Martian Mono subsets with their licenses'),
+  ('design/review', TREE+'design/review', 'Review records: finish review, hardening, adaptation, typesetting, performance, polish'),
 ]
 
 def pages_html():
@@ -68,9 +69,10 @@ CSS = '''<style>
 .deliv picture{display:block}
 .deliv img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);background:var(--ink-950)}
 .deliv .body{padding:var(--s5) var(--s5) var(--s6);display:flex;flex-direction:column;gap:var(--s3)}
+.card-foot{margin-top:auto;padding-top:var(--s2);display:flex;justify-content:space-between;align-items:center;gap:var(--s4);flex-wrap:wrap}
 .deliv h3{font-size:var(--t-title);font-weight:600;font-stretch:112%;line-height:1.15;letter-spacing:-.01em}
 .deliv p{margin:0;color:var(--fg-muted)}
-.deliv .more{margin-top:auto;display:inline-flex;align-items:center;gap:8px;color:var(--ch1);font-weight:600}
+.deliv .more{display:inline-flex;align-items:center;gap:8px;color:var(--ch1);font-weight:600}
 .pages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s6) var(--s5)}
 @media (max-width:1000px){.pages{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.pages{grid-template-columns:1fr}}
@@ -119,8 +121,8 @@ body = f'''{SPRITE}
 <section class="section" aria-labelledby="dl-h"><div class="wrap">
   <div class="section-head"><h2 id="dl-h">Two deliverables, one system.</h2><p class="lede">The brand book defines the identity and its production tokens. The site prototype applies them to every page the agency needs.</p></div>
   <div class="deliv">
-    <a href="brand-book/"><picture><source type="image/avif" srcset="img/preview-brand-book-600.avif 600w, img/preview-brand-book.avif 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><source type="image/webp" srcset="img/preview-brand-book-600.webp 600w, img/preview-brand-book.webp 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><img src="img/preview-brand-book.jpg" srcset="img/preview-brand-book-600.jpg 600w, img/preview-brand-book.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Brand book cover: the JAT trace mark on a graticule screen beside the title Brand Book" loading="lazy" decoding="async"></picture><div class="body"><span class="readout">17 sections</span><h3>Brand Book</h3><p>Positioning, audiences, architecture, voice and tagline; the JAT logo system with construction and misuse; color, type, grid and motion; live UI components; applications from business cards to merch; tokens for CSS, theme.json and JSON.</p><span class="more">Read it{ARROW}</span></div></a>
-    <a href="site/"><picture><source type="image/avif" srcset="img/preview-site-600.avif 600w, img/preview-site.avif 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><source type="image/webp" srcset="img/preview-site-600.webp 600w, img/preview-site.webp 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><img src="img/preview-site.jpg" srcset="img/preview-site-600.jpg 600w, img/preview-site.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Website hero: Systems that hold steady, with the JAT trace locking on a graticule and four service channels below" loading="lazy" decoding="async"></picture><div class="body"><span class="readout">15 pages</span><h3>Site Prototype</h3><p>Home, services and full pricing, four channel pages, work and three open-source case studies, about, approach, insights, contact and a site map with the WordPress block plan. Static HTML that maps onto Gutenberg blocks.</p><span class="more">Explore it{ARROW}</span></div></a>
+    <a href="brand-book/"><picture><source type="image/avif" srcset="img/preview-brand-book-600.avif 600w, img/preview-brand-book.avif 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><source type="image/webp" srcset="img/preview-brand-book-600.webp 600w, img/preview-brand-book.webp 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><img src="img/preview-brand-book.jpg" srcset="img/preview-brand-book-600.jpg 600w, img/preview-brand-book.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Brand book cover: the JAT trace mark on a graticule screen beside the title Brand Book" loading="lazy" decoding="async"></picture><div class="body"><h3>Brand Book</h3><p>Positioning, audiences, architecture, voice and tagline; the JAT logo system with construction and misuse; color, type, grid and motion; live UI components; applications from business cards to merch; tokens for CSS, theme.json and JSON.</p><div class="card-foot"><span class="more">Read it{ARROW}</span><span class="readout">17 sections</span></div></div></a>
+    <a href="site/"><picture><source type="image/avif" srcset="img/preview-site-600.avif 600w, img/preview-site.avif 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><source type="image/webp" srcset="img/preview-site-600.webp 600w, img/preview-site.webp 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw"><img src="img/preview-site.jpg" srcset="img/preview-site-600.jpg 600w, img/preview-site.jpg 1200w" sizes="(max-width:860px) calc(100vw - 32px), 50vw" width="1200" height="750" alt="Website hero: Systems that hold steady, with the JAT trace locking on a graticule and four service channels below" loading="lazy" decoding="async"></picture><div class="body"><h3>Site Prototype</h3><p>Home, services and full pricing, four channel pages, work and three open-source case studies, about, approach, insights, contact and a site map with the WordPress block plan. Static HTML that maps onto Gutenberg blocks.</p><div class="card-foot"><span class="more">Explore it{ARROW}</span><span class="readout">15 pages</span></div></div></a>
   </div>
 </div></section>
 
@@ -146,7 +148,7 @@ body = f'''{SPRITE}
 </div></section>
 </main>
 <footer class="site-footer"><div class="wrap"><div class="foot-base" style="margin-top:0;border-top:0;padding-top:0">
-  <span class="readout long">© 2026 Jeremy Anderson Tech · Shrewsbury, MA · Concept 1 for review</span>
+  <span class="readout long">© 2026 Jeremy Anderson Tech · Shrewsbury,&nbsp;MA · Concept&nbsp;1 for review</span>
   <span class="concept-note">Fonts: Archivo and Martian Mono, SIL Open Font License 1.1 · <a class="repo-link" href="{REPO}" rel="noopener">github.com/CptNope/Jeremy-Anderson-Tech-Concept-1</a></span>
 </div></div></footer>
 <script src="site/site.js" defer></script>'''
